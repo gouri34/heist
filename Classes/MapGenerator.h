@@ -29,7 +29,7 @@ typedef  enum {
 } StageTypes;
 
 typedef  enum {
-    plain, goingUp, goingDown, inGroundBld
+    plain, goingUp, goingDown, inGroundBld, inSkyBld, onSkyRoof
 } TerrainStatus;
 
 
@@ -55,7 +55,7 @@ public:
     static MapGenerator* GetInstance();
     void init(Layer* _gameLayer, b2World* _gameWorld);
     
-    Point getLastTerrainPos(bool death,float *lastTexCoord_x);
+    Point getLastTerrainPos(bool death,float *lastTexCoord_x, int *groundYPos);
     
     void setStageType(StageTypes st);
     

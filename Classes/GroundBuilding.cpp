@@ -143,7 +143,6 @@ void GroundBuilding::setVertices(Point pos)
     
     
     lastPos = ground_rp;
-    
 }
 
 

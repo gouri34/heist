@@ -56,6 +56,9 @@ bool SkyBuilding::init(Layer *gameScene_, b2World *gameWorld_, Point pos, int gr
     gLayer->addChild(higherFrontView, 60);
     gLayer->addChild(lowerFrontView, 60);
 
+    GlassWindow* gw = GlassWindow::create(gLayer, gWorld, pos);
+    windows.push_back(gw);
+
     
     setVertices(pos);
     
@@ -167,6 +170,22 @@ void SkyBuilding::setVertices(Point pos)
 
 void SkyBuilding::update(float dt, Point pos)
 {
+    //item process
+    std::vector<GlassWindow*> usedWindow;
+    for (int i = 0; i < windows.size(); i++) {
+        GlassWindow* g = windows.at(i);
+        g->update(pos, dt);
+        if (g->destroyed) {
+            usedWindow.push_back(g);
+        }
+    }
+    for (int i = 0; i < usedWindow.size(); i++) {
+        GlassWindow* g = usedWindow.at(i);
+        windows.erase(std::remove(windows.begin(), windows.end(), g), windows.end());
+        delete g;
+    }
+    
+    
     if (!dead) {
         setVertices(pos);
         // setGroundBuildings(pos);
@@ -180,6 +199,9 @@ void SkyBuilding::update(float dt, Point pos)
 
 void SkyBuilding::setDead()
 {
+    GlassWindow* gw = GlassWindow::create(gLayer, gWorld, lastPos);
+    windows.push_back(gw);
+    
     dead = true;
     //setVertices(pos);
 }
@@ -187,6 +209,13 @@ void SkyBuilding::setDead()
 
 SkyBuilding::~SkyBuilding()
 {
+    for (int i = 0; i < windows.size(); i++) {
+        GlassWindow* g = windows.at(i);
+        delete g;
+    }
+    windows.clear();
+
+    
     gLayer->removeChild(wall, true);
     gLayer->removeChild(terrain, true);
     gLayer->removeChild(higherFrontView, true);

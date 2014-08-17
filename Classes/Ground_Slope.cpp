@@ -101,7 +101,6 @@ void Ground_Slope::setVertices(Point pos)
         
     }
     
-    lastPos = rightPos;
     
     
     
@@ -144,6 +143,11 @@ void Ground_Slope::setVertices(Point pos)
     terrainVecs.push_back(Vector2d(rightPos.x, rightPos.y-512));
     
     terrain->setPoints(terrainVecs);
+    
+    
+    lastPos = rightPos;
+    groundYpos = rightPos.y;
+    
     
 }
 

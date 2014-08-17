@@ -50,8 +50,9 @@ bool SkyBuildingRoof::init(Layer *gameScene_, b2World *gameWorld_, Point pos, in
     gLayer->addChild(terrain,2);
     gLayer->addChild(lowerFrontView, 60);
     
-    
+       
     setVertices(pos);
+    
     
     
     return true;
@@ -124,7 +125,7 @@ void SkyBuildingRoof::setVertices(Point pos)
     float side_texCoordX_r = (ground_rp.x - startPos.x)/viewTextureSize.width;
     float side_texCoordY = (ground_lp.y - groundYpos)/viewTextureSize.height;
     points = makeVector(Point(ground_lp.x,groundYpos), ground_lp, ground_rp, Point(ground_rp.x, groundYpos));
-    texCoords = makeVector(Point(side_texCoordX_l, 0.0), Point(side_texCoordX_l, side_texCoordY), Point(side_texCoordX_r, side_texCoordY), Point(side_texCoordX_r, 0.0));
+    texCoords = makeVector(Point(side_texCoordX_l, side_texCoordY), Point(side_texCoordX_l, 0), Point(side_texCoordX_r, 0), Point(side_texCoordX_r, side_texCoordY));
     lowerFrontView->customSetting(points, texCoords);
     
     
@@ -157,12 +158,14 @@ void SkyBuildingRoof::update(float dt, Point pos)
 void SkyBuildingRoof::setDead()
 {
     dead = true;
+    
+    
     //setVertices(pos);
 }
 
 
 SkyBuildingRoof::~SkyBuildingRoof()
-{
+{    
     gLayer->removeChild(terrain, true);
     gLayer->removeChild(lowerFrontView, true);
     
@@ -170,8 +173,5 @@ SkyBuildingRoof::~SkyBuildingRoof()
         gWorld->DestroyBody(groundBody);
         groundBody = NULL;
     }
-    if (roofBody != NULL) {
-        gWorld->DestroyBody(roofBody);
-        roofBody = NULL;
-    }
+    
 }

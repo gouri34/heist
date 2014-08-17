@@ -160,6 +160,8 @@ void Ground_Curved::setVertices(Point pos)
         //reset pre points
         currentDegree += SLOPE_DEGREE/SLOPE_SMOOTH;
         lastPos = Point(vec.GetX(), vec.GetY());
+        groundYpos = vec.GetY();
+
         
     }
     

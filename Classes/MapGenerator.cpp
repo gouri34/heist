@@ -16,6 +16,7 @@
 #include "GroundBuilding.h"
 #include "ElevatorShaft.h"
 #include "SkyBuilding.h"
+#include "SkyBuildingRoof.h"
 
 #include "Wall.h"
 #include "glassWindow.h"
@@ -53,7 +54,7 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
 
 
 
-Point MapGenerator::getLastTerrainPos(bool death,float *lastTexCoord_x)
+Point MapGenerator::getLastTerrainPos(bool death,float *lastTexCoord_x, int *groundYPos)
 {
     Point lastPos = Point(0,0);
     
@@ -67,6 +68,10 @@ Point MapGenerator::getLastTerrainPos(bool death,float *lastTexCoord_x)
         }
         if (lastTexCoord_x != nullptr) {
             *lastTexCoord_x = t->lastTexCoordX;
+        }
+        if (groundYPos != nullptr) {
+            *groundYPos = t->groundYpos;
+
         }
     }
     
@@ -86,53 +91,50 @@ void MapGenerator::update(Point pos, float dt)
     updateObjects(pos, dt);
     
     
-    
-    
     trapTimer -= dt;
     elevatorTimer -= dt;
     
-    if (stageType == onGround) {
-        if (trapTimer < 0) {
-            trapTimer = 2.4;
-            
-            
-            //add a new ground
-            int randNum = rand()%100;
-            //int buildingType = rand()%3;
-            
-            
+    if (trapTimer < 0) {
+        trapTimer = 2.4;
+        
+        //add a new ground
+        int randNum = rand()%100;
+        //int buildingType = rand()%3;
+        if (stageType == onGround) {
+
             if (randNum<50){
                 
                 if (terrainStatus != inGroundBld) {
-                    Point lastPos = getLastTerrainPos(true, nullptr);
+                    Point lastPos = getLastTerrainPos(true, nullptr, nullptr);
                     
                     GroundBuilding *gb = GroundBuilding::create(gameLayer, gameWorld, lastPos);
                     terrains.push_back(gb);
-                    Wall *w = Wall::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
-                    walls.push_back(w);
+                    GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
+                    windows.push_back(g);
                     
                     terrainStatus = inGroundBld;
                 }
                 else {
                     if (elevatorTimer >0) {
-                        Point lastPos = getLastTerrainPos(false, nullptr);
+                        Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
                         
-                        Wall *w = Wall::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
-                        walls.push_back(w);
+                        GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
+                        windows.push_back(g);
                         
                         terrainStatus = inGroundBld;
                     }
                     else {
                         elevatorTimer = 12.0;
                         
-                        Point lastPos = getLastTerrainPos(true, nullptr);
+                        Point lastPos = getLastTerrainPos(true, nullptr, nullptr);
                         ElevatorShatf *es = ElevatorShatf::create(gameLayer, gameWorld, lastPos);
                         terrains.push_back(es);
                         lastPos = es->lastPos;
-                        SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, lastPos, es->groundY);
+                        SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, lastPos, es->groundYpos);
                         terrains.push_back(sb);
                         
                         stageType = onElevator;
+                        terrainStatus = inSkyBld;
                     }
                     
                     
@@ -145,7 +147,7 @@ void MapGenerator::update(Point pos, float dt)
                 //up or from down to plain
                 
                 float lastTexCoordX;
-                Point lastPos = getLastTerrainPos(true, &lastTexCoordX);
+                Point lastPos = getLastTerrainPos(true, &lastTexCoordX, nullptr);
                 
                 
                 if (terrainStatus == plain|| terrainStatus == inGroundBld) {
@@ -175,15 +177,13 @@ void MapGenerator::update(Point pos, float dt)
                     terrainStatus = plain;
                 }
                 
-                
-                
             }
             else {
                 //down or up to plain
                 
                 
                 float lastTexCoordX;
-                Point lastPos = getLastTerrainPos(true, &lastTexCoordX);
+                Point lastPos = getLastTerrainPos(true, &lastTexCoordX, nullptr);
                 
                 if (terrainStatus == plain || terrainStatus == inGroundBld) {
                     
@@ -218,37 +218,80 @@ void MapGenerator::update(Point pos, float dt)
             
             
         }
-        else {
-            dummyTimer -= dt;
-            if (dummyTimer <=0) {
+        else if (stageType == onRoof)
+        {
+            if (randNum < 50) {
                 
-                dummyTimer = 0.02 + (float)(rand()%100)/160.0;
-                
-                //find the last position to put dummy in place
-                Point lastPos;
-                
-                if (stageType == onRoof) {
-                    /*for (int i = 0; i < buildings.size(); i++) {
-                     Building *b = buildings.at(i);
-                     lastPos = b->lastPos;
-                     }*/
-                }
-                else if (stageType == onGround)
-                {
-                    for (int i = 0; i < terrains.size(); i++) {
-                        Terrain *t = terrains.at(i);
-                        lastPos = t->lastPos;
-                    }
+                if (terrainStatus == inSkyBld) {
+                    Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
                     
+                    GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
+                    windows.push_back(g);
+                }
+                else if (terrainStatus == onSkyRoof) {
+                    int lastY;
+                    
+                    Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
+                    
+                    SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, Point(lastPos.x + 420, lastPos.y - 200), lastY);
+                    terrains.push_back(sb);
+                    
+                    terrainStatus = inSkyBld;
                 }
                 
                 
-                NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastPos.x-20, lastPos.y+50), 0.3);
-                enemies.push_back(e);
-                
+            }
+            else {
+                if (terrainStatus == inSkyBld) {
+                    int lastY;
+
+                    Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
+                    
+                    SkyBuildingRoof *sbr = SkyBuildingRoof::create(gameLayer, gameWorld, Point(lastPos.x+420, lastPos.y -200), lastY);
+                    terrains.push_back(sbr);
+                    
+                    terrainStatus = onSkyRoof;
+                }
+                else if (terrainStatus == onSkyRoof) {
+                    Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
+                    
+                    Wall *w = Wall::create(gameLayer, gameWorld, lastPos);
+                    walls.push_back(w);
+                }
             }
         }
 
+    }
+    else {
+        dummyTimer -= dt;
+        if (dummyTimer <=0) {
+            
+            dummyTimer = 0.02 + (float)(rand()%100)/160.0;
+            
+            //find the last position to put dummy in place
+            Point lastPos;
+            
+            if (stageType == onRoof) {
+                for (int i = 0; i < terrains.size(); i++) {
+                    Terrain *t = terrains.at(i);
+                    lastPos = t->lastPos;
+                }
+
+            }
+            else if (stageType == onGround)
+            {
+                for (int i = 0; i < terrains.size(); i++) {
+                    Terrain *t = terrains.at(i);
+                    lastPos = t->lastPos;
+                }
+                
+            }
+            
+            
+            NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastPos.x-20, lastPos.y+50), 0.3);
+            enemies.push_back(e);
+            
+        }
     }
     
     

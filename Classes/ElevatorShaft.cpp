@@ -39,7 +39,7 @@ bool ElevatorShatf::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     
     startPos = pos;
     destinationY = startPos.y + SHAFT_HEIGHT;
-    groundY = (int)pos.y;
+    groundYpos = (int)pos.y;
     
     cocos2d::Texture2D::TexParams params = {GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT};
     
@@ -181,7 +181,7 @@ void ElevatorShatf::update(float dt, Point pos)
             if (abs(destinationY - elevator->getPosition().y) <= 10)
             {
                 elevator_status = Done;
-                MapGenerator::GetInstance()->setStageType(onGround);
+                MapGenerator::GetInstance()->setStageType(onRoof);
             }
         }
         else if (elevator_status == Done)

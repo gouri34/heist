@@ -10,11 +10,11 @@
 #define __Animal_Squad__SkyBuildingRoof__
 
 #include "Building.h"
+#include "glassWindow.h"
 
 class SkyBuildingRoof : public Building {
     
 private:
-    int groundYpos;
 public:
     static SkyBuildingRoof* create(Layer *gameScene_, b2World *gameWorld_, Point pos, int groundY);
     virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos, int groundY);
@@ -23,6 +23,7 @@ public:
     virtual void setDead();
     virtual void setVertices(Point pos);
     virtual void update(float dt, Point pos);
+    
     
 };
 

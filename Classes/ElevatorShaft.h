@@ -23,7 +23,6 @@ private:
     ElevatorStatus elevator_status;
     int destinationY;
 public:
-    int groundY;
     
     static ElevatorShatf* create(Layer *gameScene_, b2World *gameWorld_, Point pos);
     virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos);
