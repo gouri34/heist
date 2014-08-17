@@ -43,9 +43,10 @@ bool Bear::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     life = 100.0;
     dead = false;
     actionStatus = jump;
+    inJump = false;
     
     //load the archer sprite below.
-    theBody = Armature::create("GUAIWUuuuuu");
+    theBody = Armature::create("GUAIWUvvvvvvvvvvvvvvv");
     theBody->setPosition(Point(pos.x, pos.y));
     theBody->setAnchorPoint(Point(0.5,0.5));
     theBody->setScaleX(bScale);
@@ -75,7 +76,7 @@ void Bear::creatfootBody()
     footBody = gameWorld->CreateBody(&bodyDef);
     
     b2CircleShape circleShape;
-    circleShape.m_radius = 0.82f;
+    circleShape.m_radius = 0.75f;
 
     b2FixtureDef fixtureDef;
     fixtureDef.density = 0.2;
@@ -88,7 +89,7 @@ void Bear::creatfootBody()
     footBody->CreateFixture(&fixtureDef);
     
     
-    footRect = Rect(footBody->GetPosition().x*PTM_RATIO-0.45*PTM_RATIO/2, footBody->GetPosition().y-0.45*PTM_RATIO/2, 0.45*PTM_RATIO, 0.45*PTM_RATIO);
+    footRect = Rect(footBody->GetPosition().x*PTM_RATIO-0.4*PTM_RATIO/2, footBody->GetPosition().y-0.4*PTM_RATIO/2, 0.4*PTM_RATIO, 0.4*PTM_RATIO);
 }
 
 void Bear::setArmatureBody()
@@ -239,7 +240,9 @@ void Bear::action()
 {
     if (actionStatus == jump) {
         if (jumpTimer > 0.8) {
-            footBody->ApplyLinearImpulse(b2Vec2(0, 8), footBody->GetWorldCenter(), true);
+            footBody->ApplyLinearImpulse(b2Vec2(0, 6), footBody->GetWorldCenter(), true);
+            theBody->getAnimation()->playWithIndex(1);
+            inJump = true;
             jumpTimer = 0;
         }
     }
@@ -411,7 +414,7 @@ void Bear::update(float dt)
             theBody->setPosition(Point(footBody->GetPosition().x*PTM_RATIO+offsetX, footBody->GetPosition().y*PTM_RATIO+HEIGHTDIFFY_));
         }
         
-        footRect = Rect(footBody->GetPosition().x*PTM_RATIO-0.45*PTM_RATIO/2, footBody->GetPosition().y*PTM_RATIO-0.45*PTM_RATIO/2, 0.45*PTM_RATIO, 0.45*PTM_RATIO);
+        footRect = Rect(footBody->GetPosition().x*PTM_RATIO-0.4*PTM_RATIO/2, footBody->GetPosition().y*PTM_RATIO-0.4*PTM_RATIO/2, 0.4*PTM_RATIO, 0.4*PTM_RATIO);
         
         if (inAttack) {
             if (attackTimer >0) {
@@ -513,6 +516,11 @@ void Bear::update(float dt)
         //
         jumpTimer += dt;
         
+        //detect jump status
+        if (inJump==true&&jumpTimer>0.5) {
+            onGroundDetector();
+        }
+        
     }
     else {
         setBodySprites();
@@ -593,5 +601,32 @@ float Bear::setBodySprites()
     }
     
     return maxVelocity;
+}
+
+void Bear::onGroundDetector()
+{
+    MyQueryCallback queryCallback; //see "World querying topic"
+    b2AABB aabb;
+    //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
+
+    b2Vec2 detectionVec = footBody->GetPosition();
+    aabb.lowerBound = detectionVec - b2Vec2(0.75, 0.75);
+    aabb.upperBound = detectionVec + b2Vec2( 0.75, 0.75);
+    gameWorld->QueryAABB( &queryCallback, aabb );
+    
+    for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
+        b2Body* body = queryCallback.foundBodies[j];
+        b2Fixture* f = body->GetFixtureList();
+        if (f) {
+            FixtureType t = f->GetFixtureType();
+            
+            //if collision with ground, switch back to running animation
+            if (t == f_ground) {
+                theBody->getAnimation()->playWithIndex(0);
+                inJump = false;
+            }
+
+        }
+    }
 }
 

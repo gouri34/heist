@@ -44,7 +44,7 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("b_wall.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("glassWindow.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("agent.ExportJson");
-    ArmatureDataManager::getInstance()->addArmatureFileInfo("GUAIWUuuuuu.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("GUAIWUvvvvvvvvvvvvvvv.ExportJson");
     
     //physics setup
     b2Vec2 gravity;
