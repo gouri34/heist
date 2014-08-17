@@ -28,6 +28,7 @@ Bear* Bear::create(Layer *gameScene_, b2World *gameWorld_, Point pos)
     Bear *a = new Bear();
     if (a&&a->init(gameScene_,gameWorld_, pos)) {
         return a;
+        //dick in the box
     }
     return NULL;
 }
