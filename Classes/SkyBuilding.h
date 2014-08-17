@@ -14,7 +14,6 @@
 class SkyBuilding : public Building {
 private:
     int groundYpos;
-    
 public:
     static SkyBuilding* create(Layer *gameScene_, b2World *gameWorld_, Point pos, int groundY);
     virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos, int groundY);
