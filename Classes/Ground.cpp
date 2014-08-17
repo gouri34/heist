@@ -151,8 +151,6 @@ void Ground::setVertices(Point pos)
     }
 
     
-    lastTexCoordX = ground_rp.x/textureSize;
-    lastPos = ground_rp;
     
     //Vector2dVector gvecs = makeVector(lp1, lp2, rp1, rp2);
     //ground->setPoints(gvecs);
@@ -165,8 +163,9 @@ void Ground::setVertices(Point pos)
     //set physics
     setPhysicsTerrain(tvecs, &groundBody);
 
-    
-
+    lastTexCoordX = ground_rp.x/textureSize;
+    lastPos = ground_rp;
+    groundYpos = ground_rp.y;
 }
 
 

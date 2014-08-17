@@ -27,12 +27,12 @@ public:
     b2Body *groundBody = NULL;
 
 
-    
     bool dead = false;
     bool afterDeath = false;
     int height;
     float textureSize;
     
+    int groundYpos;//
     Point startPos;
     Point lastPos;
     double startTexCoordX;
