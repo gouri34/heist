@@ -130,6 +130,8 @@
 		7C17C7601966A3E2001A4CC0 /* glassWindow0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C17C75A1966A3E2001A4CC0 /* glassWindow0.png */; };
 		7C17C7631966A43A001A4CC0 /* glassWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C17C7611966A43A001A4CC0 /* glassWindow.cpp */; };
 		7C17C7641966A43A001A4CC0 /* glassWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C17C7611966A43A001A4CC0 /* glassWindow.cpp */; };
+		7C1CB50E19A09AE500E92782 /* SkyBuildingRoof.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1CB50C19A09AE500E92782 /* SkyBuildingRoof.cpp */; };
+		7C1CB50F19A09AE500E92782 /* SkyBuildingRoof.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1CB50C19A09AE500E92782 /* SkyBuildingRoof.cpp */; };
 		7C58DE36198A7B78008B646A /* Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C58DE34198A7B78008B646A /* Terrain.cpp */; };
 		7C58DE37198A7B78008B646A /* Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C58DE34198A7B78008B646A /* Terrain.cpp */; };
 		7C5C9C2E199A1D85007C1635 /* SkyBuilding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C5C9C2C199A1D85007C1635 /* SkyBuilding.cpp */; };
@@ -430,6 +432,8 @@
 		7C17C75A1966A3E2001A4CC0 /* glassWindow0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glassWindow0.png; sourceTree = "<group>"; };
 		7C17C7611966A43A001A4CC0 /* glassWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glassWindow.cpp; path = ../Classes/glassWindow.cpp; sourceTree = "<group>"; };
 		7C17C7621966A43A001A4CC0 /* glassWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = glassWindow.h; path = ../Classes/glassWindow.h; sourceTree = "<group>"; };
+		7C1CB50C19A09AE500E92782 /* SkyBuildingRoof.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SkyBuildingRoof.cpp; path = ../Classes/SkyBuildingRoof.cpp; sourceTree = "<group>"; };
+		7C1CB50D19A09AE500E92782 /* SkyBuildingRoof.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkyBuildingRoof.h; path = ../Classes/SkyBuildingRoof.h; sourceTree = "<group>"; };
 		7C58DE34198A7B78008B646A /* Terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Terrain.cpp; path = ../Classes/Terrain.cpp; sourceTree = "<group>"; };
 		7C58DE35198A7B78008B646A /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terrain.h; path = ../Classes/Terrain.h; sourceTree = "<group>"; };
 		7C5C9C2C199A1D85007C1635 /* SkyBuilding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SkyBuilding.cpp; path = ../Classes/SkyBuilding.cpp; sourceTree = "<group>"; };
@@ -685,6 +689,8 @@
 				7C5C9C2D199A1D85007C1635 /* SkyBuilding.h */,
 				7C79DD4F1998E9B500C4EDCD /* ElevatorShaft.cpp */,
 				7C79DD501998E9B500C4EDCD /* ElevatorShaft.h */,
+				7C1CB50C19A09AE500E92782 /* SkyBuildingRoof.cpp */,
+				7C1CB50D19A09AE500E92782 /* SkyBuildingRoof.h */,
 			);
 			name = Building;
 			sourceTree = "<group>";
@@ -1172,6 +1178,7 @@
 				7C0B39DA196472D600330A95 /* PistolBullet.cpp in Sources */,
 				7C0B39FC196473D700330A95 /* Ground.cpp in Sources */,
 				7C0B39E2196472D600330A95 /* stairMechine.cpp in Sources */,
+				7C1CB50E19A09AE500E92782 /* SkyBuildingRoof.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1204,6 +1211,7 @@
 				7C58DE37198A7B78008B646A /* Terrain.cpp in Sources */,
 				7C0B39C4196470C900330A95 /* EasyPolygon.cpp in Sources */,
 				7C0B39F6196473AD00330A95 /* NormalEnemy.cpp in Sources */,
+				7C1CB50F19A09AE500E92782 /* SkyBuildingRoof.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				7C0B39FD196473D700330A95 /* Ground.cpp in Sources */,
 				7C0910AD196675A6002A087E /* Building.cpp in Sources */,
