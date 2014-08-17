@@ -27,6 +27,7 @@ ElevatorShatf* ElevatorShatf::create(Layer *gameScene_, b2World *gameWorld_, Poi
     ElevatorShatf *a = new ElevatorShatf();
     if (a&&a->init(gameScene_,gameWorld_, pos)) {
         return a;
+        ///asdfasfasdfsadf
     }
     return NULL;
 }
