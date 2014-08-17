@@ -26,7 +26,7 @@
 using namespace cocos2d;
 
 typedef  enum {
-    dash, jump
+    dash, jump,run
 } ActionStatus;
 
 
@@ -82,6 +82,9 @@ private:
     
     int actionState;
     bool inMovement;
+    
+    bool inJump;
+    void onGroundDetector();
     
 };
 

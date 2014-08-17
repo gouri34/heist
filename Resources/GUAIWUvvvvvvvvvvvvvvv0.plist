@@ -23,25 +23,6 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>nao_dai.png</key>
-			<dict>
-				<key>width</key>
-				<integer>608</integer>
-				<key>height</key>
-				<integer>573</integer>
-				<key>originalWidth</key>
-				<integer>608</integer>
-				<key>originalHeight</key>
-				<integer>573</integer>
-				<key>x</key>
-				<integer>413</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
 			<key>xi_gai.png</key>
 			<dict>
 				<key>width</key>
@@ -53,9 +34,9 @@
 				<key>originalHeight</key>
 				<integer>176</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>413</integer>
 				<key>y</key>
-				<integer>575</integer>
+				<integer>0</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -72,9 +53,9 @@
 				<key>originalHeight</key>
 				<integer>134</integer>
 				<key>x</key>
-				<integer>176</integer>
+				<integer>589</integer>
 				<key>y</key>
-				<integer>575</integer>
+				<integer>0</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -91,9 +72,9 @@
 				<key>originalHeight</key>
 				<integer>161</integer>
 				<key>x</key>
-				<integer>282</integer>
+				<integer>695</integer>
 				<key>y</key>
-				<integer>575</integer>
+				<integer>0</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -110,9 +91,28 @@
 				<key>originalHeight</key>
 				<integer>193</integer>
 				<key>x</key>
-				<integer>518</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>575</integer>
+				<integer>416</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>nao_dai.png</key>
+			<dict>
+				<key>width</key>
+				<integer>608</integer>
+				<key>height</key>
+				<integer>573</integer>
+				<key>originalWidth</key>
+				<integer>608</integer>
+				<key>originalHeight</key>
+				<integer>573</integer>
+				<key>x</key>
+				<integer>359</integer>
+				<key>y</key>
+				<integer>416</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -124,9 +124,9 @@
 			<key>format</key>
 			<integer>0</integer>
 			<key>textureFileName</key>
-			<string>GUAIWUuuuuu0.png</string>
+			<string>GUAIWUvvvvvvvvvvvvvvv0.png</string>
 			<key>realTextureFileName</key>
-			<string>GUAIWUuuuuu0.png</string>
+			<string>GUAIWUvvvvvvvvvvvvvvv0.png</string>
 			<key>size</key>
 			<string>{1024,1024}</string>
 		</dict>
