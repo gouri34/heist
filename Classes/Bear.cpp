@@ -622,7 +622,7 @@ void Bear::onGroundDetector()
             
             //if collision with ground, switch back to running animation
             if (t == f_ground) {
-                theBody->getAnimation()->playWithIndex(0);
+                theBody->getAnimation()->playWithIndex(0, 10, -1);
                 inJump = false;
             }
 
