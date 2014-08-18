@@ -45,6 +45,10 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
     trapTimer = 3.0;
     dummyTimer = 1.0;
     elevatorTimer = 5.0;
+    
+    //08.18.2014 added by Weihan
+    lastBuildingx = 0;
+    //--------------------
  
     
     Ground* firstGround = Ground::create(gameLayer, gameWorld, Point(0, 100), 0);
@@ -275,6 +279,7 @@ void MapGenerator::update(Point pos, float dt)
                 for (int i = 0; i < terrains.size(); i++) {
                     Terrain *t = terrains.at(i);
                     lastPos = t->lastPos;
+                    
                 }
 
             }
@@ -287,6 +292,9 @@ void MapGenerator::update(Point pos, float dt)
                 
             }
             
+            //08.18.2014 added by Weihan
+            backgroundBuildingHandler(lastPos);
+            //--------------------
             
             NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastPos.x-20, lastPos.y+50), 0.3);
             enemies.push_back(e);
@@ -393,4 +401,25 @@ void MapGenerator::cleanup()
     }
     enemies.clear();
     
+}
+
+void MapGenerator::backgroundBuildingHandler(Point lastpos)
+{
+    if (stageType == onGround&&terrainStatus == plain) {
+        int buildinglottery = rand()%10;
+        if (abs(lastpos.x-lastBuildingx)>250&&(buildinglottery%2==0)) {
+            //generate building blocks, add structures based on the randnum
+            int randNum = rand()%5;
+            std::string text = "structure";
+            text += std::to_string(randNum);
+            text += ".png";
+            Sprite *buildingsprite = Sprite::create(text);
+            buildingsprite->setAnchorPoint(Point(0.5,0));
+            buildingsprite->setPosition(lastpos);
+            buildingsprite->setScale(0.4);
+            gameLayer->addChild(buildingsprite,6);
+            lastBuildingx = buildingsprite->getPositionX();
+
+        }
+    }
 }

@@ -89,9 +89,16 @@ bool MenuScene::init()
     auto background = Sprite::create("test_bg.png");
     background->setAnchorPoint(Point(0,0));
     background->setPosition(Point(0,0));
-    this->addChild(background, 0);
+    this->addChild(background, -3);
     
 
+    //init background layer 3
+    Sprite *bg = Sprite::create("layer3.png");
+    bg->setAnchorPoint(Point(0,0));
+    bg->setPosition(0,0);
+    bg->setScaleX(0.4);
+    bg->setScaleY(0.7);
+    this->addChild(bg,-2);
     
     
     // create menu, it's an autorelease object

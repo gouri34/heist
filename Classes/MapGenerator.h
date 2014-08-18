@@ -51,6 +51,11 @@ private:
     std::vector<GlassWindow*>windows;
     std::vector<NormalEnemy*> enemies;
     
+    //08.18.2014 added by Weihan
+    float lastBuildingx;
+    void backgroundBuildingHandler(Point lastpos);
+    //--------
+    
 public:
     static MapGenerator* GetInstance();
     void init(Layer* _gameLayer, b2World* _gameWorld);
