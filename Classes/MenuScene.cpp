@@ -125,12 +125,12 @@ void MenuScene::update(float dt)
 
 void MenuScene::leftPushCallback()
 {
-    if (gScene->bear->getActionStatus() == jump){
-        gScene->bear->changeActionStatus(dash);
-    }
-    else if (gScene->bear->getActionStatus() == dash) {
-        gScene->bear->changeActionStatus(jump);
-    }
+//    if (gScene->bear->getActionStatus() == jump){
+//        gScene->bear->changeActionStatus(dash);
+//    }
+//    else if (gScene->bear->getActionStatus() == dash) {
+//        gScene->bear->changeActionStatus(jump);
+//    }
 }
 
 void MenuScene::leftReleaseCallback()
@@ -143,7 +143,7 @@ void MenuScene::leftReleaseCallback()
 void MenuScene::attacPushkCallback()
 {
     //bearMovement = 3;
-    gScene->bear->action();
+//    gScene->bear->action();
 }
 
 void MenuScene::attacReleasekCallback()
@@ -179,10 +179,14 @@ bool MenuScene::touchesBegan(Touch* touch, Event* event)
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     if (nodePosition.x < visibleSize.width/2) {
-        leftPushCallback();
+        //leftPushCallback();
+        // dash
+        gScene->bear->dashy();
     }
     else {
-        attacPushkCallback();
+        //attacPushkCallback();
+        //jump
+        gScene->bear->jumppy();
     }
 
     //return gScene->MouseDown(b2Vec2(nodePosition.x/PTM_RATIO,nodePosition.y/PTM_RATIO));

@@ -32,10 +32,20 @@ bool GameScene::init()
 
     //preload textures
     cocos2d::Texture2D::TexParams params = {GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT};
-    Texture2D* groundTexture = Director::getInstance()->getTextureCache()->addImage("GlassBuilding.png");
-    groundTexture->setTexParameters(params);
-    Texture2D* wallTexture = Director::getInstance()->getTextureCache()->addImage("GlassBuilding_Wall.png");
+//    Texture2D* groundTexture = Director::getInstance()->getTextureCache()->addImage("GlassBuilding.png");
+//    groundTexture->setTexParameters(params);
+//    Texture2D* wallTexture = Director::getInstance()->getTextureCache()->addImage("GlassBuilding_Wall.png");
+//    wallTexture->setTexParameters(params);
+    
+    
+    Texture2D* wallTexture = Director::getInstance()->getTextureCache()->addImage("testbuilding_wall.png");
     wallTexture->setTexParameters(params);
+    
+    Texture2D* viewTexture = Director::getInstance()->getTextureCache()->addImage("testbuilding_view.png");
+    viewTexture->setTexParameters(params);
+    
+    Texture2D* terrainTexture = Director::getInstance()->getTextureCache()->addImage("terrain.png");
+    terrainTexture->setTexParameters(params);
 
     
     //load armatures

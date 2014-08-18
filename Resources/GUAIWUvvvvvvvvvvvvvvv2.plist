@@ -4,16 +4,16 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>chongjibo.png</key>
+			<key>shen_ti.png</key>
 			<dict>
 				<key>width</key>
-				<integer>591</integer>
+				<integer>589</integer>
 				<key>height</key>
-				<integer>591</integer>
+				<integer>581</integer>
 				<key>originalWidth</key>
-				<integer>591</integer>
+				<integer>589</integer>
 				<key>originalHeight</key>
-				<integer>591</integer>
+				<integer>581</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -23,39 +23,20 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>huo_yan.png</key>
+			<key>zuo_shou.png</key>
 			<dict>
 				<key>width</key>
-				<integer>516</integer>
+				<integer>478</integer>
 				<key>height</key>
-				<integer>299</integer>
+				<integer>357</integer>
 				<key>originalWidth</key>
-				<integer>516</integer>
+				<integer>478</integer>
 				<key>originalHeight</key>
-				<integer>299</integer>
+				<integer>357</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>593</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>you_shou.png</key>
-			<dict>
-				<key>width</key>
-				<integer>411</integer>
-				<key>height</key>
-				<integer>414</integer>
-				<key>originalWidth</key>
-				<integer>411</integer>
-				<key>originalHeight</key>
-				<integer>414</integer>
-				<key>x</key>
-				<integer>518</integer>
-				<key>y</key>
-				<integer>593</integer>
+				<integer>583</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -67,9 +48,9 @@
 			<key>format</key>
 			<integer>0</integer>
 			<key>textureFileName</key>
-			<string>GUAIWUvvvvvvvvvvvvvvv0.png</string>
+			<string>GUAIWUvvvvvvvvvvvvvvv2.png</string>
 			<key>realTextureFileName</key>
-			<string>GUAIWUvvvvvvvvvvvvvvv0.png</string>
+			<string>GUAIWUvvvvvvvvvvvvvvv2.png</string>
 			<key>size</key>
 			<string>{1024,1024}</string>
 		</dict>

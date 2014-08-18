@@ -51,6 +51,9 @@ public:
     void stop();
     void action();
     
+    void jumppy();
+    void dashy();
+    
     //attack related
     void HeavyAttack();
     void HeavyAttackEffect();
@@ -85,6 +88,8 @@ private:
     
     bool inJump;
     void onGroundDetector();
+    
+    float targetSpeed;
     
 };
 

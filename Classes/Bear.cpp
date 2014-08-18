@@ -44,6 +44,7 @@ bool Bear::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     dead = false;
     actionStatus = jump;
     inJump = false;
+    targetSpeed = 22.0;
     
     //load the archer sprite below.
     theBody = Armature::create("GUAIWUvvvvvvvvvvvvvvv");
@@ -405,7 +406,6 @@ void Bear::update(float dt)
             //move bear
             
             theBody->setScaleX(bScale);
-            float targetSpeed = 18.0;
             b2Vec2 vel = footBody->GetLinearVelocity();
             float velChange = targetSpeed - vel.x;
             float impulse = velChange*footBody->GetMass()/1.1;
@@ -434,6 +434,8 @@ void Bear::update(float dt)
             dashTimer-=dt;
             if (dashTimer <= 0) {
                 inDash = false;
+                targetSpeed = 22;
+                theBody->getAnimation()->playWithIndex(0);
             }
             
             MyQueryCallback queryCallback; //see "World querying topic"
@@ -517,7 +519,7 @@ void Bear::update(float dt)
         jumpTimer += dt;
         
         //detect jump status
-        if (inJump==true&&jumpTimer>0.5) {
+        if (inJump==true&&jumpTimer>0.35) {
             onGroundDetector();
         }
         
@@ -555,7 +557,7 @@ void Bear::setB2bodyPartPosition()
         string key = o.first;
         
         if (skin != NULL) {
-            if (skin->isphysicsObject) {
+            if (skin->isphysicsObject&&(bone->getName()!="Layer2"&&bone->getName()!="Layer1")) {
                 b2Body *body = skin->body;
                 body->SetActive(true);
                 Point partpos = skin->getParentRelatePosition();
@@ -622,7 +624,7 @@ void Bear::onGroundDetector()
             
             //if collision with ground, switch back to running animation
             if (t == f_ground) {
-                theBody->getAnimation()->playWithIndex(0, 10, -1);
+                theBody->getAnimation()->playWithIndex(0);
                 inJump = false;
             }
 
@@ -630,3 +632,24 @@ void Bear::onGroundDetector()
     }
 }
 
+void Bear::jumppy()
+{
+    if (jumpTimer > 0.8) {
+        footBody->ApplyLinearImpulse(b2Vec2(0, 6), footBody->GetWorldCenter(), true);
+        jumpTimer = 0;
+        inJump = true;
+        theBody->getAnimation()->playWithIndex(1);
+    }
+    
+}
+
+void Bear::dashy()
+{
+    if (inDash==false) {
+        inDash = true;
+        dashTimer = 0.3;
+        targetSpeed = 30;
+        theBody->getAnimation()->playWithIndex(2);
+        //theBody->setColor(Color3B(255, 120,120));
+    }
+}
