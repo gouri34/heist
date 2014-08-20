@@ -4,7 +4,7 @@
 //
 //  Created by cong ku on 14-1-25.
 //
-//
+//standard walking peronal with no threat
 
 #ifndef __fusion__normalZombie__
 #define __fusion__normalZombie__

@@ -173,6 +173,7 @@
 		7CBE98C5198AAAE800A82EA6 /* Ground_Curved.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CBE98C2198AAAE800A82EA6 /* Ground_Curved.cpp */; };
 		7CBE98CA198BCE1000A82EA6 /* Ground_Slope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CBE98C8198BCE1000A82EA6 /* Ground_Slope.cpp */; };
 		7CBE98CB198BCE1100A82EA6 /* Ground_Slope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CBE98C8198BCE1000A82EA6 /* Ground_Slope.cpp */; };
+		AFA0DF8719A4BE7500C6B102 /* ShieldMan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */; };
 		AFD9B8C719A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C019A2494F00928B20 /* GUAIWUvvvvvvvvvvvvvvv.ExportJson */; };
 		AFD9B8C819A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C119A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.plist */; };
 		AFD9B8C919A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C219A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.png */; };
@@ -470,6 +471,8 @@
 		7CBE98C3198AAAE800A82EA6 /* Ground_Curved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ground_Curved.h; path = ../Classes/Ground_Curved.h; sourceTree = "<group>"; };
 		7CBE98C8198BCE1000A82EA6 /* Ground_Slope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ground_Slope.cpp; path = ../Classes/Ground_Slope.cpp; sourceTree = "<group>"; };
 		7CBE98C9198BCE1000A82EA6 /* Ground_Slope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ground_Slope.h; path = ../Classes/Ground_Slope.h; sourceTree = "<group>"; };
+		AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShieldMan.cpp; path = ../Classes/ShieldMan.cpp; sourceTree = "<group>"; };
+		AFA0DF8619A4BE7500C6B102 /* ShieldMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShieldMan.h; path = ../Classes/ShieldMan.h; sourceTree = "<group>"; };
 		AFD9B8C019A2494F00928B20 /* GUAIWUvvvvvvvvvvvvvvv.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GUAIWUvvvvvvvvvvvvvvv.ExportJson; sourceTree = "<group>"; };
 		AFD9B8C119A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GUAIWUvvvvvvvvvvvvvvv0.plist; sourceTree = "<group>"; };
 		AFD9B8C219A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GUAIWUvvvvvvvvvvvvvvv0.png; sourceTree = "<group>"; };
@@ -714,6 +717,7 @@
 		7C0B39901964705100330A95 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				AFA0DF8119A4589D00C6B102 /* destructableobjects */,
 				AFE137B619A0ABBA00CA3FFF /* background */,
 				AFEBC686199F3EDC00E45F64 /* monster */,
 				7C9EC8381989AB1400C73494 /* b_wall */,
@@ -811,6 +815,8 @@
 				7C0B39F0196473AD00330A95 /* Enemy.h */,
 				7C0B39F1196473AD00330A95 /* NormalEnemy.cpp */,
 				7C0B39F2196473AD00330A95 /* NormalEnemy.h */,
+				AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */,
+				AFA0DF8619A4BE7500C6B102 /* ShieldMan.h */,
 			);
 			name = Enemies;
 			sourceTree = "<group>";
@@ -884,6 +890,13 @@
 				7CAB22BE1991284900094539 /* testbuilding_wall.png */,
 			);
 			name = "test building";
+			sourceTree = "<group>";
+		};
+		AFA0DF8119A4589D00C6B102 /* destructableobjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = destructableobjects;
 			sourceTree = "<group>";
 		};
 		AFE137B619A0ABBA00CA3FFF /* background */ = {
@@ -1195,6 +1208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFA0DF8719A4BE7500C6B102 /* ShieldMan.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				7C58DE36198A7B78008B646A /* Terrain.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
