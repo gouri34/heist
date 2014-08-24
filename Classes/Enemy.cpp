@@ -137,7 +137,7 @@ void Enemy::die(b2Vec2 vec)
                 body->GetFixtureList()->SetFixtureType(f_bodydead);
                 body->GetFixtureList()->SetFilterData(filter);
                 body->SetType(b2_dynamicBody);
-                if (name.compare("head") == 0) {
+                if (name.compare("tou") == 0) {
                     float rNum = (rand()%100)/100*1.1+1.0;
                     vec = b2Vec2(vec.x*rNum, vec.y);
                 }
@@ -181,7 +181,7 @@ void Enemy::die(b2Vec2 vec)
 }
 
 
-void Enemy::update(float dt)
+void Enemy::update(float dt,Bear *bear)
 {
     
     if (dead) {
@@ -211,7 +211,8 @@ void Enemy::update(float dt)
         //zombie movement
         if (footBody != NULL)
         {
-            if (haveWayPoint) {
+            if (haveWayPoint)
+            {
                 if (waypointOnRight) {
                     if (armature->getPosition().x >= wpArray[waypointIndex].waypointPos.x) {
                         reachWaypoint = true;
@@ -551,7 +552,7 @@ void Enemy::creatfootBody()
     fixtureDef.density = 0.2;
     fixtureDef.friction = 0.5f;
     fixtureDef.fixturetype = f_foot;
-    fixtureDef.filter.categoryBits = PLAYER;
+    fixtureDef.filter.categoryBits = ZOMBIE;
     fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
     fixtureDef.shape = &circleShape;
     footBody->CreateFixture(&fixtureDef);

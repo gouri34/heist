@@ -122,7 +122,7 @@ void NormalEnemy::setArmatureBody()
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
             }
             else {
-                fixtureDef.fixturetype = f_zbody_void;
+                fixtureDef.fixturetype = f_zbody_body;
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
             }
             
@@ -172,7 +172,7 @@ void NormalEnemy::setB2bodyPartPosition()
         
         if (skin != NULL) {
             if (skin->isphysicsObject) {
-                if (name.compare("head")==0 || name.compare("body")==0 || name.compare("left_leg")==0 || name.compare("left_foreleg")==0 || name.compare("right_leg")==0 || name.compare("right_foreleg")==0) {
+                if (1) {
                     
                     b2Body *body = skin->body;
                     body->SetActive(true);
@@ -348,6 +348,21 @@ void NormalEnemy::dieToExplosion(float damage, Point exploPosition)
         }
         
         
+    }
+}
+
+// normal enemy is the one that only towards you but cannot hurt you or what so ever
+void NormalEnemy::update(float dt, Bear *bear)
+{
+    Enemy::update(dt, bear);
+    if (footBody != NULL)
+    {
+        desireVel = -3.2;
+        b2Vec2 vel = Enemy::footBody->GetLinearVelocity();
+        float velChange = desireVel - vel.x;
+        float impulse = velChange*Enemy::footBody->GetMass()/1.1;
+        Enemy::footBody->ApplyLinearImpulse(b2Vec2(impulse, 0), Enemy::footBody->GetWorldCenter(), true);
+        Enemy::footRect = Rect(Enemy::footBody->GetPosition().x*PTM_RATIO, Enemy::footBody->GetPosition().y*PTM_RATIO, 0.45*PTM_RATIO, 0.45*PTM_RATIO);
     }
 }
 

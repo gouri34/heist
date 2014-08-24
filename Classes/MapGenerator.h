@@ -20,6 +20,14 @@
 #include "Wall.h"
 #include "glassWindow.h"
 #include "NormalEnemy.h"
+#include "Enemy.h"
+
+#include "EnemyObject.h"
+#include "DestructableObject.h"
+
+//objects
+#include "MonsterTrap.h"
+#include "Panzer.h"
 
 using namespace cocos2d;
 
@@ -49,11 +57,16 @@ private:
     std::vector<Terrain*> terrains;
     std::vector<Wall*> walls;
     std::vector<GlassWindow*>windows;
-    std::vector<NormalEnemy*> enemies;
+    std::vector<Enemy*> enemies;
+    std::vector<DestructableObject*> destructableobjects;
+    std::vector<EnemyObject*> enemyobjects;
     
-    //08.18.2014 added by Weihan
+    //08.23.2014 added by Weihan
     float lastBuildingx;
+    float lastObjectx;
+    float lastEnemeyObjectx;
     void backgroundBuildingHandler(Point lastpos);
+    void objectHandler(Point lastpos);
     //--------
     
 public:
@@ -64,8 +77,8 @@ public:
     
     void setStageType(StageTypes st);
     
-    void update(Point pos, float dt);
-    void updateObjects(Point pos, float dt);
+    void update(Point pos, float dt, Bear *bear);
+    void updateObjects(Point pos, float dt, Bear *bear);
     
     void cleanup();
 };

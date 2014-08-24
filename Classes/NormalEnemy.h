@@ -26,6 +26,8 @@ public:
     void getHit();
     void headDropDie();
     void dieToExplosion(float damage, Point exploPosition);
+    
+    virtual void update(float dt,Bear *bear);
 
 private:
     

@@ -1,0 +1,1226 @@
+{
+  "content_scale": 1.0,
+  "armature_data": [
+    {
+      "strVersion": "1.5.0.1",
+      "version": 1.501,
+      "name": "running_grunt",
+      "bone_data": [
+        {
+          "name": "zuoshou",
+          "parent": "",
+          "dI": 0,
+          "x": 46.333602905273438,
+          "y": 968.1578369140625,
+          "z": 10,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 1.46503675,
+          "kY": -1.46503675,
+          "arrow_x": 406.84417724609375,
+          "arrow_y": 4.3444015318527818E-06,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "zuoshou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 292.673035,
+                  "y": 64.69174,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.27307439,
+                  "kY": 3.01012516
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "shangshen",
+          "parent": "",
+          "dI": 0,
+          "x": -19.701007843017578,
+          "y": 833.6724853515625,
+          "z": 9,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0688965,
+          "kY": -0.0688965,
+          "arrow_x": 9.7751617431640625E-06,
+          "arrow_y": 5.42068482900504E-05,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "body.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -21.0002441,
+                  "y": -68.40454,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "tou",
+          "parent": "shangshen",
+          "dI": 0,
+          "x": 24.999961853027344,
+          "y": 206.666748046875,
+          "z": 8,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -1.81215179,
+          "kY": 1.81215179,
+          "arrow_x": 334.70150756835938,
+          "arrow_y": -8.570612408220768E-06,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "tou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 63.7637329,
+                  "y": 28.93161,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 1.81215191,
+                  "kY": -1.81215
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "zuo datui",
+          "parent": "shangshen",
+          "dI": 0,
+          "x": -20.000053405761719,
+          "y": -256.6668701171875,
+          "z": 7,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 2.59403038,
+          "kY": -2.59403038,
+          "arrow_x": 160.06935119628906,
+          "arrow_y": 0.00010887555254157633,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "datui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -12.1472473,
+                  "y": -260.0265,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.68915749,
+                  "kY": 2.59403729
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "zuoxiaotui",
+          "parent": "zuo datui",
+          "dI": 0,
+          "x": 151.87832641601563,
+          "y": -26.239013671875,
+          "z": 5,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -0.488278866,
+          "kY": 0.488278866,
+          "arrow_x": 313.84695434570312,
+          "arrow_y": 0.00019738935225177556,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "xiaotui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -37.9697876,
+                  "y": -69.9654541,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.177432,
+                  "kY": 2.10575318
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "zuojiao",
+          "parent": "zuoxiaotui",
+          "dI": 0,
+          "x": 315.69818115234375,
+          "y": 9.95330810546875,
+          "z": 6,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -5.14426231,
+          "kY": 5.14426231,
+          "arrow_x": 194.3648681640625,
+          "arrow_y": -7.8426812251564115E-05,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "jiao.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 59.6246948,
+                  "y": -292.919983,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.03851223,
+                  "kY": -3.03850484
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "youdatui",
+          "parent": "shangshen",
+          "dI": 0,
+          "x": -31.666801452636719,
+          "y": -224.6671142578125,
+          "z": 2,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.6999749,
+          "kY": -0.6999749,
+          "arrow_x": 160.06935119628906,
+          "arrow_y": 0.00010887555254157633,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "datui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -12.1472473,
+                  "y": -260.0265,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.68915749,
+                  "kY": 2.59403729
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "youxiaotuiiaotui",
+          "parent": "youdatui",
+          "dI": 0,
+          "x": 151.87808227539063,
+          "y": -26.2384033203125,
+          "z": 4,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -0.7448245,
+          "kY": 0.7448245,
+          "arrow_x": 313.84695434570312,
+          "arrow_y": 0.00019738935225177556,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "xiaotui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -37.9697876,
+                  "y": -69.9654541,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.177432,
+                  "kY": 2.10575318
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "youjiao",
+          "parent": "youxiaotuiiaotui",
+          "dI": 0,
+          "x": 315.6982421875,
+          "y": 9.953277587890625,
+          "z": 3,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -5.633696,
+          "kY": 5.633696,
+          "arrow_x": 194.3648681640625,
+          "arrow_y": -7.8426812251564115E-05,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "jiao.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 59.6246948,
+                  "y": -292.919983,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.03851223,
+                  "kY": -3.03850484
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "youshou",
+          "parent": "",
+          "dI": 0,
+          "x": -6.9997329711914062,
+          "y": 1001.4912109375,
+          "z": 1,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 2.61659455,
+          "kY": -2.61659455,
+          "arrow_x": 415.9593505859375,
+          "arrow_y": 4.29086503572762E-06,
+          "effectbyskeleton": true,
+          "display_data": [
+            {
+              "name": "youshou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 193.662109,
+                  "y": 27.1925049,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.51911879,
+                  "kY": 2.7640636
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation_data": [
+    {
+      "name": "running_grunt",
+      "mov_data": [
+        {
+          "name": "Animation1",
+          "dr": 21,
+          "lp": true,
+          "to": 0,
+          "drTW": 0,
+          "twE": 0,
+          "sc": 0.4,
+          "mov_bone_data": [
+            {
+              "name": "zuoshou",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 150.00006103515625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.61700654,
+                  "kY": 0.61700654,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -6.6666641235351562,
+                  "y": -7.49993896484375,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.6329632,
+                  "kY": -0.6329632,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -13.333328247070313,
+                  "y": 154.99993896484375,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.26592636,
+                  "kY": -1.26592636,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -6.6666641235351562,
+                  "y": -17.499969482421875,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.6329632,
+                  "kY": -0.6329632,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 150.00006103515625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.61700654,
+                  "kY": 0.61700654,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "shangshen",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 150.00006103515625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 5.0,
+                  "y": -7.49993896484375,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 10.0,
+                  "y": 154.99993896484375,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 5.0,
+                  "y": -17.499969482421875,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 150.00006103515625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "tou",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.263614,
+                  "kY": 0.263613939,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.0121682193,
+                  "kY": 0.0121681895,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.2872607,
+                  "kY": 0.2872607,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.0461603627,
+                  "kY": 0.0461603627,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.263614,
+                  "kY": 0.263613939,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "zuo datui",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -14.999999046325684,
+                  "y": 1.25,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.36073577,
+                  "kY": 1.36073577,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -29.999998092651367,
+                  "y": 2.5,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -2.15632081,
+                  "kY": 2.15632081,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -14.999999046325684,
+                  "y": 1.25,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.389273554,
+                  "kY": 0.389273554,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "zuojiao",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.277365565,
+                  "kY": -0.277365565,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.415069044,
+                  "kY": -0.415069044,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.557843,
+                  "kY": 0.557843,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.094592,
+                  "kY": 1.094592,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.277365565,
+                  "kY": -0.277365565,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "zuoxiaotui",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.435237676,
+                  "kY": -0.435237676,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.02546303,
+                  "kY": 0.02546303,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.52135313,
+                  "kY": 1.52135313,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "youxiaotuiiaotui",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.13504386,
+                  "kY": 1.13504386,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.2654264,
+                  "kY": -0.2654264,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.7439114,
+                  "kY": -0.7439114,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "youjiao",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.4383914,
+                  "kY": 0.4383914,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.8288695,
+                  "kY": -0.8288695,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.783283532,
+                  "kY": -0.783283532,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "youdatui",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 5.6666679382324219,
+                  "y": -6.25,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.477436,
+                  "kY": -1.477436,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 23.333335876464844,
+                  "y": -32.5,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.91751838,
+                  "kY": -1.91751838,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 5.6666679382324219,
+                  "y": -21.25,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.616231263,
+                  "kY": -0.616231263,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "youshou",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 150.00006103515625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 5.0,
+                  "y": -7.49993896484375,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.633862,
+                  "kY": 0.633862,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -10.0,
+                  "y": 105.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.53913641,
+                  "kY": 1.53913641,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 5.0,
+                  "y": -17.499969482421875,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.633862,
+                  "kY": 0.633862,
+                  "fi": 15,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 150.00006103515625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 20,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 770,
+                  "bd_dst": 771
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "texture_data": [
+    {
+      "name": "body",
+      "width": 808.0,
+      "height": 928.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "datui",
+      "width": 808.0,
+      "height": 928.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "jiao",
+      "width": 808.0,
+      "height": 928.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "tou",
+      "width": 808.0,
+      "height": 928.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "xiaotui",
+      "width": 808.0,
+      "height": 928.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "youshou",
+      "width": 808.0,
+      "height": 928.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "zuoshou",
+      "width": 808.0,
+      "height": 928.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    }
+  ],
+  "config_file_path": [
+    "running_grunt0.plist",
+    "running_grunt1.plist",
+    "running_grunt2.plist",
+    "running_grunt3.plist",
+    "running_grunt4.plist",
+    "running_grunt5.plist",
+    "running_grunt6.plist"
+  ],
+  "config_png_path": [
+    "running_grunt0.png",
+    "running_grunt1.png",
+    "running_grunt2.png",
+    "running_grunt3.png",
+    "running_grunt4.png",
+    "running_grunt5.png",
+    "running_grunt6.png"
+  ]
+}

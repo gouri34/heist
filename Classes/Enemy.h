@@ -6,10 +6,11 @@
 //
 //
 
-#ifndef __fusion__zombie__
-#define __fusion__zombie__
+#ifndef __Animal_Squad__Enemy__
+#define __Animal_Squad__Enemy__
 
 #include "Character.h"
+
 
 #define  PTM_RATIO 32.0
 #define  HEIGHTDIFFX -10
@@ -17,19 +18,11 @@
 
 #define defaultSpeed 5.0
 
-typedef  enum {
-    moving, climbing, jumping,attacking,
-} actionType;
-
-struct zombieAction {
-    actionType atype;
-    bool actionDone = false;
-};
-
-
 
 using namespace cocos2d;
 using namespace cocostudio;
+
+class Bear;
 
 class Enemy : public Character
 {
@@ -69,7 +62,8 @@ public:
    // static zombie *create(Scene *parentScene, b2World *world,const char*name, float scale);
     virtual bool init(Scene *parentScene, b2World *world,const char*name, Point pos, float scale);
     virtual void initWayPoints(vector<waypoint> wps);
-    virtual void update(float dt);
+    //virtual void update(float dt);
+    virtual void update(float dt,Bear *bear);
     virtual void die(b2Vec2 vec);
     virtual void deleteProperties();
     

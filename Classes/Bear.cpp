@@ -85,7 +85,7 @@ void Bear::creatfootBody()
     fixtureDef.restitution = 0.05f;
     fixtureDef.fixturetype = f_bear_foot;
     fixtureDef.filter.categoryBits = PLAYER;
-    fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
+    fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | BULLET;
     fixtureDef.shape = &circleShape;
     footBody->CreateFixture(&fixtureDef);
     
@@ -147,7 +147,7 @@ void Bear::setArmatureBody()
             
             // printf("bonename = %s\n", boneName.c_str());
             
-            fixtureDef.fixturetype = f_zbody_void;
+            fixtureDef.fixturetype = f_bear_body;
             fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
             
             

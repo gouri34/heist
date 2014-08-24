@@ -46,8 +46,10 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
     dummyTimer = 1.0;
     elevatorTimer = 5.0;
     
-    //08.18.2014 added by Weihan
+    //23.18.2014 added by Weihan
     lastBuildingx = 0;
+    lastObjectx = 0;
+    lastEnemeyObjectx=0;
     //--------------------
  
     
@@ -89,10 +91,10 @@ void MapGenerator::setStageType(StageTypes st)
     stageType = st;
 }
 
-
-void MapGenerator::update(Point pos, float dt)
+// pos is the bear position
+void MapGenerator::update(Point pos, float dt,Bear *bear)
 {
-    updateObjects(pos, dt);
+    updateObjects(pos, dt,bear);
     
     
     trapTimer -= dt;
@@ -292,11 +294,12 @@ void MapGenerator::update(Point pos, float dt)
                 
             }
             
-            //08.18.2014 added by Weihan
+            //22.18.2014 added by Weihan
             backgroundBuildingHandler(lastPos);
+            objectHandler(lastPos);
             //--------------------
             
-            NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastPos.x-20, lastPos.y+50), 0.3);
+            NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastPos.x-20, lastPos.y+50), 0.08);
             enemies.push_back(e);
             
         }
@@ -307,7 +310,7 @@ void MapGenerator::update(Point pos, float dt)
     
 }
 
-void MapGenerator::updateObjects(Point pos, float dt)
+void MapGenerator::updateObjects(Point pos, float dt, Bear *bear)
 {
     std::vector<Terrain*> usedTerrain;
     for (int i = 0; i < terrains.size(); i++) {
@@ -357,17 +360,47 @@ void MapGenerator::updateObjects(Point pos, float dt)
     }
     
     
-    std::vector<NormalEnemy*> usedDummy;
+    std::vector<Enemy*> usedDummy;
     for (int i = 0; i < enemies.size(); i++) {
-        NormalEnemy* e = enemies.at(i);
-        e->update(dt);
+        Enemy* e = enemies.at(i);
+        e->update(dt,bear);
         if ((pos.x - e->position.x) > 300) {
             usedDummy.push_back(e);
         }
     }
     for (int i = 0; i < usedDummy.size(); i++) {
-        NormalEnemy* e = usedDummy.at(i);
+        Enemy* e = usedDummy.at(i);
         enemies.erase(std::remove(enemies.begin(), enemies.end(), e), enemies.end());
+        delete e;
+    }
+    
+    // update destructable objects;
+    std::vector<DestructableObject*>useddestructableobjects;
+    for (int i=0; i<destructableobjects.size(); i++) {
+        DestructableObject *d = destructableobjects.at(i);
+        d->update(dt);
+        if (pos.x - d->armature->getPositionX() > 500) {
+            useddestructableobjects.push_back(d);
+        }
+    }
+    for (int i=0; i<useddestructableobjects.size(); i++) {
+        DestructableObject *d = useddestructableobjects.at(i);
+        destructableobjects.erase(std::remove(destructableobjects.begin(), destructableobjects.end(), d),destructableobjects.end());
+        delete d;
+    }
+    
+    //update enemy objects;
+    std::vector<EnemyObject*>usedenemyobjects;
+    for (int i = 0; i<enemyobjects.size(); i++) {
+        EnemyObject *e = enemyobjects.at(i);
+        e->update(dt, bear);
+        if (pos.x - e->armature->getPositionX() > 300) {
+            usedenemyobjects.push_back(e);
+        }
+    }
+    for (int i=0; i<usedenemyobjects.size(); i++) {
+        EnemyObject *e = usedenemyobjects.at(i);
+        enemyobjects.erase(std::remove(enemyobjects.begin(), enemyobjects.end(), e), enemyobjects.end());
         delete e;
     }
 
@@ -396,13 +429,26 @@ void MapGenerator::cleanup()
     windows.clear();
     
     for (int i = 0; i < enemies.size(); i++) {
-        NormalEnemy* e = enemies.at(i);
+        Enemy* e = enemies.at(i);
         delete e;
     }
     enemies.clear();
     
+    for (int i=0; i<destructableobjects.size(); i++) {
+        DestructableObject *d = destructableobjects.at(i);
+        delete d;
+    }
+    destructableobjects.clear();
+    
+    for (int i=0; i<enemyobjects.size(); i++) {
+        EnemyObject *e = enemyobjects.at(i);
+        delete e;
+    }
+    enemyobjects.clear();
+    
 }
 
+// background building handler
 void MapGenerator::backgroundBuildingHandler(Point lastpos)
 {
     if (stageType == onGround&&terrainStatus == plain) {
@@ -423,3 +469,60 @@ void MapGenerator::backgroundBuildingHandler(Point lastpos)
         }
     }
 }
+
+//in-game object handler
+void MapGenerator::objectHandler(Point lastpos)
+{
+    if (stageType == onGround && terrainStatus == plain) {
+        int objectlottery = rand()%10;
+        if (abs(lastpos.x - lastObjectx)>200) {
+            //generate objects
+            if(objectlottery==2||objectlottery==4)
+            {
+                DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "TrashCan", 0.07, 2.4f);
+                destructableobjects.push_back(d);
+                lastObjectx = d->armature->getPositionX();
+            }
+            else if(objectlottery==6)
+            {
+                DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object1", 0.4, 1.4f);
+                destructableobjects.push_back(d);
+                lastObjectx = d->armature->getPositionX();
+            }
+            else if(objectlottery==8)
+            {
+                DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object2", 0.4, 1.4f);
+                destructableobjects.push_back(d);
+                lastObjectx = d->armature->getPositionX();
+            }
+            else if (objectlottery==1)
+            {
+                DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object3", 0.4, 1.4f);
+                destructableobjects.push_back(d);
+                lastObjectx = d->armature->getPositionX();
+            }
+        }
+    }
+    
+    // add enemy objects(AKA will hurt you!)
+    if (stageType==onGround ||stageType== onRoof) {
+        int objectlottery = rand()%10;
+        if (abs(lastpos.x - lastEnemeyObjectx)>200 && abs(lastpos.x - lastObjectx)>50)
+        {
+            if (objectlottery==2||objectlottery==4)
+            {
+                MonsterTrap *m = MonsterTrap::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "BeastTrap",0.13,1.0f);
+                enemyobjects.push_back(m);
+                lastEnemeyObjectx = m->armature->getPositionX();
+            }
+            else if((objectlottery==6||objectlottery==7)&& terrainStatus==plain)
+            {
+//                Panzer *p = Panzer::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "BeastCaptureMobile", 0.1, 10.0f);
+//                enemyobjects.push_back(p);
+//                lastEnemeyObjectx = p->armature->getPositionX();
+            }
+        }
+    }
+}
+
+

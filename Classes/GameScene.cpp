@@ -46,7 +46,7 @@ bool GameScene::init()
     
     Texture2D* terrainTexture = Director::getInstance()->getTextureCache()->addImage("terrain.png");
     terrainTexture->setTexParameters(params);
-
+    
     
     //load armatures
     ArmatureDataManager::getInstance()->addArmatureFileInfo("tauren.ExportJson");
@@ -55,6 +55,16 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("glassWindow.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("agent.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("GUAIWUvvvvvvvvvvvvvvv.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("running_grunt.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("TrashCan.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("StopSign.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("BeastTrap.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("BeastCaptureMobile.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Object1.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Object2.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Object3.ExportJson");
+
+
     
     //physics setup
     b2Vec2 gravity;
@@ -89,7 +99,7 @@ void GameScene::update(float dt)
     Point bearPos = bear->theBody->getPosition();
     
     //update terrain
-    MapGenerator::GetInstance()->update(bearPos, dt);
+    MapGenerator::GetInstance()->update(bearPos, dt,bear);
     
     
     //camera

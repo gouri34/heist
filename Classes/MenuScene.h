@@ -12,6 +12,7 @@
 #include "cocos2d.h"
 #include "GameScene.h"
 #include "cocos-ext.h"
+#include "ScoreMultiplier.h"
 
 using namespace extension;
 
@@ -46,6 +47,7 @@ public:
 private:
     GameScene* gScene;
     int bearMovement;
+    ScoreMultiplier *s;
 };
 
 #endif /* defined(__Bear__MenuScene__) */

@@ -38,6 +38,8 @@ bool MenuScene::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
+    //load score multiplier
+    s = ScoreMultiplier::GetInstance();
     
     //enable touching
     auto touchEventListener = EventListenerTouchOneByOne::create();
