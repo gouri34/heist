@@ -505,6 +505,7 @@ void Bear::update(float dt)
                      randForce = -randForce;
                      }*/
                     e->die(b2Vec2(randForce, yForce));
+                   // e->die(b2Vec2(randForce*10, yForce*10));
                 }
                 else if(t == f_glass) {
                     GlassWindow *g = (GlassWindow*)body->GetUserData();

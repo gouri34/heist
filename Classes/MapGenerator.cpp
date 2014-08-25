@@ -299,7 +299,7 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
             objectHandler(lastPos);
             //--------------------
             
-            NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastPos.x-20, lastPos.y+50), 0.08);
+            NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastPos.x-20, lastPos.y+50), 0.32);
             enemies.push_back(e);
             
         }
