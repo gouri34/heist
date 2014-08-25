@@ -300,7 +300,10 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
             //--------------------
             
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> FETCH_HEAD
 =======
 >>>>>>> FETCH_HEAD
             NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastPos.x-20, lastPos.y+50), 0.32);

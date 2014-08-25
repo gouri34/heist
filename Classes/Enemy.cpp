@@ -204,7 +204,10 @@ void Enemy::update(float dt,Bear *bear)
             }
             else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> FETCH_HEAD
 =======
 >>>>>>> FETCH_HEAD
                 armature->getAnimation()->playByIndex(1);

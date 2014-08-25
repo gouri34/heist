@@ -1422,8 +1422,11 @@
 				AFD0A43119A8FBE0006F9248 /* Object30.plist in Resources */,
 				7C790AEB19803824005C873F /* test_bg.png in Resources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				AF8B0A6F19AAF12B0030FC04 /* drill_grunt0.png in Resources */,
 				AFA6669019AA2A460017F23C /* running_grunt3.png in Resources */,
+=======
+>>>>>>> FETCH_HEAD
 =======
 >>>>>>> FETCH_HEAD
 				7CA3A28C19AB5C5300F3E71E /* running_grunt3.png in Resources */,
