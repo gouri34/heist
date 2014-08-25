@@ -67,10 +67,32 @@ void MonsterTrap::update(float dt, Bear *bear)
     }
     armature->setRotation(angle);
     //}
-    if ( bear->theBody->getBoundingBox().intersectsRect(armature->getBoundingBox())&&active == false) {
-        //body_->SetType(b2_staticBody);
-        enemyObjectAction();
+    //aabb
+    MyQueryCallback queryCallback;
+    b2AABB aabb;
+    b2Vec2 detectionVec = b2Vec2(armature->getPositionX()/PTM_RATIO,armature->getPositionY()/PTM_RATIO);
+    aabb.lowerBound = detectionVec - b2Vec2(0.5*armature->getBoundingBox().size.width/PTM_RATIO ,0.5*armature->getBoundingBox().size.height/PTM_RATIO);
+    aabb.upperBound = detectionVec + b2Vec2(0.5*armature->getBoundingBox().size.width/PTM_RATIO,0.5*armature->getBoundingBox().size.height/PTM_RATIO);
+    gameWorld->QueryAABB(&queryCallback, aabb);
+    for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
+        b2Body* body = queryCallback.foundBodies[j];
+        b2Fixture* f = body->GetFixtureList();
+        if (f) {
+            FixtureType t = f->GetFixtureType();
+            
+            //if collision with ground, apply impulse and start animation
+            if ((t == f_bear_body||f_zbody_body)&&active==false) {
+                enemyObjectAction();
+                active = true;
+            }
+        }
     }
+    //
+//    if ( bear->theBody->getBoundingBox().intersectsRect(armature->getBoundingBox())&&active == false) {
+//        //body_->SetType(b2_staticBody);
+//        enemyObjectAction();
+//    }
+    
 }
 
 void MonsterTrap::enemyObjectAction()
