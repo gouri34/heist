@@ -299,8 +299,12 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
             objectHandler(lastPos);
             //--------------------
             
-//            NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastPos.x-20, lastPos.y+50), 0.08);
-//            enemies.push_back(e);
+<<<<<<< HEAD
+
+=======
+>>>>>>> FETCH_HEAD
+            NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastPos.x-20, lastPos.y+50), 0.32);
+            enemies.push_back(e);
             
         }
     }
@@ -526,8 +530,8 @@ void MapGenerator::objectHandler(Point lastpos)
             }
             else if((objectlottery==3||objectlottery==5))
             {
-                NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastpos.x-20, lastpos.y+50), 0.08);
-                enemies.push_back(e);
+//                NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastpos.x-20, lastpos.y+50), 0.08);
+//                enemies.push_back(e);
             }
         }
     }

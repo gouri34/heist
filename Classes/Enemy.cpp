@@ -43,10 +43,12 @@ bool Enemy::init(Scene *parentScene, b2World *world,const char*name, Point pos, 
    // armature->setColor(Color3B(255, 150, 150));
     
     parentScene->addChild(armature,21);
-   // armature->getAnimation()->playByIndex(0);
     setArmatureBody();
     
     creatfootBody();
+    
+    armature->setScaleX(-scale);
+
     
     return true;
 }
@@ -137,6 +139,7 @@ void Enemy::die(b2Vec2 vec)
                 body->GetFixtureList()->SetFixtureType(f_bodydead);
                 body->GetFixtureList()->SetFilterData(filter);
                 body->SetType(b2_dynamicBody);
+                printf("name: %s\n", name.c_str());
                 if (name.compare("tou") == 0) {
                     float rNum = (rand()%100)/100*1.1+1.0;
                     vec = b2Vec2(vec.x*rNum, vec.y);
@@ -200,7 +203,11 @@ void Enemy::update(float dt,Bear *bear)
                 startAnimationTimer-=dt;
             }
             else {
-                //armature->getAnimation()->playByIndex(0);
+<<<<<<< HEAD
+
+=======
+>>>>>>> FETCH_HEAD
+                armature->getAnimation()->playByIndex(1);
                 playedStartUpAnimation = true;
             }
         }

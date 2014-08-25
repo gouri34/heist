@@ -2,41 +2,10 @@
   "content_scale": 1.0,
   "armature_data": [
     {
-      "strVersion": "1.5.0.1",
-      "version": 1.501,
+      "strVersion": "1.6.0.0",
+      "version": 1.6,
       "name": "running_grunt",
       "bone_data": [
-        {
-          "name": "zuoshou",
-          "parent": "",
-          "dI": 0,
-          "x": 46.333602905273438,
-          "y": 968.1578369140625,
-          "z": 10,
-          "cX": 1.0,
-          "cY": 1.0,
-          "kX": 1.46503675,
-          "kY": -1.46503675,
-          "arrow_x": 406.84417724609375,
-          "arrow_y": 4.3444015318527818E-06,
-          "effectbyskeleton": true,
-          "display_data": [
-            {
-              "name": "zuoshou.png",
-              "displayType": 0,
-              "skin_data": [
-                {
-                  "x": 292.673035,
-                  "y": 64.69174,
-                  "cX": 1.0,
-                  "cY": 1.0,
-                  "kX": 3.27307439,
-                  "kY": 3.01012516
-                }
-              ]
-            }
-          ]
-        },
         {
           "name": "shangshen",
           "parent": "",
@@ -51,6 +20,7 @@
           "arrow_x": 9.7751617431640625E-06,
           "arrow_y": 5.42068482900504E-05,
           "effectbyskeleton": true,
+          "bl": 0,
           "display_data": [
             {
               "name": "body.png",
@@ -63,6 +33,38 @@
                   "cY": 1.0,
                   "kX": 0.0,
                   "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "zuoshou",
+          "parent": "shangshen",
+          "dI": 0,
+          "x": 74.285293579101562,
+          "y": -20.449226379394531,
+          "z": 10,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 1.39614022,
+          "kY": -1.39614022,
+          "arrow_x": 406.84417724609375,
+          "arrow_y": 4.3444015318527818E-06,
+          "effectbyskeleton": true,
+          "bl": 406,
+          "display_data": [
+            {
+              "name": "zuoshou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 292.673035,
+                  "y": 64.69174,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.27307439,
+                  "kY": 3.01012516
                 }
               ]
             }
@@ -82,6 +84,7 @@
           "arrow_x": 334.70150756835938,
           "arrow_y": -8.570612408220768E-06,
           "effectbyskeleton": true,
+          "bl": 334,
           "display_data": [
             {
               "name": "tou.png",
@@ -103,8 +106,8 @@
           "name": "zuo datui",
           "parent": "shangshen",
           "dI": 0,
-          "x": -20.000053405761719,
-          "y": -256.6668701171875,
+          "x": -21.662765502929688,
+          "y": -256.7816162109375,
           "z": 7,
           "cX": 1.0,
           "cY": 1.0,
@@ -113,6 +116,7 @@
           "arrow_x": 160.06935119628906,
           "arrow_y": 0.00010887555254157633,
           "effectbyskeleton": true,
+          "bl": 160,
           "display_data": [
             {
               "name": "datui.png",
@@ -134,8 +138,8 @@
           "name": "zuoxiaotui",
           "parent": "zuo datui",
           "dI": 0,
-          "x": 151.87832641601563,
-          "y": -26.239013671875,
+          "x": 152.86456298828125,
+          "y": -26.750785827636719,
           "z": 5,
           "cX": 1.0,
           "cY": 1.0,
@@ -144,6 +148,7 @@
           "arrow_x": 313.84695434570312,
           "arrow_y": 0.00019738935225177556,
           "effectbyskeleton": true,
+          "bl": 313,
           "display_data": [
             {
               "name": "xiaotui.png",
@@ -175,6 +180,7 @@
           "arrow_x": 194.3648681640625,
           "arrow_y": -7.8426812251564115E-05,
           "effectbyskeleton": true,
+          "bl": 194,
           "display_data": [
             {
               "name": "jiao.png",
@@ -206,6 +212,7 @@
           "arrow_x": 160.06935119628906,
           "arrow_y": 0.00010887555254157633,
           "effectbyskeleton": true,
+          "bl": 160,
           "display_data": [
             {
               "name": "datui.png",
@@ -227,8 +234,8 @@
           "name": "youxiaotuiiaotui",
           "parent": "youdatui",
           "dI": 0,
-          "x": 151.87808227539063,
-          "y": -26.2384033203125,
+          "x": 151.8780517578125,
+          "y": -26.23834228515625,
           "z": 4,
           "cX": 1.0,
           "cY": 1.0,
@@ -237,6 +244,7 @@
           "arrow_x": 313.84695434570312,
           "arrow_y": 0.00019738935225177556,
           "effectbyskeleton": true,
+          "bl": 313,
           "display_data": [
             {
               "name": "xiaotui.png",
@@ -259,7 +267,7 @@
           "parent": "youxiaotuiiaotui",
           "dI": 0,
           "x": 315.6982421875,
-          "y": 9.953277587890625,
+          "y": 9.953338623046875,
           "z": 3,
           "cX": 1.0,
           "cY": 1.0,
@@ -268,6 +276,7 @@
           "arrow_x": 194.3648681640625,
           "arrow_y": -7.8426812251564115E-05,
           "effectbyskeleton": true,
+          "bl": 194,
           "display_data": [
             {
               "name": "jiao.png",
@@ -287,18 +296,19 @@
         },
         {
           "name": "youshou",
-          "parent": "",
+          "parent": "shangshen",
           "dI": 0,
-          "x": -6.9997329711914062,
-          "y": 1001.4912109375,
+          "x": -17.508110046386719,
+          "y": -21.771530151367188,
           "z": 1,
           "cX": 1.0,
           "cY": 1.0,
-          "kX": 2.61659455,
-          "kY": -2.61659455,
+          "kX": 2.547698,
+          "kY": -2.547698,
           "arrow_x": 415.9593505859375,
           "arrow_y": 4.29086503572762E-06,
           "effectbyskeleton": true,
+          "bl": 415,
           "display_data": [
             {
               "name": "youshou.png",
@@ -348,7 +358,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -363,7 +373,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -378,7 +388,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -393,7 +403,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -408,7 +418,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
@@ -429,7 +439,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -444,7 +454,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -459,7 +469,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -474,7 +484,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -489,7 +499,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
@@ -510,7 +520,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -525,7 +535,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -540,7 +550,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -555,7 +565,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -570,7 +580,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
@@ -591,7 +601,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -606,7 +616,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -621,7 +631,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -636,7 +646,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -651,7 +661,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
@@ -672,7 +682,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -687,7 +697,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -702,7 +712,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -717,7 +727,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -732,7 +742,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
@@ -753,7 +763,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -768,7 +778,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -783,7 +793,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -798,7 +808,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -813,7 +823,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
@@ -834,7 +844,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -849,7 +859,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -864,7 +874,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -879,7 +889,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -894,7 +904,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
@@ -915,7 +925,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -930,7 +940,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -945,7 +955,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -960,7 +970,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -975,7 +985,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
@@ -996,7 +1006,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -1011,7 +1021,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -1026,7 +1036,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -1041,7 +1051,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -1056,7 +1066,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
@@ -1077,7 +1087,7 @@
                   "fi": 0,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -1092,7 +1102,7 @@
                   "fi": 5,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -1107,7 +1117,7 @@
                   "fi": 10,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -1122,7 +1132,7 @@
                   "fi": 15,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 },
                 {
@@ -1137,7 +1147,7 @@
                   "fi": 20,
                   "twE": 0,
                   "tweenFrame": true,
-                  "bd_src": 770,
+                  "bd_src": 1,
                   "bd_dst": 771
                 }
               ]
