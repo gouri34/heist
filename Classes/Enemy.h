@@ -10,7 +10,7 @@
 #define __Animal_Squad__Enemy__
 
 #include "Character.h"
-
+#include "Bear.h"
 
 #define  PTM_RATIO 32.0
 #define  HEIGHTDIFFX -10

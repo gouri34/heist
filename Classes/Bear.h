@@ -63,6 +63,8 @@ public:
 
     void die();
     
+    void gettingHurt();
+    
     void update(float dt);
     
     //ragdoll related

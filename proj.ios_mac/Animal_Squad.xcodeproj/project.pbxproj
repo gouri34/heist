@@ -192,6 +192,10 @@
 		AF74B32A19A895C40081C3F9 /* BeastCaptureMobile0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF74B32519A895C40081C3F9 /* BeastCaptureMobile0.png */; };
 		AF74B32B19A895C40081C3F9 /* BeastCaptureMobile1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF74B32619A895C40081C3F9 /* BeastCaptureMobile1.plist */; };
 		AF74B32C19A895C40081C3F9 /* BeastCaptureMobile1.png in Resources */ = {isa = PBXBuildFile; fileRef = AF74B32719A895C40081C3F9 /* BeastCaptureMobile1.png */; };
+		AF8B0A6619AAD89B0030FC04 /* DrillMan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF8B0A6419AAD89B0030FC04 /* DrillMan.cpp */; };
+		AF8B0A6D19AAF12B0030FC04 /* drill_grunt.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF8B0A6A19AAF12B0030FC04 /* drill_grunt.ExportJson */; };
+		AF8B0A6E19AAF12B0030FC04 /* drill_grunt0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF8B0A6B19AAF12B0030FC04 /* drill_grunt0.plist */; };
+		AF8B0A6F19AAF12B0030FC04 /* drill_grunt0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8B0A6C19AAF12B0030FC04 /* drill_grunt0.png */; };
 		AFA0DF8719A4BE7500C6B102 /* ShieldMan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */; };
 		AFA6668819AA2A460017F23C /* running_grunt.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AFA6667919AA2A460017F23C /* running_grunt.ExportJson */; };
 		AFA6668919AA2A460017F23C /* running_grunt0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFA6667A19AA2A460017F23C /* running_grunt0.plist */; };
@@ -538,6 +542,11 @@
 		AF74B32519A895C40081C3F9 /* BeastCaptureMobile0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BeastCaptureMobile0.png; sourceTree = "<group>"; };
 		AF74B32619A895C40081C3F9 /* BeastCaptureMobile1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BeastCaptureMobile1.plist; sourceTree = "<group>"; };
 		AF74B32719A895C40081C3F9 /* BeastCaptureMobile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BeastCaptureMobile1.png; sourceTree = "<group>"; };
+		AF8B0A6419AAD89B0030FC04 /* DrillMan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DrillMan.cpp; path = ../Classes/DrillMan.cpp; sourceTree = "<group>"; };
+		AF8B0A6519AAD89B0030FC04 /* DrillMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrillMan.h; path = ../Classes/DrillMan.h; sourceTree = "<group>"; };
+		AF8B0A6A19AAF12B0030FC04 /* drill_grunt.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = drill_grunt.ExportJson; sourceTree = "<group>"; };
+		AF8B0A6B19AAF12B0030FC04 /* drill_grunt0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = drill_grunt0.plist; sourceTree = "<group>"; };
+		AF8B0A6C19AAF12B0030FC04 /* drill_grunt0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drill_grunt0.png; sourceTree = "<group>"; };
 		AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShieldMan.cpp; path = ../Classes/ShieldMan.cpp; sourceTree = "<group>"; };
 		AFA0DF8619A4BE7500C6B102 /* ShieldMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShieldMan.h; path = ../Classes/ShieldMan.h; sourceTree = "<group>"; };
 		AFA6667919AA2A460017F23C /* running_grunt.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = running_grunt.ExportJson; sourceTree = "<group>"; };
@@ -912,6 +921,8 @@
 				7C0B39F2196473AD00330A95 /* NormalEnemy.h */,
 				AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */,
 				AFA0DF8619A4BE7500C6B102 /* ShieldMan.h */,
+				AF8B0A6419AAD89B0030FC04 /* DrillMan.cpp */,
+				AF8B0A6519AAD89B0030FC04 /* DrillMan.h */,
 			);
 			name = Enemies;
 			sourceTree = "<group>";
@@ -990,6 +1001,7 @@
 		AF6D33AF19A6DCE700B0F099 /* enemies */ = {
 			isa = PBXGroup;
 			children = (
+				AF8B0A6919AAF1150030FC04 /* drill_grunt */,
 				AFA6667819AA2A380017F23C /* running_grunt */,
 			);
 			name = enemies;
@@ -1087,6 +1099,16 @@
 				AF74B32719A895C40081C3F9 /* BeastCaptureMobile1.png */,
 			);
 			name = panzer;
+			sourceTree = "<group>";
+		};
+		AF8B0A6919AAF1150030FC04 /* drill_grunt */ = {
+			isa = PBXGroup;
+			children = (
+				AF8B0A6A19AAF12B0030FC04 /* drill_grunt.ExportJson */,
+				AF8B0A6B19AAF12B0030FC04 /* drill_grunt0.plist */,
+				AF8B0A6C19AAF12B0030FC04 /* drill_grunt0.png */,
+			);
+			name = drill_grunt;
 			sourceTree = "<group>";
 		};
 		AFA0DF8119A4589D00C6B102 /* destructableobjects */ = {
@@ -1249,7 +1271,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = D6Q2UWT7TT;
+						DevelopmentTeam = 5H69W39B9X;
 					};
 				};
 			};
@@ -1384,6 +1406,7 @@
 				AFD9B8CD19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.png in Resources */,
 				AFD0A43119A8FBE0006F9248 /* Object30.plist in Resources */,
 				7C790AEB19803824005C873F /* test_bg.png in Resources */,
+				AF8B0A6F19AAF12B0030FC04 /* drill_grunt0.png in Resources */,
 				AFA6669019AA2A460017F23C /* running_grunt3.png in Resources */,
 				AF74B32819A895C40081C3F9 /* BeastCaptureMobile.ExportJson in Resources */,
 				7C17C75F1966A3E2001A4CC0 /* glassWindow0.png in Resources */,
@@ -1399,6 +1422,7 @@
 				7C17C7541966A3CB001A4CC0 /* wall0.plist in Resources */,
 				AFD9B8C719A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv.ExportJson in Resources */,
 				AFD0A43019A8FBE0006F9248 /* Object3.ExportJson in Resources */,
+				AF8B0A6E19AAF12B0030FC04 /* drill_grunt0.plist in Resources */,
 				AF74B31E19A878F60081C3F9 /* BeastTrap0.png in Resources */,
 				AF74B32C19A895C40081C3F9 /* BeastCaptureMobile1.png in Resources */,
 				AFA6668C19AA2A460017F23C /* running_grunt1.png in Resources */,
@@ -1443,6 +1467,7 @@
 				AFE137BE19A0ABE200CA3FFF /* structure1.png in Resources */,
 				AFA6668A19AA2A460017F23C /* running_grunt0.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
+				AF8B0A6D19AAF12B0030FC04 /* drill_grunt.ExportJson in Resources */,
 				AFD0A43219A8FBE0006F9248 /* Object30.png in Resources */,
 				AF74B32A19A895C40081C3F9 /* BeastCaptureMobile0.png in Resources */,
 				7C79DD551999105C00C4EDCD /* ele_shaft_wall.png in Resources */,
@@ -1532,6 +1557,7 @@
 				7C0B39C7196470C900330A95 /* PRRatcliffTriangulator.cpp in Sources */,
 				7C0B3A061964744800330A95 /* MenuScene.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
+				AF8B0A6619AAD89B0030FC04 /* DrillMan.cpp in Sources */,
 				7C0B39F3196473AD00330A95 /* Enemy.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				7C5C9C2E199A1D85007C1635 /* SkyBuilding.cpp in Sources */,

@@ -200,7 +200,7 @@ void Enemy::update(float dt,Bear *bear)
                 startAnimationTimer-=dt;
             }
             else {
-                armature->getAnimation()->playByIndex(0);
+                //armature->getAnimation()->playByIndex(0);
                 playedStartUpAnimation = true;
             }
         }

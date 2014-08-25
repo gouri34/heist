@@ -76,7 +76,7 @@ void MonsterTrap::update(float dt, Bear *bear)
 void MonsterTrap::enemyObjectAction()
 {
     EnemyObject::enemyObjectAction();
-    body_->ApplyLinearImpulse(b2Vec2(0, 5), b2Vec2(body_->GetPosition().x-3, body_->GetPosition().y-6), true);
+    body_->ApplyLinearImpulse(b2Vec2(0, 10), b2Vec2(body_->GetPosition().x-3, body_->GetPosition().y-6), true);
     armature->getAnimation()->playWithIndex(0);
     active = true;
 }

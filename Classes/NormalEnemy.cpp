@@ -52,6 +52,8 @@ void NormalEnemy::setArmatureBody()
 {
     //armature->getAnimation()->setMovementEventCallFunc(this, movementEvent_selector(NormalEnemy::animationEvent));
     
+    armature->getAnimation()->playWithIndex(0);
+    
     Vector<Node*> bonearr = armature->getChildren();
     //Skin *dump = (Skin*)((Bone*)(bonearr.at(2)))->getDisplayRenderNode();
     //batch = SpriteBatchNode::createWithTexture(dump->getTexture());

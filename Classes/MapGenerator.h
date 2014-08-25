@@ -19,8 +19,11 @@
 
 #include "Wall.h"
 #include "glassWindow.h"
+
+//enemies
 #include "NormalEnemy.h"
 #include "Enemy.h"
+#include "DrillMan.h"
 
 #include "EnemyObject.h"
 #include "DestructableObject.h"

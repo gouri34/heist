@@ -653,3 +653,8 @@ void Bear::dashy()
         //theBody->setColor(Color3B(255, 120,120));
     }
 }
+
+void Bear::gettingHurt()
+{
+    //do something
+}
