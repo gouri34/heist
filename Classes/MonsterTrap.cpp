@@ -71,8 +71,8 @@ void MonsterTrap::update(float dt, Bear *bear)
     MyQueryCallback queryCallback;
     b2AABB aabb;
     b2Vec2 detectionVec = b2Vec2(armature->getPositionX()/PTM_RATIO,armature->getPositionY()/PTM_RATIO);
-    aabb.lowerBound = detectionVec - b2Vec2(0.5*armature->getBoundingBox().size.width/PTM_RATIO ,0.5*armature->getBoundingBox().size.height/PTM_RATIO);
-    aabb.upperBound = detectionVec + b2Vec2(0.5*armature->getBoundingBox().size.width/PTM_RATIO,0.5*armature->getBoundingBox().size.height/PTM_RATIO);
+    aabb.lowerBound = detectionVec - b2Vec2(0.5*armature->getContentSize().width*armature->getScale()/PTM_RATIO ,0.5*armature->getContentSize().height*armature->getScale()/PTM_RATIO);
+    aabb.upperBound = detectionVec + b2Vec2(0.5*armature->getContentSize().width*armature->getScale()/PTM_RATIO,0.5*armature->getContentSize().height*armature->getScale()/PTM_RATIO);
     gameWorld->QueryAABB(&queryCallback, aabb);
     for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
         b2Body* body = queryCallback.foundBodies[j];
@@ -81,7 +81,7 @@ void MonsterTrap::update(float dt, Bear *bear)
             FixtureType t = f->GetFixtureType();
             
             //if collision with ground, apply impulse and start animation
-            if ((t == f_bear_body||f_zbody_body)&&active==false) {
+            if ((t == f_bear_body||t == f_bodydead)&&active==false) {
                 enemyObjectAction();
                 active = true;
             }

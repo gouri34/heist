@@ -22,10 +22,13 @@ public:
     
     virtual void update(float dt, Bear *bear);
     virtual void creatfootBody();
+    virtual void die(b2Vec2 vec);
     
 private:
     Rect collisionPoint;
     bool onGround;
+    void gottaDie();
+    bool isDead;
 };
 
 #endif /* defined(__Animal_Squad__DrillMan__) */

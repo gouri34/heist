@@ -30,7 +30,7 @@ bool DrillMan::init(cocos2d::Scene *parentScene, b2World *world, const char *nam
     life = 100;
     desireVel = -1.2;
     onGround = false;
-    
+    isDead = false;
     
     
     armature = Armature::create(name);
@@ -90,11 +90,14 @@ void DrillMan::creatfootBody()
 void DrillMan::update(float dt, Bear *bear)
 {
     Enemy::update(dt, bear);
-    if (footBody != NULL)
+    if (isDead == false)
     {
         
         if ( bear->theBody->getBoundingBox().intersectsRect(collisionPoint)) {
             bear->gettingHurt();
+            footBody->ApplyLinearImpulse(b2Vec2(0, 3.5), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+            footBody->ApplyLinearImpulse(b2Vec2(-2,0), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+            return;
         }
         
         //aabb detect collision with the ground, if true then
@@ -111,21 +114,146 @@ void DrillMan::update(float dt, Bear *bear)
             if (f) {
                 FixtureType t = f->GetFixtureType();
                 
+                if(t == f_bear_body)
+                {
+                    // if not in dash mode
+                    if (bear->isDashing()==false) {
+                        float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
+                        float randSeed = rand()%100;
+                        float randForce = randSeed/50.0+2.8;
+                        float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
+                        gottaDie();
+                        isDead = true;
+                        return;
+                    }
+                    // is dashing
+                    else{
+                        float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
+                        float randSeed = rand()%100;
+                        float randForce = randSeed/50.0+2.8;
+                        float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
+                        gottaDie();
+                        isDead = true;
+                        return;
+                        
+                    }
+                }
                 //if collision with ground, apply impulse and start animation
-                if (t == f_ground) {
+                if (t == f_ground)
+                {
                     if (onGround==false) {
                         armature->getAnimation()->playWithIndex(0);
-                        footBody->ApplyLinearImpulse(b2Vec2(0, 7), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+                        footBody->ApplyLinearImpulse(b2Vec2(0, 7.5), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
                         footBody->ApplyLinearImpulse(b2Vec2(-2,0), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
-
                         onGround = true;
                         return;
                     }
                 }
+
             }
         }
         onGround = false;
         return;
+    }
+}
+
+void DrillMan::gottaDie()
+{
+//    if (footBody != NULL) {
+//        gameWorld->DestroyBody(footBody);
+//        footBody = NULL;
+//    }
+    footBody->ApplyLinearImpulse(b2Vec2(35, 10), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+}
+
+
+void DrillMan::die(b2Vec2 vec)
+{
+    if (footBody != NULL) {
+        gameWorld->DestroyBody(footBody);
+        footBody = NULL;
+    }
+    
+    setB2bodyPosition();
+    
+    if (!dead) {
+        
+        for (auto o : deadSpriteArray) {
+            if (armature->getScaleX() < 0) {
+                o->setScaleX(-o->getScaleX());
+            }
+        }
+        
+        
+        armature->setVisible(false);
+        
+        
+        b2Filter filter;
+        filter.categoryBits = DEAD_ZOMBIE;
+        filter.maskBits = UPPER_GROUND | BASE_GROUND;
+        
+        const Map<std::string, Bone*>& dic = armature->getBoneDic();
+        for(auto& element : dic)
+        {
+            
+            Bone *bone = element.second;
+            Skin *skin = (Skin*)element.second->getDisplayRenderNode();
+            string name = element.first;
+            
+            int torqRandWay = rand()%2;
+            float torgRand = (rand()%100)/100.0*2.7+2.7;
+            if (torqRandWay == 0)
+            {
+                torgRand = -torgRand;
+            }
+            
+            if (skin) {
+                b2Body *body = skin->body;
+                
+                body->GetFixtureList()->SetFixtureType(f_bodydead);  //dead bodies fixturetype
+                body->GetFixtureList()->SetFilterData(filter);
+                body->SetType(b2_dynamicBody);
+                printf("name: %s\n", name.c_str());
+                if (name.compare("tou") == 0) {
+                    float rNum = (rand()%100)/100*1.1+1.0;
+                    vec = b2Vec2(vec.x*rNum, vec.y);
+                }
+                body->ApplyLinearImpulse(vec, body->GetWorldCenter(), true);
+                body->ApplyAngularImpulse(torgRand, true);
+                
+                Bone *parentBone = bone->getParentBone();
+                if (parentBone) {
+                    Skin *parentSkin = (Skin*)parentBone->getDisplayRenderNode();
+                    b2Body *parentBody = parentSkin->body;
+                    b2RevoluteJointDef jdef;
+                    //CCAffineTransform tran = bone->nodeToParentTransform();
+                    Mat4 tran = bone->_getNodeToParentTransform();
+                    Point p = Point(tran.m[12], tran.m[13]);
+                    // Point p = skin->getWorldPosition();
+                    //printf("p x = %f y = %f\n", p.x, p.y);
+                    jdef.Initialize(parentBody, body, b2Vec2(p.x/PTM_RATIO, p.y/PTM_RATIO));
+                    jdef.lowerAngle = -0.35f * b2_pi;
+                    jdef.upperAngle = 0.35f * b2_pi;
+                    jdef.enableLimit = true;
+                    gameWorld->CreateJoint(&jdef);
+                }
+                
+                
+                
+            }
+        }
+        
+        //update(0);
+        
+        dead = true;
+        
+        setBodySprites();
+        
+        for (auto o : deadSpriteArray) {
+            o->setVisible(true);
+        }
+        
+        
     }
 }
 

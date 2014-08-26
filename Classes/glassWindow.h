@@ -14,7 +14,7 @@
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
 #include "cocostudio/CocoStudio.h"
-
+#include "MyQueryCallback.h"
 
 using namespace cocos2d;
 using namespace cocostudio;
@@ -23,14 +23,15 @@ class GlassWindow : public Ref
 {
 private:
     std::vector<b2Body*>wallBlocks;
-    b2Body *staticWall;
-    
+    Rect wallRect;
+    bool iscontacting;
     Layer* gameScene;
     b2World *gameWorld;
     
 public:
     bool destroyed =false;
-    
+    Armature* theBody;
+    b2Body *staticWall;
     static GlassWindow* create(Layer *gameScene_, b2World *gameWorld_, Point pos);
     virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos);
     ~GlassWindow();

@@ -70,6 +70,8 @@ private:
     float lastEnemeyObjectx;
     void backgroundBuildingHandler(Point lastpos);
     void objectHandler(Point lastpos);
+    float screenRightEdgeX;
+    Size visibleSize;
     //--------
     
 public:

@@ -52,7 +52,7 @@ void NormalEnemy::setArmatureBody()
 {
     //armature->getAnimation()->setMovementEventCallFunc(this, movementEvent_selector(NormalEnemy::animationEvent));
     
-    armature->getAnimation()->playWithIndex(0);
+    armature->getAnimation()->playWithIndex(1);
     
     Vector<Node*> bonearr = armature->getChildren();
     //Skin *dump = (Skin*)((Bone*)(bonearr.at(2)))->getDisplayRenderNode();
@@ -112,7 +112,7 @@ void NormalEnemy::setArmatureBody()
            // printf("bonename = %s\n", boneName.c_str());
             
             if (boneName.compare("headbone") == 0||boneName.compare("head")==0) {
-                fixtureDef.fixturetype = f_zbody_head;
+                fixtureDef.fixturetype = f_zbody_body;
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
             }
             else if (boneName.compare("bodybone") == 0||boneName.compare("body")==0) {
@@ -120,7 +120,7 @@ void NormalEnemy::setArmatureBody()
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
             }
             else if (boneName.compare("leglbone") == 0 || boneName.compare("right_leg") == 0|| boneName.compare("right_foreleg")|| boneName.compare("foreleg_rbone") ||boneName.compare("left_leg")==0||boneName.compare("left_foreleg")==0) {
-                fixtureDef.fixturetype = f_zbody_leg;
+                fixtureDef.fixturetype = f_zbody_body;
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
             }
             else {
@@ -365,6 +365,43 @@ void NormalEnemy::update(float dt, Bear *bear)
         float impulse = velChange*Enemy::footBody->GetMass()/1.1;
         Enemy::footBody->ApplyLinearImpulse(b2Vec2(impulse, 0), Enemy::footBody->GetWorldCenter(), true);
         Enemy::footRect = Rect(Enemy::footBody->GetPosition().x*PTM_RATIO, Enemy::footBody->GetPosition().y*PTM_RATIO, 0.45*PTM_RATIO, 0.45*PTM_RATIO);
+        
+        //---
+        //aabb detect collision with the player, if true then dead
+        MyQueryCallback queryCallback;
+        b2AABB aabb;
+        b2Vec2 detectionVec = b2Vec2(armature->getPositionX()/PTM_RATIO,armature->getPositionY()/PTM_RATIO);
+        aabb.lowerBound = detectionVec - b2Vec2(0.5*armature->getBoundingBox().size.width/PTM_RATIO ,0.5*armature->getBoundingBox().size.height/PTM_RATIO);
+        aabb.upperBound = detectionVec + b2Vec2(0.5*armature->getBoundingBox().size.width/PTM_RATIO,0.5*armature->getBoundingBox().size.height/PTM_RATIO);
+        gameWorld->QueryAABB(&queryCallback, aabb);
+        for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
+            b2Body* body = queryCallback.foundBodies[j];
+            b2Fixture* f = body->GetFixtureList();
+            if (f) {
+                FixtureType t = f->GetFixtureType();
+                
+                //if collision with player, die!
+                if (t == f_bear_body) {
+                    // if not in dash mode
+                    if (bear->isDashing()==false) {
+                       float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
+                        float randSeed = rand()%100;
+                        float randForce = randSeed/50.0+2.8;
+                        float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
+                        Enemy::die(b2Vec2(0.7*randForce, yForce));
+                    }
+                    // is dashing
+                    else{
+                        float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
+                        float randSeed = rand()%100;
+                        float randForce = randSeed/50.0+2.8;
+                        float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
+                        Enemy::die(b2Vec2(2*randForce, yForce));
+                    }
+
+                }
+            }
+        }
     }
 }
 

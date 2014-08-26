@@ -21,9 +21,9 @@ bool GlassWindow::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d:
 {
     gameScene = gameScene_;
     gameWorld = gameWorld_;
-    
+    iscontacting = false;
     //load the armature for reference first
-    Armature* theBody = Armature::create("glassWindow");
+    theBody = Armature::create("glassWindow");
     theBody->setPosition(Point(pos.x, pos.y));
     theBody->setVisible(true);
     theBody->setAnchorPoint(Point(0.5,0));
@@ -95,7 +95,7 @@ bool GlassWindow::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d:
     }
     
     //create the static body
-    Rect wallRect = theBody->getBoundingBox();
+    wallRect = theBody->getBoundingBox();
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     
@@ -141,6 +141,30 @@ void GlassWindow::destroyWall()
 
 void GlassWindow::update(cocos2d::Point pos, float dt)
 {
+    //---------------------player detection
+    MyQueryCallback queryCallback;
+    b2AABB aabb;
+    b2Vec2 detectionVec = b2Vec2(staticWall->GetPosition().x,staticWall->GetPosition().y);
+    aabb.lowerBound = detectionVec - b2Vec2(0.5*wallRect.size.width/PTM_RATIO ,0.5*wallRect.size.height/PTM_RATIO);
+    aabb.upperBound = detectionVec + b2Vec2(0.5*wallRect.size.width/PTM_RATIO,0.5*wallRect.size.height/PTM_RATIO);
+
+    gameWorld->QueryAABB(&queryCallback, aabb);
+    for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
+        b2Body* body = queryCallback.foundBodies[j];
+        b2Fixture* f = body->GetFixtureList();
+        if (f) {
+            FixtureType t = f->GetFixtureType();
+            
+            //if collision with player and enemies
+            if ((t == f_bear_body||t == f_bodydead)&&iscontacting==false) {
+                destroyWall();
+                iscontacting = true;
+            }
+        }
+    }
+
+    //-------------------
+    
     std::vector<b2Body*>usedbody;
     
     for (int i = 0; i < wallBlocks.size(); i++) {

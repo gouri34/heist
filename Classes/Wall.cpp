@@ -140,6 +140,7 @@ void Wall::destroyWall()
 
 void Wall::update(cocos2d::Point pos, float dt)
 {
+    
     std::vector<b2Body*>usedbody;
     
     for (int i = 0; i < wallBlocks.size(); i++) {

@@ -136,7 +136,7 @@ void Enemy::die(b2Vec2 vec)
             if (skin) {
                 b2Body *body = skin->body;
         
-                body->GetFixtureList()->SetFixtureType(f_bodydead);
+                body->GetFixtureList()->SetFixtureType(f_bodydead);  //dead bodies fixturetype
                 body->GetFixtureList()->SetFilterData(filter);
                 body->SetType(b2_dynamicBody);
                 printf("name: %s\n", name.c_str());
@@ -204,7 +204,7 @@ void Enemy::update(float dt,Bear *bear)
             }
             else {
 
-                armature->getAnimation()->playByIndex(1);
+                //armature->getAnimation()->playByIndex(1);
                 playedStartUpAnimation = true;
             }
         }

@@ -67,7 +67,8 @@ bool DestructableObject::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, P
 
 void DestructableObject::update(float dt)
 {
-    if (active == false) {
+    if (active == false)
+    {
         armature->setPosition(Point(body_->GetPosition().x*PTM_RATIO,body_->GetPosition().y*PTM_RATIO));
         //if collide
         MyQueryCallback queryCallback;
@@ -76,7 +77,8 @@ void DestructableObject::update(float dt)
         aabb.lowerBound = detectionVec - b2Vec2(armature->getContentSize().width/2*armature->getScale()/PTM_RATIO,armature->getContentSize().height/2*armature->getScale()/PTM_RATIO);
         aabb.upperBound = detectionVec + b2Vec2(armature->getContentSize().width/2*armature->getScale()/PTM_RATIO,armature->getContentSize().height/2*armature->getScale()/PTM_RATIO);
         gameWorld->QueryAABB(&queryCallback, aabb);
-        for (int j=0; j<queryCallback.foundBodies.size(); j++) {
+        for (int j=0; j<queryCallback.foundBodies.size(); j++)
+        {
             b2Body* body = queryCallback.foundBodies[j];
             b2Fixture *f = body->GetFixtureList();
             if (f) {
@@ -165,6 +167,7 @@ void DestructableObject::update(float dt)
                     armature->setVisible(false);
                     
                     destoryObject();
+                    active = true;
                 }
             }
         }

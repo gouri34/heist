@@ -211,6 +211,7 @@ void ShieldMan::update(float dt,Bear *bear)
                     //if it's the player, player get hurt
                     if (t == f_bear_body) {
                         printf("Bear hit the spikes!\n");
+                        
                     }
                 }
             }

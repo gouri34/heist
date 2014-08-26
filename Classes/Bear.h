@@ -13,7 +13,6 @@
 #include "Enemy.h"
 
 #include "Wall.h"
-#include "glassWindow.h"
 
 #include "LeaserRayCallback.h"
 #include "EnemyDetectionRayCallback.h"
@@ -70,6 +69,10 @@ public:
     //ragdoll related
     void setB2bodyPartPosition();
     float setBodySprites();
+    
+    //get status
+    bool isDashing();
+    
     
 private:
     Layer *gameScene;

@@ -50,6 +50,8 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
     lastBuildingx = 0;
     lastObjectx = 0;
     lastEnemeyObjectx=0;
+    screenRightEdgeX = 0;
+    visibleSize = Director::getInstance()->getVisibleSize();
     //--------------------
  
     
@@ -300,8 +302,6 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
             //--------------------
             
 
-            NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastPos.x-20, lastPos.y+50), 0.32);
-            enemies.push_back(e);
             
         }
     }
@@ -345,11 +345,13 @@ void MapGenerator::updateObjects(Point pos, float dt, Bear *bear)
         delete w;
     }
     
-    
     std::vector<GlassWindow*> usedWindow;
     for (int i = 0; i < windows.size(); i++) {
         GlassWindow* g = windows.at(i);
-        g->update(pos, dt);
+        //Active objects when they are within the screen
+        if (g->staticWall->GetPosition().x*PTM_RATIO<=pos.x+visibleSize.width*0.6) {
+            g->update(pos, dt);
+        }
         if (g->destroyed) {
             usedWindow.push_back(g);
         }
@@ -389,12 +391,15 @@ void MapGenerator::updateObjects(Point pos, float dt, Bear *bear)
         destructableobjects.erase(std::remove(destructableobjects.begin(), destructableobjects.end(), d),destructableobjects.end());
         delete d;
     }
+    useddestructableobjects.clear();
     
     //update enemy objects;
     std::vector<EnemyObject*>usedenemyobjects;
     for (int i = 0; i<enemyobjects.size(); i++) {
         EnemyObject *e = enemyobjects.at(i);
-        e->update(dt, bear);
+        if (e->armature->getPositionX()<=pos.x+visibleSize.width*0.8) {
+            e->update(dt, bear);
+        }
         if (pos.x - e->armature->getPositionX() > 300) {
             usedenemyobjects.push_back(e);
         }
@@ -521,7 +526,7 @@ void MapGenerator::objectHandler(Point lastpos)
 //                Panzer *p = Panzer::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "BeastCaptureMobile", 0.1, 10.0f);
 //                enemyobjects.push_back(p);
 //                lastEnemeyObjectx = p->armature->getPositionX();
-                DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.2);
+                DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.25);
                 enemies.push_back(d);
                 lastEnemeyObjectx = d->armature->getPositionX();
             }
@@ -529,6 +534,8 @@ void MapGenerator::objectHandler(Point lastpos)
             {
 //                NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastpos.x-20, lastpos.y+50), 0.08);
 //                enemies.push_back(e);
+                NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastpos.x-20, lastpos.y+50), 0.32);
+                enemies.push_back(e);
             }
         }
     }

@@ -455,7 +455,7 @@ void Bear::update(float dt)
                 if (f) {
                     FixtureType t = f->GetFixtureType();
                     
-                    //if it's a zombie, explosion metters
+                    //if it's a zombie, explosion matters
                     if (t == f_wall) {
                         Wall* w = (Wall*)body->GetUserData();
                         w->destroyWall();
@@ -476,43 +476,43 @@ void Bear::update(float dt)
         
         
         // creash the enemies
-        MyQueryCallback queryCallback; //see "World querying topic"
-        b2AABB aabb;
-        //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
-        Bone* attackBone = theBody->getBone("Layer43");
-        Mat4 attackPosMat = attackBone->_getNodeToParentTransform();
-        Point attackPos = Point(attackPosMat.m[12], attackPosMat.m[13]);
-        b2Vec2 detectionVec = b2Vec2(attackPos.x/PTM_RATIO, attackPos.y/PTM_RATIO);
-        aabb.lowerBound = detectionVec - b2Vec2( 2.5, 2.5);
-        aabb.upperBound = detectionVec + b2Vec2( 2.5, 2.5);
-        gameWorld->QueryAABB( &queryCallback, aabb );
-        
-        for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
-            b2Body* body = queryCallback.foundBodies[j];
-            b2Fixture* f = body->GetFixtureList();
-            if (f) {
-                FixtureType t = f->GetFixtureType();
-                
-                //if it's a zombie, explosion metters
-                if (t == f_foot) {
-                     Enemy* e = (Enemy*)body->GetUserData();
-                     
-                     float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
-                     float randSeed = rand()%100;
-                     float randForce = randSeed/50.0+2.8;
-                     float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
-                     /*if (XdistanceDiff<0) {
-                     randForce = -randForce;
-                     }*/
-                    e->die(b2Vec2(randForce, yForce));
-                   // e->die(b2Vec2(randForce*10, yForce*10));
-                }
-                else if(t == f_glass) {
-                    GlassWindow *g = (GlassWindow*)body->GetUserData();
-                    g->destroyWall();
-                }
-            }
-        }
+//        MyQueryCallback queryCallback; //see "World querying topic"
+//        b2AABB aabb;
+//        //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
+//        Bone* attackBone = theBody->getBone("Layer43");
+//        Mat4 attackPosMat = attackBone->_getNodeToParentTransform();
+//        Point attackPos = Point(attackPosMat.m[12], attackPosMat.m[13]);
+//        b2Vec2 detectionVec = b2Vec2(attackPos.x/PTM_RATIO, attackPos.y/PTM_RATIO);
+//        aabb.lowerBound = detectionVec - b2Vec2( 2.5, 2.5);
+//        aabb.upperBound = detectionVec + b2Vec2( 2.5, 2.5);
+//        gameWorld->QueryAABB( &queryCallback, aabb );
+//        
+//        for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
+//            b2Body* body = queryCallback.foundBodies[j];
+//            b2Fixture* f = body->GetFixtureList();
+//            if (f) {
+//                FixtureType t = f->GetFixtureType();
+//                
+//                //if it's a zombie, explosion metters
+//                if (t == f_foot) {
+//                     Enemy* e = (Enemy*)body->GetUserData();
+//                     
+//                     float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
+//                     float randSeed = rand()%100;
+//                     float randForce = randSeed/50.0+2.8;
+//                     float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
+//                     /*if (XdistanceDiff<0) {
+//                     randForce = -randForce;
+//                     }*/
+//                    e->die(b2Vec2(randForce, yForce));
+//                   // e->die(b2Vec2(randForce*10, yForce*10));
+//                }
+//                else if(t == f_glass) {
+//                    GlassWindow *g = (GlassWindow*)body->GetUserData();
+//                    g->destroyWall();
+//                }
+//            }
+//        }
         
 
         
@@ -658,4 +658,14 @@ void Bear::dashy()
 void Bear::gettingHurt()
 {
     //do something
+    printf("I am hit!!\n");
+}
+
+bool Bear::isDashing()
+{
+    if(inDash==true)
+    {
+        return true;
+    }
+    return false;
 }
