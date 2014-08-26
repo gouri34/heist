@@ -33,7 +33,6 @@ bool Enemy::init(Scene *parentScene, b2World *world,const char*name, Point pos, 
     life = 100;
     desireVel = -1.2;
     
-   
     
     armature = Armature::create(name);
     armature->setPosition(pos);
@@ -41,7 +40,7 @@ bool Enemy::init(Scene *parentScene, b2World *world,const char*name, Point pos, 
     armature->setAnchorPoint(Point(0.5, 0.5));
     zombie_scale = scale;
    // armature->setColor(Color3B(255, 150, 150));
-    
+    //
     parentScene->addChild(armature,21);
     setArmatureBody();
     
