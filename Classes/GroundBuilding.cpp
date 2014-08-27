@@ -11,7 +11,7 @@
 
 
 #define CEILING_HIGHT 300.0
-#define TEMP_HIGHT 6000
+#define TEMP_HIGHT 8000
 
 GroundBuilding* GroundBuilding::create(Layer *gameScene_, b2World *gameWorld_, Point pos)
 {
@@ -62,6 +62,8 @@ bool GroundBuilding::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
 
 void GroundBuilding::setVertices(Point pos)
 {
+    //printf("updating %f\n", pos.x);
+    
     //set ground texture
     Vector2dVector groundVecs;
     Vector2dVector ceilVecs;
@@ -97,7 +99,7 @@ void GroundBuilding::setVertices(Point pos)
     
     //calc offset
     int x_offset = 0; //offset to make the building complete
-    int minCoordx = (ground_lp.x+5.0)/floorTextureSize.width;
+    //int minCoordx = (ground_lp.x+5.0)/floorTextureSize.width;
     
     int x_intexture = (int)(ground_rp.x+5 - startPos.x)%1024;
 
@@ -129,12 +131,12 @@ void GroundBuilding::setVertices(Point pos)
     float side_texCoordX_l = (ground_lp.x - startPos.x)/viewTextureSize.width;
     float side_texCoordX_r = (ground_rp.x - startPos.x)/viewTextureSize.width;
     float side_texCoordY = TEMP_HIGHT/viewTextureSize.height;
-    points = makeVector(Point(ground_lp.x, ground_lp.y+CEILING_HIGHT), Point(ground_lp.x, ground_lp.y+CEILING_HIGHT+TEMP_HIGHT), Point(ground_rp.x, ground_rp.y+CEILING_HIGHT+TEMP_HIGHT), Point(ground_rp.x, ground_rp.y+CEILING_HIGHT));
+    points = makeVector(ceil_lp, Point(ceil_lp.x, ceil_lp.y+TEMP_HIGHT), Point(ceil_rp.x, ceil_rp.y+TEMP_HIGHT), ceil_rp);
     texCoords = makeVector(Point(side_texCoordX_l, 1.0), Point(side_texCoordX_l, 1 - side_texCoordY), Point(side_texCoordX_r, 1 - side_texCoordY), Point(side_texCoordX_r, 1.0));
     higherFrontView->customSetting(points, texCoords);
     
-    groundVecs = makeVector(Point(ground_lp.x, ground_lp.y-512), ground_lp, ground_rp, Point(ground_rp.x, ground_rp.y-512));
-    ceilVecs = makeVector(Point(ceil_lp.x, ex_Y_hight), ceil_lp, ceil_rp, Point(ceil_rp.x, ex_Y_hight));
+    groundVecs = pointsToVector(Point(ground_lp.x, ground_lp.y-512), ground_lp, ground_rp, Point(ground_rp.x, ground_rp.y-512));
+    ceilVecs = pointsToVector(Point(ceil_lp.x, ex_Y_hight), ceil_lp, ceil_rp, Point(ceil_rp.x, ex_Y_hight));
     
     setPhysicsTerrain(groundVecs, &groundBody);
     setPhysicsTerrain(ceilVecs, &ceilingBody);

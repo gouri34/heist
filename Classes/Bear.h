@@ -25,8 +25,12 @@
 using namespace cocos2d;
 
 typedef  enum {
-    dash, jump,run
+    dash, jump
 } ActionStatus;
+
+typedef enum {
+    run, yeild
+} MovementStatus;
 
 
 class Bear:public Character{
@@ -53,6 +57,9 @@ public:
     void jumppy();
     void dashy();
     
+    void setMovementStatus(MovementStatus ms);
+
+    
     //attack related
     void HeavyAttack();
     void HeavyAttackEffect();
@@ -65,6 +72,8 @@ public:
     void gettingHurt();
     
     void update(float dt);
+    
+    
     
     //ragdoll related
     void setB2bodyPartPosition();
@@ -79,6 +88,7 @@ private:
     b2World *gameWorld;
     
     ActionStatus actionStatus;
+    MovementStatus movementStatus;
     
     bool inDash;
     float dashTimer;

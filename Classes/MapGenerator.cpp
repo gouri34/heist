@@ -132,16 +132,15 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
                         terrainStatus = inGroundBld;
                     }
                     else {
-                        elevatorTimer = 12.0;
+                        elevatorTimer = 15.0;
                         
                         Point lastPos = getLastTerrainPos(true, nullptr, nullptr);
-                        ElevatorShatf *es = ElevatorShatf::create(gameLayer, gameWorld, lastPos);
+                        ElevatorShatf *es = ElevatorShatf::create(gameLayer, gameWorld, lastPos ,3000);
                         terrains.push_back(es);
                         lastPos = es->lastPos;
                         SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, lastPos, es->groundYpos);
                         terrains.push_back(sb);
                         
-                        stageType = onElevator;
                         terrainStatus = inSkyBld;
                     }
                     
@@ -189,7 +188,6 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
             else {
                 //down or up to plain
                 
-                
                 float lastTexCoordX;
                 Point lastPos = getLastTerrainPos(true, &lastTexCoordX, nullptr);
                 
@@ -231,17 +229,35 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
             if (randNum < 50) {
                 
                 if (terrainStatus == inSkyBld) {
-                    Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
                     
-                    GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
-                    windows.push_back(g);
+                    if (elevatorTimer > 0) {
+                        Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
+
+                        GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
+                        windows.push_back(g);
+                    }
+                    else {
+                        elevatorTimer = 15.0;
+                        
+                        int lastY;
+                        Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
+                        
+                        ElevatorShatf *es = ElevatorShatf::create(gameLayer, gameWorld, lastPos ,lastY - lastPos.y);
+                        terrains.push_back(es);
+                        lastPos = es->lastPos;
+                        GroundBuilding *gb = GroundBuilding::create(gameLayer, gameWorld, lastPos);
+                        terrains.push_back(gb);
+                        
+                        terrainStatus = inGroundBld;
+
+                    }
+                    
                 }
                 else if (terrainStatus == onSkyRoof) {
                     int lastY;
                     
                     Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
-                    
-                    SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, Point(lastPos.x + 420, lastPos.y - 200), lastY);
+                    SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, Point(lastPos.x + 420, lastPos.y - 200), lastPos.y - 2048);
                     terrains.push_back(sb);
                     
                     terrainStatus = inSkyBld;
@@ -255,7 +271,7 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
 
                     Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
                     
-                    SkyBuildingRoof *sbr = SkyBuildingRoof::create(gameLayer, gameWorld, Point(lastPos.x+420, lastPos.y -200), lastY);
+                    SkyBuildingRoof *sbr = SkyBuildingRoof::create(gameLayer, gameWorld, Point(lastPos.x+420, lastPos.y -200), lastPos.y - 2048);
                     terrains.push_back(sbr);
                     
                     terrainStatus = onSkyRoof;
@@ -376,6 +392,7 @@ void MapGenerator::updateObjects(Point pos, float dt, Bear *bear)
         enemies.erase(std::remove(enemies.begin(), enemies.end(), e), enemies.end());
         delete e;
     }
+    
     
     // update destructable objects;
     std::vector<DestructableObject*>useddestructableobjects;

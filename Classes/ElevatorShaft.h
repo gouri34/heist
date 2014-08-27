@@ -22,10 +22,12 @@ private:
     b2Body *elevator_body;
     ElevatorStatus elevator_status;
     int destinationY;
+    int shaft_height;
+    
 public:
     
-    static ElevatorShatf* create(Layer *gameScene_, b2World *gameWorld_, Point pos);
-    virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos);
+    static ElevatorShatf* create(Layer *gameScene_, b2World *gameWorld_, Point pos, int s_heigth);
+    virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos, int s_heigth);
     virtual ~ElevatorShatf();
     
     virtual void setDead();

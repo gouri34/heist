@@ -7,6 +7,7 @@
 //
 
 #include "Bear.h"
+#include "MapGenerator.h"
 
 #define CHARGETIME 1.8
 #define CONTROLLENGHT 200
@@ -43,6 +44,7 @@ bool Bear::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     life = 100.0;
     dead = false;
     actionStatus = jump;
+    movementStatus = run;
     inJump = false;
     targetSpeed = 22.0;
     
@@ -88,7 +90,6 @@ void Bear::creatfootBody()
     fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | BULLET;
     fixtureDef.shape = &circleShape;
     footBody->CreateFixture(&fixtureDef);
-    
     
     footRect = Rect(footBody->GetPosition().x*PTM_RATIO-0.4*PTM_RATIO/2, footBody->GetPosition().y-0.4*PTM_RATIO/2, 0.4*PTM_RATIO, 0.4*PTM_RATIO);
 }
@@ -393,7 +394,6 @@ void Bear::update(float dt)
     //movement
     if (!dead) {
         
-        
         setB2bodyPartPosition();
         
         //verticalAdjust();
@@ -403,15 +403,34 @@ void Bear::update(float dt)
                 offsetX = -HEIGHTDIFFX_;
             }
             
-            //move bear
+            //新增， 用来根据MapGenerator来控制bear的运动
+            MapGenerator *mg = MapGenerator::GetInstance();
+            if (mg->stageType == onElevator) {
+                setMovementStatus(yeild);
+            }
+            else {
+                setMovementStatus(run);
+            }
             
-            theBody->setScaleX(bScale);
-            b2Vec2 vel = footBody->GetLinearVelocity();
-            float velChange = targetSpeed - vel.x;
-            float impulse = velChange*footBody->GetMass()/1.1;
-            footBody->ApplyLinearImpulse(b2Vec2(impulse, 0), footBody->GetWorldCenter(), true);
+            
+            //bear movement
+            if (movementStatus == run) {
+                theBody->setScaleX(bScale);
+                b2Vec2 vel = footBody->GetLinearVelocity();
+                float velChange = targetSpeed - vel.x;
+                float impulse = velChange*footBody->GetMass()/1.1;
+                footBody->ApplyLinearImpulse(b2Vec2(impulse, 0), footBody->GetWorldCenter(), true);
+            }
+            else if (movementStatus == yeild) {
+                theBody->setScaleX(bScale);
+                b2Vec2 vel = footBody->GetLinearVelocity();
+                float velChange = 0 - vel.x;
+                float impulse = velChange*footBody->GetMass()/1.1;
+                footBody->ApplyLinearImpulse(b2Vec2(impulse, 0), footBody->GetWorldCenter(), true);
+            }
             
             theBody->setPosition(Point(footBody->GetPosition().x*PTM_RATIO+offsetX, footBody->GetPosition().y*PTM_RATIO+HEIGHTDIFFY_));
+            
         }
         
         footRect = Rect(footBody->GetPosition().x*PTM_RATIO-0.4*PTM_RATIO/2, footBody->GetPosition().y*PTM_RATIO-0.4*PTM_RATIO/2, 0.4*PTM_RATIO, 0.4*PTM_RATIO);
@@ -654,6 +673,13 @@ void Bear::dashy()
         //theBody->setColor(Color3B(255, 120,120));
     }
 }
+
+
+void Bear::setMovementStatus(MovementStatus ms)
+{
+    movementStatus = ms;
+}
+
 
 void Bear::gettingHurt()
 {
