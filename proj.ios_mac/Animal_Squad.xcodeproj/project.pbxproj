@@ -228,6 +228,8 @@
 		AF8B0A6E19AAF12B0030FC04 /* drill_grunt0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF8B0A6B19AAF12B0030FC04 /* drill_grunt0.plist */; };
 		AF8B0A6F19AAF12B0030FC04 /* drill_grunt0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8B0A6C19AAF12B0030FC04 /* drill_grunt0.png */; };
 		AFA0DF8719A4BE7500C6B102 /* ShieldMan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */; };
+		AFC062F919AEFE2900818E26 /* Streak.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC062F819AEFE2900818E26 /* Streak.png */; };
+		AFC062FF19AF1FBD00818E26 /* ScreenShake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFC062FD19AF1FBD00818E26 /* ScreenShake.cpp */; };
 		AFD0A42419A8FBC6006F9248 /* Object1.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AFD0A42119A8FBC6006F9248 /* Object1.ExportJson */; };
 		AFD0A42519A8FBC6006F9248 /* Object10.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD0A42219A8FBC6006F9248 /* Object10.plist */; };
 		AFD0A42619A8FBC6006F9248 /* Object10.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD0A42319A8FBC6006F9248 /* Object10.png */; };
@@ -582,6 +584,9 @@
 		AF8B0A6C19AAF12B0030FC04 /* drill_grunt0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drill_grunt0.png; sourceTree = "<group>"; };
 		AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShieldMan.cpp; path = ../Classes/ShieldMan.cpp; sourceTree = "<group>"; };
 		AFA0DF8619A4BE7500C6B102 /* ShieldMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShieldMan.h; path = ../Classes/ShieldMan.h; sourceTree = "<group>"; };
+		AFC062F819AEFE2900818E26 /* Streak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Streak.png; sourceTree = "<group>"; };
+		AFC062FD19AF1FBD00818E26 /* ScreenShake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScreenShake.cpp; path = ../Classes/ScreenShake.cpp; sourceTree = "<group>"; };
+		AFC062FE19AF1FBD00818E26 /* ScreenShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScreenShake.h; path = ../Classes/ScreenShake.h; sourceTree = "<group>"; };
 		AFD0A42119A8FBC6006F9248 /* Object1.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Object1.ExportJson; sourceTree = "<group>"; };
 		AFD0A42219A8FBC6006F9248 /* Object10.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Object10.plist; sourceTree = "<group>"; };
 		AFD0A42319A8FBC6006F9248 /* Object10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Object10.png; sourceTree = "<group>"; };
@@ -810,6 +815,7 @@
 				7C0B39901964705100330A95 /* test */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
+				AFC062F819AEFE2900818E26 /* Streak.png */,
 				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
 			);
 			name = Resources;
@@ -892,6 +898,8 @@
 				7C0B39C0196470C900330A95 /* PRSubTerrainPolygon.h */,
 				7C0B39C1196470C900330A95 /* triangulate.cpp */,
 				7C0B39C2196470C900330A95 /* triangulate.h */,
+				AFC062FD19AF1FBD00818E26 /* ScreenShake.cpp */,
+				AFC062FE19AF1FBD00818E26 /* ScreenShake.h */,
 			);
 			name = PRKit;
 			sourceTree = "<group>";
@@ -1291,7 +1299,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = D6Q2UWT7TT;
+						DevelopmentTeam = 5H69W39B9X;
 					};
 				};
 			};
@@ -1423,6 +1431,7 @@
 				AFD0A42519A8FBC6006F9248 /* Object10.plist in Resources */,
 				AF6D33E519A73D1800B0F099 /* StopSign.ExportJson in Resources */,
 				7C0B39A11964707B00330A95 /* agent0.plist in Resources */,
+				AFC062F919AEFE2900818E26 /* Streak.png in Resources */,
 				AFD9B8CD19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.png in Resources */,
 				AFD0A43119A8FBE0006F9248 /* Object30.plist in Resources */,
 				7C790AEB19803824005C873F /* test_bg.png in Resources */,
@@ -1589,6 +1598,7 @@
 				7C0B39C9196470C900330A95 /* PRSubTerrainPolygon.cpp in Sources */,
 				7C0B39CB196470C900330A95 /* triangulate.cpp in Sources */,
 				7CAB22B91991246A00094539 /* GroundBuilding.cpp in Sources */,
+				AFC062FF19AF1FBD00818E26 /* ScreenShake.cpp in Sources */,
 				7C0B39C5196470C900330A95 /* PRFilledPolygon.cpp in Sources */,
 				7C0B39C7196470C900330A95 /* PRRatcliffTriangulator.cpp in Sources */,
 				7C0B3A061964744800330A95 /* MenuScene.cpp in Sources */,

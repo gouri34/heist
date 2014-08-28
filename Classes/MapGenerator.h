@@ -50,7 +50,6 @@ private:
     Layer *gameLayer;
     b2World *gameWorld;
     
-    StageTypes stageType;
     TerrainStatus terrainStatus;
     
     float trapTimer;
@@ -86,6 +85,9 @@ public:
     void updateObjects(Point pos, float dt, Bear *bear);
     
     void cleanup();
+    
+    StageTypes stageType;
+
 };
 
 #endif /* defined(__Animal_Squad__MapGenerator__) */

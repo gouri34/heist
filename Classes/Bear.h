@@ -19,10 +19,12 @@
 
 #include "PistolBullet.h"
 
+#include "UniversalAttributes.h"
 
 #define  PTM_RATIO 32.0
 
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 typedef  enum {
     dash, jump
@@ -106,6 +108,10 @@ private:
     
     float targetSpeed;
     
+    MotionStreak *streak;
+    
+    Shaky3D *s;
+    UniversalAttributes *a;
 };
 
 #endif /* defined(__fusion__archer__) */

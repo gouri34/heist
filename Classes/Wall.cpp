@@ -136,6 +136,10 @@ void Wall::destroyWall()
         b->ApplyLinearImpulse(b2Vec2(xforce*3, yforce*3), b->GetWorldCenter(), true);
         b->ApplyAngularImpulse(torque*3, true);
     }
+    
+    auto e1 = Shaky3D::create(0.4, cocos2d::Size(5, 5), 5, 0);
+    a->GetInstance()->menuGrid->runAction(e1);
+
 }
 
 void Wall::update(cocos2d::Point pos, float dt)

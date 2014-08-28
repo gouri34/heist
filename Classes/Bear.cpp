@@ -451,6 +451,8 @@ void Bear::update(float dt)
         
         if (inDash) {
             dashTimer-=dt;
+            //update streak
+            streak->setPosition(theBody->getPosition());
             if (dashTimer <= 0) {
                 inDash = false;
                 targetSpeed = 22;
@@ -478,6 +480,7 @@ void Bear::update(float dt)
                     if (t == f_wall) {
                         Wall* w = (Wall*)body->GetUserData();
                         w->destroyWall();
+                        //screen shaking effect
                     }
                     
                 }
@@ -659,6 +662,7 @@ void Bear::jumppy()
         jumpTimer = 0;
         inJump = true;
         theBody->getAnimation()->playWithIndex(1);
+
     }
     
 }
@@ -668,9 +672,14 @@ void Bear::dashy()
     if (inDash==false) {
         inDash = true;
         dashTimer = 0.3;
-        targetSpeed = 30;
+        targetSpeed = targetSpeed+20;
         theBody->getAnimation()->playWithIndex(2);
-        //theBody->setColor(Color3B(255, 120,120));
+        
+        // add motion streak
+        streak = MotionStreak::create(dashTimer, 10, theBody->getBoundingBox().size.height-10, ccYELLOW, "Streak.png");
+        streak->setFastMode(true);
+        streak->setPosition(Point(theBody->getPositionX()+theBody->getBoundingBox().size.width/2,theBody->getPositionY()));
+        gameScene->addChild(streak,21);
     }
 }
 

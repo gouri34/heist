@@ -70,6 +70,14 @@ void DestructableObject::update(float dt)
     if (active == false)
     {
         armature->setPosition(Point(body_->GetPosition().x*PTM_RATIO,body_->GetPosition().y*PTM_RATIO));
+        float angle = body_->GetAngle()/M_PI*180;
+        while (angle <= 0){
+            angle += 360;
+        }
+        while (angle > 360){
+            angle -= 360;
+        }
+        armature->setRotation(angle);
         //if collide
         MyQueryCallback queryCallback;
         b2AABB aabb;
@@ -197,7 +205,7 @@ void DestructableObject::destoryObject()
         float torque = ((float)(50.0-rand()%100)/320000.0)*16000;
         
         b->ApplyLinearImpulse(b2Vec2(2*xforce, 2*yforce), b->GetWorldCenter(), true);
-        b->ApplyAngularImpulse(torque, true);
+        b->ApplyAngularImpulse(2*torque, true);
     }
 }
 

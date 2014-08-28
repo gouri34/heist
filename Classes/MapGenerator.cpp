@@ -500,25 +500,25 @@ void MapGenerator::objectHandler(Point lastpos)
         int objectlottery = rand()%10;
         if (abs(lastpos.x - lastObjectx)>200) {
             //generate objects
-            if(objectlottery==2||objectlottery==4)
+            if((objectlottery==2||objectlottery==4)&& (terrainStatus!=goingDown&&terrainStatus!=goingUp))
             {
                 DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "TrashCan", 0.07, 2.4f);
                 destructableobjects.push_back(d);
                 lastObjectx = d->armature->getPositionX();
             }
-            else if(objectlottery==6)
+            else if(objectlottery==6 && (terrainStatus!=goingDown&&terrainStatus!=goingUp))
             {
                 DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object1", 0.4, 1.4f);
                 destructableobjects.push_back(d);
                 lastObjectx = d->armature->getPositionX();
             }
-            else if(objectlottery==8)
+            else if(objectlottery==8&& (terrainStatus!=goingDown&&terrainStatus!=goingUp))
             {
                 DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object2", 0.4, 1.4f);
                 destructableobjects.push_back(d);
                 lastObjectx = d->armature->getPositionX();
             }
-            else if (objectlottery==1)
+            else if (objectlottery==1&& (terrainStatus!=goingDown&&terrainStatus!=goingUp))
             {
                 DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object3", 0.4, 1.4f);
                 destructableobjects.push_back(d);

@@ -20,6 +20,9 @@ using namespace cocos2d;
 class UniversalAttributes
 {
 public:
+    
+    NodeGrid *menuGrid;
+
     static UniversalAttributes* GetInstance(); //acquire instance
     
     virtual ~UniversalAttributes();
@@ -32,6 +35,7 @@ private:
     static UniversalAttributes* instance;
     
     Point screenRightEdge;   //record real time right edge
+    
     
 };
 

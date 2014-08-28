@@ -14,7 +14,7 @@
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
 #include "cocostudio/CocoStudio.h"
-
+#include "UniversalAttributes.h"
 
 using namespace cocos2d;
 using namespace cocostudio;
@@ -27,6 +27,8 @@ private:
     
     Layer* gameScene;
     b2World *gameWorld;
+    
+    UniversalAttributes *a;
     
 public:
     bool destroyed =false;

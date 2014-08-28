@@ -13,6 +13,7 @@
 #include "GameScene.h"
 #include "cocos-ext.h"
 #include "ScoreMultiplier.h"
+#include "UniversalAttributes.h"
 
 using namespace extension;
 
@@ -43,11 +44,14 @@ public:
 
     
     void update(float dt);
+    
+    NodeGrid *ng;
 
 private:
     GameScene* gScene;
     int bearMovement;
     ScoreMultiplier *s;
+    UniversalAttributes *a;
 };
 
 #endif /* defined(__Bear__MenuScene__) */

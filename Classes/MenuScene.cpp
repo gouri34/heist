@@ -110,10 +110,19 @@ bool MenuScene::init()
     
     //add game layer
     gScene = GameScene::create();
-    this->addChild(gScene);
+    
+    //add nodegrid
+    ng = NodeGrid::create();
+    ng->addChild(gScene);
+    this->addChild(ng);
+    
+    //this->addChild(gScene);
     
     //update
     this->scheduleUpdate();
+    
+    //add it into universal attributes
+    a->GetInstance()->menuGrid = ng;
     
     return true;
 }
