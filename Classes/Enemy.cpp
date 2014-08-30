@@ -46,7 +46,7 @@ bool Enemy::init(Scene *parentScene, b2World *world,const char*name, Point pos, 
     
     creatfootBody();
     
-    armature->setScaleX(-scale);
+    armature->setScaleX(scale);
 
     
     return true;
@@ -249,7 +249,7 @@ void Enemy::update(float dt,Bear *bear)
                         waypoint wp = wpArray[waypointIndex];
                         waypointOnRight = false;
                         desireVel = -defaultSpeed;
-                        armature->setScaleX(-zombie_scale);
+                        armature->setScaleX(zombie_scale);
                         if (wp.waypointPos.x > armature->getPosition().x) {
                             waypointOnRight = true;
                             desireVel = defaultSpeed;

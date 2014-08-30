@@ -115,7 +115,7 @@ bool MenuScene::init()
     ng = NodeGrid::create();
     ng->addChild(gScene);
     this->addChild(ng);
-    
+    ng->setGrid(NULL);
     //this->addChild(gScene);
     
     //update

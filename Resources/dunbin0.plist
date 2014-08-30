@@ -4,16 +4,16 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>rg_zuoshou.png</key>
+			<key>zuoshou.png</key>
 			<dict>
 				<key>width</key>
-				<integer>130</integer>
+				<integer>252</integer>
 				<key>height</key>
-				<integer>63</integer>
+				<integer>304</integer>
 				<key>originalWidth</key>
-				<integer>130</integer>
+				<integer>252</integer>
 				<key>originalHeight</key>
-				<integer>63</integer>
+				<integer>304</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -23,18 +23,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rg_shenti.png</key>
+			<key>dun.png</key>
 			<dict>
 				<key>width</key>
-				<integer>85</integer>
+				<integer>252</integer>
 				<key>height</key>
-				<integer>138</integer>
+				<integer>304</integer>
 				<key>originalWidth</key>
-				<integer>85</integer>
+				<integer>252</integer>
 				<key>originalHeight</key>
-				<integer>138</integer>
+				<integer>304</integer>
 				<key>x</key>
-				<integer>132</integer>
+				<integer>254</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -42,18 +42,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rg_tou.png</key>
+			<key>youjiao.png</key>
 			<dict>
 				<key>width</key>
-				<integer>100</integer>
+				<integer>252</integer>
 				<key>height</key>
-				<integer>108</integer>
+				<integer>304</integer>
 				<key>originalWidth</key>
-				<integer>100</integer>
+				<integer>252</integer>
 				<key>originalHeight</key>
-				<integer>108</integer>
+				<integer>304</integer>
 				<key>x</key>
-				<integer>219</integer>
+				<integer>508</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -61,18 +61,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rg_datui.png</key>
+			<key>shenti.png</key>
 			<dict>
 				<key>width</key>
-				<integer>74</integer>
+				<integer>252</integer>
 				<key>height</key>
-				<integer>53</integer>
+				<integer>304</integer>
 				<key>originalWidth</key>
-				<integer>74</integer>
+				<integer>252</integer>
 				<key>originalHeight</key>
-				<integer>53</integer>
+				<integer>304</integer>
 				<key>x</key>
-				<integer>321</integer>
+				<integer>762</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -80,18 +80,18 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rg_jiao.png</key>
+			<key>youtui.png</key>
 			<dict>
 				<key>width</key>
-				<integer>63</integer>
+				<integer>252</integer>
 				<key>height</key>
-				<integer>45</integer>
+				<integer>304</integer>
 				<key>originalWidth</key>
-				<integer>63</integer>
+				<integer>252</integer>
 				<key>originalHeight</key>
-				<integer>45</integer>
+				<integer>304</integer>
 				<key>x</key>
-				<integer>397</integer>
+				<integer>1016</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -99,39 +99,77 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rg_xiaotui.png</key>
+			<key>tou.png</key>
 			<dict>
 				<key>width</key>
-				<integer>73</integer>
+				<integer>252</integer>
 				<key>height</key>
-				<integer>87</integer>
+				<integer>304</integer>
 				<key>originalWidth</key>
-				<integer>73</integer>
+				<integer>252</integer>
 				<key>originalHeight</key>
-				<integer>87</integer>
+				<integer>304</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>1270</integer>
 				<key>y</key>
-				<integer>140</integer>
+				<integer>0</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rg_youshou.png</key>
+			<key>datui.png</key>
 			<dict>
 				<key>width</key>
-				<integer>130</integer>
+				<integer>252</integer>
 				<key>height</key>
-				<integer>74</integer>
+				<integer>304</integer>
 				<key>originalWidth</key>
-				<integer>130</integer>
+				<integer>252</integer>
 				<key>originalHeight</key>
-				<integer>74</integer>
+				<integer>304</integer>
 				<key>x</key>
-				<integer>75</integer>
+				<integer>1524</integer>
 				<key>y</key>
-				<integer>140</integer>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>zuojiao.png</key>
+			<dict>
+				<key>width</key>
+				<integer>252</integer>
+				<key>height</key>
+				<integer>304</integer>
+				<key>originalWidth</key>
+				<integer>252</integer>
+				<key>originalHeight</key>
+				<integer>304</integer>
+				<key>x</key>
+				<integer>1778</integer>
+				<key>y</key>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>youshou.png</key>
+			<dict>
+				<key>width</key>
+				<integer>252</integer>
+				<key>height</key>
+				<integer>304</integer>
+				<key>originalWidth</key>
+				<integer>252</integer>
+				<key>originalHeight</key>
+				<integer>304</integer>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>306</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -143,18 +181,18 @@
 			<key>format</key>
 			<integer>0</integer>
 			<key>textureFileName</key>
-			<string>running_grunt0.png</string>
+			<string>dunbin0.png</string>
 			<key>realTextureFileName</key>
-			<string>running_grunt0.png</string>
+			<string>dunbin0.png</string>
 			<key>size</key>
-			<string>{512,512}</string>
+			<string>{2048,2048}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>512</integer>
+			<integer>2048</integer>
 			<key>height</key>
-			<integer>512</integer>
+			<integer>2048</integer>
 		</dict>
 	</dict>
 </plist>

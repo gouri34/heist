@@ -382,7 +382,9 @@ void MapGenerator::updateObjects(Point pos, float dt, Bear *bear)
     std::vector<Enemy*> usedDummy;
     for (int i = 0; i < enemies.size(); i++) {
         Enemy* e = enemies.at(i);
-        e->update(dt,bear);
+        //if (e->armature->getPositionX()<=pos.x+visibleSize.width*0.7) {
+            e->update(dt,bear);
+        //}
         if ((pos.x - e->position.x) > 300) {
             usedDummy.push_back(e);
         }
@@ -414,9 +416,9 @@ void MapGenerator::updateObjects(Point pos, float dt, Bear *bear)
     std::vector<EnemyObject*>usedenemyobjects;
     for (int i = 0; i<enemyobjects.size(); i++) {
         EnemyObject *e = enemyobjects.at(i);
-        if (e->armature->getPositionX()<=pos.x+visibleSize.width*0.8) {
+        //if (e->armature->getPositionX()<=pos.x+visibleSize.width*0.7) {
             e->update(dt, bear);
-        }
+        //}
         if (pos.x - e->armature->getPositionX() > 300) {
             usedenemyobjects.push_back(e);
         }
@@ -540,19 +542,23 @@ void MapGenerator::objectHandler(Point lastpos)
             }
             else if((objectlottery==6||objectlottery==7)&& terrainStatus==plain)
             {
-//                Panzer *p = Panzer::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "BeastCaptureMobile", 0.1, 10.0f);
-//                enemyobjects.push_back(p);
-//                lastEnemeyObjectx = p->armature->getPositionX();
                 DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.25);
                 enemies.push_back(d);
                 lastEnemeyObjectx = d->armature->getPositionX();
             }
             else if((objectlottery==3||objectlottery==5))
             {
-//                NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastpos.x-20, lastpos.y+50), 0.08);
-//                enemies.push_back(e);
-                NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "agent", Point(lastpos.x-20, lastpos.y+50), 0.32);
+
+                NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastpos.x-20, lastpos.y+50), 0.35);
                 enemies.push_back(e);
+
+            }
+            else if((objectlottery==1||objectlottery==9)&&terrainStatus==plain)
+            {
+                Panzer *p = Panzer::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Panzer", 1.0, 10.0f);
+                enemyobjects.push_back(p);
+                lastEnemeyObjectx = p->armature->getPositionX();
+
             }
         }
     }

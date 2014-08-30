@@ -21,6 +21,7 @@ bool Wall::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d::Point 
 {
     gameScene = gameScene_;
     gameWorld = gameWorld_;
+    colliding = false;
     
     //load the armature for reference first
     Armature* theBody = Armature::create("b_wall");
@@ -121,6 +122,7 @@ bool Wall::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d::Point 
 
 void Wall::destroyWall()
 {
+    colliding = true;
     //destroy the static wall first
     gameWorld->DestroyBody(staticWall);
     
@@ -137,8 +139,8 @@ void Wall::destroyWall()
         b->ApplyAngularImpulse(torque*3, true);
     }
     
-    auto e1 = Shaky3D::create(0.4, cocos2d::Size(5, 5), 5, 0);
-    a->GetInstance()->menuGrid->runAction(e1);
+//    e1 = Shaky3D::create(0.4, cocos2d::Size(2, 2), 5, 0);
+//    a->GetInstance()->menuGrid->runAction(e1);
 
 }
 
@@ -172,5 +174,4 @@ void Wall::update(cocos2d::Point pos, float dt)
 
 Wall::~Wall()
 {
-    
 }

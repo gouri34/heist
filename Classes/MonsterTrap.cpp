@@ -81,7 +81,7 @@ void MonsterTrap::update(float dt, Bear *bear)
             FixtureType t = f->GetFixtureType();
             
             //if collision with ground, apply impulse and start animation
-            if ((t == f_bear_body||t == f_bodydead)&&active==false) {
+            if ((t == f_bear_body||t == f_bodydead)&&active==false&&(armature->getPositionX()<=bear->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width*0.7)) {
                 enemyObjectAction();
                 active = true;
             }

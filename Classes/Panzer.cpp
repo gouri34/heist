@@ -46,10 +46,23 @@ bool Panzer::init(Layer *gameScene_, b2World *gameWorld_,Point pos,string armatu
     //BULLET INDICATES IT IS NOT DASHABLE
     fixtureDef.filter.categoryBits = BULLET;
     fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | PLAYER;
-    fixtureDef.fixturetype = f_object;
+    fixtureDef.fixturetype = f_stiff_object;
     body_->CreateFixture(&fixtureDef);
     body_->SetUserData(&armature);
     armature->getAnimation()->playWithIndex(0);
+    
+    //hide the damaged panzer
+    Vector<Node*> bonearr = armature->getChildren();
+    for (int i=0; i<bonearr.size(); i++) {
+        Bone *bone = (Bone*)bonearr.at(i);
+        std::string boneName = bone->getName();
+        if (strstr(boneName.c_str(), "damaged_panzer")) {
+            Skin *skin = (Skin*)bone->getDisplayRenderNode();
+            if (skin!=NULL) {
+                skin->setVisible(false);
+            }
+        }
+    }
     
     return true;
 }
@@ -74,6 +87,42 @@ void Panzer::update(float dt, Bear* bear)
     float velChange = -(vel.x+4);
     float impulse = velChange*body_->GetMass()/1.1;
     body_->ApplyLinearImpulse(b2Vec2(impulse, 0), body_->GetWorldCenter(), true);
+    
+    //aabb checking for collison with the player
+    MyQueryCallback queryCallback;
+    b2AABB aabb;
+    b2Vec2 detectionVec = b2Vec2(body_->GetPosition().x, body_->GetPosition().y);
+    aabb.lowerBound = detectionVec - b2Vec2(0.5*armature->getContentSize().width*armature->getScale()/PTM_RATIO ,0.5*armature->getContentSize().height*armature->getScale()/PTM_RATIO);
+    aabb.upperBound = detectionVec + b2Vec2(0.5*armature->getContentSize().width*armature->getScale()/PTM_RATIO,0.5*armature->getContentSize().height*armature->getScale()/PTM_RATIO);
+    gameWorld->QueryAABB(&queryCallback, aabb);
+    for (int j = 0; j<queryCallback.foundBodies.size(); j++) {
+        b2Body *body = queryCallback.foundBodies[j];
+        b2Fixture *f = body->GetFixtureList();
+        if (f) {
+            FixtureType t = f->GetFixtureType();
+            //if collape with player, will hide the panzer bone and show damaged_panzer bone
+            if (t==f_bear_body&&bear->isDashing()==true) {
+                Vector<Node*> bonearr = armature->getChildren();
+                for (int i=0; i<bonearr.size(); i++) {
+                    Bone *bone = (Bone*)bonearr.at(i);
+                    std::string boneName = bone->getName();
+                    if (strstr(boneName.c_str(), "damaged_panzer")) {
+                        Skin *skin = (Skin*)bone->getDisplayRenderNode();
+                        if (skin!=NULL) {
+                            skin->setVisible(true);
+                        }
+                    }
+                    else if(strstr(boneName.c_str(), "panzer")){
+                        Skin *skin = (Skin*)bone->getDisplayRenderNode();
+                        if(skin!=NULL){
+                            skin->setVisible(false);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 Panzer::~Panzer()

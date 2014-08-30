@@ -29,7 +29,7 @@ bool EnemyObject::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, Point po
     armature->setScale(scale);
     armature->setVisible(true);
     armature->setAnchorPoint(Point(0.5,0.5));
-    gameScene->addChild(armature,12);
+    gameScene->addChild(armature,23);
     
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;

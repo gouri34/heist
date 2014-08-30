@@ -52,9 +52,10 @@ void NormalEnemy::setArmatureBody()
 {
     //armature->getAnimation()->setMovementEventCallFunc(this, movementEvent_selector(NormalEnemy::animationEvent));
     
-    armature->getAnimation()->playWithIndex(1);
+    armature->getAnimation()->playWithIndex(0);
     
     Vector<Node*> bonearr = armature->getChildren();
+    printf("bonearr size = %zd\n",bonearr.size());
     //Skin *dump = (Skin*)((Bone*)(bonearr.at(2)))->getDisplayRenderNode();
     //batch = SpriteBatchNode::createWithTexture(dump->getTexture());
     //gameScene->addChild(batch, armature->getZOrder());
@@ -396,7 +397,7 @@ void NormalEnemy::update(float dt, Bear *bear)
                         float randSeed = rand()%100;
                         float randForce = randSeed/50.0+2.8;
                         float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
-                        Enemy::die(b2Vec2(2*randForce, yForce));
+                        Enemy::die(b2Vec2(3*randForce, yForce));
                     }
 
                 }

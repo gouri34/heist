@@ -27,8 +27,9 @@ public:
 private:
     Rect collisionPoint;
     bool onGround;
-    void gottaDie();
+    void gottaDie(int dashingFlag);  //0 is not dashing, 1 is dashing
     bool isDead;
+    b2Body* myOwnBody;
 };
 
 #endif /* defined(__Animal_Squad__DrillMan__) */

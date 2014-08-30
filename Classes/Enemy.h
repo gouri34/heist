@@ -14,7 +14,8 @@
 
 #define  PTM_RATIO 32.0
 #define  HEIGHTDIFFX -10
-#define  HEIGHTDIFFY 37.0
+//#define  HEIGHTDIFFY 37.0
+#define  HEIGHTDIFFY 60.0
 
 #define defaultSpeed 5.0
 

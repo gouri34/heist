@@ -47,6 +47,7 @@ bool Bear::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     movementStatus = run;
     inJump = false;
     targetSpeed = 22.0;
+
     
     //load the archer sprite below.
     theBody = Armature::create("GUAIWUvvvvvvvvvvvvvvv");
@@ -645,8 +646,8 @@ void Bear::onGroundDetector()
         if (f) {
             FixtureType t = f->GetFixtureType();
             
-            //if collision with ground, switch back to running animation
-            if (t == f_ground) {
+            //if collision with ground or stiff object, switch back to running animation
+            if (t == f_ground||t == f_stiff_object) {
                 theBody->getAnimation()->playWithIndex(0);
                 inJump = false;
             }
@@ -657,7 +658,7 @@ void Bear::onGroundDetector()
 
 void Bear::jumppy()
 {
-    if (jumpTimer > 0.8) {
+    if (jumpTimer > 0.8&&inJump==false) {
         footBody->ApplyLinearImpulse(b2Vec2(0, 6), footBody->GetWorldCenter(), true);
         jumpTimer = 0;
         inJump = true;
@@ -672,7 +673,7 @@ void Bear::dashy()
     if (inDash==false) {
         inDash = true;
         dashTimer = 0.3;
-        targetSpeed = targetSpeed+20;
+        targetSpeed = targetSpeed+10;
         theBody->getAnimation()->playWithIndex(2);
         
         // add motion streak
@@ -694,6 +695,8 @@ void Bear::gettingHurt()
 {
     //do something
     printf("I am hit!!\n");
+    //Blink(<#const cocos2d::Blink &#>)
+
 }
 
 bool Bear::isDashing()

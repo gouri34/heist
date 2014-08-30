@@ -93,7 +93,8 @@ void DestructableObject::update(float dt)
                 FixtureType t = f->GetFixtureType();
                 
                 //if its player shatters.
-                if (t==f_bear_body||t==f_bear_foot) {
+                if (t==f_bear_body||t==f_bear_foot)
+                {
                     Vector<Node*> bonearr = armature->getChildren();
                     
                     for(int i = 0; i< bonearr.size();i++)
@@ -204,8 +205,8 @@ void DestructableObject::destoryObject()
         float yforce = ((50.0 - rand()%100)/3000.0)*1400;
         float torque = ((float)(50.0-rand()%100)/320000.0)*16000;
         
-        b->ApplyLinearImpulse(b2Vec2(2*xforce, 2*yforce), b->GetWorldCenter(), true);
-        b->ApplyAngularImpulse(2*torque, true);
+        b->ApplyLinearImpulse(b2Vec2(6*xforce, 2*yforce), b->GetWorldCenter(), true);
+        b->ApplyAngularImpulse(8*torque, true);
     }
 }
 

@@ -4,7 +4,7 @@
 //
 //  Created by cong ku on 11/19/13.
 //
-//
+//character z: >20
 
 #ifndef __fusion__archer__
 #define __fusion__archer__
@@ -112,6 +112,7 @@ private:
     
     Shaky3D *s;
     UniversalAttributes *a;
+    
 };
 
 #endif /* defined(__fusion__archer__) */

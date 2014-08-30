@@ -84,19 +84,19 @@ void DrillMan::creatfootBody()
     
     footRect = Rect(footBody->GetPosition().x*PTM_RATIO-0.45*PTM_RATIO/2, footBody->GetPosition().y-0.45*PTM_RATIO/2, 0.45*PTM_RATIO, 0.45*PTM_RATIO);
     
-    collisionPoint = Rect(armature->getBoundingBox().size.width/2, 0, 3, 3);
+    collisionPoint = Rect(armature->getPositionX(), armature->getPositionY()-(armature->getScale()*armature->getContentSize().height*0.5),7, 3);
 }
 
 void DrillMan::update(float dt, Bear *bear)
 {
     Enemy::update(dt, bear);
+    collisionPoint = Rect(armature->getPositionX(), armature->getPositionY()-(armature->getScale()*armature->getContentSize().height*0.5), 7, 3);
     if (isDead == false)
     {
         
         if ( bear->theBody->getBoundingBox().intersectsRect(collisionPoint)) {
             bear->gettingHurt();
-            footBody->ApplyLinearImpulse(b2Vec2(0, 3.5), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
-            footBody->ApplyLinearImpulse(b2Vec2(-2,0), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+            footBody->ApplyLinearImpulse(b2Vec2(0, 7), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
             return;
         }
         
@@ -105,8 +105,8 @@ void DrillMan::update(float dt, Bear *bear)
         MyQueryCallback queryCallback;
         b2AABB aabb;
         b2Vec2 detectionVec = b2Vec2(armature->getPositionX()/PTM_RATIO,armature->getPositionY()/PTM_RATIO);
-        aabb.lowerBound = detectionVec - b2Vec2(0.5*armature->getBoundingBox().size.width/PTM_RATIO ,0.5*armature->getBoundingBox().size.height/PTM_RATIO);
-        aabb.upperBound = detectionVec + b2Vec2(0.5*armature->getBoundingBox().size.width/PTM_RATIO,0.5*armature->getBoundingBox().size.height/PTM_RATIO);
+        aabb.lowerBound = detectionVec - b2Vec2(0.5*armature->getScale()*armature->getContentSize().width/PTM_RATIO ,0.5*armature->getScale()*armature->getContentSize().height/PTM_RATIO);
+        aabb.upperBound = detectionVec + b2Vec2(0.5*armature->getScale()*armature->getContentSize().width/PTM_RATIO,0.5*armature->getScale()*armature->getContentSize().height/PTM_RATIO);
         gameWorld->QueryAABB(&queryCallback, aabb);
         for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
             b2Body* body = queryCallback.foundBodies[j];
@@ -122,7 +122,7 @@ void DrillMan::update(float dt, Bear *bear)
                         float randSeed = rand()%100;
                         float randForce = randSeed/50.0+2.8;
                         float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
-                        gottaDie();
+                        gottaDie(0);
                         isDead = true;
                         return;
                     }
@@ -132,19 +132,19 @@ void DrillMan::update(float dt, Bear *bear)
                         float randSeed = rand()%100;
                         float randForce = randSeed/50.0+2.8;
                         float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
-                        gottaDie();
+                        gottaDie(1);
                         isDead = true;
                         return;
                         
                     }
                 }
                 //if collision with ground, apply impulse and start animation
-                if (t == f_ground)
+                if (t == f_ground&&isDead==false&&(armature->getPositionX()<=bear->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width*0.7))
                 {
+                    printf("onGround = %d\n",onGround);
                     if (onGround==false) {
                         armature->getAnimation()->playWithIndex(0);
-                        footBody->ApplyLinearImpulse(b2Vec2(0, 7.5), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
-                        footBody->ApplyLinearImpulse(b2Vec2(-2,0), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+                        footBody->ApplyLinearImpulse(b2Vec2(0, 10), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
                         onGround = true;
                         return;
                     }
@@ -157,13 +157,20 @@ void DrillMan::update(float dt, Bear *bear)
     }
 }
 
-void DrillMan::gottaDie()
+void DrillMan::gottaDie(int dashingFlag)
 {
 //    if (footBody != NULL) {
 //        gameWorld->DestroyBody(footBody);
 //        footBody = NULL;
 //    }
-    footBody->ApplyLinearImpulse(b2Vec2(35, 10), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+    if (dashingFlag == 0) {
+        footBody->ApplyLinearImpulse(b2Vec2(80, 50), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+    }
+    else
+        footBody->ApplyLinearImpulse(b2Vec2(150, 50), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+    RotateBy *rb = RotateBy::create(4, 3000);
+    armature->runAction(rb);
+    
 }
 
 

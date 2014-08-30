@@ -30,6 +30,10 @@ private:
     
     UniversalAttributes *a;
     
+    Shaky3D *e1;
+    
+    bool colliding;
+    
 public:
     bool destroyed =false;
     
