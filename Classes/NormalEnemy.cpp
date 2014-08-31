@@ -55,7 +55,7 @@ void NormalEnemy::setArmatureBody()
     armature->getAnimation()->playWithIndex(0);
     
     Vector<Node*> bonearr = armature->getChildren();
-    printf("bonearr size = %zd\n",bonearr.size());
+    //printf("bonearr size = %zd\n",bonearr.size());
     //Skin *dump = (Skin*)((Bone*)(bonearr.at(2)))->getDisplayRenderNode();
     //batch = SpriteBatchNode::createWithTexture(dump->getTexture());
     //gameScene->addChild(batch, armature->getZOrder());

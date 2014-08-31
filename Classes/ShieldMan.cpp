@@ -18,6 +18,57 @@ ShieldMan * ShieldMan::create(Scene *parentScene, b2World *world,const char*name
     return NULL;
 }
 
+bool ShieldMan::init(cocos2d::Scene *parentScene, b2World *world, const char *name, Point pos, float scale)
+{
+    isPlayingAnimation = false;
+    
+    chType = shieldMan;
+    
+    gameScene = parentScene;
+    gameWorld = world;
+    armature = NULL;
+    footBody = NULL;
+    dead = false;
+    life = 100;
+    desireVel = -1.2;
+    
+    
+    armature = Armature::create(name);
+    armature->setPosition(pos);
+    armature->setScale(scale);
+    armature->setAnchorPoint(Point(0.5, 0.5));
+    zombie_scale = scale;
+    // armature->setColor(Color3B(255, 150, 150));
+    //
+    parentScene->addChild(armature,21);
+    ShieldMan::setArmatureBody();
+    
+    Enemy::creatfootBody();
+    
+    armature->setScaleX(scale);
+    
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_staticBody;
+    bodyDef.position.Set((pos.x-(armature->getScale()*armature->getContentSize().width*0.5))/PTM_RATIO,pos.y/PTM_RATIO);
+    
+    shield = gameWorld->CreateBody(&bodyDef);
+    b2PolygonShape dynamicBox;
+    dynamicBox.SetAsBox((armature->getScale()*armature->getContentSize().width*0.1/PTM_RATIO), armature->getScale()*armature->getContentSize().height*0.5/PTM_RATIO);
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &dynamicBox;
+    fixtureDef.density = 10.0;
+    fixtureDef.friction = 0.3f;
+    //BULLET INDICATES IT IS NOT DASHABLE
+    fixtureDef.filter.categoryBits = BULLET;
+    fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | PLAYER;
+    fixtureDef.fixturetype = f_stiff_object;
+    shield->CreateFixture(&fixtureDef);
+    //shield->SetUserData(&armature);
+
+    
+    return true;
+}
+
 ShieldMan::~ShieldMan()
 {
     // do nothing
@@ -25,16 +76,19 @@ ShieldMan::~ShieldMan()
 
 void ShieldMan::setArmatureBody()
 {
+    
     Vector<Node*> bonearr = armature->getChildren();
 
     for(int i = 0; i< bonearr.size();i++)
     {
         Bone *bone = (Bone*)bonearr.at(i);
         string boneName = bone->getName();
+        printf("bonename = %s\n",boneName.c_str());
         Skin *skin = (Skin*)bone->getDisplayRenderNode();
         
         
-        if (skin !=NULL) {
+        if (skin !=NULL)
+        {
             skin->isphysicsObject = true;
             skin->parentScale = armature->getScale();
             Rect a = skin->getTextureRect();
@@ -45,7 +99,11 @@ void ShieldMan::setArmatureBody()
             Size partSize = Size((a.getMaxX()-a.getMinX())/PTM_RATIO*armature->getScale(), (a.getMaxY()-a.getMinY())/PTM_RATIO*armature->getScale());
             
             b2BodyDef bodyDef;
-            bodyDef.type = b2_staticBody;
+            if (boneName.compare("dun")==0) {
+                bodyDef.type = b2_dynamicBody;
+            }
+            else
+                bodyDef.type = b2_staticBody;
             
             bodyDef.position.Set(partpos.x/PTM_RATIO, partpos.y/PTM_RATIO);
             b2Body *body_ = gameWorld->CreateBody(&bodyDef);
@@ -69,37 +127,27 @@ void ShieldMan::setArmatureBody()
             else {
                 fixtureDef.shape = &dynamicBox;
             }
-            fixtureDef.density = 0.3f;
+
             fixtureDef.restitution = 0.8;
             fixtureDef.friction = 0.01f;
-            fixtureDef.filter.categoryBits = ZOMBIE;
+            //fixtureDef.filter.categoryBits = ZOMBIE;
             
             // printf("bonename = %s\n", boneName.c_str());
             
-            if (boneName.compare("headbone") == 0||boneName.compare("head")==0) {
-                fixtureDef.fixturetype = f_zbody_head;
-                fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
-            }
-            else if (boneName.compare("bodybone") == 0||boneName.compare("body")==0) {
-                fixtureDef.fixturetype = f_zbody_body;
-                fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
-            }
-            else if (boneName.compare("leglbone") == 0 || boneName.compare("right_leg") == 0|| boneName.compare("right_foreleg")|| boneName.compare("foreleg_rbone") ||boneName.compare("left_leg")==0||boneName.compare("left_foreleg")==0) {
-                fixtureDef.fixturetype = f_zbody_leg;
-                fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
-            }
-            // add shield into b2body
-            else if(boneName.compare("shield")==0){
+            if(boneName.compare("dun")==0){
                 fixtureDef.fixturetype = f_spikes;
-                fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
+                fixtureDef.filter.categoryBits = BULLET;
+                fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | PLAYER;
+                fixtureDef.density = 10.3f;
+
             }
             
             else {
-                fixtureDef.fixturetype = f_zbody_void;
-                fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
+            fixtureDef.density = 0.3f;
+            fixtureDef.filter.categoryBits = ZOMBIE;
+            fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
+            fixtureDef.fixturetype = f_zbody_body;
             }
-            
-            
             
             body_->CreateFixture(&fixtureDef);
             body_->SetUserData(this);
@@ -129,96 +177,55 @@ void ShieldMan::setArmatureBody()
     }
 }
 
-void ShieldMan::setB2bodyPartPosition()
-{
-    const Map<std::string, Bone*>& dic = armature->getBoneDic();
-    // CCArray *dickeyarr = dic->allKeys();
-    
-    for(auto& element : dic)
-    {
-        //Ref *o = dickeyarr->objectAtIndex(i);
-        // CCString *key = dynamic_cast<CCString*>(o);
-        Skin *skin = (Skin*)element.second->getDisplayRenderNode();
-        string name = element.first;
-        
-        if (skin != NULL) {
-            if (skin->isphysicsObject) {
-                if (name.compare("head")==0 || name.compare("body")==0 || name.compare("left_leg")==0 || name.compare("left_foreleg")==0 || name.compare("right_leg")==0 || name.compare("right_foreleg")==0) {
-                    
-                    b2Body *body = skin->body;
-                    body->SetActive(true);
-                    Point partpos = skin->getParentRelatePosition();
-                    float partrotation = skin->getWorldRotation();
-                    //printf("%f\n", partrotation);
-                    body->SetTransform(b2Vec2(partpos.x/PTM_RATIO, partpos.y/PTM_RATIO), CC_DEGREES_TO_RADIANS(-partrotation));
-                }
-                
-            }
-        }
-        
-    }
-}
 
 void ShieldMan::update(float dt,Bear *bear)
 {
-    
-    if (dead) {
-        Sprite* s = deadSpriteArray.at(0);
-        position = s->getPosition();
-    }
-    else {
-        position = armature->getPosition();
-    }
-    
-    
-    if (!dead) {
+    Enemy::update(dt, bear);
+    if (footBody != NULL)
+    {
+        armature->setPosition(Point(footBody->GetPosition().x*
+                                    PTM_RATIO, footBody->GetPosition().y*PTM_RATIO+20));
         
+        if (isPlayingAnimation == false&&(armature->getPositionX()<=bear->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width*0.6)) {
+            armature->getAnimation()->playWithIndex(0);
+            isPlayingAnimation = true;
+        }
         
-        
-        updateArmatureBody();
-        
-        //zombie movement
-        if (footBody != NULL)
-        {
-            
-            float offsetX = HEIGHTDIFFX;
-            if (waypointOnRight) {
-                offsetX = -HEIGHTDIFFX;
-            }
-            
-            armature->setPosition(Point(footBody->GetPosition().x*
-                                        PTM_RATIO+offsetX, footBody->GetPosition().y*PTM_RATIO+HEIGHTDIFFY));
-            
-            //detect shield spikes and the player
-            MyQueryCallback queryCallback; //see "World querying topic"
-            b2AABB aabb;
-            //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
-            Bone* shieldBone = armature->getBone("shield");
-            Mat4 shieldPosMat = shieldBone->_getNodeToParentTransform();
-            Point shieldPos = Point(shieldPosMat.m[12], shieldPosMat.m[13]);
-            b2Vec2 detectionVec = b2Vec2(shieldPos.x/PTM_RATIO, shieldPos.y/PTM_RATIO);
-            aabb.lowerBound = detectionVec - b2Vec2( shieldBone->getContentSize().width/2, shieldBone->getContentSize().height/2);
-            aabb.upperBound = detectionVec + b2Vec2( shieldBone->getContentSize().width/2, shieldBone->getContentSize().height/2);
+        //detect shield spikes and the player
+        MyQueryCallback queryCallback; //see "World querying topic"
+        b2AABB aabb;
+        //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
+        Bone* shieldBone = armature->getBone("dun");
+        Mat4 shieldPosMat = shieldBone->_getNodeToParentTransform();
+        Point shieldPos = Point(shieldPosMat.m[12], shieldPosMat.m[13]);
+        b2Vec2 detectionVec = b2Vec2(shieldPos.x/PTM_RATIO, shieldPos.y/PTM_RATIO);
+        aabb.lowerBound = detectionVec - b2Vec2( shieldBone->getContentSize().width/2, shieldBone->getContentSize().height/2);
+        aabb.upperBound = detectionVec + b2Vec2( shieldBone->getContentSize().width/2, shieldBone->getContentSize().height/2);
 
-            gameWorld->QueryAABB( &queryCallback, aabb );
-            
-            for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
-                b2Body* body = queryCallback.foundBodies[j];
-                b2Fixture* f = body->GetFixtureList();
-                if (f) {
-                    FixtureType t = f->GetFixtureType();
+        gameWorld->QueryAABB( &queryCallback, aabb );
+        
+        for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
+            b2Body* body = queryCallback.foundBodies[j];
+            b2Fixture* f = body->GetFixtureList();
+            if (f&&(armature->getPositionX()<=bear->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width*0.6)) {
+                FixtureType t = f->GetFixtureType();
+                
+                //if it's the player, player get hurt
+                if (t == f_bear_body) {
+                    printf("Bear hit the spikes!\n");
+                    bear->gettingHurt();
                     
-                    //if it's the player, player get hurt
-                    if (t == f_bear_body) {
-                        printf("Bear hit the spikes!\n");
-                        
-                    }
+                }
+                else if(t==f_bodydead&&dead==false){
+                    gameWorld->DestroyBody(shield);
+                    float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
+                    float randSeed = rand()%100;
+                    float randForce = randSeed/50.0+2.8;
+                    float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
+                    Enemy::die(b2Vec2(5*randForce, yForce));
                 }
             }
-            
-            
-            
         }
-
     }
+
 }

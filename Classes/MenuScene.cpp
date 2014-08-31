@@ -7,9 +7,11 @@
 //
 
 #include "MenuScene.h"
+#include "CocosGUI.h"
 
 USING_NS_CC;
 
+using namespace ui;
 
 Scene* MenuScene::createScene()
 {
@@ -56,6 +58,13 @@ bool MenuScene::init()
     
     auto BearDIEButton = MenuItemFont::create("BEAR DIE!!!", CC_CALLBACK_1(MenuScene::bearDie, this));
     BearDIEButton->setPosition(Point(visibleSize.width*0.15, visibleSize.height*0.9));
+    
+   auto headUI = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("DemoHead_UI.json");
+    headUI->setAnchorPoint(Point(0,0.5));
+    headUI->setScale(0.7);
+    headUI->setPosition(Point(10,visibleSize.height-100));
+    this->addChild(headUI,30);
+    
 
     
     /*Scale9Sprite *ls = Scale9Sprite::create("dbutton.png");

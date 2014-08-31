@@ -4,7 +4,7 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>zuoshou.png</key>
+			<key>dun.png</key>
 			<dict>
 				<key>width</key>
 				<integer>252</integer>
@@ -23,7 +23,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>dun.png</key>
+			<key>zuoshou.png</key>
 			<dict>
 				<key>width</key>
 				<integer>252</integer>
@@ -61,7 +61,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>shenti.png</key>
+			<key>youtui.png</key>
 			<dict>
 				<key>width</key>
 				<integer>252</integer>
@@ -80,83 +80,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>youtui.png</key>
-			<dict>
-				<key>width</key>
-				<integer>252</integer>
-				<key>height</key>
-				<integer>304</integer>
-				<key>originalWidth</key>
-				<integer>252</integer>
-				<key>originalHeight</key>
-				<integer>304</integer>
-				<key>x</key>
-				<integer>1016</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>tou.png</key>
-			<dict>
-				<key>width</key>
-				<integer>252</integer>
-				<key>height</key>
-				<integer>304</integer>
-				<key>originalWidth</key>
-				<integer>252</integer>
-				<key>originalHeight</key>
-				<integer>304</integer>
-				<key>x</key>
-				<integer>1270</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>datui.png</key>
-			<dict>
-				<key>width</key>
-				<integer>252</integer>
-				<key>height</key>
-				<integer>304</integer>
-				<key>originalWidth</key>
-				<integer>252</integer>
-				<key>originalHeight</key>
-				<integer>304</integer>
-				<key>x</key>
-				<integer>1524</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>zuojiao.png</key>
-			<dict>
-				<key>width</key>
-				<integer>252</integer>
-				<key>height</key>
-				<integer>304</integer>
-				<key>originalWidth</key>
-				<integer>252</integer>
-				<key>originalHeight</key>
-				<integer>304</integer>
-				<key>x</key>
-				<integer>1778</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>youshou.png</key>
+			<key>shenti.png</key>
 			<dict>
 				<key>width</key>
 				<integer>252</integer>
@@ -175,24 +99,100 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
+			<key>tou.png</key>
+			<dict>
+				<key>width</key>
+				<integer>252</integer>
+				<key>height</key>
+				<integer>304</integer>
+				<key>originalWidth</key>
+				<integer>252</integer>
+				<key>originalHeight</key>
+				<integer>304</integer>
+				<key>x</key>
+				<integer>254</integer>
+				<key>y</key>
+				<integer>306</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>datui.png</key>
+			<dict>
+				<key>width</key>
+				<integer>252</integer>
+				<key>height</key>
+				<integer>304</integer>
+				<key>originalWidth</key>
+				<integer>252</integer>
+				<key>originalHeight</key>
+				<integer>304</integer>
+				<key>x</key>
+				<integer>508</integer>
+				<key>y</key>
+				<integer>306</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>zuojiao.png</key>
+			<dict>
+				<key>width</key>
+				<integer>252</integer>
+				<key>height</key>
+				<integer>304</integer>
+				<key>originalWidth</key>
+				<integer>252</integer>
+				<key>originalHeight</key>
+				<integer>304</integer>
+				<key>x</key>
+				<integer>762</integer>
+				<key>y</key>
+				<integer>306</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>youshou.png</key>
+			<dict>
+				<key>width</key>
+				<integer>252</integer>
+				<key>height</key>
+				<integer>304</integer>
+				<key>originalWidth</key>
+				<integer>252</integer>
+				<key>originalHeight</key>
+				<integer>304</integer>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>612</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>
 			<key>format</key>
 			<integer>0</integer>
 			<key>textureFileName</key>
-			<string>dunbin0.png</string>
+			<string>DDUNBIN0.png</string>
 			<key>realTextureFileName</key>
-			<string>dunbin0.png</string>
+			<string>DDUNBIN0.png</string>
 			<key>size</key>
-			<string>{2048,2048}</string>
+			<string>{1024,1024}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>2048</integer>
+			<integer>1024</integer>
 			<key>height</key>
-			<integer>2048</integer>
+			<integer>1024</integer>
 		</dict>
 	</dict>
 </plist>

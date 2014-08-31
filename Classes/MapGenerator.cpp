@@ -534,13 +534,13 @@ void MapGenerator::objectHandler(Point lastpos)
         int objectlottery = rand()%10;
         if (abs(lastpos.x - lastEnemeyObjectx)>200 && abs(lastpos.x - lastObjectx)>50)
         {
-            if (objectlottery==2||objectlottery==4)
+            if ((objectlottery==2||objectlottery==4)&&terrainStatus == plain)
             {
                 MonsterTrap *m = MonsterTrap::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "BeastTrap",0.1,1.0f);
                 enemyobjects.push_back(m);
                 lastEnemeyObjectx = m->armature->getPositionX();
             }
-            else if((objectlottery==6||objectlottery==7)&& terrainStatus==plain)
+            else if((objectlottery==6)&& terrainStatus==plain)
             {
                 DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.25);
                 enemies.push_back(d);
@@ -553,6 +553,12 @@ void MapGenerator::objectHandler(Point lastpos)
                 enemies.push_back(e);
 
             }
+            else if(objectlottery==7)
+            {
+                ShieldMan *s = ShieldMan::create((Scene*)gameLayer, gameWorld, "DDUNBIN", Point(lastpos.x-20, lastpos.y+50), 0.35);
+                enemies.push_back(s);
+            }
+            
             else if((objectlottery==1||objectlottery==9)&&terrainStatus==plain)
             {
                 Panzer *p = Panzer::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Panzer", 1.0, 10.0f);

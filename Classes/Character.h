@@ -21,7 +21,7 @@ using namespace std;
 using namespace cocostudio;
 
 typedef enum {
-    player, normalEnemy,drillMan
+    player, normalEnemy,drillMan,shieldMan
 } CharacterType;
 
 typedef enum {

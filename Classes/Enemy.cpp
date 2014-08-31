@@ -138,7 +138,7 @@ void Enemy::die(b2Vec2 vec)
                 body->GetFixtureList()->SetFixtureType(f_bodydead);  //dead bodies fixturetype
                 body->GetFixtureList()->SetFilterData(filter);
                 body->SetType(b2_dynamicBody);
-                printf("name: %s\n", name.c_str());
+                //printf("name: %s\n", name.c_str());
                 if (name.compare("tou") == 0) {
                     float rNum = (rand()%100)/100*1.1+1.0;
                     vec = b2Vec2(vec.x*rNum, vec.y);
@@ -388,8 +388,16 @@ void Enemy::setArmatureBody()
             fixtureDef.shape = &dynamicBox;
             fixtureDef.density = 0.2f;
             fixtureDef.friction = 0.9f;
-            fixtureDef.filter.categoryBits = ZOMBIE;
-            fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
+            if (boneName.compare("dun")==0) {
+                printf("in this?\n");
+                fixtureDef.filter.categoryBits = BULLET;
+                fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | PLAYER;
+            }
+            else
+            {
+                fixtureDef.filter.categoryBits = ZOMBIE;
+                fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
+            }
             fixtureDef.fixturetype = f_zbody_body;
             
             //printf("bonename = %s\n", boneName.c_str());
@@ -424,7 +432,7 @@ void Enemy::updateArmatureBody()
 {
     for (int i = 0; i < bodies.size(); i++) {
         b2Body *b = bodies[i];
-        b->SetActive(false);
+        //b->SetActive(false);
     }
     
     MyQueryCallback queryCallback; //see "World querying topic"

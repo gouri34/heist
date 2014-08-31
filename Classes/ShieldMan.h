@@ -12,19 +12,21 @@
 #include <iostream>
 #include "Enemy.h"
 
+
 class ShieldMan : public Enemy
 {
 public:
     static ShieldMan* create(Scene *parentScene, b2World *world,const char*name, Point pos, float scale);
+    virtual bool init(Scene *parentScene, b2World *world,const char*name, Point pos, float scale);
     virtual ~ShieldMan();
     virtual void setArmatureBody();
-    virtual void setB2bodyPartPosition();
     virtual void update(float dt,Bear *bear);
     //actions
     void getHit();
     
 private:
-    
+    bool isPlayingAnimation = false;
+    b2Body *shield;
     
 };
 

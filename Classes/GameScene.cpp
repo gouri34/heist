@@ -66,7 +66,7 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("drill_grunt.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Panzer.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("running_grunt.ExportJson");
-    ArmatureDataManager::getInstance()->addArmatureFileInfo("dunbin.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("DDUNBIN.ExportJson");
 
 
     
