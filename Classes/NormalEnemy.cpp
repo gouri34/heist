@@ -105,7 +105,7 @@ void NormalEnemy::setArmatureBody()
             else {
                 fixtureDef.shape = &dynamicBox;
             }
-            fixtureDef.density = 0.3f;
+            fixtureDef.density = 0.2f;
             fixtureDef.restitution = 0.8;
             fixtureDef.friction = 0.01f;
             fixtureDef.filter.categoryBits = ZOMBIE;

@@ -29,11 +29,12 @@ private:
     b2World *gameWorld;
     
 public:
+    
     bool destroyed =false;
     Armature* theBody;
     b2Body *staticWall;
-    static GlassWindow* create(Layer *gameScene_, b2World *gameWorld_, Point pos);
-    virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos);
+    static GlassWindow* create(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::string fileName,cocos2d::Point pos, float scalex, float scaley);
+    virtual bool init(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::string fileName,cocos2d::Point pos, float scalex, float scaley);
     ~GlassWindow();
     
     void destroyWall();

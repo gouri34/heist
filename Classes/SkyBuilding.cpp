@@ -56,7 +56,7 @@ bool SkyBuilding::init(Layer *gameScene_, b2World *gameWorld_, Point pos, int gr
     gLayer->addChild(higherFrontView, 60);
     gLayer->addChild(lowerFrontView, 60);
 
-    GlassWindow* gw = GlassWindow::create(gLayer, gWorld, pos);
+    GlassWindow* gw = GlassWindow::create(gLayer, gWorld, "glassWindow", pos, 1.0, 1.0);
     windows.push_back(gw);
 
     
@@ -199,7 +199,7 @@ void SkyBuilding::update(float dt, Point pos)
 
 void SkyBuilding::setDead()
 {
-    GlassWindow* gw = GlassWindow::create(gLayer, gWorld, lastPos);
+    GlassWindow* gw = GlassWindow::create(gLayer, gWorld, "glassWindow",lastPos, 1.0, 1.0);
     windows.push_back(gw);
     
     dead = true;

@@ -58,6 +58,8 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
     Ground* firstGround = Ground::create(gameLayer, gameWorld, Point(0, 100), 0);
     terrains.push_back(firstGround);
 
+    testRoomInfo = RoomConstructor::ConstructRoom("testhouse.json");
+    
 }
 
 
@@ -93,6 +95,65 @@ void MapGenerator::setStageType(StageTypes st)
     stageType = st;
 }
 
+
+
+
+//Room construction
+void MapGenerator::setupRoomWithInfo(RoomInfo info, Point pos)
+{
+    std::vector<RoomData> vec = info.roomInfoVec;
+    for (int i = 0; i < vec.size(); i++) {
+        RoomData d = vec[i];
+        addObjectWithData(d, pos);
+    }
+}
+
+void MapGenerator::addObjectWithData(RoomData data, Point pos)
+{
+    Node* node;
+    if (data.type == 1) {
+        Sprite *s = Sprite::create(data.sourceName);
+        gameLayer->addChild(s);
+        node = (Node*)s;
+        if (data.isPhysics) {
+            Point pos_ = Point(data.x+pos.x, data.y+pos.y);
+            
+            //create body
+            b2BodyDef bodyDef;
+            bodyDef.type = b2_dynamicBody;
+            bodyDef.position.Set(pos_.x/PTM_RATIO,pos_.y/PTM_RATIO);
+            b2Body* body_ = gameWorld->CreateBody(&bodyDef);
+            b2PolygonShape dynamicBox;
+            dynamicBox.SetAsBox((0.5*data.scalex*s->getContentSize().width/PTM_RATIO), 0.5*data.scaley*s->getContentSize().height/PTM_RATIO);
+            b2FixtureDef fixtureDef;
+            fixtureDef.shape = &dynamicBox;
+            fixtureDef.density = 1.0;
+            fixtureDef.friction = 0.3f;
+            fixtureDef.fixturetype = f_ground;
+            body_->CreateFixture(&fixtureDef);
+            
+            staticBodys.push_back(body_);
+            
+        }
+    }
+    else if (data.type == 2) {
+        Point pos_ = Point(data.x+pos.x, data.y+pos.y);
+        GlassWindow *d = GlassWindow::create(gameLayer, gameWorld, data.sourceName, pos_, data.scalex, data.scaley);
+        node = (Node*)d->theBody;
+        windows.push_back(d);
+    }
+    
+    node->setPosition(Point(data.x + pos.x, data.y + pos.y));
+    node->setScaleX(data.scalex);
+    node->setScaleY(data.scaley);
+    node->setRotation(data.rotation);
+    node->setZOrder(data.zOrder);
+    
+}
+
+
+
+
 // pos is the bear position
 void MapGenerator::update(Point pos, float dt,Bear *bear)
 {
@@ -107,38 +168,171 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
         
         //add a new ground
         int randNum = rand()%100;
-        //int buildingType = rand()%3;
-        if (stageType == onGround) {
-
-            if (randNum<50){
+        Point lp = getLastTerrainPos(false, nullptr, nullptr);
+        
+        if (lastObjectx < lp.x) {
+            
+            
+            if (stageType == onGround) {
                 
-                if (terrainStatus != inGroundBld) {
-                    Point lastPos = getLastTerrainPos(true, nullptr, nullptr);
-                    
-                    GroundBuilding *gb = GroundBuilding::create(gameLayer, gameWorld, lastPos);
-                    terrains.push_back(gb);
-                    GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
-                    windows.push_back(g);
-                    
-                    terrainStatus = inGroundBld;
+                if (randNum < 50) {
+                    if (terrainStatus != plain ) {
+                        Point lastPos = getLastTerrainPos(true, nullptr, nullptr);
+                        Ground* g = Ground::create(gameLayer, gameWorld, lastPos, 0);
+                        terrains.push_back(g);
+                        terrainStatus = plain;
+                    }
                 }
-                else {
-                    if (elevatorTimer >0) {
-                        Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
+                else if (randNum<80){
+                    
+                    if (terrainStatus != inGroundBld) {
                         
-                        GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
+                        Point lastPos = getLastTerrainPos(true, nullptr, nullptr);
+                        
+                        GroundBuilding *gb = GroundBuilding::create(gameLayer, gameWorld, lastPos);
+                        terrains.push_back(gb);
+                        GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, "glassWindow",Point(lastPos.x+10,lastPos.y), 1.0, 1.0);
                         windows.push_back(g);
                         
                         terrainStatus = inGroundBld;
+                        
+                        
                     }
                     else {
-                        elevatorTimer = 15.0;
+                        if (elevatorTimer >0) {
+                            Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
+                            
+                            GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, "glassWindow",Point(lastPos.x+10,lastPos.y), 1.0, 1.0);
+                            windows.push_back(g);
+                            
+                            terrainStatus = inGroundBld;
+                        }
+                        else {
+                            elevatorTimer = 15.0;
+                            
+                            Point lastPos = getLastTerrainPos(true, nullptr, nullptr);
+                            ElevatorShatf *es = ElevatorShatf::create(gameLayer, gameWorld, lastPos ,3000);
+                            terrains.push_back(es);
+                            lastPos = es->lastPos;
+                            SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, lastPos, es->groundYpos);
+                            terrains.push_back(sb);
+                            
+                            terrainStatus = inSkyBld;
+                        }
                         
-                        Point lastPos = getLastTerrainPos(true, nullptr, nullptr);
-                        ElevatorShatf *es = ElevatorShatf::create(gameLayer, gameWorld, lastPos ,3000);
-                        terrains.push_back(es);
-                        lastPos = es->lastPos;
-                        SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, lastPos, es->groundYpos);
+                        
+                    }
+                    
+                    
+                }
+                else if (randNum < 90){
+                    
+                    //up or from down to plain
+                    
+                    float lastTexCoordX;
+                    Point lastPos = getLastTerrainPos(true, &lastTexCoordX, nullptr);
+                    
+                    
+                    if (terrainStatus == plain|| terrainStatus == inGroundBld) {
+                        
+                        Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x - 5, lastPos.y), true, true,lastTexCoordX);
+                        terrains.push_back(gc);
+                        Ground_Slope *gs = Ground_Slope::create(gameLayer, gameWorld, gc->lastPos, true, gc->lastTexCoordX);
+                        terrains.push_back(gs);
+                        
+                        terrainStatus =  goingUp;
+                    }
+                    else if (terrainStatus == goingDown) {
+                        
+                        Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x, lastPos.y), false, true,lastTexCoordX);
+                        terrains.push_back(gc);
+                        Ground *g = Ground::create(gameLayer, gameWorld, Point(gc->lastPos.x - 5, gc->lastPos.y), gc->lastTexCoordX - 5/512);
+                        terrains.push_back(g);
+                        
+                        terrainStatus = plain;
+                    }
+                    else if(terrainStatus == goingUp) {
+                        Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x, lastPos.y), true, false,lastTexCoordX);
+                        terrains.push_back(gc);
+                        Ground *g = Ground::create(gameLayer, gameWorld, Point(gc->lastPos.x - 5, gc->lastPos.y), gc->lastTexCoordX - 5/512);
+                        terrains.push_back(g);
+                        
+                        terrainStatus = plain;
+                    }
+                    
+                }
+                else {
+                    //down or up to plain
+                    
+                    float lastTexCoordX;
+                    Point lastPos = getLastTerrainPos(true, &lastTexCoordX, nullptr);
+                    
+                    if (terrainStatus == plain || terrainStatus == inGroundBld) {
+                        
+                        Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x - 5, lastPos.y), false, false,lastTexCoordX);
+                        terrains.push_back(gc);
+                        Ground_Slope *gs = Ground_Slope::create(gameLayer, gameWorld, gc->lastPos, false, gc->lastTexCoordX);
+                        terrains.push_back(gs);
+                        
+                        terrainStatus =  goingDown;
+                    }
+                    else if (terrainStatus == goingDown) {
+                        
+                        Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x, lastPos.y), false, true,lastTexCoordX);
+                        terrains.push_back(gc);
+                        Ground *g = Ground::create(gameLayer, gameWorld, Point(gc->lastPos.x - 5, gc->lastPos.y), gc->lastTexCoordX - 5/512);
+                        terrains.push_back(g);
+                        
+                        terrainStatus = plain;
+                        
+                    }
+                    else if(terrainStatus == goingUp) {
+                        Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x, lastPos.y), true, false,lastTexCoordX);
+                        terrains.push_back(gc);
+                        Ground *g = Ground::create(gameLayer, gameWorld, Point(gc->lastPos.x - 5, gc->lastPos.y), gc->lastTexCoordX - 5/512);
+                        terrains.push_back(g);
+                        
+                        terrainStatus = plain;
+                        
+                    }
+                    
+                }
+                
+            }
+            else if (stageType == onRoof)
+            {
+                if (randNum < 50) {
+                    
+                    if (terrainStatus == inSkyBld) {
+                        
+                        if (elevatorTimer > 0) {
+                            Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
+                            
+                            GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, "glassWindow",Point(lastPos.x+10,lastPos.y), 1.0, 1.0);
+                            windows.push_back(g);
+                        }
+                        else {
+                            elevatorTimer = 15.0;
+                            
+                            int lastY;
+                            Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
+                            
+                            ElevatorShatf *es = ElevatorShatf::create(gameLayer, gameWorld, lastPos ,lastY - lastPos.y);
+                            terrains.push_back(es);
+                            lastPos = es->lastPos;
+                            GroundBuilding *gb = GroundBuilding::create(gameLayer, gameWorld, lastPos);
+                            terrains.push_back(gb);
+                            
+                            terrainStatus = inGroundBld;
+                            
+                        }
+                        
+                    }
+                    else if (terrainStatus == onSkyRoof) {
+                        int lastY;
+                        
+                        Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
+                        SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, Point(lastPos.x + 420, lastPos.y - 200), lastPos.y - 2048);
                         terrains.push_back(sb);
                         
                         terrainStatus = inSkyBld;
@@ -146,143 +340,27 @@ void MapGenerator::update(Point pos, float dt,Bear *bear)
                     
                     
                 }
-                
-                
-            }
-            else if (randNum < 75){
-                
-                //up or from down to plain
-                
-                float lastTexCoordX;
-                Point lastPos = getLastTerrainPos(true, &lastTexCoordX, nullptr);
-                
-                
-                if (terrainStatus == plain|| terrainStatus == inGroundBld) {
-                    
-                    Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x - 5, lastPos.y), true, true,lastTexCoordX);
-                    terrains.push_back(gc);
-                    Ground_Slope *gs = Ground_Slope::create(gameLayer, gameWorld, gc->lastPos, true, gc->lastTexCoordX);
-                    terrains.push_back(gs);
-                    
-                    terrainStatus =  goingUp;
-                }
-                else if (terrainStatus == goingDown) {
-                    
-                    Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x, lastPos.y), false, true,lastTexCoordX);
-                    terrains.push_back(gc);
-                    Ground *g = Ground::create(gameLayer, gameWorld, Point(gc->lastPos.x - 5, gc->lastPos.y), gc->lastTexCoordX - 5/512);
-                    terrains.push_back(g);
-                    
-                    terrainStatus = plain;
-                }
-                else if(terrainStatus == goingUp) {
-                    Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x, lastPos.y), true, false,lastTexCoordX);
-                    terrains.push_back(gc);
-                    Ground *g = Ground::create(gameLayer, gameWorld, Point(gc->lastPos.x - 5, gc->lastPos.y), gc->lastTexCoordX - 5/512);
-                    terrains.push_back(g);
-                    
-                    terrainStatus = plain;
-                }
-                
-            }
-            else {
-                //down or up to plain
-                
-                float lastTexCoordX;
-                Point lastPos = getLastTerrainPos(true, &lastTexCoordX, nullptr);
-                
-                if (terrainStatus == plain || terrainStatus == inGroundBld) {
-                    
-                    Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x - 5, lastPos.y), false, false,lastTexCoordX);
-                    terrains.push_back(gc);
-                    Ground_Slope *gs = Ground_Slope::create(gameLayer, gameWorld, gc->lastPos, false, gc->lastTexCoordX);
-                    terrains.push_back(gs);
-                    
-                    terrainStatus =  goingDown;
-                }
-                else if (terrainStatus == goingDown) {
-                    
-                    Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x, lastPos.y), false, true,lastTexCoordX);
-                    terrains.push_back(gc);
-                    Ground *g = Ground::create(gameLayer, gameWorld, Point(gc->lastPos.x - 5, gc->lastPos.y), gc->lastTexCoordX - 5/512);
-                    terrains.push_back(g);
-                    
-                    terrainStatus = plain;
-                    
-                }
-                else if(terrainStatus == goingUp) {
-                    Ground_Curved *gc = Ground_Curved::create(gameLayer, gameWorld, Point(lastPos.x, lastPos.y), true, false,lastTexCoordX);
-                    terrains.push_back(gc);
-                    Ground *g = Ground::create(gameLayer, gameWorld, Point(gc->lastPos.x - 5, gc->lastPos.y), gc->lastTexCoordX - 5/512);
-                    terrains.push_back(g);
-                    
-                    terrainStatus = plain;
-                    
-                }
-                
-            }
-            
-            
-        }
-        else if (stageType == onRoof)
-        {
-            if (randNum < 50) {
-                
-                if (terrainStatus == inSkyBld) {
-                    
-                    if (elevatorTimer > 0) {
-                        Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
-
-                        GlassWindow *g = GlassWindow::create(gameLayer, gameWorld, Point(lastPos.x+10,lastPos.y));
-                        windows.push_back(g);
-                    }
-                    else {
-                        elevatorTimer = 15.0;
-                        
+                else {
+                    if (terrainStatus == inSkyBld) {
                         int lastY;
+                        
                         Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
                         
-                        ElevatorShatf *es = ElevatorShatf::create(gameLayer, gameWorld, lastPos ,lastY - lastPos.y);
-                        terrains.push_back(es);
-                        lastPos = es->lastPos;
-                        GroundBuilding *gb = GroundBuilding::create(gameLayer, gameWorld, lastPos);
-                        terrains.push_back(gb);
+                        SkyBuildingRoof *sbr = SkyBuildingRoof::create(gameLayer, gameWorld, Point(lastPos.x+420, lastPos.y -200), lastPos.y - 2048);
+                        terrains.push_back(sbr);
                         
-                        terrainStatus = inGroundBld;
-
+                        terrainStatus = onSkyRoof;
                     }
-                    
-                }
-                else if (terrainStatus == onSkyRoof) {
-                    int lastY;
-                    
-                    Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
-                    SkyBuilding *sb = SkyBuilding::create(gameLayer, gameWorld, Point(lastPos.x + 420, lastPos.y - 200), lastPos.y - 2048);
-                    terrains.push_back(sb);
-                    
-                    terrainStatus = inSkyBld;
-                }
-                
-                
-            }
-            else {
-                if (terrainStatus == inSkyBld) {
-                    int lastY;
-
-                    Point lastPos = getLastTerrainPos(true, nullptr, &lastY);
-                    
-                    SkyBuildingRoof *sbr = SkyBuildingRoof::create(gameLayer, gameWorld, Point(lastPos.x+420, lastPos.y -200), lastPos.y - 2048);
-                    terrains.push_back(sbr);
-                    
-                    terrainStatus = onSkyRoof;
-                }
-                else if (terrainStatus == onSkyRoof) {
-                    Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
-                    
-                    Wall *w = Wall::create(gameLayer, gameWorld, lastPos);
-                    walls.push_back(w);
+                    else if (terrainStatus == onSkyRoof) {
+                        Point lastPos = getLastTerrainPos(false, nullptr, nullptr);
+                        
+                        Wall *w = Wall::create(gameLayer, gameWorld,lastPos);
+                        walls.push_back(w);
+                    }
                 }
             }
+            
+            
         }
 
     }
@@ -500,37 +578,70 @@ void MapGenerator::objectHandler(Point lastpos)
 {
     if (stageType == onGround /*&& terrainStatus == plain*/) {
         int objectlottery = rand()%10;
-        if (abs(lastpos.x - lastObjectx)>200) {
-            //generate objects
-            if((objectlottery==2||objectlottery==4)&& (terrainStatus!=goingDown&&terrainStatus!=goingUp))
+        if ((lastpos.x - lastObjectx)>150) {
+            
+            if (terrainStatus!=goingDown&&terrainStatus!=goingUp)
             {
-                DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "TrashCan", 0.07, 2.4f);
-                destructableobjects.push_back(d);
-                lastObjectx = d->armature->getPositionX();
+                //generate objects
+                if((objectlottery==2||objectlottery==4))
+                {
+                    DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "TrashCan", 0.07, 2.4f);
+                    destructableobjects.push_back(d);
+                    lastObjectx = d->armature->getPositionX();
+                }
+                else if(objectlottery==6)
+                {
+                    DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object1", 0.4, 1.4f);
+                    destructableobjects.push_back(d);
+                    lastObjectx = d->armature->getPositionX();
+                }
+                else if(objectlottery==8)
+                {
+                    DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object2", 0.4,1.4f);
+                    destructableobjects.push_back(d);
+                    lastObjectx = d->armature->getPositionX();
+                }
+                else if (objectlottery==1)
+                {
+                    DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object3", 0.4,1.4f);
+                    destructableobjects.push_back(d);
+                    lastObjectx = d->armature->getPositionX();
+                }
+                else if ((objectlottery==0||objectlottery==3)&&terrainStatus == plain){
+                    setupRoomWithInfo(testRoomInfo, Point(lastpos.x, lastpos.y));
+                    lastObjectx = lastpos.x+1350;
+                }
+                else {
+                    int enemyLottery = rand()%10;
+                    if (enemyLottery <=6) {
+                        NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastpos.x-20, lastpos.y+50), 0.32);
+                        enemies.push_back(e);
+                        lastObjectx = e->armature->getPositionX();
+                    }
+                    else if (enemyLottery <= 7) {
+                        ShieldMan *s = ShieldMan::create((Scene*)gameLayer, gameWorld, "DDUNBIN", Point(lastpos.x-20, lastpos.y+50), 0.35);
+                        enemies.push_back(s);
+                        lastObjectx = s->armature->getPositionX();
+                    }
+                    else if (enemyLottery <= 8) {
+                        MonsterTrap *m = MonsterTrap::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "BeastTrap",0.1,1.0f);
+                        enemyobjects.push_back(m);
+                        lastObjectx = m->armature->getPositionX();
+                    }
+                    else {
+                        DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.25);
+                        enemies.push_back(d);
+                        lastObjectx = d->armature->getPositionX();
+                    }
+                }
+                
             }
-            else if(objectlottery==6 && (terrainStatus!=goingDown&&terrainStatus!=goingUp))
-            {
-                DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object1", 0.4, 1.4f);
-                destructableobjects.push_back(d);
-                lastObjectx = d->armature->getPositionX();
-            }
-            else if(objectlottery==8&& (terrainStatus!=goingDown&&terrainStatus!=goingUp))
-            {
-                DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object2", 0.4, 1.4f);
-                destructableobjects.push_back(d);
-                lastObjectx = d->armature->getPositionX();
-            }
-            else if (objectlottery==1&& (terrainStatus!=goingDown&&terrainStatus!=goingUp))
-            {
-                DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object3", 0.4, 1.4f);
-                destructableobjects.push_back(d);
-                lastObjectx = d->armature->getPositionX();
-            }
+            
         }
     }
     
     // add enemy objects(AKA will hurt you!)
-    if (stageType==onGround ||stageType== onRoof) {
+    /*if (stageType==onGround ||stageType== onRoof) {
         int objectlottery = rand()%10;
         if (abs(lastpos.x - lastEnemeyObjectx)>200 && abs(lastpos.x - lastObjectx)>50)
         {
@@ -567,7 +678,8 @@ void MapGenerator::objectHandler(Point lastpos)
 
             }
         }
-    }
+    }*/
+    
 }
 
 

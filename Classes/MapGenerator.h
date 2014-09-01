@@ -17,6 +17,8 @@
 
 #include "Terrain.h"
 
+#include "RoomConstructor.h"
+
 #include "Wall.h"
 #include "glassWindow.h"
 
@@ -32,6 +34,7 @@
 //objects
 #include "MonsterTrap.h"
 #include "Panzer.h"
+
 
 using namespace cocos2d;
 
@@ -63,7 +66,9 @@ private:
     std::vector<Enemy*> enemies;
     std::vector<DestructableObject*> destructableobjects;
     std::vector<EnemyObject*> enemyobjects;
-    
+    //暂时创建一个vecto存储没有托管的static body
+    std::vector<b2Body*> staticBodys;
+
     //08.23.2014 added by Weihan
     float lastBuildingx;
     float lastObjectx;
@@ -74,6 +79,8 @@ private:
     Size visibleSize;
     //--------
     
+    RoomInfo testRoomInfo;
+    
 public:
     static MapGenerator* GetInstance();
     void init(Layer* _gameLayer, b2World* _gameWorld);
@@ -81,6 +88,10 @@ public:
     Point getLastTerrainPos(bool death,float *lastTexCoord_x, int *groundYPos);
     
     void setStageType(StageTypes st);
+    
+    //functions for room construction
+    void setupRoomWithInfo(RoomInfo info, Point pos);
+    void addObjectWithData(RoomData data, Point pos);
     
     void update(Point pos, float dt, Bear *bear);
     void updateObjects(Point pos, float dt, Bear *bear);
