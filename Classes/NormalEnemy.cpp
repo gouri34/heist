@@ -397,7 +397,7 @@ void NormalEnemy::update(float dt, Bear *bear)
                         float randSeed = rand()%100;
                         float randForce = randSeed/50.0+2.8;
                         float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
-                        Enemy::die(b2Vec2(3*randForce, yForce));
+                        Enemy::die(b2Vec2(2*randForce, yForce));
                     }
 
                 }

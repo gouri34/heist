@@ -67,6 +67,7 @@ void DrillMan::creatfootBody()
     b2FixtureDef fixtureDef;
     fixtureDef.density = 0.2;
     fixtureDef.friction = 0.5f;
+    fixtureDef.restitution = 0;
     fixtureDef.fixturetype = f_foot;
     fixtureDef.filter.categoryBits = BULLET;
     fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | PLAYER;
@@ -139,12 +140,12 @@ void DrillMan::update(float dt, Bear *bear)
                     }
                 }
                 //if collision with ground, apply impulse and start animation
-                if (t == f_ground&&isDead==false&&(armature->getPositionX()<=bear->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width*0.7))
+                if (t == f_ground&&isDead==false&&(armature->getPositionX()<=bear->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width*0.6))
                 {
                     printf("onGround = %d\n",onGround);
                     if (onGround==false) {
                         armature->getAnimation()->playWithIndex(0);
-                        footBody->ApplyLinearImpulse(b2Vec2(0, 10), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+                        footBody->ApplyLinearImpulse(b2Vec2(0, 15), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
                         onGround = true;
                         return;
                     }
@@ -155,6 +156,7 @@ void DrillMan::update(float dt, Bear *bear)
         onGround = false;
         return;
     }
+
 }
 
 void DrillMan::gottaDie(int dashingFlag)
@@ -164,11 +166,11 @@ void DrillMan::gottaDie(int dashingFlag)
 //        footBody = NULL;
 //    }
     if (dashingFlag == 0) {
-        footBody->ApplyLinearImpulse(b2Vec2(80, 50), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+        footBody->ApplyLinearImpulse(b2Vec2(0, 150), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y-5), true);
     }
     else
-        footBody->ApplyLinearImpulse(b2Vec2(150, 50), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
-    RotateBy *rb = RotateBy::create(4, 3000);
+        footBody->ApplyLinearImpulse(b2Vec2(0, 150), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y-5), true);
+    RotateBy *rb = RotateBy::create(3, 3000);
     armature->runAction(rb);
     
 }

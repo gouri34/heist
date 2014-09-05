@@ -17,8 +17,8 @@ MonsterTrap* MonsterTrap::create(cocos2d::Layer *gameScene_, b2World *gameWorld_
     return NULL;
 }
 
-/*
-bool MonsterTrap::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, Point pos, string armatureName)
+
+bool MonsterTrap::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, Point pos, string armatureName,float scale,float density)
 {
     gameScene = gameScene_;
     gameWorld = gameWorld_;
@@ -28,7 +28,7 @@ bool MonsterTrap::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, Point po
     armature = Armature::create(armatureName);
     armature->setPosition(pos);
     armature->setScale(0.15);
-    armature->setVisible(true);
+    armature->setVisible(false);
     armature->setAnchorPoint(Point(0.5,0));
     gameScene->addChild(armature,12);
     
@@ -49,9 +49,20 @@ bool MonsterTrap::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, Point po
     fixtureDef.fixturetype = f_object;
     body_->CreateFixture(&fixtureDef);
     body_->SetUserData(&armature);
+    
+    //testing particle effect
+    p = ParticleSystemQuad::create("particle.plist");
+    p->retain();
+    //p->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
+    p->setScaleY(0.4);
+    p->setScaleX(0.6);
+    p->setPosition(armature->getPosition());
+    p->setPositionType(kCCPositionTypeGrouped);
+    gameScene->addChild(p,20);
+    
     return true;
 }
-*/
+
 
 void MonsterTrap::update(float dt, Bear *bear)
 {

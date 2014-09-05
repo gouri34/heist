@@ -62,6 +62,8 @@ bool DestructableObject::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, P
         }
     }
     
+
+    
     return true;
 }
 
@@ -205,7 +207,7 @@ void DestructableObject::destoryObject()
         float yforce = ((50.0 - rand()%100)/3000.0)*1400;
         float torque = ((float)(50.0-rand()%100)/320000.0)*16000;
         
-        b->ApplyLinearImpulse(b2Vec2(6*xforce, 2*yforce), b->GetWorldCenter(), true);
+        b->ApplyLinearImpulse(b2Vec2(-4*xforce, 3*yforce), b->GetWorldCenter(), true);
         b->ApplyAngularImpulse(8*torque, true);
     }
 }

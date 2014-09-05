@@ -105,6 +105,7 @@ private:
     
     bool inJump;
     void onGroundDetector();
+    bool getGroundDetector();
     
     float targetSpeed;
     
@@ -112,6 +113,8 @@ private:
     
     Shaky3D *s;
     UniversalAttributes *a;
+    
+    Point preJumpPoint;
     
 };
 

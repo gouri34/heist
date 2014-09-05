@@ -583,12 +583,19 @@ void MapGenerator::objectHandler(Point lastpos)
             if (terrainStatus!=goingDown&&terrainStatus!=goingUp)
             {
                 //generate objects
-                if((objectlottery==2||objectlottery==4))
+                if(objectlottery==2)
                 {
                     DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "TrashCan", 0.07, 2.4f);
                     destructableobjects.push_back(d);
                     lastObjectx = d->armature->getPositionX();
                 }
+                else if (objectlottery==4&&terrainStatus==plain)
+                {
+                    DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.25);
+                    enemies.push_back(d);
+                    lastObjectx = d->armature->getPositionX();
+                }
+                
                 else if(objectlottery==6)
                 {
                     DestructableObject *d = DestructableObject::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Object1", 0.4, 1.4f);
@@ -607,32 +614,45 @@ void MapGenerator::objectHandler(Point lastpos)
                     destructableobjects.push_back(d);
                     lastObjectx = d->armature->getPositionX();
                 }
-                else if ((objectlottery==0||objectlottery==3)&&terrainStatus == plain){
+                else if ((objectlottery==0)&&terrainStatus == plain){
+                    MonsterTrap *m = MonsterTrap::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y), "BeastTrap",0.1,1.0f);
+                    enemyobjects.push_back(m);
+                    lastObjectx = m->armature->getPositionX();
+                }
+                else if (objectlottery==3&&terrainStatus == plain){
+//                    setupRoomWithInfo(testRoomInfo, Point(lastpos.x, lastpos.y));
+//                    lastObjectx = lastpos.x+1350;
+                    Panzer *p = Panzer::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Panzer", 1.0, 10.0f);
+                    enemyobjects.push_back(p);
+                    lastObjectx = p->armature->getPositionX();
+                }
+                else if (objectlottery==9&&terrainStatus == plain){
                     setupRoomWithInfo(testRoomInfo, Point(lastpos.x, lastpos.y));
                     lastObjectx = lastpos.x+1350;
                 }
+                
                 else {
-                    int enemyLottery = rand()%10;
-                    if (enemyLottery <=6) {
-                        NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastpos.x-20, lastpos.y+50), 0.32);
-                        enemies.push_back(e);
-                        lastObjectx = e->armature->getPositionX();
-                    }
-                    else if (enemyLottery <= 7) {
-                        ShieldMan *s = ShieldMan::create((Scene*)gameLayer, gameWorld, "DDUNBIN", Point(lastpos.x-20, lastpos.y+50), 0.35);
-                        enemies.push_back(s);
-                        lastObjectx = s->armature->getPositionX();
-                    }
-                    else if (enemyLottery <= 8) {
-                        MonsterTrap *m = MonsterTrap::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "BeastTrap",0.1,1.0f);
-                        enemyobjects.push_back(m);
-                        lastObjectx = m->armature->getPositionX();
-                    }
-                    else {
-                        DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.25);
-                        enemies.push_back(d);
-                        lastObjectx = d->armature->getPositionX();
-                    }
+//                    int enemyLottery = rand()%10;
+//                    if (enemyLottery <=6) {
+//                        NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastpos.x-20, lastpos.y+50), 0.32);
+//                        enemies.push_back(e);
+//                        lastObjectx = e->armature->getPositionX();
+//                    }
+//                    else if (enemyLottery <= 7) {
+//                        ShieldMan *s = ShieldMan::create((Scene*)gameLayer, gameWorld, "DDUNBIN", Point(lastpos.x-20, lastpos.y+50), 0.35);
+//                        enemies.push_back(s);
+//                        lastObjectx = s->armature->getPositionX();
+//                    }
+//                    else if (enemyLottery <= 8) {
+//                        MonsterTrap *m = MonsterTrap::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "BeastTrap",0.1,1.0f);
+//                        enemyobjects.push_back(m);
+//                        lastObjectx = m->armature->getPositionX();
+//                    }
+//                    else {
+//                        DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.25);
+//                        enemies.push_back(d);
+//                        lastObjectx = d->armature->getPositionX();
+//                    }
                 }
                 
             }
@@ -641,21 +661,19 @@ void MapGenerator::objectHandler(Point lastpos)
     }
     
     // add enemy objects(AKA will hurt you!)
-    /*if (stageType==onGround ||stageType== onRoof) {
+    if (stageType==onGround ||stageType== onRoof) {
         int objectlottery = rand()%10;
         if (abs(lastpos.x - lastEnemeyObjectx)>200 && abs(lastpos.x - lastObjectx)>50)
         {
             if ((objectlottery==2||objectlottery==4)&&terrainStatus == plain)
             {
-                MonsterTrap *m = MonsterTrap::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "BeastTrap",0.1,1.0f);
-                enemyobjects.push_back(m);
-                lastEnemeyObjectx = m->armature->getPositionX();
+                //...
             }
-            else if((objectlottery==6)&& terrainStatus==plain)
+            else if((objectlottery==6)&& terrainStatus==plain &&(terrainStatus!=goingDown&&terrainStatus!=goingUp))
             {
-                DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.25);
-                enemies.push_back(d);
-                lastEnemeyObjectx = d->armature->getPositionX();
+//                DrillMan *d = DrillMan::create((Scene*)gameLayer, gameWorld, "drill_grunt", Point(lastpos.x-20, lastpos.y+50), 0.25);
+//                enemies.push_back(d);
+//                lastEnemeyObjectx = d->armature->getPositionX();
             }
             else if((objectlottery==3||objectlottery==5))
             {
@@ -670,15 +688,12 @@ void MapGenerator::objectHandler(Point lastpos)
                 enemies.push_back(s);
             }
             
-            else if((objectlottery==1||objectlottery==9)&&terrainStatus==plain)
+            else if(objectlottery==9&&terrainStatus==plain)
             {
-                Panzer *p = Panzer::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Panzer", 1.0, 10.0f);
-                enemyobjects.push_back(p);
-                lastEnemeyObjectx = p->armature->getPositionX();
-
+                //..
             }
         }
-    }*/
+    }
     
 }
 

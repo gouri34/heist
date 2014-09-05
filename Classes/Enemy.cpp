@@ -387,9 +387,8 @@ void Enemy::setArmatureBody()
             b2FixtureDef fixtureDef;
             fixtureDef.shape = &dynamicBox;
             fixtureDef.density = 0.2f;
-            fixtureDef.friction = 0.9f;
+            fixtureDef.friction = 1.0f;
             if (boneName.compare("dun")==0) {
-                printf("in this?\n");
                 fixtureDef.filter.categoryBits = BULLET;
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | PLAYER;
             }

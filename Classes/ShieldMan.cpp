@@ -83,7 +83,6 @@ void ShieldMan::setArmatureBody()
     {
         Bone *bone = (Bone*)bonearr.at(i);
         string boneName = bone->getName();
-        printf("bonename = %s\n",boneName.c_str());
         Skin *skin = (Skin*)bone->getDisplayRenderNode();
         
         
@@ -195,12 +194,12 @@ void ShieldMan::update(float dt,Bear *bear)
         MyQueryCallback queryCallback; //see "World querying topic"
         b2AABB aabb;
         //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
-        Bone* shieldBone = armature->getBone("dun");
-        Mat4 shieldPosMat = shieldBone->_getNodeToParentTransform();
-        Point shieldPos = Point(shieldPosMat.m[12], shieldPosMat.m[13]);
-        b2Vec2 detectionVec = b2Vec2(shieldPos.x/PTM_RATIO, shieldPos.y/PTM_RATIO);
-        aabb.lowerBound = detectionVec - b2Vec2( shieldBone->getContentSize().width/2, shieldBone->getContentSize().height/2);
-        aabb.upperBound = detectionVec + b2Vec2( shieldBone->getContentSize().width/2, shieldBone->getContentSize().height/2);
+//        Bone* shieldBone = armature->getBone("dun");
+//        Mat4 shieldPosMat = shieldBone->_getNodeToParentTransform();
+//        Point shieldPos = Point(shieldPosMat.m[12], shieldPosMat.m[13]);
+        b2Vec2 detectionVec = shield->GetPosition();
+        aabb.lowerBound = detectionVec - b2Vec2(2,2);
+        aabb.upperBound = detectionVec + b2Vec2(2,2);
 
         gameWorld->QueryAABB( &queryCallback, aabb );
         
@@ -212,17 +211,20 @@ void ShieldMan::update(float dt,Bear *bear)
                 
                 //if it's the player, player get hurt
                 if (t == f_bear_body) {
-                    printf("Bear hit the spikes!\n");
-                    bear->gettingHurt();
+                    if (bear->isDashing()==false) {
+                        printf("Bear hit the spikes!\n");
+                        bear->gettingHurt();
+                    }
+                    else if(bear->isDashing()==true){
+                        //gameWorld->DestroyBody(shield);
+                        shield->SetActive(false);
+                        float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
+                        float randSeed = rand()%100;
+                        float randForce = randSeed/50.0+2.8;
+                        float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
+                        Enemy::die(b2Vec2(5*randForce, yForce));
+                    }
                     
-                }
-                else if(t==f_bodydead&&dead==false){
-                    gameWorld->DestroyBody(shield);
-                    float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
-                    float randSeed = rand()%100;
-                    float randForce = randSeed/50.0+2.8;
-                    float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
-                    Enemy::die(b2Vec2(5*randForce, yForce));
                 }
             }
         }

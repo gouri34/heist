@@ -20,8 +20,8 @@
 #define TWEEN_EASING_MAX 10000
 
 /////////
-//#define bScale 0.7
-#define bScale 0.14
+#define bScale 0.7
+//#define bScale 0.14
 
 
 Bear* Bear::create(Layer *gameScene_, b2World *gameWorld_, Point pos)
@@ -50,7 +50,7 @@ bool Bear::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
 
     
     //load the archer sprite below.
-    theBody = Armature::create("GUAIWUvvvvvvvvvvvvvvv");
+    theBody = Armature::create("FlammerMon");
     theBody->setPosition(Point(pos.x, pos.y));
     theBody->setAnchorPoint(Point(0.5,0.5));
     theBody->setScaleX(bScale);
@@ -76,6 +76,7 @@ void Bear::creatfootBody()
     bodyDef.position.Set(pos.x, pos.y);
     bodyDef.fixedRotation = true;
     bodyDef.userData = this;
+    //bodyDef.gravityScale = 0;
     
     footBody = gameWorld->CreateBody(&bodyDef);
     
@@ -83,9 +84,9 @@ void Bear::creatfootBody()
     circleShape.m_radius = 0.75f;
 
     b2FixtureDef fixtureDef;
-    fixtureDef.density = 0.2;
+    fixtureDef.density = 5.0;
     fixtureDef.friction = 0.0f;
-    fixtureDef.restitution = 0.05f;
+    fixtureDef.restitution = 0;
     fixtureDef.fixturetype = f_bear_foot;
     fixtureDef.filter.categoryBits = PLAYER;
     fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | BULLET;
@@ -146,9 +147,6 @@ void Bear::setArmatureBody()
             fixtureDef.density = 0.2f;
             fixtureDef.friction = 0.3f;
             fixtureDef.filter.categoryBits = ZOMBIE;
-            
-            // printf("bonename = %s\n", boneName.c_str());
-            
             fixtureDef.fixturetype = f_bear_body;
             fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
             
@@ -399,6 +397,7 @@ void Bear::update(float dt)
         
         //verticalAdjust();
         if (footBody != NULL) {
+
             float offsetX = HEIGHTDIFFX_;
             if (theBody->getScaleX()<0) {
                 offsetX = -HEIGHTDIFFX_;
@@ -421,6 +420,7 @@ void Bear::update(float dt)
                 float velChange = targetSpeed - vel.x;
                 float impulse = velChange*footBody->GetMass()/1.1;
                 footBody->ApplyLinearImpulse(b2Vec2(impulse, 0), footBody->GetWorldCenter(), true);
+                //footBody->SetLinearVelocity(b2Vec2(15,gameWorld->GetGravity().y));
             }
             else if (movementStatus == yeild) {
                 theBody->setScaleX(bScale);
@@ -453,7 +453,7 @@ void Bear::update(float dt)
         if (inDash) {
             dashTimer-=dt;
             //update streak
-            streak->setPosition(theBody->getPosition());
+            //streak->setPosition(theBody->getPosition());
             if (dashTimer <= 0) {
                 inDash = false;
                 targetSpeed = 22;
@@ -463,7 +463,7 @@ void Bear::update(float dt)
             MyQueryCallback queryCallback; //see "World querying topic"
             b2AABB aabb;
             //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
-            Bone* attackBone = theBody->getBone("Layer43");
+            Bone* attackBone = theBody->getBone("frighthand");
             Mat4 attackPosMat = attackBone->_getNodeToParentTransform();
             Point attackPos = Point(attackPosMat.m[12], attackPosMat.m[13]);
             b2Vec2 detectionVec = b2Vec2(attackPos.x/PTM_RATIO, attackPos.y/PTM_RATIO);
@@ -543,7 +543,7 @@ void Bear::update(float dt)
         jumpTimer += dt;
         
         //detect jump status
-        if (inJump==true&&jumpTimer>0.35) {
+        if (inJump==true) {
             onGroundDetector();
         }
         
@@ -581,7 +581,7 @@ void Bear::setB2bodyPartPosition()
         string key = o.first;
         
         if (skin != NULL) {
-            if (skin->isphysicsObject&&(bone->getName()!="Layer2"&&bone->getName()!="Layer1")) {
+            if (skin->isphysicsObject&&(bone->getName()!="fshockwave")) {
                 b2Body *body = skin->body;
                 body->SetActive(true);
                 Point partpos = skin->getParentRelatePosition();
@@ -658,8 +658,8 @@ void Bear::onGroundDetector()
 
 void Bear::jumppy()
 {
-    if (jumpTimer > 0.8&&inJump==false) {
-        footBody->ApplyLinearImpulse(b2Vec2(0, 6), footBody->GetWorldCenter(), true);
+    if (jumpTimer > 0.35&&inJump==false) {
+        footBody->ApplyLinearImpulse(b2Vec2(0, -3*-75.0), footBody->GetWorldCenter(), true);
         jumpTimer = 0;
         inJump = true;
         theBody->getAnimation()->playWithIndex(1);
@@ -673,14 +673,14 @@ void Bear::dashy()
     if (inDash==false) {
         inDash = true;
         dashTimer = 0.3;
-        targetSpeed = targetSpeed+10;
+        targetSpeed = targetSpeed+14;
         theBody->getAnimation()->playWithIndex(2);
         
         // add motion streak
-        streak = MotionStreak::create(dashTimer, 10, theBody->getBoundingBox().size.height-10, ccYELLOW, "Streak.png");
-        streak->setFastMode(true);
-        streak->setPosition(Point(theBody->getPositionX()+theBody->getBoundingBox().size.width/2,theBody->getPositionY()));
-        gameScene->addChild(streak,21);
+//        streak = MotionStreak::create(dashTimer, 10, theBody->getBoundingBox().size.height-10, ccYELLOW, "Streak.png");
+//        streak->setFastMode(true);
+//        streak->setPosition(Point(theBody->getPositionX()+theBody->getBoundingBox().size.width/2,theBody->getPositionY()));
+//        gameScene->addChild(streak,21);
     }
 }
 

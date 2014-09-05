@@ -233,6 +233,12 @@
 		AF8B0A6D19AAF12B0030FC04 /* drill_grunt.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF8B0A6A19AAF12B0030FC04 /* drill_grunt.ExportJson */; };
 		AF8B0A6E19AAF12B0030FC04 /* drill_grunt0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF8B0A6B19AAF12B0030FC04 /* drill_grunt0.plist */; };
 		AF8B0A6F19AAF12B0030FC04 /* drill_grunt0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8B0A6C19AAF12B0030FC04 /* drill_grunt0.png */; };
+		AF8B740119B55EEE006BA253 /* LandMine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF8B73FF19B55EEE006BA253 /* LandMine.cpp */; };
+		AF8B740819B5678B006BA253 /* Mine.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF8B740519B5678B006BA253 /* Mine.ExportJson */; };
+		AF8B740919B5678B006BA253 /* Mine0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF8B740619B5678B006BA253 /* Mine0.plist */; };
+		AF8B740A19B5678B006BA253 /* Mine0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8B740719B5678B006BA253 /* Mine0.png */; };
+		AF8B740D19B59C56006BA253 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8B740C19B59C56006BA253 /* texture.png */; };
+		AF8B741119B5A340006BA253 /* particle.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF8B741019B5A340006BA253 /* particle.plist */; };
 		AF8EB6AC19B2F50400757C13 /* BLOOD-1.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EB6A319B2F50400757C13 /* BLOOD-1.png */; };
 		AF8EB6AD19B2F50400757C13 /* BLOOD-BLUE.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EB6A419B2F50400757C13 /* BLOOD-BLUE.png */; };
 		AF8EB6AE19B2F50400757C13 /* BLOOD-RED.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EB6A519B2F50400757C13 /* BLOOD-RED.png */; };
@@ -257,19 +263,15 @@
 		AFD0A43019A8FBE0006F9248 /* Object3.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AFD0A42D19A8FBE0006F9248 /* Object3.ExportJson */; };
 		AFD0A43119A8FBE0006F9248 /* Object30.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD0A42E19A8FBE0006F9248 /* Object30.plist */; };
 		AFD0A43219A8FBE0006F9248 /* Object30.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD0A42F19A8FBE0006F9248 /* Object30.png */; };
-		AFD9B8C719A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C019A2494F00928B20 /* GUAIWUvvvvvvvvvvvvvvv.ExportJson */; };
-		AFD9B8C819A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C119A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.plist */; };
-		AFD9B8C919A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C219A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.png */; };
-		AFD9B8CA19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C319A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.plist */; };
-		AFD9B8CB19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C419A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.png */; };
-		AFD9B8CC19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C519A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.plist */; };
-		AFD9B8CD19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD9B8C619A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.png */; };
 		AFE137BD19A0ABE200CA3FFF /* structure0.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE137B819A0ABE200CA3FFF /* structure0.png */; };
 		AFE137BE19A0ABE200CA3FFF /* structure1.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE137B919A0ABE200CA3FFF /* structure1.png */; };
 		AFE137BF19A0ABE200CA3FFF /* structure2.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE137BA19A0ABE200CA3FFF /* structure2.png */; };
 		AFE137C019A0ABE200CA3FFF /* structure3.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE137BB19A0ABE200CA3FFF /* structure3.png */; };
 		AFE137C119A0ABE200CA3FFF /* structure4.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE137BC19A0ABE200CA3FFF /* structure4.png */; };
 		AFE137C319A0AD1B00CA3FFF /* layer3.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE137C219A0AD1B00CA3FFF /* layer3.png */; };
+		AFFF8A0019B83B31009DCD29 /* FlammerMon.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AFFF89FD19B83B31009DCD29 /* FlammerMon.ExportJson */; };
+		AFFF8A0119B83B31009DCD29 /* FlammerMon0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFFF89FE19B83B31009DCD29 /* FlammerMon0.plist */; };
+		AFFF8A0219B83B31009DCD29 /* FlammerMon0.png in Resources */ = {isa = PBXBuildFile; fileRef = AFFF89FF19B83B31009DCD29 /* FlammerMon0.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -607,6 +609,13 @@
 		AF8B0A6A19AAF12B0030FC04 /* drill_grunt.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = drill_grunt.ExportJson; sourceTree = "<group>"; };
 		AF8B0A6B19AAF12B0030FC04 /* drill_grunt0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = drill_grunt0.plist; sourceTree = "<group>"; };
 		AF8B0A6C19AAF12B0030FC04 /* drill_grunt0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drill_grunt0.png; sourceTree = "<group>"; };
+		AF8B73FF19B55EEE006BA253 /* LandMine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LandMine.cpp; path = ../Classes/LandMine.cpp; sourceTree = "<group>"; };
+		AF8B740019B55EEE006BA253 /* LandMine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LandMine.h; path = ../Classes/LandMine.h; sourceTree = "<group>"; };
+		AF8B740519B5678B006BA253 /* Mine.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Mine.ExportJson; sourceTree = "<group>"; };
+		AF8B740619B5678B006BA253 /* Mine0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Mine0.plist; sourceTree = "<group>"; };
+		AF8B740719B5678B006BA253 /* Mine0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mine0.png; sourceTree = "<group>"; };
+		AF8B740C19B59C56006BA253 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
+		AF8B741019B5A340006BA253 /* particle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particle.plist; sourceTree = "<group>"; };
 		AF8EB6A319B2F50400757C13 /* BLOOD-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BLOOD-1.png"; sourceTree = "<group>"; };
 		AF8EB6A419B2F50400757C13 /* BLOOD-BLUE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BLOOD-BLUE.png"; sourceTree = "<group>"; };
 		AF8EB6A519B2F50400757C13 /* BLOOD-RED.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BLOOD-RED.png"; sourceTree = "<group>"; };
@@ -633,19 +642,15 @@
 		AFD0A42D19A8FBE0006F9248 /* Object3.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Object3.ExportJson; sourceTree = "<group>"; };
 		AFD0A42E19A8FBE0006F9248 /* Object30.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Object30.plist; sourceTree = "<group>"; };
 		AFD0A42F19A8FBE0006F9248 /* Object30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Object30.png; sourceTree = "<group>"; };
-		AFD9B8C019A2494F00928B20 /* GUAIWUvvvvvvvvvvvvvvv.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GUAIWUvvvvvvvvvvvvvvv.ExportJson; sourceTree = "<group>"; };
-		AFD9B8C119A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GUAIWUvvvvvvvvvvvvvvv0.plist; sourceTree = "<group>"; };
-		AFD9B8C219A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GUAIWUvvvvvvvvvvvvvvv0.png; sourceTree = "<group>"; };
-		AFD9B8C319A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GUAIWUvvvvvvvvvvvvvvv1.plist; sourceTree = "<group>"; };
-		AFD9B8C419A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GUAIWUvvvvvvvvvvvvvvv1.png; sourceTree = "<group>"; };
-		AFD9B8C519A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GUAIWUvvvvvvvvvvvvvvv2.plist; sourceTree = "<group>"; };
-		AFD9B8C619A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GUAIWUvvvvvvvvvvvvvvv2.png; sourceTree = "<group>"; };
 		AFE137B819A0ABE200CA3FFF /* structure0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = structure0.png; sourceTree = "<group>"; };
 		AFE137B919A0ABE200CA3FFF /* structure1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = structure1.png; sourceTree = "<group>"; };
 		AFE137BA19A0ABE200CA3FFF /* structure2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = structure2.png; sourceTree = "<group>"; };
 		AFE137BB19A0ABE200CA3FFF /* structure3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = structure3.png; sourceTree = "<group>"; };
 		AFE137BC19A0ABE200CA3FFF /* structure4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = structure4.png; sourceTree = "<group>"; };
 		AFE137C219A0AD1B00CA3FFF /* layer3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layer3.png; sourceTree = "<group>"; };
+		AFFF89FD19B83B31009DCD29 /* FlammerMon.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlammerMon.ExportJson; sourceTree = "<group>"; };
+		AFFF89FE19B83B31009DCD29 /* FlammerMon0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlammerMon0.plist; sourceTree = "<group>"; };
+		AFFF89FF19B83B31009DCD29 /* FlammerMon0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FlammerMon0.png; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -849,6 +854,8 @@
 			children = (
 				7C0B39901964705100330A95 /* test */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
+				AF8B740C19B59C56006BA253 /* texture.png */,
+				AF8B741019B5A340006BA253 /* particle.plist */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
 				AFC062F819AEFE2900818E26 /* Streak.png */,
 				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
@@ -1218,6 +1225,8 @@
 				AF74B31519A8715A0081C3F9 /* MonsterTrap.h */,
 				AF74B31F19A8923B0081C3F9 /* Panzer.cpp */,
 				AF74B32019A8923B0081C3F9 /* Panzer.h */,
+				AF8B73FF19B55EEE006BA253 /* LandMine.cpp */,
+				AF8B740019B55EEE006BA253 /* LandMine.h */,
 			);
 			name = EnemyObjects;
 			sourceTree = "<group>";
@@ -1225,6 +1234,7 @@
 		AF74B31719A878E00081C3F9 /* enemyobjects */ = {
 			isa = PBXGroup;
 			children = (
+				AF8B740419B56780006BA253 /* mine */,
 				AF74B32219A8955E0081C3F9 /* panzer */,
 				AF74B31819A878EA0081C3F9 /* monstertrap */,
 			);
@@ -1261,6 +1271,16 @@
 				AF8B0A6C19AAF12B0030FC04 /* drill_grunt0.png */,
 			);
 			name = drill_grunt;
+			sourceTree = "<group>";
+		};
+		AF8B740419B56780006BA253 /* mine */ = {
+			isa = PBXGroup;
+			children = (
+				AF8B740519B5678B006BA253 /* Mine.ExportJson */,
+				AF8B740619B5678B006BA253 /* Mine0.plist */,
+				AF8B740719B5678B006BA253 /* Mine0.png */,
+			);
+			name = mine;
 			sourceTree = "<group>";
 		};
 		AF8EB6A019B2F4BB00757C13 /* gameui */ = {
@@ -1360,15 +1380,19 @@
 		AFEBC686199F3EDC00E45F64 /* monster */ = {
 			isa = PBXGroup;
 			children = (
-				AFD9B8C019A2494F00928B20 /* GUAIWUvvvvvvvvvvvvvvv.ExportJson */,
-				AFD9B8C119A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.plist */,
-				AFD9B8C219A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.png */,
-				AFD9B8C319A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.plist */,
-				AFD9B8C419A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.png */,
-				AFD9B8C519A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.plist */,
-				AFD9B8C619A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.png */,
+				AFFF89EE19B807E8009DCD29 /* Flammer */,
 			);
 			name = monster;
+			sourceTree = "<group>";
+		};
+		AFFF89EE19B807E8009DCD29 /* Flammer */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF89FD19B83B31009DCD29 /* FlammerMon.ExportJson */,
+				AFFF89FE19B83B31009DCD29 /* FlammerMon0.plist */,
+				AFFF89FF19B83B31009DCD29 /* FlammerMon0.png */,
+			);
+			name = Flammer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1427,7 +1451,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = D6Q2UWT7TT;
+						DevelopmentTeam = 5H69W39B9X;
 					};
 				};
 			};
@@ -1536,8 +1560,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF8EB6B119B2F50400757C13 /* hat.png in Resources */,
+				AFFF8A0119B83B31009DCD29 /* FlammerMon0.plist in Resources */,
 				AF8EB6C019B3131B00757C13 /* DDUNBIN0.png in Resources */,
-				AFD9B8CC19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.plist in Resources */,
 				AF8EB6AD19B2F50400757C13 /* BLOOD-BLUE.png in Resources */,
 				AFD0A42619A8FBC6006F9248 /* Object10.png in Resources */,
 				7CB03825198945D500DF4C28 /* b_wall0.plist in Resources */,
@@ -1547,7 +1571,6 @@
 				7C790AE819802847005C873F /* tall_bld.png in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				AF8A069C19B236C2000F677B /* running_grunt0.png in Resources */,
-				AFD9B8CA19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.plist in Resources */,
 				7C0B39B61964709000330A95 /* dbutton.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				AFE137C019A0ABE200CA3FFF /* structure3.png in Resources */,
@@ -1564,9 +1587,9 @@
 				AF6D33E519A73D1800B0F099 /* StopSign.ExportJson in Resources */,
 				7C0B39A11964707B00330A95 /* agent0.plist in Resources */,
 				AFC062F919AEFE2900818E26 /* Streak.png in Resources */,
-				AFD9B8CD19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv2.png in Resources */,
 				AFD0A43119A8FBE0006F9248 /* Object30.plist in Resources */,
 				7CA76BF619B4C21900587446 /* testhouse_chair0.plist in Resources */,
+				AF8B740919B5678B006BA253 /* Mine0.plist in Resources */,
 				7C790AEB19803824005C873F /* test_bg.png in Resources */,
 				AF8B0A6F19AAF12B0030FC04 /* drill_grunt0.png in Resources */,
 				AF74B32819A895C40081C3F9 /* BeastCaptureMobile.ExportJson in Resources */,
@@ -1577,13 +1600,12 @@
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				7CA76C0419B4C21900587446 /* testhouse_table0.png in Resources */,
 				AF6DC29D19B13DA400F9A034 /* Panzer0.png in Resources */,
+				AF8B740D19B59C56006BA253 /* texture.png in Resources */,
 				7CA76BFE19B4C21900587446 /* testhouse_lamp0.png in Resources */,
 				AF6D33DE19A7232500B0F099 /* TrashCan.ExportJson in Resources */,
-				AFD9B8CB19A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv1.png in Resources */,
 				AFE137BD19A0ABE200CA3FFF /* structure0.png in Resources */,
 				7CA76BDC19B4C20100587446 /* testhouse.json in Resources */,
 				7C17C7541966A3CB001A4CC0 /* wall0.plist in Resources */,
-				AFD9B8C719A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv.ExportJson in Resources */,
 				AFD0A43019A8FBE0006F9248 /* Object3.ExportJson in Resources */,
 				AF8B0A6E19AAF12B0030FC04 /* drill_grunt0.plist in Resources */,
 				7CA76BF819B4C21900587446 /* testhouse_chair0.png in Resources */,
@@ -1607,11 +1629,11 @@
 				AFE137C119A0ABE200CA3FFF /* structure4.png in Resources */,
 				AF6D33E619A73D1800B0F099 /* StopSign0.plist in Resources */,
 				7CA76C0619B4C21900587446 /* Test Bld Setup Resource_test_bld_0009_table_leg.png in Resources */,
-				AFD9B8C819A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.plist in Resources */,
 				7CA76BF419B4C21900587446 /* testhouse_chair.ExportJson in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				AFE137BF19A0ABE200CA3FFF /* structure2.png in Resources */,
 				AF8EB6B219B2F50400757C13 /* hat01.png in Resources */,
+				AF8B740A19B5678B006BA253 /* Mine0.png in Resources */,
 				7C0B399F1964707B00330A95 /* agent.ExportJson in Resources */,
 				AF74B32B19A895C40081C3F9 /* BeastCaptureMobile1.plist in Resources */,
 				AF8EB6B419B2F50400757C13 /* nao_dai.png in Resources */,
@@ -1620,10 +1642,11 @@
 				AF6DC29C19B13DA400F9A034 /* Panzer0.plist in Resources */,
 				AF74B32919A895C40081C3F9 /* BeastCaptureMobile0.plist in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
-				AFD9B8C919A2495000928B20 /* GUAIWUvvvvvvvvvvvvvvv0.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
+				AFFF8A0019B83B31009DCD29 /* FlammerMon.ExportJson in Resources */,
 				7C0B39B41964709000330A95 /* test.svg in Resources */,
+				AFFF8A0219B83B31009DCD29 /* FlammerMon0.png in Resources */,
 				AF8EB6AF19B2F50400757C13 /* DemoHead_UI.json in Resources */,
 				7C0B39AD1964708700330A95 /* tauren0.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
@@ -1633,7 +1656,9 @@
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				7CA76BFA19B4C21900587446 /* testhouse_lamp.ExportJson in Resources */,
 				7CA76BFC19B4C21900587446 /* testhouse_lamp0.plist in Resources */,
+				AF8B741119B5A340006BA253 /* particle.plist in Resources */,
 				AF8EB6AE19B2F50400757C13 /* BLOOD-RED.png in Resources */,
+				AF8B740819B5678B006BA253 /* Mine.ExportJson in Resources */,
 				AFE137C319A0AD1B00CA3FFF /* layer3.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				AFE137BE19A0ABE200CA3FFF /* structure1.png in Resources */,
@@ -1721,6 +1746,7 @@
 				AF78219019AC5F3500DBE903 /* UniversalAttributes.cpp in Sources */,
 				AFA0DF8719A4BE7500C6B102 /* ShieldMan.cpp in Sources */,
 				AF74B31119A86C870081C3F9 /* EnemyObject.cpp in Sources */,
+				AF8B740119B55EEE006BA253 /* LandMine.cpp in Sources */,
 				AF74B31619A8715A0081C3F9 /* MonsterTrap.cpp in Sources */,
 				AF6D33EE19A741B300B0F099 /* ScoreMultiplier.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,

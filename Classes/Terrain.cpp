@@ -57,7 +57,7 @@ void Terrain::setPhysicsTerrain(Vector2dVector v, b2Body **b)
 	fixtureDef.shape = &astaticBox;
 	fixtureDef.density = 5.0;
 	fixtureDef.friction = 0.5;
-	fixtureDef.restitution = 0.3;
+	fixtureDef.restitution = 0;
     fixtureDef.isSensor = false;
     fixtureDef.fixturetype = f_ground;
     

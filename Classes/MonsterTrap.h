@@ -14,10 +14,10 @@
 class MonsterTrap : public EnemyObject
 {
 private:
-    
+    ParticleSystemQuad *p;
 public:
     static MonsterTrap* create(Layer *gameScene_, b2World *gameWorld_,Point pos,string armatureName,float scale,float density);
-    //virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos,string armatureName);
+    virtual bool init(Layer *gameScene_, b2World *gameWorld_,Point pos,string armatureName,float scale,float density);
     ~MonsterTrap();
     
     virtual void update(float dt,Bear *bear);

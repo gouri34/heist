@@ -49,13 +49,13 @@ bool GameScene::init()
     
     
     //load armatures
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("FlammerMon.ExportJson");
+
     ArmatureDataManager::getInstance()->addArmatureFileInfo("tauren.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("wall.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("b_wall.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("glassWindow.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("agent.ExportJson");
-    ArmatureDataManager::getInstance()->addArmatureFileInfo("GUAIWUvvvvvvvvvvvvvvv.ExportJson");
-    ArmatureDataManager::getInstance()->addArmatureFileInfo("running_grunt.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("TrashCan.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("StopSign.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("BeastTrap.ExportJson");
@@ -67,6 +67,7 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Panzer.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("running_grunt.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("DDUNBIN.ExportJson");
+
     //for the room testing
     ArmatureDataManager::getInstance()->addArmatureFileInfo("testhouse_chair.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("testhouse_lamp.ExportJson");
@@ -76,7 +77,7 @@ bool GameScene::init()
     
     //physics setup
     b2Vec2 gravity;
-	gravity.Set(0.0f, -40.0f);
+	gravity.Set(0.0f, -70.0f);
 	world = new b2World(gravity);
 	world->SetAutoClearForces(true);
 	// Do we want to let bodies sleep?
