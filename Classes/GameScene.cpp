@@ -66,7 +66,12 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("drill_grunt.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Panzer.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("running_grunt.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("PAObin.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("DDUNBIN.ExportJson");
+
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Mine.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Sabaodui.ExportJson");
+
 
     //for the room testing
     ArmatureDataManager::getInstance()->addArmatureFileInfo("testhouse_chair.ExportJson");

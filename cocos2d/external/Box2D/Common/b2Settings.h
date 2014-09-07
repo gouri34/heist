@@ -37,7 +37,7 @@ typedef double float64;
 
 // all b2bodies that will hurt the player will be categorized into f_spikes
 typedef enum {
-    f_bullet,f_ground, f_stair, f_wood, f_steel,f_zbody_void, f_zbody_body, f_zbody_head, f_zbody_leg, f_foot, f_bear_body,f_bear_foot, f_bodydead, f_wall, f_wallblock, f_glass, f_glassblock, f_spikes,f_object,f_stiff_object
+    f_bullet,f_ground, f_stair, f_wood, f_steel,f_zbody_void, f_zbody_body, f_zbody_head, f_zbody_leg, f_foot, f_bear_body,f_bear_foot, f_bodydead, f_wall, f_wallblock, f_glass, f_glassblock, f_spikes,f_object,f_stiff_object,f_mutual_hurtful_object
     
 } FixtureType;
 

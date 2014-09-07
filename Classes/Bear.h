@@ -84,6 +84,8 @@ public:
     //get status
     bool isDashing();
     
+    float getSpeed();
+    
     
 private:
     Layer *gameScene;

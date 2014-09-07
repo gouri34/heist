@@ -16,6 +16,8 @@
 #include "PhysicsSprite.h"
 #include "MyQueryCallback.h"
 #include "Bear.h"
+#include "Enemy.h"
+#include "DestructableObject.h"
 
 #define  PTM_RATIO 32.0
 

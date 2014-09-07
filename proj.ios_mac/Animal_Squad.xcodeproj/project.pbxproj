@@ -203,6 +203,18 @@
 		7CBE98C5198AAAE800A82EA6 /* Ground_Curved.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CBE98C2198AAAE800A82EA6 /* Ground_Curved.cpp */; };
 		7CBE98CA198BCE1000A82EA6 /* Ground_Slope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CBE98C8198BCE1000A82EA6 /* Ground_Slope.cpp */; };
 		7CBE98CB198BCE1100A82EA6 /* Ground_Slope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CBE98C8198BCE1000A82EA6 /* Ground_Slope.cpp */; };
+		AF582B0819BB6A1E00AB5BBB /* BazookaMan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF582B0619BB6A1E00AB5BBB /* BazookaMan.cpp */; };
+		AF582B1319BB6DE900AB5BBB /* bazooka_shell.png in Resources */ = {isa = PBXBuildFile; fileRef = AF582B1219BB6DE900AB5BBB /* bazooka_shell.png */; };
+		AF6696BC19BBC78700772093 /* PAObin.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF6696B919BBC78700772093 /* PAObin.ExportJson */; };
+		AF6696BD19BBC78700772093 /* PAObin0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF6696BA19BBC78700772093 /* PAObin0.plist */; };
+		AF6696BE19BBC78700772093 /* PAObin0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF6696BB19BBC78700772093 /* PAObin0.png */; };
+		AF6696D319BCAC0B00772093 /* DDUNBIN.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF6696D019BCAC0B00772093 /* DDUNBIN.ExportJson */; };
+		AF6696D419BCAC0B00772093 /* DDUNBIN0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF6696D119BCAC0B00772093 /* DDUNBIN0.plist */; };
+		AF6696D519BCAC0B00772093 /* DDUNBIN0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF6696D219BCAC0B00772093 /* DDUNBIN0.png */; };
+		AF6696DD19BCB1A200772093 /* Sabaodui.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF6696DA19BCB1A200772093 /* Sabaodui.ExportJson */; };
+		AF6696DE19BCB1A200772093 /* Sabaodui0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF6696DB19BCB1A200772093 /* Sabaodui0.plist */; };
+		AF6696DF19BCB1A200772093 /* Sabaodui0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF6696DC19BCB1A200772093 /* Sabaodui0.png */; };
+		AF6696E219BCC20900772093 /* StockPiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF6696E019BCC20900772093 /* StockPiles.cpp */; };
 		AF6D33D419A6F95000B0F099 /* DestructableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF6D33D219A6F95000B0F099 /* DestructableObject.cpp */; };
 		AF6D33DE19A7232500B0F099 /* TrashCan.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF6D33DB19A7232500B0F099 /* TrashCan.ExportJson */; };
 		AF6D33DF19A7232500B0F099 /* TrashCan0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF6D33DC19A7232500B0F099 /* TrashCan0.plist */; };
@@ -226,6 +238,7 @@
 		AF74B32B19A895C40081C3F9 /* BeastCaptureMobile1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF74B32619A895C40081C3F9 /* BeastCaptureMobile1.plist */; };
 		AF74B32C19A895C40081C3F9 /* BeastCaptureMobile1.png in Resources */ = {isa = PBXBuildFile; fileRef = AF74B32719A895C40081C3F9 /* BeastCaptureMobile1.png */; };
 		AF78219019AC5F3500DBE903 /* UniversalAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF78218E19AC5F3500DBE903 /* UniversalAttributes.cpp */; };
+		AF866A7719BAEFFA0031663C /* exploparticle.png in Resources */ = {isa = PBXBuildFile; fileRef = AF866A7619BAEFFA0031663C /* exploparticle.png */; };
 		AF8A069A19B236C2000F677B /* running_grunt.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF8A069719B236C2000F677B /* running_grunt.ExportJson */; };
 		AF8A069B19B236C2000F677B /* running_grunt0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF8A069819B236C2000F677B /* running_grunt0.plist */; };
 		AF8A069C19B236C2000F677B /* running_grunt0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8A069919B236C2000F677B /* running_grunt0.png */; };
@@ -248,9 +261,6 @@
 		AF8EB6B219B2F50400757C13 /* hat01.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EB6A919B2F50400757C13 /* hat01.png */; };
 		AF8EB6B319B2F50400757C13 /* huo_yan.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EB6AA19B2F50400757C13 /* huo_yan.png */; };
 		AF8EB6B419B2F50400757C13 /* nao_dai.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EB6AB19B2F50400757C13 /* nao_dai.png */; };
-		AF8EB6BE19B3131B00757C13 /* DDUNBIN.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF8EB6BB19B3131B00757C13 /* DDUNBIN.ExportJson */; };
-		AF8EB6BF19B3131B00757C13 /* DDUNBIN0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF8EB6BC19B3131B00757C13 /* DDUNBIN0.plist */; };
-		AF8EB6C019B3131B00757C13 /* DDUNBIN0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EB6BD19B3131B00757C13 /* DDUNBIN0.png */; };
 		AFA0DF8719A4BE7500C6B102 /* ShieldMan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */; };
 		AFC062F919AEFE2900818E26 /* Streak.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC062F819AEFE2900818E26 /* Streak.png */; };
 		AFC062FF19AF1FBD00818E26 /* ScreenShake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFC062FD19AF1FBD00818E26 /* ScreenShake.cpp */; };
@@ -572,6 +582,20 @@
 		7CBE98C3198AAAE800A82EA6 /* Ground_Curved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ground_Curved.h; path = ../Classes/Ground_Curved.h; sourceTree = "<group>"; };
 		7CBE98C8198BCE1000A82EA6 /* Ground_Slope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ground_Slope.cpp; path = ../Classes/Ground_Slope.cpp; sourceTree = "<group>"; };
 		7CBE98C9198BCE1000A82EA6 /* Ground_Slope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ground_Slope.h; path = ../Classes/Ground_Slope.h; sourceTree = "<group>"; };
+		AF582B0619BB6A1E00AB5BBB /* BazookaMan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BazookaMan.cpp; path = ../Classes/BazookaMan.cpp; sourceTree = "<group>"; };
+		AF582B0719BB6A1E00AB5BBB /* BazookaMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BazookaMan.h; path = ../Classes/BazookaMan.h; sourceTree = "<group>"; };
+		AF582B1219BB6DE900AB5BBB /* bazooka_shell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bazooka_shell.png; sourceTree = "<group>"; };
+		AF6696B919BBC78700772093 /* PAObin.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PAObin.ExportJson; sourceTree = "<group>"; };
+		AF6696BA19BBC78700772093 /* PAObin0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PAObin0.plist; sourceTree = "<group>"; };
+		AF6696BB19BBC78700772093 /* PAObin0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PAObin0.png; sourceTree = "<group>"; };
+		AF6696D019BCAC0B00772093 /* DDUNBIN.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DDUNBIN.ExportJson; sourceTree = "<group>"; };
+		AF6696D119BCAC0B00772093 /* DDUNBIN0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DDUNBIN0.plist; sourceTree = "<group>"; };
+		AF6696D219BCAC0B00772093 /* DDUNBIN0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DDUNBIN0.png; sourceTree = "<group>"; };
+		AF6696DA19BCB1A200772093 /* Sabaodui.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sabaodui.ExportJson; sourceTree = "<group>"; };
+		AF6696DB19BCB1A200772093 /* Sabaodui0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sabaodui0.plist; sourceTree = "<group>"; };
+		AF6696DC19BCB1A200772093 /* Sabaodui0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sabaodui0.png; sourceTree = "<group>"; };
+		AF6696E019BCC20900772093 /* StockPiles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StockPiles.cpp; path = ../Classes/StockPiles.cpp; sourceTree = "<group>"; };
+		AF6696E119BCC20900772093 /* StockPiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StockPiles.h; path = ../Classes/StockPiles.h; sourceTree = "<group>"; };
 		AF6D33D219A6F95000B0F099 /* DestructableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DestructableObject.cpp; path = ../Classes/DestructableObject.cpp; sourceTree = "<group>"; };
 		AF6D33D319A6F95000B0F099 /* DestructableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DestructableObject.h; path = ../Classes/DestructableObject.h; sourceTree = "<group>"; };
 		AF6D33DB19A7232500B0F099 /* TrashCan.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TrashCan.ExportJson; sourceTree = "<group>"; };
@@ -601,6 +625,7 @@
 		AF74B32719A895C40081C3F9 /* BeastCaptureMobile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BeastCaptureMobile1.png; sourceTree = "<group>"; };
 		AF78218E19AC5F3500DBE903 /* UniversalAttributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UniversalAttributes.cpp; path = ../Classes/UniversalAttributes.cpp; sourceTree = "<group>"; };
 		AF78218F19AC5F3500DBE903 /* UniversalAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniversalAttributes.h; path = ../Classes/UniversalAttributes.h; sourceTree = "<group>"; };
+		AF866A7619BAEFFA0031663C /* exploparticle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exploparticle.png; sourceTree = "<group>"; };
 		AF8A069719B236C2000F677B /* running_grunt.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = running_grunt.ExportJson; sourceTree = "<group>"; };
 		AF8A069819B236C2000F677B /* running_grunt0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = running_grunt0.plist; sourceTree = "<group>"; };
 		AF8A069919B236C2000F677B /* running_grunt0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = running_grunt0.png; sourceTree = "<group>"; };
@@ -625,9 +650,6 @@
 		AF8EB6A919B2F50400757C13 /* hat01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hat01.png; sourceTree = "<group>"; };
 		AF8EB6AA19B2F50400757C13 /* huo_yan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = huo_yan.png; sourceTree = "<group>"; };
 		AF8EB6AB19B2F50400757C13 /* nao_dai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nao_dai.png; sourceTree = "<group>"; };
-		AF8EB6BB19B3131B00757C13 /* DDUNBIN.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DDUNBIN.ExportJson; sourceTree = "<group>"; };
-		AF8EB6BC19B3131B00757C13 /* DDUNBIN0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DDUNBIN0.plist; sourceTree = "<group>"; };
-		AF8EB6BD19B3131B00757C13 /* DDUNBIN0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DDUNBIN0.png; sourceTree = "<group>"; };
 		AFA0DF8519A4BE7500C6B102 /* ShieldMan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShieldMan.cpp; path = ../Classes/ShieldMan.cpp; sourceTree = "<group>"; };
 		AFA0DF8619A4BE7500C6B102 /* ShieldMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShieldMan.h; path = ../Classes/ShieldMan.h; sourceTree = "<group>"; };
 		AFC062F819AEFE2900818E26 /* Streak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Streak.png; sourceTree = "<group>"; };
@@ -855,6 +877,7 @@
 				7C0B39901964705100330A95 /* test */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				AF8B740C19B59C56006BA253 /* texture.png */,
+				AF866A7619BAEFFA0031663C /* exploparticle.png */,
 				AF8B741019B5A340006BA253 /* particle.plist */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
 				AFC062F819AEFE2900818E26 /* Streak.png */,
@@ -993,6 +1016,8 @@
 				AFA0DF8619A4BE7500C6B102 /* ShieldMan.h */,
 				AF8B0A6419AAD89B0030FC04 /* DrillMan.cpp */,
 				AF8B0A6519AAD89B0030FC04 /* DrillMan.h */,
+				AF582B0619BB6A1E00AB5BBB /* BazookaMan.cpp */,
+				AF582B0719BB6A1E00AB5BBB /* BazookaMan.h */,
 			);
 			name = Enemies;
 			sourceTree = "<group>";
@@ -1129,9 +1154,31 @@
 			name = "test building";
 			sourceTree = "<group>";
 		};
+		AF582B0B19BB6DA500AB5BBB /* bazooka_grunt */ = {
+			isa = PBXGroup;
+			children = (
+				AF6696B919BBC78700772093 /* PAObin.ExportJson */,
+				AF6696BA19BBC78700772093 /* PAObin0.plist */,
+				AF6696BB19BBC78700772093 /* PAObin0.png */,
+				AF582B1219BB6DE900AB5BBB /* bazooka_shell.png */,
+			);
+			name = bazooka_grunt;
+			sourceTree = "<group>";
+		};
+		AF6696D919BCB19600772093 /* sandbags */ = {
+			isa = PBXGroup;
+			children = (
+				AF6696DA19BCB1A200772093 /* Sabaodui.ExportJson */,
+				AF6696DB19BCB1A200772093 /* Sabaodui0.plist */,
+				AF6696DC19BCB1A200772093 /* Sabaodui0.png */,
+			);
+			name = sandbags;
+			sourceTree = "<group>";
+		};
 		AF6D33AF19A6DCE700B0F099 /* enemies */ = {
 			isa = PBXGroup;
 			children = (
+				AF582B0B19BB6DA500AB5BBB /* bazooka_grunt */,
 				AF6DC2A719B20B0E00F9A034 /* shield_grunt */,
 				AF8B0A6919AAF1150030FC04 /* drill_grunt */,
 				AFA6667819AA2A380017F23C /* running_grunt */,
@@ -1145,6 +1192,8 @@
 				AF74B31319A871350081C3F9 /* EnemyObjects */,
 				AF6D33D219A6F95000B0F099 /* DestructableObject.cpp */,
 				AF6D33D319A6F95000B0F099 /* DestructableObject.h */,
+				AF6696E019BCC20900772093 /* StockPiles.cpp */,
+				AF6696E119BCC20900772093 /* StockPiles.h */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1152,6 +1201,7 @@
 		AF6D33D719A722FB00B0F099 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				AF6696D919BCB19600772093 /* sandbags */,
 				AF6DC29519B13D9700F9A034 /* panzer */,
 				AFD0A41B19A8FB64006F9248 /* destructableobjects */,
 				AF74B31719A878E00081C3F9 /* enemyobjects */,
@@ -1209,9 +1259,9 @@
 		AF6DC2A719B20B0E00F9A034 /* shield_grunt */ = {
 			isa = PBXGroup;
 			children = (
-				AF8EB6BB19B3131B00757C13 /* DDUNBIN.ExportJson */,
-				AF8EB6BC19B3131B00757C13 /* DDUNBIN0.plist */,
-				AF8EB6BD19B3131B00757C13 /* DDUNBIN0.png */,
+				AF6696D019BCAC0B00772093 /* DDUNBIN.ExportJson */,
+				AF6696D119BCAC0B00772093 /* DDUNBIN0.plist */,
+				AF6696D219BCAC0B00772093 /* DDUNBIN0.png */,
 			);
 			name = shield_grunt;
 			sourceTree = "<group>";
@@ -1561,9 +1611,10 @@
 			files = (
 				AF8EB6B119B2F50400757C13 /* hat.png in Resources */,
 				AFFF8A0119B83B31009DCD29 /* FlammerMon0.plist in Resources */,
-				AF8EB6C019B3131B00757C13 /* DDUNBIN0.png in Resources */,
 				AF8EB6AD19B2F50400757C13 /* BLOOD-BLUE.png in Resources */,
+				AF6696BC19BBC78700772093 /* PAObin.ExportJson in Resources */,
 				AFD0A42619A8FBC6006F9248 /* Object10.png in Resources */,
+				AF6696DD19BCB1A200772093 /* Sabaodui.ExportJson in Resources */,
 				7CB03825198945D500DF4C28 /* b_wall0.plist in Resources */,
 				7C79DD571999105C00C4EDCD /* elevator.png in Resources */,
 				7CA76BE319B4C20D00587446 /* test_bld_0011_back_wall.png in Resources */,
@@ -1571,6 +1622,8 @@
 				7C790AE819802847005C873F /* tall_bld.png in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				AF8A069C19B236C2000F677B /* running_grunt0.png in Resources */,
+				AF6696BE19BBC78700772093 /* PAObin0.png in Resources */,
+				AF866A7719BAEFFA0031663C /* exploparticle.png in Resources */,
 				7C0B39B61964709000330A95 /* dbutton.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				AFE137C019A0ABE200CA3FFF /* structure3.png in Resources */,
@@ -1587,6 +1640,7 @@
 				AF6D33E519A73D1800B0F099 /* StopSign.ExportJson in Resources */,
 				7C0B39A11964707B00330A95 /* agent0.plist in Resources */,
 				AFC062F919AEFE2900818E26 /* Streak.png in Resources */,
+				AF6696DF19BCB1A200772093 /* Sabaodui0.png in Resources */,
 				AFD0A43119A8FBE0006F9248 /* Object30.plist in Resources */,
 				7CA76BF619B4C21900587446 /* testhouse_chair0.plist in Resources */,
 				AF8B740919B5678B006BA253 /* Mine0.plist in Resources */,
@@ -1598,6 +1652,7 @@
 				AF6DC29B19B13DA400F9A034 /* Panzer.ExportJson in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
+				AF582B1319BB6DE900AB5BBB /* bazooka_shell.png in Resources */,
 				7CA76C0419B4C21900587446 /* testhouse_table0.png in Resources */,
 				AF6DC29D19B13DA400F9A034 /* Panzer0.png in Resources */,
 				AF8B740D19B59C56006BA253 /* texture.png in Resources */,
@@ -1619,10 +1674,12 @@
 				7C790AE619802847005C873F /* short_bld.png in Resources */,
 				AFD0A42A19A8FBD4006F9248 /* Object2.ExportJson in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
-				AF8EB6BF19B3131B00757C13 /* DDUNBIN0.plist in Resources */,
 				7CA76C0819B4C21900587446 /* Test Bld Setup Resource_test_bld_0010_table_desk.png in Resources */,
+				AF6696DE19BCB1A200772093 /* Sabaodui0.plist in Resources */,
+				AF6696D419BCAC0B00772093 /* DDUNBIN0.plist in Resources */,
 				7C0B3A0E196554CD00330A95 /* sky.png in Resources */,
 				7C790AE419802847005C873F /* mid_bld.png in Resources */,
+				AF6696D519BCAC0B00772093 /* DDUNBIN0.png in Resources */,
 				AFD0A42C19A8FBD4006F9248 /* Object20.png in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
 				7C17C7561966A3CB001A4CC0 /* wall0.png in Resources */,
@@ -1639,6 +1696,7 @@
 				AF8EB6B419B2F50400757C13 /* nao_dai.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				AF6D33DF19A7232500B0F099 /* TrashCan0.plist in Resources */,
+				AF6696BD19BBC78700772093 /* PAObin0.plist in Resources */,
 				AF6DC29C19B13DA400F9A034 /* Panzer0.plist in Resources */,
 				AF74B32919A895C40081C3F9 /* BeastCaptureMobile0.plist in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
@@ -1668,10 +1726,10 @@
 				AFD0A43219A8FBE0006F9248 /* Object30.png in Resources */,
 				AF74B32A19A895C40081C3F9 /* BeastCaptureMobile0.png in Resources */,
 				7C79DD551999105C00C4EDCD /* ele_shaft_wall.png in Resources */,
+				AF6696D319BCAC0B00772093 /* DDUNBIN.ExportJson in Resources */,
 				7CA76BE119B4C20D00587446 /* test_bld_0003_house_ceiling_out.png in Resources */,
 				AFD0A42419A8FBC6006F9248 /* Object1.ExportJson in Resources */,
 				AF6D33E719A73D1800B0F099 /* StopSign0.png in Resources */,
-				AF8EB6BE19B3131B00757C13 /* DDUNBIN.ExportJson in Resources */,
 				AF74B31D19A878F60081C3F9 /* BeastTrap0.plist in Resources */,
 				7CA76C0219B4C21900587446 /* testhouse_table0.plist in Resources */,
 				AF8EB6AC19B2F50400757C13 /* BLOOD-1.png in Resources */,
@@ -1755,8 +1813,10 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				7CBE98C4198AAAE800A82EA6 /* Ground_Curved.cpp in Sources */,
 				7C0B39DE196472D600330A95 /* Bear.cpp in Sources */,
+				AF6696E219BCC20900772093 /* StockPiles.cpp in Sources */,
 				7C0B39E4196472D600330A95 /* BreakableBox.cpp in Sources */,
 				7C0B39EC1964730300330A95 /* MyContactListener.cpp in Sources */,
+				AF582B0819BB6A1E00AB5BBB /* BazookaMan.cpp in Sources */,
 				7C0910AC196675A6002A087E /* Building.cpp in Sources */,
 				7C0B39C3196470C900330A95 /* EasyPolygon.cpp in Sources */,
 				7C0B39FE196473D700330A95 /* Wall.cpp in Sources */,

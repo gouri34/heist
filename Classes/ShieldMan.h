@@ -27,7 +27,8 @@ public:
 private:
     bool isPlayingAnimation = false;
     b2Body *shield;
-    
+    Point shieldPos;
+    Size shieldRect;
 };
 
 #endif /* defined(__Animal_Squad__ShieldMan__) */

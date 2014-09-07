@@ -86,7 +86,7 @@ void Panzer::update(float dt, Bear* bear)
     b2Vec2 vel =body_->GetLinearVelocity();
     float velChange = -(vel.x+4);
     float impulse = velChange*body_->GetMass()/1.1;
-    body_->ApplyLinearImpulse(b2Vec2(impulse, 0), body_->GetWorldCenter(), true);
+    body_->ApplyLinearImpulse(b2Vec2(impulse/2, 0), body_->GetWorldCenter(), true);
     
     //aabb checking for collison with the player
     MyQueryCallback queryCallback;

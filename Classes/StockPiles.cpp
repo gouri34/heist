@@ -1,34 +1,34 @@
 //
-//  glassWindow.cpp
+//  StockPiles.cpp
 //  Animal_Squad
 //
-//  Created by cong ku on 14-7-4.
+//  Created by wd on 9/8/14.
 //
 //
 
-#include "glassWindow.h"
+#include "StockPiles.h"
 
-GlassWindow* GlassWindow::create(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::string fileName,cocos2d::Point pos, float scalex, float scaley)
+StockPiles* StockPiles::create(Layer *gameScene_, b2World *gameWorld_, Point pos,string armatureName,float scale)
 {
-    GlassWindow*a = new GlassWindow();
-    if (a&&a->init(gameScene_,gameWorld_, fileName,pos, scalex, scaley)) {
+    StockPiles *a = new StockPiles();
+    if (a&&a->init(gameScene_,gameWorld_, pos,armatureName,scale)) {
         return a;
     }
     return NULL;
 }
 
-bool GlassWindow::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::string fileName,cocos2d::Point pos, float scalex, float scaley)
+bool StockPiles::init(Layer *gameScene_, b2World *gameWorld_, Point pos,string armatureName,float scale)
 {
     gameScene = gameScene_;
     gameWorld = gameWorld_;
-    iscontacting = false;
+    colliding = false;
+    
     //load the armature for reference first
-    theBody = Armature::create(fileName.c_str());
-    theBody->setPosition(Point(pos.x, pos.y));
+    Armature* theBody = Armature::create(armatureName);
+    theBody->setPosition(Point(pos.x, pos.y-9));
     theBody->setVisible(true);
-    // theBody->setAnchorPoint(Point(0.5,0));
-    theBody->setScaleX(scalex);
-    theBody->setScaleY(scaley);
+    theBody->setAnchorPoint(Point(0.5,0));
+    theBody->setScale(scale);
     gameScene_->addChild(theBody, 12);
     
     //use the armature put blocks at right positions
@@ -51,7 +51,7 @@ bool GlassWindow::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::str
             dumpSprite->setPosition(skin->getParentRelatePosition());
             dumpSprite->setScale(theBody->getScale());
             dumpSprite->setVisible(true);
-            dumpSprite->setZOrder(bone->getZOrder()+theBody->getZOrder());
+            dumpSprite->setZOrder(bone->getZOrder());
             gameScene_->addChild(dumpSprite);
             
             //create b2body
@@ -77,7 +77,7 @@ bool GlassWindow::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::str
             
             // printf("bonename = %s\n", boneName.c_str());
             
-            fixtureDef.fixturetype = f_glassblock;
+            fixtureDef.fixturetype = f_wallblock;
             fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
             
             
@@ -89,7 +89,7 @@ bool GlassWindow::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::str
             skin->body = body_;
             
             
-            wallBlocks.push_back(body_);
+            fragBlocks.push_back(body_);
         }
         /*Bone *bone = armature->getBone(key->getCString());
          printf("boneX = %f\n", bone->getPositionX());
@@ -97,12 +97,12 @@ bool GlassWindow::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::str
     }
     
     //create the static body
-    wallRect = theBody->getBoundingBox();
+    Rect wallRect = theBody->getBoundingBox();
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     
     bodyDef.position.Set((wallRect.origin.x+wallRect.size.width/2)/PTM_RATIO, (wallRect.origin.y+wallRect.size.height/2)/PTM_RATIO);
-    staticWall = gameWorld_->CreateBody(&bodyDef);
+    staticBody_ = gameWorld_->CreateBody(&bodyDef);
     b2PolygonShape dynamicBox;
     dynamicBox.SetAsBox(wallRect.size.width/2.0/PTM_RATIO, wallRect.size.height/2.0/PTM_RATIO);//These are mid points for our 1m box
     
@@ -110,9 +110,9 @@ bool GlassWindow::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::str
     fixtureDef.shape = &dynamicBox;
     fixtureDef.density = 0.2f;
     fixtureDef.friction = 0.3f;
-    fixtureDef.fixturetype = f_glass;
-    staticWall->CreateFixture(&fixtureDef);
-    staticWall->SetUserData(this);
+    fixtureDef.fixturetype = f_wall;
+    staticBody_->CreateFixture(&fixtureDef);
+    staticBody_->SetUserData(this);
     
     //remove the armature after used
     gameScene->removeChild(theBody, true);
@@ -120,57 +120,37 @@ bool GlassWindow::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, std::str
     return true;
 }
 
-void GlassWindow::destroyWall()
+void StockPiles::destroyIt()
 {
+    colliding = true;
     //destroy the static wall first
-    gameWorld->DestroyBody(staticWall);
+    gameWorld->DestroyBody(staticBody_);
     
     //set the wall blocks;
-    for (int i = 0; i < wallBlocks.size(); i++) {
-        b2Body *b = wallBlocks.at(i);
+    for (int i = 0; i < fragBlocks.size(); i++) {
+        b2Body *b = fragBlocks.at(i);
         b->SetType(b2_dynamicBody);
         
+        float xforce = (0.018+(float)(rand()%100)/6500.0)*1400;
+        float yforce = ((50.0 - rand()%100)/3000.0)*1400;
+        float torque = ((float)(50.0-rand()%100)/320000.0)*16000;
         
-        float xforce = (0.002+(float)(rand()%100)/3000.0)*2100;
-        float yforce = ((50.0 - rand()%100)/2000.0)*1600;
-        float torque = ((float)(50.0-rand()%100)/320000.0)*140000;
-        
-        
-        b->ApplyLinearImpulse(b2Vec2(xforce, yforce), b->GetWorldCenter(), true);
-        b->ApplyAngularImpulse(torque, true);
+        b->ApplyLinearImpulse(b2Vec2(xforce*3, yforce*3), b->GetWorldCenter(), true);
+        b->ApplyAngularImpulse(torque*3, true);
     }
+    
+    //    e1 = Shaky3D::create(0.4, cocos2d::Size(2, 2), 5, 0);
+    //    a->GetInstance()->menuGrid->runAction(e1);
+    
 }
 
-void GlassWindow::update(cocos2d::Point pos, float dt)
+void StockPiles::update(cocos2d::Point pos, float dt)
 {
-    //---------------------player detection
-    MyQueryCallback queryCallback;
-    b2AABB aabb;
-    b2Vec2 detectionVec = b2Vec2(staticWall->GetPosition().x,staticWall->GetPosition().y);
-    aabb.lowerBound = detectionVec - b2Vec2(0.5*wallRect.size.width/PTM_RATIO ,0.5*wallRect.size.height/PTM_RATIO);
-    aabb.upperBound = detectionVec + b2Vec2(0.5*wallRect.size.width/PTM_RATIO,0.5*wallRect.size.height/PTM_RATIO);
-    
-    gameWorld->QueryAABB(&queryCallback, aabb);
-    for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
-        b2Body* body = queryCallback.foundBodies[j];
-        b2Fixture* f = body->GetFixtureList();
-        if (f) {
-            FixtureType t = f->GetFixtureType();
-            
-            //if collision with player and enemies
-            if ((t == f_bear_body||t == f_bodydead||t==f_mutual_hurtful_object)&&iscontacting==false) {
-                destroyWall();
-                iscontacting = true;
-            }
-        }
-    }
-    
-    //-------------------
     
     std::vector<b2Body*>usedbody;
     
-    for (int i = 0; i < wallBlocks.size(); i++) {
-        b2Body *b = wallBlocks.at(i);
+    for (int i = 0; i < fragBlocks.size(); i++) {
+        b2Body *b = fragBlocks.at(i);
         Sprite *s = (Sprite*)b->GetUserData();
         
         if ((pos.x - s->getPositionX())>300) {
@@ -184,15 +164,14 @@ void GlassWindow::update(cocos2d::Point pos, float dt)
         gameWorld->DestroyBody(b);
         gameScene->removeChild(s, true);
         
-        wallBlocks.erase(std::remove(wallBlocks.begin(), wallBlocks.end(), b), wallBlocks.end());
+        fragBlocks.erase(std::remove(fragBlocks.begin(), fragBlocks.end(), b), fragBlocks.end());
     }
     
-    if ( wallBlocks.size() <= 0) {
+    if ( fragBlocks.size() <= 0) {
         destroyed = true;
     }
 }
 
-GlassWindow::~GlassWindow()
+StockPiles::~StockPiles()
 {
-    
 }

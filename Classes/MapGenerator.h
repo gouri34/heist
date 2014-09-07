@@ -27,13 +27,16 @@
 #include "Enemy.h"
 #include "DrillMan.h"
 #include "ShieldMan.h"
+#include "BazookaMan.h"
 
 #include "EnemyObject.h"
 #include "DestructableObject.h"
+#include "StockPiles.h"
 
 //objects
 #include "MonsterTrap.h"
 #include "Panzer.h"
+#include "LandMine.h"
 
 
 using namespace cocos2d;
@@ -66,6 +69,7 @@ private:
     std::vector<Enemy*> enemies;
     std::vector<DestructableObject*> destructableobjects;
     std::vector<EnemyObject*> enemyobjects;
+    std::vector<StockPiles*>stockpiless;
     //暂时创建一个vecto存储没有托管的static body
     std::vector<b2Body*> staticBodys;
 

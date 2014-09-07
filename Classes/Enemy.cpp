@@ -101,7 +101,8 @@ void Enemy::die(b2Vec2 vec)
     
     setB2bodyPosition();
     
-    if (!dead) {
+    if (!dead)
+    {
         
         for (auto o : deadSpriteArray) {
             if (armature->getScaleX() < 0) {
@@ -292,7 +293,7 @@ void Enemy::update(float dt,Bear *bear)
             }
             
             armature->setPosition(Point(footBody->GetPosition().x*
-                                      PTM_RATIO+offsetX, footBody->GetPosition().y*PTM_RATIO+HEIGHTDIFFY));
+                                      PTM_RATIO+offsetX, footBody->GetPosition().y*PTM_RATIO+heightDiffY));
 
             
         }
@@ -399,7 +400,7 @@ void Enemy::setArmatureBody()
             }
             fixtureDef.fixturetype = f_zbody_body;
             
-            //printf("bonename = %s\n", boneName.c_str());
+            printf("bonename = %s\n", boneName.c_str());
 
             
             body_->CreateFixture(&fixtureDef);

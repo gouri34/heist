@@ -215,7 +215,7 @@ void ShieldMan::update(float dt,Bear *bear)
                         printf("Bear hit the spikes!\n");
                         bear->gettingHurt();
                     }
-                    else if(bear->isDashing()==true){
+                    else if(bear->isDashing()==true&&dead==false){
                         //gameWorld->DestroyBody(shield);
                         shield->SetActive(false);
                         float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;

@@ -107,7 +107,7 @@ void NormalEnemy::setArmatureBody()
             }
             fixtureDef.density = 0.2f;
             fixtureDef.restitution = 0.8;
-            fixtureDef.friction = 0.01f;
+            fixtureDef.friction = 0.2f;
             fixtureDef.filter.categoryBits = ZOMBIE;
             
            // printf("bonename = %s\n", boneName.c_str());
@@ -389,7 +389,7 @@ void NormalEnemy::update(float dt, Bear *bear)
                         float randSeed = rand()%100;
                         float randForce = randSeed/50.0+2.8;
                         float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
-                        Enemy::die(b2Vec2(0.7*randForce, yForce));
+                        Enemy::die(b2Vec2(randForce, yForce));
                     }
                     // is dashing
                     else{
@@ -397,9 +397,17 @@ void NormalEnemy::update(float dt, Bear *bear)
                         float randSeed = rand()%100;
                         float randForce = randSeed/50.0+2.8;
                         float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
-                        Enemy::die(b2Vec2(2*randForce, yForce));
+                        Enemy::die(b2Vec2(2.5*randForce, yForce));
                     }
 
+                }
+                else if (t==f_mutual_hurtful_object)
+                {
+                    float XdistanceDiff = body->GetWorldCenter().x-detectionVec.x;
+                    float randSeed = rand()%100;
+                    float randForce = randSeed/50.0+2.8;
+                    float yForce = 1.0+fabs(XdistanceDiff)/8.5*1.2;
+                    Enemy::die(b2Vec2(2*randForce, 8*yForce));
                 }
             }
         }

@@ -30,12 +30,12 @@ private:
     b2Body *body_;
     Layer *gameScene;
     b2World *gameWorld;
-    bool active;
     float density_;
     std::vector<Sprite*> objectfrags;
     std::vector<b2Body*> objectbodylist;
 public:
     Armature *armature;
+    bool active;
     static DestructableObject* create(Layer *gameScene_, b2World *gameWorld_,Point pos,string armatureName,float scale,float density);
     virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos,string armatureName,float scale,float density);
     ~DestructableObject();

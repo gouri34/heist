@@ -673,7 +673,7 @@ void Bear::dashy()
     if (inDash==false) {
         inDash = true;
         dashTimer = 0.3;
-        targetSpeed = targetSpeed+14;
+        targetSpeed = targetSpeed+10;
         theBody->getAnimation()->playWithIndex(2);
         
         // add motion streak
@@ -706,4 +706,9 @@ bool Bear::isDashing()
         return true;
     }
     return false;
+}
+
+float Bear::getSpeed()
+{
+    return targetSpeed;
 }

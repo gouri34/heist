@@ -1,0 +1,992 @@
+{
+  "content_scale": 1.0,
+  "armature_data": [
+    {
+      "strVersion": "1.6.0.0",
+      "version": 1.6,
+      "name": "PAObin",
+      "bone_data": [
+        {
+          "name": "Pshenti",
+          "parent": "",
+          "dI": 0,
+          "x": 74.613456726074219,
+          "y": 163.49124145507813,
+          "z": 7,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 2.193450927734375E-05,
+          "arrow_y": 1.6171137758647092E-05,
+          "effectbyskeleton": true,
+          "bl": 0,
+          "display_data": [
+            {
+              "name": "huojianbing_shenti.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -7.655121,
+                  "y": -15.4879532,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pbangzi",
+          "parent": "Pshenti",
+          "dI": 0,
+          "x": -6.6666679382324219,
+          "y": 26.666664123535156,
+          "z": 8,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 2.11121583,
+          "kY": -2.11121583,
+          "arrow_x": 42.760307312011719,
+          "arrow_y": -4.0072445699479431E-06,
+          "effectbyskeleton": true,
+          "bl": 42,
+          "display_data": [
+            {
+              "name": "huojianbing_bangzi.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 26.9018326,
+                  "y": -3.233364,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.17196941,
+                  "kY": 2.11121583
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pshou",
+          "parent": "Pbangzi",
+          "dI": 0,
+          "x": 42.760238647460938,
+          "y": -1.9073486328125E-05,
+          "z": 9,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -5.04947233,
+          "kY": 5.04947233,
+          "arrow_x": 66.0269546508789,
+          "arrow_y": 1.816674557630904E-05,
+          "effectbyskeleton": true,
+          "bl": 66,
+          "display_data": [
+            {
+              "name": "huojianbing_shou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 10.23571,
+                  "y": -11.9411316,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 2.93825674,
+                  "kY": -2.93825674
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ptou",
+          "parent": "Pshenti",
+          "dI": 0,
+          "x": 2.6666660308837891,
+          "y": 46.000007629394531,
+          "z": 6,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -1.92741644,
+          "kY": 1.92741644,
+          "arrow_x": 72.565711975097656,
+          "arrow_y": -3.2493608159711584E-07,
+          "effectbyskeleton": true,
+          "bl": 72,
+          "display_data": [
+            {
+              "name": "huojianbing_tou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 20.58783,
+                  "y": 8.680557,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 1.92741609,
+                  "kY": -1.927417
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ppao",
+          "parent": "Pshenti",
+          "dI": 0,
+          "x": 3.3333320617675781,
+          "y": 44.666664123535156,
+          "z": 5,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -3.07579637,
+          "kY": 3.07579637,
+          "arrow_x": 172.37298583984375,
+          "arrow_y": -5.1827235438395292E-05,
+          "effectbyskeleton": true,
+          "bl": 172,
+          "display_data": [
+            {
+              "name": "huojianbing_huojiantong.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 34.6879463,
+                  "y": 15.2182312,
+                  "cX": 0.9999999,
+                  "cY": 0.9999999,
+                  "kX": 3.07579517,
+                  "kY": -3.07579613
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pdatui",
+          "parent": "Pshenti",
+          "dI": 0,
+          "x": -2.666656494140625,
+          "y": -38.666664123535156,
+          "z": 4,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 3.13128376,
+          "kY": -3.13128376,
+          "arrow_x": 64.670166015625,
+          "arrow_y": -4.01820580009371E-06,
+          "effectbyskeleton": true,
+          "bl": 64,
+          "display_data": [
+            {
+              "name": "huojianbing_datui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 20.8463383,
+                  "y": 22.4826736,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.1519022,
+                  "kY": 3.13128424
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pyoutui",
+          "parent": "Pdatui",
+          "dI": 0,
+          "x": 64.670173645019531,
+          "y": 7.62939453125E-06,
+          "z": 3,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -1.50989771,
+          "kY": 1.50989771,
+          "arrow_x": 52.7341423034668,
+          "arrow_y": -7.769656804157421E-05,
+          "effectbyskeleton": true,
+          "bl": 52,
+          "display_data": [
+            {
+              "name": "huojianbing_youxiaotui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 16.52158,
+                  "y": 5.5206995,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.66179943,
+                  "kY": 1.62138546
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pyoujiao",
+          "parent": "Pyoutui",
+          "dI": 0,
+          "x": 52.734161376953125,
+          "y": -7.62939453125E-06,
+          "z": 2,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 1.340353,
+          "kY": -1.340353,
+          "arrow_x": 37.267852783203125,
+          "arrow_y": -7.2252241807291284E-06,
+          "effectbyskeleton": true,
+          "bl": 37,
+          "display_data": [
+            {
+              "name": "huojianbing_youjiao.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 5.2375493,
+                  "y": -0.7104325,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.32144713,
+                  "kY": 2.961739
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pzuojiao",
+          "parent": "Pdatui",
+          "dI": 0,
+          "x": -21.469648361206055,
+          "y": 51.557403564453125,
+          "z": 1,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -3.04454541,
+          "kY": 3.04454541,
+          "arrow_x": 46.1735954284668,
+          "arrow_y": 1.4763809303985909E-06,
+          "effectbyskeleton": true,
+          "bl": 46,
+          "display_data": [
+            {
+              "name": "huojianbing_zuotui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 15.0330372,
+                  "y": 8.552406,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.08673811,
+                  "kY": 0.08673859
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation_data": [
+    {
+      "name": "PAObin",
+      "mov_data": [
+        {
+          "name": "Animation1",
+          "dr": 26,
+          "lp": false,
+          "to": 0,
+          "drTW": 0,
+          "twE": 0,
+          "sc": 1.33333337,
+          "mov_bone_data": [
+            {
+              "name": "Pshou",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.451160431,
+                  "kY": -0.451160431,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.451160431,
+                  "kY": -0.451160431,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Pbangzi",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 4.2577934265136719,
+                  "y": 0.48840904235839844,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 4.2577934265136719,
+                  "y": 0.48840904235839844,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.30192107,
+                  "kY": -0.30192107,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Pshenti",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 30.000003814697266,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.114210263,
+                  "kY": -0.114210263,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 30.000003814697266,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.114210263,
+                  "kY": -0.114210263,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Ptou",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.329792142,
+                  "kY": 0.329792142,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.329792142,
+                  "kY": 0.329792142,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Ppao",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 18.8344669342041,
+                  "y": 5.0363693237304688,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 18.8344669342041,
+                  "y": 5.0363693237304688,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.337171465,
+                  "kY": -0.337171465,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Pdatui",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -0.16280364990234375,
+                  "y": 1.4192619323730469,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.235703826,
+                  "kY": -0.235703826,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -0.16280364990234375,
+                  "y": 1.4192619323730469,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.235703826,
+                  "kY": -0.235703826,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Pyoutui",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -7.0425262451171875,
+                  "y": 0.2831268310546875,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.2390353,
+                  "kY": 0.2390353,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -7.0425262451171875,
+                  "y": 0.2831268310546875,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.2390353,
+                  "kY": 0.2390353,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Pyoujiao",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -4.3110008239746094,
+                  "y": 1.3503437042236328,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.236047626,
+                  "kY": -0.236047626,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -4.3110008239746094,
+                  "y": 1.3503437042236328,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.236047626,
+                  "kY": -0.236047626,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "Pzuojiao",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 2.2987422943115234,
+                  "y": -2.2180862426757812,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.3459244,
+                  "kY": 0.3459244,
+                  "fi": 5,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 2.2987422943115234,
+                  "y": -2.2180862426757812,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.3459244,
+                  "kY": 0.3459244,
+                  "fi": 10,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 25,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "texture_data": [
+    {
+      "name": "huojianbing_bangzi",
+      "width": 69.0,
+      "height": 61.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "huojianbing_datui",
+      "width": 118.0,
+      "height": 84.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "huojianbing_huojiantong",
+      "width": 299.0,
+      "height": 115.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "huojianbing_shenti",
+      "width": 105.0,
+      "height": 119.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "huojianbing_shou",
+      "width": 88.0,
+      "height": 45.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "huojianbing_tou",
+      "width": 95.0,
+      "height": 95.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "huojianbing_youjiao",
+      "width": 68.0,
+      "height": 19.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "huojianbing_youxiaotui",
+      "width": 51.0,
+      "height": 76.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "huojianbing_zuotui",
+      "width": 78.0,
+      "height": 41.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    }
+  ],
+  "config_file_path": [
+    "PAObin0.plist"
+  ],
+  "config_png_path": [
+    "PAObin0.png"
+  ]
+}

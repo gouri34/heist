@@ -439,6 +439,20 @@ void MapGenerator::updateObjects(Point pos, float dt, Bear *bear)
         delete w;
     }
     
+    std::vector<StockPiles*> usedStockPiles;
+    for (int i=0; i<stockpiless.size(); i++) {
+        StockPiles *s = stockpiless.at(i);
+        s->update(pos, dt);
+        if(s->destroyed){
+            usedStockPiles.push_back(s);
+        }
+    }
+    for (int i=0; i<usedStockPiles.size(); i++) {
+        StockPiles *s = usedStockPiles.at(i);
+        stockpiless.erase(std::remove(stockpiless.begin(), stockpiless.end(), s), stockpiless.end());
+        delete s;
+    }
+    
     std::vector<GlassWindow*> usedWindow;
     for (int i = 0; i < windows.size(); i++) {
         GlassWindow* g = windows.at(i);
@@ -549,6 +563,10 @@ void MapGenerator::cleanup()
     }
     enemyobjects.clear();
     
+    for (int i=0; i<stockpiless.size(); i++) {
+        StockPiles *s = stockpiless.at(i);
+        delete s;
+    }
 }
 
 // background building handler
@@ -577,7 +595,7 @@ void MapGenerator::backgroundBuildingHandler(Point lastpos)
 void MapGenerator::objectHandler(Point lastpos)
 {
     if (stageType == onGround /*&& terrainStatus == plain*/) {
-        int objectlottery = rand()%10;
+        int objectlottery = rand()%12;
         if ((lastpos.x - lastObjectx)>150) {
             
             if (terrainStatus!=goingDown&&terrainStatus!=goingUp)
@@ -628,7 +646,12 @@ void MapGenerator::objectHandler(Point lastpos)
                 }
                 else if (objectlottery==9&&terrainStatus == plain){
                     setupRoomWithInfo(testRoomInfo, Point(lastpos.x, lastpos.y));
-                    lastObjectx = lastpos.x+1350;
+                    lastObjectx = lastpos.x+1500;
+                }
+                else if((objectlottery==10||objectlottery==11)&&terrainStatus==plain){
+                    StockPiles *s = StockPiles::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y), "Sabaodui", 0.4);
+                    stockpiless.push_back(s);
+                    lastObjectx = lastObjectx+100;
                 }
                 
                 else {
@@ -662,7 +685,7 @@ void MapGenerator::objectHandler(Point lastpos)
     
     // add enemy objects(AKA will hurt you!)
     if (stageType==onGround ||stageType== onRoof) {
-        int objectlottery = rand()%10;
+        int objectlottery = rand()%11;
         if (abs(lastpos.x - lastEnemeyObjectx)>200 && abs(lastpos.x - lastObjectx)>50)
         {
             if ((objectlottery==2||objectlottery==4)&&terrainStatus == plain)
@@ -680,17 +703,28 @@ void MapGenerator::objectHandler(Point lastpos)
 
                 NormalEnemy *e = NormalEnemy::create((Scene*)gameLayer, gameWorld, "running_grunt", Point(lastpos.x-20, lastpos.y+50), 0.35);
                 enemies.push_back(e);
+                lastEnemeyObjectx = e->armature->getPositionX();
 
             }
             else if(objectlottery==7)
             {
                 ShieldMan *s = ShieldMan::create((Scene*)gameLayer, gameWorld, "DDUNBIN", Point(lastpos.x-20, lastpos.y+50), 0.35);
                 enemies.push_back(s);
+                lastEnemeyObjectx = s->armature->getPositionX();
             }
             
-            else if(objectlottery==9&&terrainStatus==plain)
+            else if(objectlottery==9)
             {
                 //..
+                LandMine *l = LandMine::create(gameLayer, gameWorld, Point(lastpos.x-30,lastpos.y+50), "Mine",0.44,1.0f);
+                enemyobjects.push_back(l);
+                lastEnemeyObjectx = l->armature->getPositionX();
+            }
+            else if(objectlottery==10)
+            {
+                BazookaMan *b = BazookaMan::create((Scene*)gameLayer, gameWorld,"PAObin", Point(lastpos.x-20, lastpos.y+50), 0.38);
+                enemies.push_back(b);
+                lastEnemeyObjectx = b->armature->getPositionX();
             }
         }
     }

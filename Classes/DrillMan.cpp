@@ -145,7 +145,7 @@ void DrillMan::update(float dt, Bear *bear)
                     printf("onGround = %d\n",onGround);
                     if (onGround==false) {
                         armature->getAnimation()->playWithIndex(0);
-                        footBody->ApplyLinearImpulse(b2Vec2(0, 15), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
+                        footBody->ApplyLinearImpulse(b2Vec2(0, 17), b2Vec2(footBody->GetPosition().x, footBody->GetPosition().y), true);
                         onGround = true;
                         return;
                     }

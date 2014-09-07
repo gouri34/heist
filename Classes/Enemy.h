@@ -15,7 +15,7 @@
 #define  PTM_RATIO 32.0
 #define  HEIGHTDIFFX -10
 //#define  HEIGHTDIFFY 37.0
-#define  HEIGHTDIFFY 60.0
+//#define  HEIGHTDIFFY 60.0
 
 #define defaultSpeed 5.0
 
@@ -31,6 +31,7 @@ class Enemy : public Character
 public:
     Scene *gameScene;
     b2World *gameWorld;
+    float heightDiffY = 60;
 
     //zombie();
     //zombie(Scene *parentScene, b2World *world,const char*name, float scale);
