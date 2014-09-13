@@ -8,33 +8,11 @@
 
 #include "NormalEnemy.h"
 
-/*normalZombie::normalZombie(Scene *parentScene, b2World *world,const char*name, float scale)
-{
-    gameScene = parentScene;
-    gameWorld = world;
-    armature = NULL;
-    //footBody = NULL;
-    deadSpriteArray = NULL;
-    dead = false;
-    life = 100;
-    desireVel = -1.2;
-    
-    deadSpriteArray = CCArray::create();
-    CC_SAFE_RETAIN(deadSpriteArray);
-    
-    armature = Armature::create(name);
-    armature->setScale(scale);
-    parentScene->addChild(armature,5);
-    setArmatureBody();
-    
-}*/
 
-
-
-NormalEnemy* NormalEnemy::create(Scene *parentScene, b2World *world,const char*name, Point pos, float scale)
+NormalEnemy* NormalEnemy::create(const char*name, Point pos, float scalex, float scaley)
 {
     NormalEnemy *z = new NormalEnemy();
-    if (z && z->init(parentScene, world, name, pos, scale)) {
+    if (z && z->init(name, pos, scalex, scaley)) {
         return z;
     }
     
@@ -106,23 +84,24 @@ void NormalEnemy::setArmatureBody()
             fixtureDef.restitution = 0.8;
             fixtureDef.friction = 0.01f;
             fixtureDef.filter.categoryBits = ZOMBIE;
-            
+            fixtureDef.fixturetype = f_enemy_body;
+
            // printf("bonename = %s\n", boneName.c_str());
             
             if (boneName.compare("headbone") == 0||boneName.compare("head")==0) {
-                fixtureDef.fixturetype = f_zbody_head;
+                fixtureDef.fixturetype = f_enemy_body;
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
             }
             else if (boneName.compare("bodybone") == 0||boneName.compare("body")==0) {
-                fixtureDef.fixturetype = f_zbody_body;
+                fixtureDef.fixturetype = f_enemy_body;
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
             }
             else if (boneName.compare("leglbone") == 0 || boneName.compare("right_leg") == 0|| boneName.compare("right_foreleg")|| boneName.compare("foreleg_rbone") ||boneName.compare("left_leg")==0||boneName.compare("left_foreleg")==0) {
-                fixtureDef.fixturetype = f_zbody_leg;
+                fixtureDef.fixturetype = f_enemy_body;
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
             }
             else {
-                fixtureDef.fixturetype = f_zbody_void;
+                fixtureDef.fixturetype = f_enemy_body;
                 fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
             }
             
@@ -352,5 +331,28 @@ void NormalEnemy::dieToExplosion(float damage, Point exploPosition)
 }
 
 
+void NormalEnemy::update(float dt)
+{
+    Enemy::update(dt);
+    
+    if (!dead && footBody) {
+        float targetSpeed = -5.0;
+        b2Vec2 vel = footBody->GetLinearVelocity();
+        float velChange = targetSpeed - vel.x;
+        float impulse = velChange*footBody->GetMass()/1.1;
+        footBody->ApplyLinearImpulse(b2Vec2(impulse, 0), footBody->GetWorldCenter(), true);
+    }
+    
+
+}
+
+void NormalEnemy::collisionProcess(Monster *monster)
+{
+    float randSeed = rand()%100;
+    float randForce = 1.0+randSeed/100.0;
+    float yForce = 2.4+randSeed/100.0;
+    
+    die(b2Vec2(randForce, yForce));
+}
 
 

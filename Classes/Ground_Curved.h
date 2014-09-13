@@ -30,21 +30,18 @@ public:
     
     
     
-    PRFilledPolygon* ground;
     PRFilledPolygon* terrain;
-    std::vector<Sprite*>groundBuildings;
+    PRFilledPolygon* surface;
     
     
     /**
      Returns an autoreleased polygon.  Default triangulator is used (Ratcliff's).
      */
     
-    static Ground_Curved* create(Layer *gameScene_, b2World *gameWorld_, Point pos, bool curveUp, bool lowerOne,double _lastTexCoordX);
-    virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos, bool curveUp, bool lowerOne,double _lastTexCoordX);
+    static Ground_Curved* create(Point pos, bool curveUp, bool lowerOne,double _lastTexCoordX);
+    virtual bool init(Point pos, bool curveUp, bool lowerOne,double _lastTexCoordX);
     ~Ground_Curved();
     
-    void setupGroundBuildings(Point pos);
-    void setGroundBuildings(Point pos);
     
     virtual void setVertices(Point pos);
     

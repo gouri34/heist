@@ -9,10 +9,8 @@
 #import "cocos2d.h"
 #import "Box2D/Box2D.h"
 
-#include "stairMechine.h"
 #include "Character.h"
 
-#include "PistolBullet.h"
 
 struct MyContact {
     b2Fixture *fixtureA;

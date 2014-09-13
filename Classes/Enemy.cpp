@@ -8,25 +8,26 @@
 
 
 #include "Enemy.h"
+#include "MapGenerator.h"
 
-Enemy* Enemy::create(Scene *parentScene, b2World *world,const char*name, Point pos, float scale)
+Enemy* Enemy::create(const char*name, Point pos, float scalex, float scaley)
 {
     Enemy *z = new Enemy();
-    if (z && z->init(parentScene, world, name, pos, scale)) {
+    if (z && z->init(name, pos, scalex, scaley)) {
         return z;
     }
     
     return NULL;
 }
 
-bool Enemy::init(Scene *parentScene, b2World *world,const char*name, Point pos, float scale)
+bool Enemy::init(const char*name, Point pos, float scalex, float scaley)
 {
     startAnimationTimer = (rand()%100)/100.0*1.0;
     
     chType = normalEnemy;
     
-    gameScene = parentScene;
-    gameWorld = world;
+    gameScene = MapGenerator::GetInstance()->gameLayer;
+    gameWorld = MapGenerator::GetInstance()->gameWorld;
     armature = NULL;
     footBody = NULL;
     dead = false;
@@ -37,12 +38,13 @@ bool Enemy::init(Scene *parentScene, b2World *world,const char*name, Point pos, 
     
     armature = Armature::create(name);
     armature->setPosition(pos);
-    armature->setScale(scale);
+    armature->setScaleX(scalex);
+    armature->setScaleY(scaley);
     armature->setAnchorPoint(Point(0.5, 0.5));
-    zombie_scale = scale;
+    zombie_scale = scalex;
    // armature->setColor(Color3B(255, 150, 150));
     
-    parentScene->addChild(armature,21);
+    gameScene->addChild(armature,21);
    // armature->getAnimation()->playByIndex(0);
     setArmatureBody();
     
@@ -73,10 +75,7 @@ void Enemy::initWayPoints(vector<waypoint> wps)
 
 Enemy::~Enemy()
 {
-    //free(waypointArray);
-    
     deleteProperties();
-    //gameScene->removeChild(batch, true);
     gameScene->removeChild(armature, true);
     
     if (footBody != NULL) {
@@ -84,10 +83,6 @@ Enemy::~Enemy()
         footBody = NULL;
     }
     
-    //gameScene = NULL;
-    //gameWorld = NULL;
-    
-   // delete deadSpriteArray;
 }
 
 
@@ -183,7 +178,6 @@ void Enemy::die(b2Vec2 vec)
 
 void Enemy::update(float dt)
 {
-    
     if (dead) {
         Sprite* s = deadSpriteArray.at(0);
         position = s->getPosition();
@@ -297,7 +291,7 @@ void Enemy::update(float dt)
         
         if (!afterDeath) {
             
-            float maxVelocity = setBodySprites();
+            setBodySprites();
             
            /* if (readyDeleteBody) {
                 afterDeath = true;
@@ -386,7 +380,7 @@ void Enemy::setArmatureBody()
             fixtureDef.friction = 0.9f;
             fixtureDef.filter.categoryBits = ZOMBIE;
             fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
-            fixtureDef.fixturetype = f_zbody_body;
+            fixtureDef.fixturetype = f_enemy_body;
             
             //printf("bonename = %s\n", boneName.c_str());
 
@@ -550,7 +544,7 @@ void Enemy::creatfootBody()
     b2FixtureDef fixtureDef;
     fixtureDef.density = 0.2;
     fixtureDef.friction = 0.5f;
-    fixtureDef.fixturetype = f_foot;
+    fixtureDef.fixturetype = f_enemy_foot;
     fixtureDef.filter.categoryBits = PLAYER;
     fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
     fixtureDef.shape = &circleShape;
@@ -566,4 +560,9 @@ void Enemy::creatfootBody()
     
     
     footRect = Rect(footBody->GetPosition().x*PTM_RATIO-0.45*PTM_RATIO/2, footBody->GetPosition().y-0.45*PTM_RATIO/2, 0.45*PTM_RATIO, 0.45*PTM_RATIO);
+}
+
+void Enemy::collisionProcess(Monster *monster)
+{
+    
 }

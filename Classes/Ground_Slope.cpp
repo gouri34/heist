@@ -7,53 +7,46 @@
 //
 
 #include "Ground_Slope.h"
+#include "MapGenerator.h"
 
-#define SLOPE_DEGREE 24.0
 
 
-Ground_Slope* Ground_Slope:: create(Layer *gameScene_, b2World *gameWorld_, Point pos, bool curveUp,double _lastTexCoordX)
+Ground_Slope* Ground_Slope:: create(Point pos, bool curveUp,double _lastTexCoordX)
 {
     Ground_Slope *a = new Ground_Slope();
-    if (a&&a->init(gameScene_,gameWorld_, pos, curveUp, _lastTexCoordX)) {
+    if (a&&a->init(pos, curveUp, _lastTexCoordX)) {
         return a;
     }
     return NULL;
 }
 
-bool Ground_Slope::init(Layer *gameScene_, b2World *gameWorld_, Point pos, bool curveUp,double _lastTexCoordX)
+bool Ground_Slope::init(Point pos, bool curveUp,double _lastTexCoordX)
 {
-    gLayer = gameScene_;
-    gWorld = gameWorld_;
+    gLayer = MapGenerator::GetInstance()->gameLayer;
+    gWorld = MapGenerator::GetInstance()->gameWorld;
     
-    startPos = pos;
-    lastTexCoordX = (float)_lastTexCoordX - (int)_lastTexCoordX;
-    startTexCoordX = lastTexCoordX;
+    startPos = Point(pos.x-1, pos.y);
+    texCoordXoffset = (float)_lastTexCoordX - (int)_lastTexCoordX;
     
     isCurveUp = curveUp;
 
     
-    cocos2d::Texture2D::TexParams params = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
+    cocos2d::Texture2D::TexParams params = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
     
-    
-    Texture2D* groundTexture = Director::getInstance()->getTextureCache()->addImage("ground.png");
-    groundTexture->setTexParameters(params);
-
-    
-    textureSize = groundTexture->getPixelsWide();
-    
-    
-    Texture2D* terrainTexture = Director::getInstance()->getTextureCache()->addImage("terrain.png");
+    Texture2D* terrainTexture = Director::getInstance()->getTextureCache()->addImage("ground_terrain.png");
     terrainTexture->setTexParameters(params);
+    
+    Texture2D* surfaceTexture = Director::getInstance()->getTextureCache()->addImage("ground_surface.png");
+    surfaceTexture->setTexParameters(params);
+    surfaceTexWidth = 256;
     
     
     Vector2dVector empty;
     
-    
-    ground = PRFilledPolygon::filledPolygonWithPointsAndTexture(empty, groundTexture);
-    gLayer->addChild(ground, 2);
-    
     terrain = PRFilledPolygon::filledPolygonWithPointsAndTexture(empty, terrainTexture);
-    gLayer->addChild(terrain,2);
+    surface = PRFilledPolygon::filledPolygonWithPointsAndTexture(empty, surfaceTexture);
+    gLayer->addChild(terrain,10);
+    gLayer->addChild(surface, 11);
     
     setVertices(pos);
     
@@ -66,7 +59,8 @@ void Ground_Slope::setVertices(Point pos)
 {
     Point leftPos;
     Point rightPos;
-    
+    Point lower_leftPos;
+    Point lower_rightPos;
     
    
     
@@ -76,7 +70,7 @@ void Ground_Slope::setVertices(Point pos)
         float xDiff = leftPosX- startPos.x;
         float yDiff = tanf(CC_DEGREES_TO_RADIANS(SLOPE_DEGREE))*xDiff;
         
-        float xRightDiff = 1524;
+        float xRightDiff = 1024;
         float yRightDiff = tanf(CC_DEGREES_TO_RADIANS(SLOPE_DEGREE))*xRightDiff;
         
         if (isCurveUp) {
@@ -101,49 +95,40 @@ void Ground_Slope::setVertices(Point pos)
         
     }
     
-    
-    
-    
-    b2BodyDef abodyDef;
-    
-	abodyDef.bullet = false;
-	abodyDef.type = b2_staticBody;
-    b2EdgeShape astaticBox;
-    
-    b2FixtureDef fixtureDef;
-	fixtureDef.shape = &astaticBox;
-	fixtureDef.density = 5.0;
-	fixtureDef.friction = 0.5;
-	fixtureDef.restitution = 0.3;
-    fixtureDef.isSensor = false;
-    fixtureDef.fixturetype = f_ground;
-    
-    
-    if (groundBody) {
-        gWorld->DestroyBody(groundBody);
-        groundBody = NULL;
+    float xoffset = SURFACE_THICKNESS*sin(CC_DEGREES_TO_RADIANS(SLOPE_DEGREE));
+    float yoffset = SURFACE_THICKNESS*cos(CC_DEGREES_TO_RADIANS(SLOPE_DEGREE));
+    if (isCurveUp) {
+        lower_leftPos = Point(leftPos.x+xoffset, leftPos.y-yoffset);
+        lower_rightPos = Point(rightPos.x+xoffset, rightPos.y-yoffset);
     }
-    
-    
-    groundBody = gWorld->CreateBody(&abodyDef);
-    b2Vec2 vv1 = b2Vec2(leftPos.x/PTM_RATIO, leftPos.y/PTM_RATIO);
-    b2Vec2 vv2 = b2Vec2(rightPos.x/PTM_RATIO, rightPos.y/PTM_RATIO);
-        
-    astaticBox.Set(vv1, vv2);
-    groundBody->CreateFixture(&fixtureDef);
+    else {
+        lower_leftPos = Point(leftPos.x-xoffset, leftPos.y-yoffset);
+        lower_rightPos = Point(rightPos.x-xoffset, rightPos.y-yoffset);
+    }
+    float ground_l_texX = (leftPos - startPos).length()/surfaceTexWidth + texCoordXoffset;
+    ground_l_texX = ground_l_texX - (int)ground_l_texX;
+    float ground_r_texX = (rightPos - leftPos).length()/surfaceTexWidth + ground_l_texX;
+    Vector2dVector surfacePoints = makeVector(lower_leftPos, leftPos, rightPos, lower_rightPos);
+    Vector2dVector surfaceTexCoords = makeVector(Point(ground_l_texX, 1.0), Point(ground_l_texX, 0.0), Point(ground_r_texX, 0.0), Point(ground_r_texX, 1.0));
+    surface->customSetting(surfacePoints, surfaceTexCoords);
     
     
     
     
     //render terrain
     Vector2dVector terrainVecs;
-    terrainVecs.push_back(Vector2d(leftPos.x, leftPos.y-512));
-    terrainVecs.push_back(Vector2d(leftPos.x, leftPos.y));
-    terrainVecs.push_back(Vector2d(rightPos.x, rightPos.y));
-    terrainVecs.push_back(Vector2d(rightPos.x, rightPos.y-512));
-    
+    terrainVecs.push_back(Vector2d(lower_leftPos.x, lower_leftPos.y-800));
+    terrainVecs.push_back(Vector2d(lower_leftPos.x, lower_leftPos.y));
+    terrainVecs.push_back(Vector2d(lower_rightPos.x, lower_rightPos.y));
+    terrainVecs.push_back(Vector2d(lower_rightPos.x, lower_rightPos.y-800));
     terrain->setPoints(terrainVecs);
     
+    
+    //set physics
+    Vector2dVector physicsVec;
+    physicsVec.push_back(Vector2d(leftPos.x, leftPos.y));
+    physicsVec.push_back(Vector2d(rightPos.x, rightPos.y));
+    setPhysicsTerrain(physicsVec, &groundBody);
     
     lastPos = rightPos;
     groundYpos = rightPos.y;
@@ -175,7 +160,6 @@ Ground_Slope::~Ground_Slope()
 {
     //printf("removed\n");
     
-    gLayer->removeChild(ground, true);
     gLayer->removeChild(terrain, true);
     
     if (groundBody != NULL) {

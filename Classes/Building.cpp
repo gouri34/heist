@@ -7,6 +7,7 @@
 //
 
 #include "Building.h"
+#include "MapGenerator.h"
 
 #define PTM_RATIO 32.0
 
@@ -14,41 +15,30 @@
 #define WallHeight 300
 
 
-Building* Building::create(Layer *gameScene_, b2World *gameWorld_, Point pos, int btype)
+Building* Building::create(Point pos)
 {
     Building *a = new Building();
-    if (a&&a->init(gameScene_,gameWorld_, pos, btype)) {
+    if (a&&a->init(pos)) {
         return a;
     }
     return NULL;
 }
 
-bool Building::init(Layer *gameScene_, b2World *gameWorld_, Point pos, int btype)
+bool Building::init(Point pos)
 {
-    gLayer = gameScene_;
-    gWorld = gameWorld_;
+    gLayer = MapGenerator::GetInstance()->gameLayer;
+    gWorld = MapGenerator::GetInstance()->gameWorld;
     
     startPos = pos;
-    
-    cocos2d::Texture2D::TexParams params = { GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT };
-
-    
-    Texture2D* groundTexture = Director::getInstance()->getTextureCache()->addImage("GlassBuilding.png");
-    groundTexture->setTexParameters(params);
-    
-
-    Texture2D* wallTexture = Director::getInstance()->getTextureCache()->addImage("GlassBuilding_Wall.png");
-    wallTexture->setTexParameters(params);
     
     
     
     Vector2dVector empty;
     
-    buildingType = btype;
     
-       setVertices(pos);
-
-   
+    setVertices(pos);
+    
+    
     
     
     return true;
@@ -58,5 +48,5 @@ bool Building::init(Layer *gameScene_, b2World *gameWorld_, Point pos, int btype
 
 Building::~Building()
 {
-
+    
 }

@@ -13,19 +13,19 @@
 
 #define CEILING_HIGHT 300.0
 
-SkyBuildingRoof* SkyBuildingRoof::create(Layer *gameScene_, b2World *gameWorld_, Point pos, int groundY)
+SkyBuildingRoof* SkyBuildingRoof::create(Point pos, int groundY)
 {
     SkyBuildingRoof *a = new SkyBuildingRoof();
-    if (a&&a->init(gameScene_,gameWorld_, pos, groundY)) {
+    if (a&&a->init(pos, groundY)) {
         return a;
     }
     return NULL;
 }
 
-bool SkyBuildingRoof::init(Layer *gameScene_, b2World *gameWorld_, Point pos, int groundY)
+bool SkyBuildingRoof::init(Point pos, int groundY)
 {
-    gLayer = gameScene_;
-    gWorld = gameWorld_;
+    gLayer = MapGenerator::GetInstance()->gameLayer;
+    gWorld = MapGenerator::GetInstance()->gameWorld;
     
     
     startPos = pos;

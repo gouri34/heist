@@ -16,14 +16,14 @@ private:
     
     
 public:
-    static GroundBuilding* create(Layer *gameScene_, b2World *gameWorld_, Point pos);
-    virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos);
+    static GroundBuilding* create(Point pos);
+    virtual bool init(Point pos);
     virtual ~GroundBuilding();
     
     virtual void setDead();
     virtual void setVertices(Point pos);
     virtual void update(float dt, Point pos);
-
+    
 };
 
 #endif /* defined(__Animal_Squad__GroundBuilding__) */

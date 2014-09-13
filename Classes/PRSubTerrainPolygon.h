@@ -65,7 +65,7 @@ public:
     void updateBlendFunc();
     void setBlendFunc(BlendFunc blendFuncIn);
     virtual void cleanup();
-	virtual void draw(Renderer* renderer, const kmMat4 &transform, bool transformUpdated);
+	virtual void draw(Renderer* renderer, const Mat4 &transform, bool transformUpdated);
     
 protected:
     void onDraw(const Mat4 &transform, bool transformUpdated);

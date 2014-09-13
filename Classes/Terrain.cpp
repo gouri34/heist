@@ -42,7 +42,7 @@ Vector2dVector Terrain::makeVector(Point v1, Point v2, Point v3, Point v4)
     v.push_back(Vector2d(v1.x, v1.y));
     v.push_back(Vector2d(v3.x, v3.y));
     v.push_back(Vector2d(v4.x, v4.y));
-
+    
     return v;
 }
 void Terrain::setPhysicsTerrain(Vector2dVector v, b2Body **b)
@@ -57,7 +57,7 @@ void Terrain::setPhysicsTerrain(Vector2dVector v, b2Body **b)
 	fixtureDef.shape = &astaticBox;
 	fixtureDef.density = 5.0;
 	fixtureDef.friction = 0.5;
-	fixtureDef.restitution = 0.3;
+	fixtureDef.restitution = 0;
     fixtureDef.isSensor = false;
     fixtureDef.fixturetype = f_ground;
     
@@ -81,8 +81,14 @@ void Terrain::setPhysicsTerrain(Vector2dVector v, b2Body **b)
         astaticBox.Set(vv1, vv2);
         (*b)->CreateFixture(&fixtureDef);
     }
-
+    
 }
+
+void Terrain::terrainSceneArrangement()
+{
+    
+}
+
 
 Terrain::~Terrain()
 {

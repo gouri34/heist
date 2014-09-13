@@ -17,6 +17,10 @@
 #define MonsterOffset 300
 #define PTM_RATIO 32.0
 
+#define SURFACE_THICKNESS 40
+
+#define SLOPE_DEGREE 20.0
+
 
 using namespace cocos2d;
 
@@ -25,32 +29,36 @@ public:
     b2World *gWorld;
     Layer* gLayer;
     b2Body *groundBody = NULL;
-
-
+    
+    
+    
     bool dead = false;
     bool afterDeath = false;
     int height;
-    float textureSize;
+    float surfaceTexWidth;
     
-    int groundYpos;//
+    int groundYpos;/////
     Point startPos;
     Point lastPos;
-    double startTexCoordX;
+    float texCoordXoffset;
     double lastTexCoordX;
-
+    Point currentSetupPos;
+    
     Vector2dVector pointsToVector(Point p1, Point p2, Point p3, Point p4);
     Vector2dVector makeVector(Point v1, Point v2,Point v3,Point v4);
+    
     virtual void setVertices(Point pos);
     virtual void setPhysicsTerrain(Vector2dVector v, b2Body **b);
+    virtual void terrainSceneArrangement();
     
     virtual void update(float dt, Point pos);
     
     virtual void setDead();
     
     virtual ~Terrain();
-
-
-
+    
+    
+    
 };
 
 #endif /* defined(__Animal_Squad__Terrain__) */

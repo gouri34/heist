@@ -36,8 +36,7 @@ typedef float float32;
 typedef double float64;
 
 typedef enum {
-    f_bullet,f_ground, f_stair, f_wood, f_steel,f_zbody_void, f_zbody_body, f_zbody_head, f_zbody_leg, f_foot, f_bear_foot, f_bodydead, f_wall, f_wallblock, f_glass, f_glassblock
-    
+    f_bullet,f_ground, f_foot, f_enemy_body, f_enemy_foot,f_monster_foot , f_monster_body, f_bodydead, f_wall, f_wallblock, f_glass, f_glassblock, f_commonObj
 } FixtureType;
 
 enum _entityCategory{

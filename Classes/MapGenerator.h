@@ -12,14 +12,12 @@
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
 
-#include "Bear.h"
-
+#include "SceneConstructor.h"
 
 #include "Terrain.h"
 
-#include "Wall.h"
-#include "glassWindow.h"
-#include "NormalEnemy.h"
+#include "CommonObject.h"
+#include "Enemy.h"
 
 using namespace cocos2d;
 
@@ -29,33 +27,53 @@ typedef  enum {
 } StageTypes;
 
 typedef  enum {
-    plain, goingUp, goingDown, inGroundBld, inSkyBld, onSkyRoof
+    plain = 0, goingUp = 1, goingDown = 2, inGroundBld = 3, inSkyBld = 4, onSkyRoof = 5
 } TerrainStatus;
 
 
 class MapGenerator : Ref {
 private:
     
-    Layer *gameLayer;
-    b2World *gameWorld;
     
     StageTypes stageType;
     TerrainStatus terrainStatus;
     
-    float trapTimer;
-    float dummyTimer;
+    Terrain* currentTerrain;
+    
+    float stageTimer;
     float elevatorTimer;
     
+    std::vector<Sprite*> sprites;
     std::vector<Terrain*> terrains;
-    std::vector<Wall*> walls;
-    std::vector<GlassWindow*>windows;
-    std::vector<NormalEnemy*> enemies;
+    std::vector<CommonObject*>commonObjs;
+    std::vector<Enemy*> enemies;
+    
+    std::map<string, SceneInfo> sceneInfos;
+    
+    //terrain changing logic
+    bool changeToPlain(TerrainStatus previous);
+    bool changeToUp(TerrainStatus previous);
+    bool changeToDown(TerrainStatus previous);
+    
+    //terrain generation
+    void makeGroundPlain(bool fromSlope, bool wentUp);
+    void makeGroundSlope(bool goUp);
     
 public:
+    
+    Layer *gameLayer;
+    b2World *gameWorld;
+    
+    float enemyTimer; //just for testing
+
+    
     static MapGenerator* GetInstance();
     void init(Layer* _gameLayer, b2World* _gameWorld);
     
-    Point getLastTerrainPos(bool death,float *lastTexCoord_x, int *groundYPos);
+    int setupSceneWithInfo(std::string name, Point pos);
+    void addObjectWithData(SceneData data, Point pos);
+
+    void terrainEliminator();
     
     void setStageType(StageTypes st);
     
@@ -63,6 +81,7 @@ public:
     void updateObjects(Point pos, float dt);
     
     void cleanup();
+    
 };
 
 #endif /* defined(__Animal_Squad__MapGenerator__) */

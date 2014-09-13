@@ -10,10 +10,11 @@
 #define __fusion__zombie__
 
 #include "Character.h"
+#include "Monster.h"
 
 #define  PTM_RATIO 32.0
 #define  HEIGHTDIFFX -10
-#define  HEIGHTDIFFY 34.0
+#define  HEIGHTDIFFY 40.0
 
 #define defaultSpeed 5.0
 
@@ -35,12 +36,13 @@ class Enemy : public Character
 {
     
 public:
-    Scene *gameScene;
+    Layer *gameScene;
     b2World *gameWorld;
 
     //zombie();
     //zombie(Scene *parentScene, b2World *world,const char*name, float scale);
-    static Enemy* create(Scene *parentScene, b2World *world,const char*name, Point pos, float scale);
+    static Enemy* create(const char*name, Point pos, float scalex, float scaley);
+    virtual bool init(const char*name, Point pos, float scalex, float scaley);
     ~Enemy();
     
     //waypoints
@@ -67,7 +69,6 @@ public:
     
     //function delaretions
    // static zombie *create(Scene *parentScene, b2World *world,const char*name, float scale);
-    virtual bool init(Scene *parentScene, b2World *world,const char*name, Point pos, float scale);
     virtual void initWayPoints(vector<waypoint> wps);
     virtual void update(float dt);
     virtual void die(b2Vec2 vec);
@@ -79,6 +80,8 @@ public:
     virtual void setB2bodyPartPosition();
     virtual float setBodySprites();
     virtual void creatfootBody();
+    
+    virtual void collisionProcess(Monster *monster);
 
 private:
     bool playedStartUpAnimation = false;

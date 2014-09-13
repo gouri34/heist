@@ -11,15 +11,12 @@
 
 #define PTM_RATIO 32.0
 
-#include "cocos2d.h"
-#include "Box2D/Box2D.h"
-#include "cocostudio/CocoStudio.h"
-
+#include "CommonObject.h"
 
 using namespace cocos2d;
 using namespace cocostudio;
 
-class Wall : public Ref
+class Wall : public CommonObject
 {
 private:
     std::vector<b2Body*>wallBlocks;
@@ -31,11 +28,11 @@ private:
 public:
     bool destroyed =false;
     
-    static Wall* create(Layer *gameScene_, b2World *gameWorld_, Point pos);
-    virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos);
+    static Wall* create(Point pos);
+    virtual bool init(Point pos);
     ~Wall();
     
-    void destroyWall();
+    virtual void destroy();
     
     void update(Point pos, float dt);
     

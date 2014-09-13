@@ -7,20 +7,20 @@
 //
 
 #include "Wall.h"
-
-Wall* Wall::create(Layer *gameScene_, b2World *gameWorld_, Point pos)
+#include "MapGenerator.h"
+Wall* Wall::create(Point pos)
 {
     Wall*a = new Wall();
-    if (a&&a->init(gameScene_,gameWorld_, pos)) {
+    if (a&&a->init(pos)) {
         return a;
     }
     return NULL;
 }
 
-bool Wall::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d::Point pos)
+bool Wall::init(cocos2d::Point pos)
 {
-    gameScene = gameScene_;
-    gameWorld = gameWorld_;
+    gameScene = MapGenerator::GetInstance()->gameLayer;
+    gameWorld = MapGenerator::GetInstance()->gameWorld;
     
     //load the armature for reference first
     Armature* theBody = Armature::create("b_wall");
@@ -28,7 +28,7 @@ bool Wall::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d::Point 
     theBody->setVisible(true);
     theBody->setAnchorPoint(Point(0.5,0));
     theBody->setScale(2.0);
-    gameScene_->addChild(theBody, 12);
+    gameScene->addChild(theBody, 12);
     
     //use the armature put blocks at right positions
     Vector<Node*> bonearr = theBody->getChildren();
@@ -51,7 +51,7 @@ bool Wall::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d::Point 
             dumpSprite->setScale(theBody->getScale());
             dumpSprite->setVisible(true);
             dumpSprite->setZOrder(bone->getZOrder());
-            gameScene_->addChild(dumpSprite);
+            gameScene->addChild(dumpSprite);
 
             //create b2body
             Point partpos = skin->getParentRelatePosition();
@@ -63,7 +63,7 @@ bool Wall::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d::Point 
             bodyDef.type = b2_staticBody;
             
             bodyDef.position.Set(partpos.x/PTM_RATIO, partpos.y/PTM_RATIO);
-            b2Body *body_ = gameWorld_->CreateBody(&bodyDef);
+            b2Body *body_ = gameWorld->CreateBody(&bodyDef);
             
             b2PolygonShape dynamicBox;
             dynamicBox.SetAsBox(partSize.width/2.0, partSize.height/2.0);//These are mid points for our 1m box
@@ -101,7 +101,7 @@ bool Wall::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d::Point 
     bodyDef.type = b2_staticBody;
     
     bodyDef.position.Set((wallRect.origin.x+wallRect.size.width/2)/PTM_RATIO, (wallRect.origin.y+wallRect.size.height/2)/PTM_RATIO);
-    staticWall = gameWorld_->CreateBody(&bodyDef);
+    staticWall = gameWorld->CreateBody(&bodyDef);
     b2PolygonShape dynamicBox;
     dynamicBox.SetAsBox(wallRect.size.width/2.0/PTM_RATIO, wallRect.size.height/2.0/PTM_RATIO);//These are mid points for our 1m box
 
@@ -119,7 +119,7 @@ bool Wall::init(cocos2d::Layer *gameScene_, b2World *gameWorld_, cocos2d::Point 
     return true;
 }
 
-void Wall::destroyWall()
+void Wall::destroy()
 {
     //destroy the static wall first
     gameWorld->DestroyBody(staticWall);

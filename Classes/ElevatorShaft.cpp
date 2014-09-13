@@ -15,30 +15,28 @@
 #define TRUE_GROUND_OFFSET 4
 
 #define ELEVATOR_LENGTH 190
-#define ELEVATOR_SPEED 18.0
-
-#define SHAFT_HEIGHT 4096
+#define ELEVATOR_SPEED 12.0
 
 
 
-
-ElevatorShatf* ElevatorShatf::create(Layer *gameScene_, b2World *gameWorld_, Point pos)
+ElevatorShatf* ElevatorShatf::create(Point pos, int s_heigth)
 {
     ElevatorShatf *a = new ElevatorShatf();
-    if (a&&a->init(gameScene_,gameWorld_, pos)) {
+    if (a&&a->init(pos, s_heigth)) {
         return a;
     }
     return NULL;
 }
 
-bool ElevatorShatf::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
+bool ElevatorShatf::init(Point pos, int s_heigth)
 {
-    gLayer = gameScene_;
-    gWorld = gameWorld_;
+    gLayer = MapGenerator::GetInstance()->gameLayer;
+    gWorld = MapGenerator::GetInstance()->gameWorld;
     
     
     startPos = pos;
-    destinationY = startPos.y + SHAFT_HEIGHT;
+    shaft_height = s_heigth;
+    destinationY = startPos.y + shaft_height;
     groundYpos = (int)pos.y;
     
     cocos2d::Texture2D::TexParams params = {GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT};
@@ -79,12 +77,12 @@ void ElevatorShatf::setupElevator()
     
     Size partSize = Size((a.getMaxX()-a.getMinX())/PTM_RATIO, (a.getMaxY()-a.getMinY())/PTM_RATIO);
     Point partpos = elevator->getPosition();
-
+    
     
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.fixedRotation = true;
-
+    
     
     bodyDef.position.Set(partpos.x/PTM_RATIO, partpos.y/PTM_RATIO);
     elevator_body = gWorld->CreateBody(&bodyDef);
@@ -101,7 +99,7 @@ void ElevatorShatf::setupElevator()
     elevator_body->CreateFixture(&fixtureDef);
     elevator_body->SetTransform(b2Vec2(partpos.x/PTM_RATIO, partpos.y/PTM_RATIO), 0);
     elevator_body->SetAngularDamping(1.2);
-
+    
     
 }
 
@@ -122,18 +120,25 @@ void ElevatorShatf::setVertices(Point pos)
     Vector2dVector points;
     Vector2dVector texCoords;
     
-    ground_lp = Point(startPos.x, startPos.y);
-    ground_rp = Point(startPos.x + ELEVATOR_LENGTH, startPos.y);
+    if (shaft_height > 0) {
+        ground_lp = Point(startPos.x, startPos.y);
+        ground_rp = Point(startPos.x + ELEVATOR_LENGTH, startPos.y);
+    }
+    else {
+        ground_lp = Point(startPos.x, startPos.y + shaft_height);
+        ground_rp = Point(startPos.x + ELEVATOR_LENGTH, startPos.y + shaft_height);
+    }
+    
     
     
     points = pointsToVector(Point(ground_lp.x, ground_lp.y-512), ground_lp, ground_rp, Point(ground_rp.x, ground_rp.y - 512));
     terrain->setPoints(points);
     
-    points = pointsToVector(ground_lp, Point(ground_lp.x, ex_Y_hight), Point(ground_rp.x, ex_Y_hight), ground_rp);
+    points = pointsToVector(Point(ground_lp.x-5, ground_lp.y), Point(ground_lp.x-5, ex_Y_hight), Point(ground_rp.x, ex_Y_hight), Point(ground_rp.x+5, ground_rp.y));
     wall->setPoints(points);
     
     
-    lastPos = Point(ground_rp.x, ground_rp.y+SHAFT_HEIGHT);
+    lastPos = Point(ground_rp.x, destinationY);
     
 }
 
@@ -148,20 +153,24 @@ void ElevatorShatf::update(float dt, Point pos)
         
         if (elevator_status == Waiting)
         {
-            
             MyQueryCallback queryCallback; //see "World querying topic"
             b2AABB aabb;
             b2Vec2 detectionVec = b2Vec2(elevator->getPosition().x/PTM_RATIO, elevator->getPosition().y/PTM_RATIO);
-            aabb.lowerBound = detectionVec - b2Vec2( .5, .5);
-            aabb.upperBound = detectionVec + b2Vec2( .5, .5);
+            aabb.lowerBound = detectionVec - b2Vec2( 0.5, .2);
+            aabb.upperBound = detectionVec + b2Vec2( 0.5, .2);
             gWorld->QueryAABB( &queryCallback, aabb );
             
             for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
                 b2Body* body = queryCallback.foundBodies[j];
                 FixtureType t = body->GetFixtureList()->GetFixtureType();
                 //if it's a zombie, explosion metters
-                if (t == f_bear_foot) {
-                    elevator_status = GoingUp;
+                if (t == f_monster_foot) {
+                    if (shaft_height > 0) {
+                        elevator_status = GoingUp;
+                    }
+                    else {
+                        elevator_status = GoingDown;
+                    }
                     MapGenerator::GetInstance()->setStageType(onElevator);
                 }
             }
@@ -169,10 +178,10 @@ void ElevatorShatf::update(float dt, Point pos)
         else if (elevator_status == GoingUp)
         {
             /*b2Vec2 vel = elevator_body->GetLinearVelocity();
-            float velChange = ELEVATOR_SPEED - vel.x;
-            float impulse = velChange*elevator_body->GetMass()*50;
-            elevator_body->ApplyLinearImpulse(b2Vec2(0, impulse), elevator_body->GetWorldCenter(), true);
-            */
+             float velChange = ELEVATOR_SPEED - vel.x;
+             float impulse = velChange*elevator_body->GetMass()*50;
+             elevator_body->ApplyLinearImpulse(b2Vec2(0, impulse), elevator_body->GetWorldCenter(), true);
+             */
             
             b2Vec2 ele_pos = elevator_body->GetPosition();
             ele_pos = b2Vec2(ele_pos.x, ele_pos.y + ELEVATOR_SPEED/PTM_RATIO);
@@ -182,6 +191,17 @@ void ElevatorShatf::update(float dt, Point pos)
             {
                 elevator_status = Done;
                 MapGenerator::GetInstance()->setStageType(onRoof);
+            }
+        }
+        else if (elevator_status == GoingDown) {
+            b2Vec2 ele_pos = elevator_body->GetPosition();
+            ele_pos = b2Vec2(ele_pos.x, ele_pos.y - ELEVATOR_SPEED/PTM_RATIO);
+            elevator_body->SetTransform(ele_pos, 0);
+            
+            if (abs(destinationY - elevator->getPosition().y) <= 10)
+            {
+                elevator_status = Done;
+                MapGenerator::GetInstance()->setStageType(onGround);
             }
         }
         else if (elevator_status == Done)
@@ -196,7 +216,9 @@ void ElevatorShatf::update(float dt, Point pos)
     }
     else {
         if ((pos.x - lastPos.x) > MonsterOffset) {
-            afterDeath = true;
+            if (elevator_status == AfterDone) {
+                afterDeath = true;
+            }
         }
     }
 }

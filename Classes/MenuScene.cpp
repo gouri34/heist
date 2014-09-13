@@ -86,7 +86,7 @@ bool MenuScene::init()
    
     
     //add background
-    auto background = Sprite::create("test_bg.png");
+    auto background = Sprite::create("test_ground_background.png");
     background->setAnchorPoint(Point(0,0));
     background->setPosition(Point(0,0));
     this->addChild(background, 0);
@@ -118,12 +118,7 @@ void MenuScene::update(float dt)
 
 void MenuScene::leftPushCallback()
 {
-    if (gScene->bear->getActionStatus() == jump){
-        gScene->bear->changeActionStatus(dash);
-    }
-    else if (gScene->bear->getActionStatus() == dash) {
-        gScene->bear->changeActionStatus(jump);
-    }
+    
 }
 
 void MenuScene::leftReleaseCallback()
@@ -136,7 +131,6 @@ void MenuScene::leftReleaseCallback()
 void MenuScene::attacPushkCallback()
 {
     //bearMovement = 3;
-    gScene->bear->action();
 }
 
 void MenuScene::attacReleasekCallback()
@@ -146,8 +140,9 @@ void MenuScene::attacReleasekCallback()
 
 void MenuScene::menuReloadCallback(Ref* pSender)
 {
-    auto scene = Scene::create();
+    unscheduleUpdate();
     
+    auto scene = Scene::create();
     // 'layer' is an autorelease object
     auto layer = MenuScene::create();
     
@@ -159,7 +154,7 @@ void MenuScene::menuReloadCallback(Ref* pSender)
 
 void MenuScene::bearDie(Ref* pSender)
 {
-    gScene->bear->die();
+    gScene->monster->die();
 }
 
 
@@ -172,12 +167,20 @@ bool MenuScene::touchesBegan(Touch* touch, Event* event)
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     if (nodePosition.x < visibleSize.width/2) {
-        leftPushCallback();
+        //leftPushCallback();
+        // dash
+        //gScene->monster->dashy();
+        gScene->monster->changeActionStatus(dash);
+        gScene->monster->action();
     }
     else {
-        attacPushkCallback();
+        //attacPushkCallback();
+        //jump
+        //gScene->monster->jumppy();
+        gScene->monster->changeActionStatus(jump);
+        gScene->monster->action();
     }
-
+    
     //return gScene->MouseDown(b2Vec2(nodePosition.x/PTM_RATIO,nodePosition.y/PTM_RATIO));
     return true;
 }

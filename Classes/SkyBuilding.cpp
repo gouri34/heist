@@ -12,19 +12,19 @@
 
 #define CEILING_HIGHT 300.0
 
-SkyBuilding* SkyBuilding::create(Layer *gameScene_, b2World *gameWorld_, Point pos, int groundY)
+SkyBuilding* SkyBuilding::create(Point pos, int groundY)
 {
     SkyBuilding *a = new SkyBuilding();
-    if (a&&a->init(gameScene_,gameWorld_, pos, groundY)) {
+    if (a&&a->init(pos, groundY)) {
         return a;
     }
     return NULL;
 }
 
-bool SkyBuilding::init(Layer *gameScene_, b2World *gameWorld_, Point pos, int groundY)
+bool SkyBuilding::init(Point pos, int groundY)
 {
-    gLayer = gameScene_;
-    gWorld = gameWorld_;
+    gLayer = MapGenerator::GetInstance()->gameLayer;
+    gWorld = MapGenerator::GetInstance()->gameWorld;
     
     
     startPos = pos;
@@ -32,8 +32,11 @@ bool SkyBuilding::init(Layer *gameScene_, b2World *gameWorld_, Point pos, int gr
     
     cocos2d::Texture2D::TexParams params = {GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT};
     
-
+    
     Texture2D* wallTexture = Director::getInstance()->getTextureCache()->addImage("testbuilding_wall.png");
+    if (wallTexture == NULL) {
+        printf("can find wall texture\n");
+    }
     wallTexture->setTexParameters(params);
     wallTextureSize = Size(wallTexture->getPixelsWide(), wallTexture->getPixelsHigh());
     
@@ -55,10 +58,7 @@ bool SkyBuilding::init(Layer *gameScene_, b2World *gameWorld_, Point pos, int gr
     gLayer->addChild(terrain,2);
     gLayer->addChild(higherFrontView, 60);
     gLayer->addChild(lowerFrontView, 60);
-
-    GlassWindow* gw = GlassWindow::create(gLayer, gWorld, pos);
-    windows.push_back(gw);
-
+    
     
     setVertices(pos);
     
@@ -105,7 +105,7 @@ void SkyBuilding::setVertices(Point pos)
     
     //calc offset
     int x_offset = 0; //offset to make the building complete
-    int minCoordx = (ground_lp.x+5.0)/floorTextureSize.width;
+    //int minCoordx = (ground_lp.x+5.0)/floorTextureSize.width;
     
     int x_intexture = (int)(ground_rp.x+5 - startPos.x)%1024;
     
@@ -129,7 +129,7 @@ void SkyBuilding::setVertices(Point pos)
     
     points = pointsToVector(Point(ground_lp.x, groundYpos - 512),Point(ground_lp.x, groundYpos), Point(ground_rp.x, groundYpos), Point(ground_rp.x, groundYpos - 512));
     terrain->setPoints(points);
-
+    
     
     points = pointsToVector(Point(ground_lp.x+5, ground_lp.y), Point(ground_lp.x+5, ground_lp.y+CEILING_HIGHT), Point(ground_rp.x-5, ground_rp.y+CEILING_HIGHT), Point(ground_rp.x-5, ground_rp.y));
     wall->setPoints(points);
@@ -149,7 +149,7 @@ void SkyBuilding::setVertices(Point pos)
     lowerFrontView->customSetting(points, texCoords);
     
     
-       
+    
     
     if ((startPos.y - pos.y) > 600) {
         groundVecs =  pointsToVector(Point(ground_lp.x, pos.y - 400), Point(ground_lp.x, pos.y + 600), Point(ground_rp.x, pos.y + 600), Point(ground_rp.x, pos.y-400));
@@ -170,22 +170,6 @@ void SkyBuilding::setVertices(Point pos)
 
 void SkyBuilding::update(float dt, Point pos)
 {
-    //item process
-    std::vector<GlassWindow*> usedWindow;
-    for (int i = 0; i < windows.size(); i++) {
-        GlassWindow* g = windows.at(i);
-        g->update(pos, dt);
-        if (g->destroyed) {
-            usedWindow.push_back(g);
-        }
-    }
-    for (int i = 0; i < usedWindow.size(); i++) {
-        GlassWindow* g = usedWindow.at(i);
-        windows.erase(std::remove(windows.begin(), windows.end(), g), windows.end());
-        delete g;
-    }
-    
-    
     if (!dead) {
         setVertices(pos);
         // setGroundBuildings(pos);
@@ -199,9 +183,6 @@ void SkyBuilding::update(float dt, Point pos)
 
 void SkyBuilding::setDead()
 {
-    GlassWindow* gw = GlassWindow::create(gLayer, gWorld, lastPos);
-    windows.push_back(gw);
-    
     dead = true;
     //setVertices(pos);
 }
@@ -209,13 +190,6 @@ void SkyBuilding::setDead()
 
 SkyBuilding::~SkyBuilding()
 {
-    for (int i = 0; i < windows.size(); i++) {
-        GlassWindow* g = windows.at(i);
-        delete g;
-    }
-    windows.clear();
-
-    
     gLayer->removeChild(wall, true);
     gLayer->removeChild(terrain, true);
     gLayer->removeChild(higherFrontView, true);

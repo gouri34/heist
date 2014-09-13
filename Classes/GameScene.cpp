@@ -31,11 +31,10 @@ bool GameScene::init()
     Point origin = Director::getInstance()->getVisibleOrigin();
 
     //preload textures
-    cocos2d::Texture2D::TexParams params = {GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT};
-    Texture2D* groundTexture = Director::getInstance()->getTextureCache()->addImage("GlassBuilding.png");
-    groundTexture->setTexParameters(params);
-    Texture2D* wallTexture = Director::getInstance()->getTextureCache()->addImage("GlassBuilding_Wall.png");
-    wallTexture->setTexParameters(params);
+    Director::getInstance()->getTextureCache()->addImage("terrain.png");
+    Director::getInstance()->getTextureCache()->addImage("testbuilding_view.png");
+    Director::getInstance()->getTextureCache()->addImage("testbuilding_wall.png");
+    Director::getInstance()->getTextureCache()->addImage("ele_shaft_wall.png");
 
     
     //load armatures
@@ -44,7 +43,9 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("b_wall.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("glassWindow.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("agent.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("running_grunt.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("GUAIWUvvvvvvvvvvvvvvv.ExportJson");
+    
     
     //physics setup
     b2Vec2 gravity;
@@ -59,8 +60,8 @@ bool GameScene::init()
     
     
     //load character
-    bear = Bear::create(this, world, Point(visibleSize.width*0.8, visibleSize.height/2));
-    bear->creatfootBody();
+    monster = Monster::create(this, world, Point(50, visibleSize.height/2));
+    monster->creatfootBody();
     
     MapGenerator::GetInstance()->cleanup();
     MapGenerator::GetInstance()->init(this, world);
@@ -75,15 +76,15 @@ void GameScene::update(float dt)
     physicsUpdate(dt);
     
     //update characters
-    bear->update(dt);
-    Point bearPos = bear->theBody->getPosition();
+    monster->update(dt);
+    Point bearPos = monster->theBody->getPosition();
     
     //update terrain
     MapGenerator::GetInstance()->update(bearPos, dt);
     
     
     //camera
-    this->setPosition(Point(-bear->theBody->getPositionX()+200, -bearPos.y+294));
+    this->setPosition(Point(-monster->theBody->getPositionX()+300, -bearPos.y+294));
     
     
     
@@ -141,6 +142,6 @@ void GameScene::afterStep()
 
 GameScene::~GameScene()
 {
-    delete bear;
+    delete monster;
 }
 

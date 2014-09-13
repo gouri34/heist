@@ -26,18 +26,15 @@ public:
     
     bool isCurveUp = false;
     
-    
-    PRFilledPolygon* ground;
     PRFilledPolygon* terrain;
-    std::vector<Sprite*>groundBuildings;
-    
+    PRFilledPolygon* surface;
     
     /**
      Returns an autoreleased polygon.  Default triangulator is used (Ratcliff's).
      */
     
-    static Ground_Slope* create(Layer *gameScene_, b2World *gameWorld_, Point pos, bool curveUp,double _lastTexCoordX);
-    virtual bool init(Layer *gameScene_, b2World *gameWorld_, Point pos, bool curveUp,double _lastTexCoordX);
+    static Ground_Slope* create(Point pos, bool curveUp,double _lastTexCoordX);
+    virtual bool init(Point pos, bool curveUp,double _lastTexCoordX);
     ~Ground_Slope();
     
     void setupGroundBuildings(Point pos);

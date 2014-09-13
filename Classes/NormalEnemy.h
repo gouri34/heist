@@ -15,7 +15,7 @@ class NormalEnemy : public Enemy
 {
 public:
     //normalZombie(Scene *parentScene, b2World *world,const char*name, float scale);
-    static NormalEnemy* create(Scene *parentScene, b2World *world,const char*name, Point pos, float scale);
+    static NormalEnemy* create(const char*name, Point pos, float scalex, float scaley);
     virtual ~NormalEnemy();
     virtual void setArmatureBody();
     
@@ -26,6 +26,10 @@ public:
     void getHit();
     void headDropDie();
     void dieToExplosion(float damage, Point exploPosition);
+    
+    //collison
+    virtual void update(float dt);
+    virtual void collisionProcess(Monster *monster);
 
 private:
     
