@@ -249,6 +249,7 @@ void Ground_Curved::update(float dt, Point pos)
 Ground_Curved::~Ground_Curved()
 {
     gLayer->removeChild(terrain, true);
+    gLayer->removeChild(surface, true);
     
     if (groundBody != NULL) {
         gWorld->DestroyBody(groundBody);

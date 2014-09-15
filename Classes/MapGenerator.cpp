@@ -57,7 +57,6 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
         sceneInfos["enemySetup1"] = SceneConstructor::ConstructScene("EnemySetup1.json");
         sceneInfos["enemySetup2"] = SceneConstructor::ConstructScene("EnemySetup2.json");
         sceneInfos["enemySetup3"] = SceneConstructor::ConstructScene("EnemySetup3.json");
-
     }
 
     
@@ -154,6 +153,10 @@ void MapGenerator::setStageType(StageTypes st)
 }
 
 
+
+
+
+
 void MapGenerator::update(Point pos, float dt)
 {
     updateObjects(pos, dt);
@@ -201,6 +204,12 @@ void MapGenerator::update(Point pos, float dt)
     
 }
 
+
+
+
+
+
+
 void MapGenerator::updateObjects(Point pos, float dt)
 {
     std::vector<Sprite*> usedSprite;
@@ -215,6 +224,7 @@ void MapGenerator::updateObjects(Point pos, float dt)
         sprites.erase(std::remove(sprites.begin(), sprites.end(), s), sprites.end());
         gameLayer->removeChild(s, true);
     }
+    
     
     std::vector<Terrain*> usedTerrain;
     for (int i = 0; i < terrains.size(); i++) {
@@ -234,7 +244,6 @@ void MapGenerator::updateObjects(Point pos, float dt)
     }
     
     
-    
     std::vector<CommonObject*> usedObj;
     for (int i = 0; i < commonObjs.size(); i++) {
         CommonObject* g = commonObjs.at(i);
@@ -249,12 +258,11 @@ void MapGenerator::updateObjects(Point pos, float dt)
         delete g;
     }
     
-    
     std::vector<Enemy*> usedDummy;
     for (int i = 0; i < enemies.size(); i++) {
         Enemy* e = enemies.at(i);
         e->update(dt);
-        if ((pos.x - e->position.x) > 300) {
+        if ((pos.x - e->position.x) > 300 || (pos.y - e->position.y) > 300) {
             usedDummy.push_back(e);
         }
     }
@@ -263,6 +271,7 @@ void MapGenerator::updateObjects(Point pos, float dt)
         enemies.erase(std::remove(enemies.begin(), enemies.end(), e), enemies.end());
         delete e;
     }
+    
 
 }
 
@@ -408,7 +417,6 @@ void MapGenerator::makeGroundPlain(bool fromSlope, bool wentUp)
             terrains.push_back(g);
             currentTerrain = g;
         }
-       
     }
     else {
         Ground *g = Ground::create(lastTerrainPos, lastTexCoordX);
@@ -417,7 +425,7 @@ void MapGenerator::makeGroundPlain(bool fromSlope, bool wentUp)
     }
     
     terrainStatus = plain;
-    stageTimer = 4.0;
+    stageTimer = 5.0;
 }
 
 void MapGenerator::makeGroundSlope(bool goUp)
@@ -426,9 +434,8 @@ void MapGenerator::makeGroundSlope(bool goUp)
     float lastTexCoordX = currentTerrain->lastTexCoordX;
 
     terrainEliminator();
-
+    
     if (goUp) {
-        
         Ground_Curved *gc = Ground_Curved::create(lastTerrainPos, true, true,lastTexCoordX);
         terrains.push_back(gc);
         Ground_Slope *gs = Ground_Slope::create(gc->lastPos, true, gc->lastTexCoordX);
@@ -438,7 +445,6 @@ void MapGenerator::makeGroundSlope(bool goUp)
         currentTerrain = gs;
     }
     else {
-        
         Ground_Curved *gc = Ground_Curved::create(lastTerrainPos, false, false,lastTexCoordX);
         terrains.push_back(gc);
         Ground_Slope *gs = Ground_Slope::create(gc->lastPos, false, gc->lastTexCoordX);

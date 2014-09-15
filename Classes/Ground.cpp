@@ -36,7 +36,7 @@ bool Ground::init(Point pos, double _lastTexCoordX)
     gWorld = MapGenerator::GetInstance()->gameWorld;
     
     startPos = Point(pos.x -1, pos.y);
-    currentSetupPos = startPos;
+    backgroundSetupPos = startPos;
     texCoordXoffset = (float)_lastTexCoordX - (int)_lastTexCoordX;
     
     cocos2d::Texture2D::TexParams params = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
@@ -65,9 +65,6 @@ bool Ground::init(Point pos, double _lastTexCoordX)
 }
 
 
-
-
-
 void Ground::setVertices(Point pos)
 {
     Point ground_lp;
@@ -83,9 +80,11 @@ void Ground::setVertices(Point pos)
         ground_lp = Point(startPos.x, startPos.y);
         ground_rp = Point(pos.x + 1024, startPos.y);
     }
+    
+    offScreenPoint = ground_rp;
 
-    if (ground_rp.x < currentSetupPos.x) {
-        ground_rp = Point(currentSetupPos.x, ground_rp.y);
+    if (ground_rp.x < backgroundSetupPos.x) {
+        ground_rp = Point(backgroundSetupPos.x, ground_rp.y);
     }
     
     ground_lp_lower = Point(ground_lp.x, ground_lp.y - SURFACE_THICKNESS);
@@ -119,7 +118,7 @@ void Ground::setVertices(Point pos)
 void Ground::terrainSceneArrangement()
 {
     //background arrangement
-    while (currentSetupPos < lastPos) {
+    while (backgroundSetupPos < lastPos) {
         int seed = rand()%5;
         while (seed == lastSeed) {
             seed = rand()%5;
@@ -148,19 +147,18 @@ void Ground::terrainSceneArrangement()
                 break;
         }
         
-        int length = MapGenerator::GetInstance()->setupSceneWithInfo(sceneName, currentSetupPos);
-        currentSetupPos = Point(currentSetupPos.x+length, currentSetupPos.y);
+        int length = MapGenerator::GetInstance()->setupSceneWithInfo(sceneName, backgroundSetupPos);
+        backgroundSetupPos = Point(backgroundSetupPos.x+length, backgroundSetupPos.y);
     }
     
     //objects arrangement
-    
     if (MapGenerator::GetInstance()->enemyTimer <= 0) {
         MapGenerator::GetInstance()->enemyTimer = 2.4;
         string arrName = "enemySetup1";
-        int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(lastPos.x, lastPos.y+120));
-        int lastX = lastPos.x+length;
-        if (lastX > currentSetupPos.x) {
-            currentSetupPos = Point(lastX, currentSetupPos.y);
+        int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
+        int lastX = offScreenPoint.x+length;
+        if (lastX > backgroundSetupPos.x) {
+            backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
         }
     }
 
@@ -185,6 +183,7 @@ void Ground::update(float dt, cocos2d::Point pos)
 Ground::~Ground()
 {
     gLayer->removeChild(terrain, true);
+    gLayer->removeChild(surface, true);
     
     if (groundBody != NULL) {
         gWorld->DestroyBody(groundBody);

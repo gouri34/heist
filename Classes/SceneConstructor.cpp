@@ -50,6 +50,7 @@ void SceneConstructor::arrayProcess(rapidjson::Value &array, SceneInfo &info)
     
 }
 
+
 SceneData SceneConstructor::componentProcess(rapidjson::Value &object)
 {
     SceneData data;

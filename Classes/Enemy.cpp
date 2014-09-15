@@ -42,10 +42,8 @@ bool Enemy::init(const char*name, Point pos, float scalex, float scaley)
     armature->setScaleY(scaley);
     armature->setAnchorPoint(Point(0.5, 0.5));
     zombie_scale = scalex;
-   // armature->setColor(Color3B(255, 150, 150));
     
     gameScene->addChild(armature,21);
-   // armature->getAnimation()->playByIndex(0);
     setArmatureBody();
     
     creatfootBody();
@@ -170,11 +168,8 @@ void Enemy::die(b2Vec2 vec)
         for (auto o : deadSpriteArray) {
             o->setVisible(true);
         }
-        
-
     }
 }
-
 
 void Enemy::update(float dt)
 {
@@ -281,10 +276,7 @@ void Enemy::update(float dt)
                 offsetX = -HEIGHTDIFFX;
             }
             
-            armature->setPosition(Point(footBody->GetPosition().x*
-                                      PTM_RATIO+offsetX, footBody->GetPosition().y*PTM_RATIO+HEIGHTDIFFY));
-
-            
+            armature->setPosition(Point(footBody->GetPosition().x*PTM_RATIO+offsetX, footBody->GetPosition().y*PTM_RATIO+HEIGHTDIFFY));
         }
     }
     else {
@@ -321,7 +313,7 @@ void Enemy::deleteProperties()
             }*/
             gameWorld->DestroyBody(b);
             b = NULL;
-            gameScene->removeChild(o);
+            gameScene->removeChild(o, true);
         }
         
         //o->release();
@@ -377,7 +369,7 @@ void Enemy::setArmatureBody()
             b2FixtureDef fixtureDef;
             fixtureDef.shape = &dynamicBox;
             fixtureDef.density = 0.2f;
-            fixtureDef.friction = 0.9f;
+            fixtureDef.friction = 1.9f;
             fixtureDef.filter.categoryBits = ZOMBIE;
             fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | ARROW | BULLET;
             fixtureDef.fixturetype = f_enemy_body;

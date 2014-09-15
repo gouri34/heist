@@ -161,6 +161,7 @@ Ground_Slope::~Ground_Slope()
     //printf("removed\n");
     
     gLayer->removeChild(terrain, true);
+    gLayer->removeChild(surface, true);
     
     if (groundBody != NULL) {
         gWorld->DestroyBody(groundBody);
