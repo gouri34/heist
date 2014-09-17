@@ -5,6 +5,7 @@
 //  Created by cong ku on 8/11/14.
 //
 //
+#include <stdexcept>
 
 #include "MapGenerator.h"
 
@@ -19,8 +20,12 @@
 #include "SkyBuildingRoof.h"
 
 #include "NormalEnemy.h"
-
+#include "Panzer.h"
 #include "Wall.h"
+#include "BazookaEnemy.h"
+#include "GuardTower.h"
+#include "ShieldEnemy.h"
+#include "LandMine.h"
 
 static MapGenerator *m_MapGenerator = nullptr;
 
@@ -57,6 +62,12 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
         sceneInfos["enemySetup1"] = SceneConstructor::ConstructScene("EnemySetup1.json");
         sceneInfos["enemySetup2"] = SceneConstructor::ConstructScene("EnemySetup2.json");
         sceneInfos["enemySetup3"] = SceneConstructor::ConstructScene("EnemySetup3.json");
+        sceneInfos["three_panzer_in_a_row"] = SceneConstructor::ConstructScene("three_panzer_in_a_row.json");
+        sceneInfos["one_shieldenemy_on_one_guardtower"] = SceneConstructor::ConstructScene("one_shieldenemy_on_one_guardtower.json");
+        sceneInfos["three_shieldenemy_in_a_row"] = SceneConstructor::ConstructScene("three_shieldenemy_in_a_row.json");
+        sceneInfos["two_bazookaenemy_in_a_row"] = SceneConstructor::ConstructScene("two_bazookaenemy_in_a_row.json");
+
+
     }
 
     
@@ -68,6 +79,25 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
     NormalEnemy* ne = NormalEnemy::create("running_grunt", Point(900, 120), 0.25, 0.25);
     enemies.push_back(ne);
     terrainStatus = inGroundBld;
+    
+    Panzer* p = Panzer::create("Panzer", Point(900,250), 1, 1);
+    enemies.push_back(p);
+    
+    
+    GuardTower *gt = GuardTower::create("GuardTower", Point(1100,270), 1.0, 0.8);
+    commonObjs.push_back(gt);
+    
+    BazookaEnemy *be = BazookaEnemy::create("PAObin", Point(1100,350), 0.3, 0.3);
+    enemies.push_back(be);
+    
+    ShieldEnemy *se = ShieldEnemy::create("DDUNBIN", Point(900,120), 0.3, 0.3);
+    enemies.push_back(se);
+    
+    LandMine *lm = LandMine::create("Mine", Point(1300,250), 0.3, 0.3);
+    enemies.push_back(lm);
+    
+    Item *it = Item::create(gameLayer, gameWorld, Point(1400,200));
+    items.push_back(it);
 }
 
 
@@ -75,6 +105,7 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
 int MapGenerator::setupSceneWithInfo(std::string name, Point pos)
 {
     SceneInfo info = sceneInfos[name];
+    sceneName = name;
     std::vector<SceneData> vec = info.sceneInfoVec;
     for (int i = 0; i < vec.size(); i++) {
         SceneData d = vec[i];
@@ -113,15 +144,42 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
     }
     else if (data.type == 2) {
         Point pos_ = Point(data.x+pos.x, data.y+pos.y);
-        CommonObject *d = CommonObject::create(data.sourceName, pos_, data.scalex, data.scaley);
-        node = (Node*)d->theBody;
-        commonObjs.push_back(d);
+        if (sceneName.find("guardtower")!=string::npos) {
+            GuardTower *d = GuardTower::create("GuardTower", pos_, data.scalex, data.scaley);
+            node = (Node*)d->theBody;
+            commonObjs.push_back(d);
+        }
+        else{
+            CommonObject *d = CommonObject::create(data.sourceName, pos_, data.scalex, data.scaley);
+            node = (Node*)d->theBody;
+            commonObjs.push_back(d);
+        }
     }
     else if (data.type == 3) {
         Point pos_ = Point(data.x+pos.x, data.y+pos.y);
-        NormalEnemy *ne = NormalEnemy::create(data.sourceName.c_str(), pos_, data.scalex, data.scaley);
-        node = (Node*)ne->armature;
-        enemies.push_back(ne);
+        if (sceneName.find("panzer")!=string::npos) {
+            Panzer* p = Panzer::create("Panzer", pos_, 1, 1);
+            node = (Node*)p->armature;
+            enemies.push_back(p);
+
+        }
+        if(sceneName.find("shieldenemy")!=string::npos){
+            ShieldEnemy *se = ShieldEnemy::create(data.sourceName.c_str(),pos_,data.scalex, data.scaley);
+            node = (Node*)se->armature;
+            enemies.push_back(se);
+        }
+        if(sceneName.find("bazookaenemy")!=string::npos){
+            BazookaEnemy *be = BazookaEnemy::create(data.sourceName.c_str(),pos_,data.scalex, data.scaley);
+            node = (Node*)be->armature;
+            enemies.push_back(be);
+        }
+
+        
+        if(sceneName.find("enemySetup1")!=string::npos){
+            NormalEnemy *ne = NormalEnemy::create(data.sourceName.c_str(), pos_, data.scalex, data.scaley);
+            node = (Node*)ne->armature;
+            enemies.push_back(ne);
+        }
     }
     
     node->setPosition(Point(data.x + pos.x, data.y + pos.y));
@@ -171,8 +229,9 @@ void MapGenerator::update(Point pos, float dt)
     if (stageTimer < 0) {
         
         bool jobDone = false;
+        /*
         while (!jobDone) {
-            int randSeed = rand()%3; //seed decide the next stage type
+            int randSeed = rand()%4; //seed decide the next stage type
             
             TerrainStatus ts = (TerrainStatus)randSeed;
             
@@ -198,7 +257,7 @@ void MapGenerator::update(Point pos, float dt)
                     break;
             }
         }
-        
+        */
     }
     
     
@@ -262,7 +321,7 @@ void MapGenerator::updateObjects(Point pos, float dt)
     for (int i = 0; i < enemies.size(); i++) {
         Enemy* e = enemies.at(i);
         e->update(dt);
-        if ((pos.x - e->position.x) > 300 || (pos.y - e->position.y) > 300) {
+        if ((pos.x - e->position.x) > 500 || (pos.y - e->position.y) > 400) {
             usedDummy.push_back(e);
         }
     }
@@ -272,6 +331,30 @@ void MapGenerator::updateObjects(Point pos, float dt)
         delete e;
     }
     
+    std::vector<Item*>useditems;
+    for (int i=0; i<items.size(); i++) {
+        try {
+            Item *item = items.at(i);
+            item->update(dt);
+            if (pos.x-item->armature->getPositionX()>550 || (pos.y-item->armature->getPositionY())>600) {
+                useditems.push_back(item);
+            }
+
+        } catch (std::out_of_range &exc) {
+            std::cerr << exc.what() << " Line:" << __LINE__ << " File:" << __FILE__ << endl;
+        }
+    }
+    for (int i=0; i<useditems.size(); i++) {
+        
+        try {
+            Item *item = useditems.at(i);
+            items.erase(std::remove(items.begin(),items.end(),item), items.end());
+            delete item;
+            
+        } catch (std::out_of_range &exc) {
+            std::cerr << exc.what() << " Line:" << __LINE__ << " File:" << __FILE__ << endl;
+        }
+    }
 
 }
 
@@ -298,6 +381,12 @@ void MapGenerator::cleanup()
         delete e;
     }
     enemies.clear();
+    
+    for (int i=0; i<items.size(); i++) {
+        Item* item = items.at(i);
+        delete item;
+    }
+    items.clear();
     
 }
 

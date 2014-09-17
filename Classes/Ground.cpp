@@ -54,12 +54,12 @@ bool Ground::init(Point pos, double _lastTexCoordX)
     
     terrain = PRFilledPolygon::filledPolygonWithPointsAndTexture(empty, terrainTexture);
     surface = PRFilledPolygon::filledPolygonWithPointsAndTexture(empty, surfaceTexture);
-    gLayer->addChild(terrain,10);
-    gLayer->addChild(surface, 11);
+    gLayer->addChild(terrain,40);
+    gLayer->addChild(surface, 40);
     
     setVertices(pos);
     
-    
+    lastObjectX=400;
     
     return true;
 }
@@ -152,14 +152,60 @@ void Ground::terrainSceneArrangement()
     }
     
     //objects arrangement
-    if (MapGenerator::GetInstance()->enemyTimer <= 0) {
-        MapGenerator::GetInstance()->enemyTimer = 2.4;
-        string arrName = "enemySetup1";
-        int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
-        int lastX = offScreenPoint.x+length;
-        if (lastX > backgroundSetupPos.x) {
-            backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+    if (MapGenerator::GetInstance()->enemyTimer <= 0&&(offScreenPoint.x>=lastObjectX)) {
+        MapGenerator::GetInstance()->enemyTimer = 1.0;
+        int patternGap = 200;
+        int randNum = rand()%5;
+        if (randNum==1) {
+            string arrName = "enemySetup1";
+            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
+            int lastX = offScreenPoint.x+length+patternGap;
+            if (lastX > backgroundSetupPos.x) {
+                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+            }
+            lastObjectX = lastX;
         }
+        else if(randNum==2){
+            string arrName = "three_panzer_in_a_row";
+            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
+            int lastX = offScreenPoint.x+length+patternGap;
+            if (lastX > backgroundSetupPos.x) {
+                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+            }
+            lastObjectX = lastX;
+
+        }
+        else if (randNum==3){
+            string arrName = "one_shieldenemy_on_one_guardtower";
+            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
+            int lastX = offScreenPoint.x+length+patternGap;
+            if (lastX > backgroundSetupPos.x) {
+                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+            }
+            lastObjectX = lastX;
+
+
+        }
+        else if (randNum==4){
+            string arrName = "three_shieldenemy_in_a_row";
+            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
+            int lastX = offScreenPoint.x+length+patternGap;
+            if (lastX > backgroundSetupPos.x) {
+                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+            }
+            lastObjectX = lastX;
+
+        }
+
+//        else if (randNum==5){
+//            string arrName = "two_bazookaenemy_in_a_row";
+//            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
+//            int lastX = offScreenPoint.x+length;
+//            if (lastX > backgroundSetupPos.x) {
+//                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+//            }
+//        }
+
     }
 
 }

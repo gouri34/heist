@@ -4,39 +4,20 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>shen_ti.png</key>
+			<key>utem.png</key>
 			<dict>
 				<key>width</key>
-				<integer>589</integer>
+				<integer>453</integer>
 				<key>height</key>
-				<integer>581</integer>
+				<integer>459</integer>
 				<key>originalWidth</key>
-				<integer>589</integer>
+				<integer>453</integer>
 				<key>originalHeight</key>
-				<integer>581</integer>
+				<integer>459</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
 				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>zuo_shou.png</key>
-			<dict>
-				<key>width</key>
-				<integer>478</integer>
-				<key>height</key>
-				<integer>357</integer>
-				<key>originalWidth</key>
-				<integer>478</integer>
-				<key>originalHeight</key>
-				<integer>357</integer>
-				<key>x</key>
-				<integer>0</integer>
-				<key>y</key>
-				<integer>583</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -48,9 +29,9 @@
 			<key>format</key>
 			<integer>0</integer>
 			<key>textureFileName</key>
-			<string>GUAIWUvvvvvvvvvvvvvvv1.png</string>
+			<string>Meteo0.png</string>
 			<key>realTextureFileName</key>
-			<string>GUAIWUvvvvvvvvvvvvvvv1.png</string>
+			<string>Meteo0.png</string>
 			<key>size</key>
 			<string>{1024,1024}</string>
 		</dict>

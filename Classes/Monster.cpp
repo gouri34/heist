@@ -17,13 +17,13 @@
 #define MINIMUMPOWER 0
 
 #define  HEIGHTDIFFX_ 0
-#define  HEIGHTDIFFY_ 27.0
+#define  HEIGHTDIFFY_ 17.0
 
 #define TWEEN_EASING_MAX 10000
 
 /////////
-//#define bScale 0.7
-#define bScale 0.11
+#define bScale 0.4
+//#define bScale 0.11
 
 
 Monster* Monster::create(Layer *gameScene_, b2World *gameWorld_, Point pos)
@@ -48,8 +48,11 @@ bool Monster::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     actionStatus = jump;
     inJump = false;
     
+    targetSpeed = 18.0;
+    prevSpeed = targetSpeed;
+    
     //load the archer sprite below.
-    theBody = Armature::create("GUAIWUvvvvvvvvvvvvvvv");
+    theBody = Armature::create("FlammerMon");
     theBody->setPosition(Point(pos.x, pos.y));
     theBody->setAnchorPoint(Point(0.5,0.5));
     theBody->setScaleX(bScale);
@@ -82,12 +85,12 @@ void Monster::creatfootBody()
     circleShape.m_radius = 0.75f;
 
     b2FixtureDef fixtureDef;
-    fixtureDef.density = 0.2;
+    fixtureDef.density = 0.6;
     fixtureDef.friction = 0.0f;
-    fixtureDef.restitution = 0.05f;
+    fixtureDef.restitution = 0;
     fixtureDef.fixturetype = f_monster_foot;
     fixtureDef.filter.categoryBits = PLAYER;
-    fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
+    fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND | BULLET;
     fixtureDef.shape = &circleShape;
     footBody->CreateFixture(&fixtureDef);
     
@@ -243,7 +246,7 @@ void Monster::action()
 {
     if (actionStatus == jump) {
         if (jumpTimer > 0.8) {
-            footBody->ApplyLinearImpulse(b2Vec2(0, 6), footBody->GetWorldCenter(), true);
+            footBody->ApplyLinearImpulse(b2Vec2(0, 10*3), footBody->GetWorldCenter(), true);
             theBody->getAnimation()->playWithIndex(1);
             inJump = true;
             jumpTimer = 0;
@@ -252,7 +255,10 @@ void Monster::action()
     else if (actionStatus == dash){
         if (!inDash) {
             inDash = true;
-            dashTimer = 0.32;
+            dashTimer = 0.17;
+            prevSpeed = targetSpeed;
+            targetSpeed = targetSpeed+40;
+            theBody->getAnimation()->playWithIndex(2);
             
             theBody->setColor(Color3B(255, 120,120));
 
@@ -407,7 +413,6 @@ void Monster::update(float dt)
             
             //move bear
             theBody->setScaleX(bScale);
-            float targetSpeed = 15.0;
             b2Vec2 vel = footBody->GetLinearVelocity();
             float velChange = targetSpeed - vel.x;
             float impulse = velChange*footBody->GetMass()/1.1;
@@ -426,41 +431,7 @@ void Monster::update(float dt)
                 }
             }
         }
-        
-        
-        
-        
-        // creash the enemies
-        MyQueryCallback queryCallback; //see "World querying topic"
-        b2AABB aabb;
-        //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
-        Point attackPos = Point(theBody->getPositionX(), theBody->getPositionY());
-        b2Vec2 detectionVec = b2Vec2(attackPos.x/PTM_RATIO, attackPos.y/PTM_RATIO);
-        aabb.lowerBound = detectionVec - b2Vec2( 2.5, 2.5);
-        aabb.upperBound = detectionVec + b2Vec2( 2.5, 2.5);
-        gameWorld->QueryAABB( &queryCallback, aabb );
-        
-        for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
-            b2Body* body = queryCallback.foundBodies[j];
-            b2Fixture* f = body->GetFixtureList();
-            if (f) {
-                FixtureType t = f->GetFixtureType();
-                
-                if (t == f_enemy_foot) {
-                    Enemy* e = (Enemy*)body->GetUserData();
-                    //e->die(b2Vec2(2.0, 2.0));
-                    e->collisionProcess(this);
-                }
-                else if(t == f_commonObj) {
-                    CommonObject *o = (CommonObject*)body->GetUserData();
-                    o->collisionProcess(this);
-                }
-                
-            }
-        }
-        
 
-        
         //
         jumpTimer += dt;
         
@@ -469,11 +440,61 @@ void Monster::update(float dt)
             onGroundDetector();
         }
         
+        //dash update
+        if (inDash&&!inSprint) {
+            dashTimer -= dt;
+            if (dashTimer<=0) {
+                inDash = false;
+                targetSpeed = prevSpeed;
+                theBody->getAnimation()->playWithIndex(0);
+            }
+        }
+        //item update
+        itemUpdate(dt);
+        
+        //collision update
+        collisionDetector();
     }
     else {
         setBodySprites();
     }
     
+}
+
+
+void Monster::collisionDetector()
+{
+    // crash the enemies
+    MyQueryCallback queryCallback; //see "World querying topic"
+    b2AABB aabb;
+    //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
+    Point attackPos = Point(theBody->getPositionX(), theBody->getPositionY());
+    b2Vec2 detectionVec = b2Vec2(attackPos.x/PTM_RATIO, attackPos.y/PTM_RATIO);
+    aabb.lowerBound = detectionVec - b2Vec2( 2.5, 1.0);
+    aabb.upperBound = detectionVec + b2Vec2( 2.5, 1.0);
+    gameWorld->QueryAABB( &queryCallback, aabb );
+    
+    for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
+        b2Body* body = queryCallback.foundBodies[j];
+        b2Fixture* f = body->GetFixtureList();
+        if (f) {
+            FixtureType t = f->GetFixtureType();
+            
+            if (t == f_enemy_foot) {
+                Enemy* e = (Enemy*)body->GetUserData();
+                //e->die(b2Vec2(2.0, 2.0));
+                e->collisionProcess(this);
+            }
+            else if(t == f_commonObj) {
+                CommonObject *o = (CommonObject*)body->GetUserData();
+                o->collisionProcess(this);
+            }
+            else{
+                //shit
+            }
+            
+        }
+    }
 }
 
 void Monster::animationEvent(Armature *armature, MovementEventType movementType, const std::string& movementID)
@@ -503,7 +524,7 @@ void Monster::setB2bodyPartPosition()
         string key = o.first;
         
         if (skin != NULL) {
-            if (skin->isphysicsObject) {
+            if (skin->isphysicsObject&&(bone->getName()!="fshockwave")) {
                 b2Body *body = skin->body;
                 body->SetActive(true);
                 Point partpos = skin->getParentRelatePosition();
@@ -570,7 +591,7 @@ void Monster::onGroundDetector()
             
             //if collision with ground, switch back to running animation
             if (t == f_ground) {
-                theBody->getAnimation()->playWithIndex(0, 10, -1);
+                theBody->getAnimation()->playWithIndex(0);
                 inJump = false;
             }
 
@@ -578,3 +599,42 @@ void Monster::onGroundDetector()
     }
 }
 
+bool Monster::isDashing()
+{
+    return inDash;
+}
+
+//-------item related functions-------
+
+void Monster::goSprint(float timer)
+{
+    if (inSprint==false) {
+        inSprint=true;
+        inDash=true;
+        targetSpeed = targetSpeed+45;
+        sprintTimer = timer;
+        theBody->getAnimation()->setSpeedScale(4.0);
+        pe = ParticleMeteor::create();
+        pe->setGravity(Point(-200,0));
+        pe->setStartRadius(400);
+        pe->setTexture(Director::getInstance()->getTextureCache()->addImage("meteor.png"));
+        pe->setPosition(theBody->getPosition());
+        gameScene->addChild(pe,30);
+    }
+}
+
+void Monster::itemUpdate(float dt)
+{
+    if (inSprint) {
+        sprintTimer -= dt;
+        if (sprintTimer<=0) {
+            inSprint=false;
+            inDash=false;
+            targetSpeed=prevSpeed;
+            theBody->getAnimation()->setSpeedScale(1.0);
+            gameScene->removeChild(pe);
+        }
+        pe->setPosition(theBody->getPosition());
+
+    }
+}

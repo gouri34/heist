@@ -6,6 +6,7 @@
 
 #include "MyContactListener.h"
 
+#include "UniversalAttributes.h"
 
 class GameScene : public cocos2d::Layer
 {
@@ -32,6 +33,7 @@ public:
 private:
     b2World * world;
     MyContactListener *_contactListener;
+    UniversalAttributes *a;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -14,14 +14,44 @@
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "_Copy",
+      "name": null,
+      "canedit": true,
+      "objecttag": 10003,
+      "rotation": 0,
+      "scalex": 0.3,
+      "scaley": 0.3,
+      "visible": 1,
+      "x": 177.05123901367188,
+      "y": -20.431636810302734,
+      "zorder": 25,
+      "gameobjects": [],
+      "components": [
+        {
+          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCArmature",
+          "name": "CCArmature",
+          "file": null,
+          "fileData": {
+            "path": "DDUNBIN.ExportJson",
+            "plistFile": "",
+            "resourceType": 0
+          },
+          "isShowColliderRect": false,
+          "selectedactionname": "Animation1"
+        }
+      ]
+    },
+    {
+      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
+      "classname": "CCNode",
+      "name": null,
       "canedit": true,
       "objecttag": 10004,
       "rotation": 0,
-      "scalex": 0.25,
-      "scaley": 0.25,
+      "scalex": 0.3,
+      "scaley": 0.3,
       "visible": 1,
-      "x": 34.874679565429688,
+      "x": 828.16241455078125,
       "y": -20.431636810302734,
       "zorder": 25,
       "gameobjects": [],
@@ -32,7 +62,7 @@
           "name": "CCArmature",
           "file": null,
           "fileData": {
-            "path": "Enemies/running_grunt/running_grunt.ExportJson",
+            "path": "DDUNBIN.ExportJson",
             "plistFile": "",
             "resourceType": 0
           },
@@ -44,14 +74,14 @@
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "_Copy",
+      "name": null,
       "canedit": true,
       "objecttag": 10005,
       "rotation": 0,
-      "scalex": 0.25,
-      "scaley": 0.25,
+      "scalex": 0.3,
+      "scaley": 0.3,
       "visible": 1,
-      "x": 81.266426086425781,
+      "x": 2023.7181396484375,
       "y": -20.431636810302734,
       "zorder": 25,
       "gameobjects": [],
@@ -62,97 +92,7 @@
           "name": "CCArmature",
           "file": null,
           "fileData": {
-            "path": "Enemies/running_grunt/running_grunt.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "_Copy",
-      "canedit": true,
-      "objecttag": 10006,
-      "rotation": 0,
-      "scalex": 0.25,
-      "scaley": 0.25,
-      "visible": 1,
-      "x": 112.19425964355469,
-      "y": -20.431636810302734,
-      "zorder": 25,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "Enemies/running_grunt/running_grunt.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "_Copy",
-      "canedit": true,
-      "objecttag": 10007,
-      "rotation": 0,
-      "scalex": 0.25,
-      "scaley": 0.25,
-      "visible": 1,
-      "x": 195.69941711425781,
-      "y": -22.493494033813477,
-      "zorder": 25,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "Enemies/running_grunt/running_grunt.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "_Copy",
-      "canedit": true,
-      "objecttag": 10008,
-      "rotation": 0,
-      "scalex": 0.25,
-      "scaley": 0.25,
-      "visible": 1,
-      "x": 238.99838256835938,
-      "y": -22.493494033813477,
-      "zorder": 25,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "Enemies/running_grunt/running_grunt.ExportJson",
+            "path": "DDUNBIN.ExportJson",
             "plistFile": "",
             "resourceType": 0
           },
@@ -163,8 +103,8 @@
     }
   ],
   "CanvasSize": {
-    "_height": 768,
-    "_width": 1024
+    "_height": 700,
+    "_width": 2500
   },
   "Triggers": null,
   "Version": "1.6.0.0",
@@ -173,7 +113,7 @@
       "__type": "ComSceneSurrogate:#EditorCommon.JsonModel.Component",
       "classname": "CCScene",
       "name": "CCScene",
-      "scenename": "EnemySetup1"
+      "scenename": "three_shieldenemy_in_a_row"
     },
     {
       "__type": "ComSimpleAudioSurrogate:#EditorCommon.JsonModel.Component",

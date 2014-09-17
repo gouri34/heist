@@ -189,7 +189,6 @@ void Enemy::update(float dt)
                 startAnimationTimer-=dt;
             }
             else {
-                armature->getAnimation()->playByIndex(0);
                 playedStartUpAnimation = true;
             }
         }

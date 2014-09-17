@@ -84,7 +84,7 @@ SceneData SceneConstructor::componentProcess(rapidjson::Value &object)
     
     if (type.compare("CCArmature") == 0) {
         filename = Split(filename, ".")[0];
-        if (filename.compare("running_grunt")==0 || filename.compare("agent")==0) {
+        if (filename.compare("running_grunt")==0 || filename.compare("Panzer")==0||filename.compare("DDUNBIN")==0||filename.compare("PAObin")==0) {
             data.type = 3;
         }
         else {
@@ -98,6 +98,7 @@ SceneData SceneConstructor::componentProcess(rapidjson::Value &object)
         Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(filename);
         data.lastPos = data.x + texture->getContentSize().width/2;
     }
+    printf("type:%d\n",data.type);
     
     data.sourceName = filename;
     

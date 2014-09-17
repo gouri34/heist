@@ -38,11 +38,11 @@ public:
     virtual bool init(std::string fileName,cocos2d::Point pos, float scalex, float scaley);
     ~CommonObject();
     
-    void collisionProcess(Monster* monster);
+    virtual void collisionProcess(Monster* monster);
     void destroy();
     
     
-    void update(Point pos, float dt);
+    virtual void update(Point pos, float dt);
     
 };
 

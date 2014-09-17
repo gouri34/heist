@@ -124,6 +124,7 @@ bool CommonObject::init(std::string fileName,cocos2d::Point pos, float scalex, f
 void CommonObject::collisionProcess(Monster* monster)
 {
     destroy();
+
 }
 
 

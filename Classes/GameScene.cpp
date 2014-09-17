@@ -44,12 +44,19 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("glassWindow.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("agent.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("running_grunt.ExportJson");
-    ArmatureDataManager::getInstance()->addArmatureFileInfo("GUAIWUvvvvvvvvvvvvvvv.ExportJson");
-    
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("FlammerMon.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Panzer.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("PAObin.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("DDUNBIN.ExportJson");
+
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("GuardTower.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Mine.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Meteo.ExportJson");
+
     
     //physics setup
     b2Vec2 gravity;
-	gravity.Set(0.0f, -40.0f);
+	gravity.Set(0.0f, -70.0f);
 	world = new b2World(gravity);
 	world->SetAutoClearForces(true);
 	// Do we want to let bodies sleep?
@@ -62,6 +69,8 @@ bool GameScene::init()
     //load character
     monster = Monster::create(this, world, Point(50, visibleSize.height/2));
     monster->creatfootBody();
+    
+    a->GetInstance()->setMonsterData(monster);
     
     MapGenerator::GetInstance()->cleanup();
     MapGenerator::GetInstance()->init(this, world);

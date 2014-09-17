@@ -57,6 +57,12 @@ public:
     void setB2bodyPartPosition();
     float setBodySprites();
     
+    bool isDashing();
+    
+    //item related
+    void goSprint(float timer);
+    bool inSprint;
+    
 private:
     Layer *gameScene;
     b2World *gameWorld;
@@ -77,6 +83,16 @@ private:
     bool inJump;
     void onGroundDetector();
     
+    float targetSpeed;
+    float prevSpeed;
+    
+    void collisionDetector();
+    
+    //item related
+    ParticleMeteor *pe;
+    float sprintTimer;
+    void itemUpdate(float dt);
+
 };
 
 #endif /* defined(__fusion__archer__) */

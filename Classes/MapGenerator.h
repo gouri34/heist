@@ -18,6 +18,7 @@
 
 #include "CommonObject.h"
 #include "Enemy.h"
+#include "Item.h"
 
 using namespace cocos2d;
 
@@ -47,8 +48,11 @@ private:
     std::vector<Terrain*> terrains;
     std::vector<CommonObject*>commonObjs;
     std::vector<Enemy*> enemies;
+    std::vector<Item*> items;
     
     std::map<string, SceneInfo> sceneInfos;
+    
+    std::string sceneName;
     
     //terrain changing logic
     bool changeToPlain(TerrainStatus previous);

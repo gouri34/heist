@@ -35,6 +35,7 @@ void NormalEnemy::setArmatureBody()
     //batch = SpriteBatchNode::createWithTexture(dump->getTexture());
     //gameScene->addChild(batch, armature->getZOrder());
     
+    armature->getAnimation()->playByIndex(0);
 
     
     // int z = bonearr->count();
@@ -348,11 +349,18 @@ void NormalEnemy::update(float dt)
 
 void NormalEnemy::collisionProcess(Monster *monster)
 {
+
     float randSeed = rand()%100;
     float randForce = 1.0+randSeed/100.0;
     float yForce = 2.4+randSeed/100.0;
     
-    die(b2Vec2(randForce, yForce));
+    if(monster->isDashing()==false)
+    {
+        die(b2Vec2(randForce, yForce));
+    }
+    else
+        die(b2Vec2(2*randForce, 2*yForce));
+
 }
 
 
