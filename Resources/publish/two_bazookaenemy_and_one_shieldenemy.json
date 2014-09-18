@@ -23,7 +23,7 @@
       "visible": 1,
       "x": 125.43767547607422,
       "y": -20.431636810302734,
-      "zorder": 1,
+      "zorder": 30,
       "gameobjects": [],
       "components": [
         {
@@ -53,7 +53,7 @@
       "visible": 1,
       "x": 1432.498291015625,
       "y": -20.431636810302734,
-      "zorder": 1,
+      "zorder": 30,
       "gameobjects": [],
       "components": [
         {
@@ -81,9 +81,9 @@
       "scalex": 0.3,
       "scaley": 0.3,
       "visible": 1,
-      "x": 2800.78662109375,
+      "x": 3602.78662109375,
       "y": -20.431636810302734,
-      "zorder": 1,
+      "zorder": 30,
       "gameobjects": [],
       "components": [
         {
@@ -92,7 +92,7 @@
           "name": "CCArmature",
           "file": null,
           "fileData": {
-            "path": "PAObin.ExportJson",
+            "path": "DDUNBIN.ExportJson",
             "plistFile": "",
             "resourceType": 0
           },
@@ -104,7 +104,7 @@
   ],
   "CanvasSize": {
     "_height": 500,
-    "_width": 3000
+    "_width": 4000
   },
   "Triggers": null,
   "Version": "1.6.0.0",
@@ -113,7 +113,7 @@
       "__type": "ComSceneSurrogate:#EditorCommon.JsonModel.Component",
       "classname": "CCScene",
       "name": "CCScene",
-      "scenename": "two_bazookaenemy_in_a_row"
+      "scenename": "two_bazookaenemy_and_one_shieldenemy"
     },
     {
       "__type": "ComSimpleAudioSurrogate:#EditorCommon.JsonModel.Component",

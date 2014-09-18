@@ -144,7 +144,7 @@ void CommonObject::destroy()
         float torque = ((float)(50.0-rand()%100)/320000.0)*140000;
         
         
-        b->ApplyLinearImpulse(b2Vec2(xforce, yforce), b->GetWorldCenter(), true);
+        b->ApplyLinearImpulse(b2Vec2(3*xforce, 4*yforce), b->GetWorldCenter(), true);
         b->ApplyAngularImpulse(torque, true);
     }
 }

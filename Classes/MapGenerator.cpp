@@ -26,6 +26,7 @@
 #include "GuardTower.h"
 #include "ShieldEnemy.h"
 #include "LandMine.h"
+#include "StockPiles.h"
 
 static MapGenerator *m_MapGenerator = nullptr;
 
@@ -65,8 +66,7 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
         sceneInfos["three_panzer_in_a_row"] = SceneConstructor::ConstructScene("three_panzer_in_a_row.json");
         sceneInfos["one_shieldenemy_on_one_guardtower"] = SceneConstructor::ConstructScene("one_shieldenemy_on_one_guardtower.json");
         sceneInfos["three_shieldenemy_in_a_row"] = SceneConstructor::ConstructScene("three_shieldenemy_in_a_row.json");
-        sceneInfos["two_bazookaenemy_in_a_row"] = SceneConstructor::ConstructScene("two_bazookaenemy_in_a_row.json");
-
+        sceneInfos["two_bazookaenemy_and_one_shieldenemy"] = SceneConstructor::ConstructScene("two_bazookaenemy_and_one_shieldenemy.json");
 
     }
 
@@ -98,6 +98,9 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
     
     Item *it = Item::create(gameLayer, gameWorld, Point(1400,200));
     items.push_back(it);
+    
+    StockPiles *sp = StockPiles::create("Sabaodui", Point(950,120), 0.4, 0.4);
+    commonObjs.push_back(sp);
 }
 
 
@@ -144,7 +147,7 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
     }
     else if (data.type == 2) {
         Point pos_ = Point(data.x+pos.x, data.y+pos.y);
-        if (sceneName.find("guardtower")!=string::npos) {
+        if (data.sourceName.find("guardtower")!=string::npos) {
             GuardTower *d = GuardTower::create("GuardTower", pos_, data.scalex, data.scaley);
             node = (Node*)d->theBody;
             commonObjs.push_back(d);
@@ -157,18 +160,18 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
     }
     else if (data.type == 3) {
         Point pos_ = Point(data.x+pos.x, data.y+pos.y);
-        if (sceneName.find("panzer")!=string::npos) {
+        if (data.sourceName.find("Panzer")!=string::npos) {
             Panzer* p = Panzer::create("Panzer", pos_, 1, 1);
             node = (Node*)p->armature;
             enemies.push_back(p);
 
         }
-        if(sceneName.find("shieldenemy")!=string::npos){
+        if(data.sourceName.find("DDUNBIN")!=string::npos){
             ShieldEnemy *se = ShieldEnemy::create(data.sourceName.c_str(),pos_,data.scalex, data.scaley);
             node = (Node*)se->armature;
             enemies.push_back(se);
         }
-        if(sceneName.find("bazookaenemy")!=string::npos){
+        if(data.sourceName.find("PAObin")!=string::npos){
             BazookaEnemy *be = BazookaEnemy::create(data.sourceName.c_str(),pos_,data.scalex, data.scaley);
             node = (Node*)be->armature;
             enemies.push_back(be);

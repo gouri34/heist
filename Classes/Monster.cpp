@@ -11,6 +11,8 @@
 #include "Enemy.h"
 #include "CommonObject.h"
 
+#include "UniversalAttributes.h"
+
 #define CHARGETIME 1.8
 #define CONTROLLENGHT 200
 #define LENGTH_POWER_RATIO 5.4
@@ -47,7 +49,7 @@ bool Monster::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     dead = false;
     actionStatus = jump;
     inJump = false;
-    
+    dashCountDown = 1.0;
     targetSpeed = 18.0;
     prevSpeed = targetSpeed;
     
@@ -63,8 +65,6 @@ bool Monster::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     theBody->getAnimation()->playWithIndex(0);
     
     setArmatureBody();
-    
-    
     
     return true;
 }
@@ -250,23 +250,30 @@ void Monster::action()
             theBody->getAnimation()->playWithIndex(1);
             inJump = true;
             jumpTimer = 0;
+
         }
     }
-    else if (actionStatus == dash){
+    else if (actionStatus == dash&&UniversalAttributes::GetInstance()->pt->getPercentage()==100){
         if (!inDash) {
             inDash = true;
-            dashTimer = 0.17;
+            dashTimer = 0.24;
             prevSpeed = targetSpeed;
             targetSpeed = targetSpeed+40;
             theBody->getAnimation()->playWithIndex(2);
             
             theBody->setColor(Color3B(255, 120,120));
-
+            UniversalAttributes::GetInstance()->pt->setPercentage(0);
+            barFull=false;
         }
     }
    
 }
 
+void Monster::dashProgressBarHandler()
+{
+        ProgressFromTo *to2 = ProgressFromTo::create(dashCountDown, UniversalAttributes::GetInstance()->pt->getPercentage(), 100);
+        UniversalAttributes::GetInstance()->pt->runAction(to2);
+}
 
 
 //////////////////////////////ATTACK RELATED///////////////////////////
@@ -447,8 +454,22 @@ void Monster::update(float dt)
                 inDash = false;
                 targetSpeed = prevSpeed;
                 theBody->getAnimation()->playWithIndex(0);
+                dashProgressBarHandler();
             }
         }
+        
+        if (barFull==false) {
+            if (UniversalAttributes::GetInstance()->pt->getPercentage()==100) {
+                Sprite *tmp = (Sprite*)UniversalAttributes::GetInstance()->pt->getParent();
+                //set action
+                ScaleTo *sb1 = ScaleTo::create(0.1, 0.4);
+                ScaleTo *sb2 = ScaleTo::create(0.1, 0.3);
+                sq = Sequence::create(sb1,sb2,sb1,sb2 ,NULL);
+                tmp->runAction(sq);
+                barFull=true;
+            }
+        }
+
         //item update
         itemUpdate(dt);
         
@@ -492,7 +513,6 @@ void Monster::collisionDetector()
             else{
                 //shit
             }
-            
         }
     }
 }
@@ -616,7 +636,7 @@ void Monster::goSprint(float timer)
         theBody->getAnimation()->setSpeedScale(4.0);
         pe = ParticleMeteor::create();
         pe->setGravity(Point(-200,0));
-        pe->setStartRadius(400);
+        pe->setStartRadius(550);
         pe->setTexture(Director::getInstance()->getTextureCache()->addImage("meteor.png"));
         pe->setPosition(theBody->getPosition());
         gameScene->addChild(pe,30);

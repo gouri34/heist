@@ -23,6 +23,7 @@ public:
     
     NodeGrid *menuGrid;
     Monster *monster;
+    ProgressTimer *pt;
     
     static UniversalAttributes* GetInstance(); //acquire instance
     
@@ -31,6 +32,8 @@ public:
     void setScreenRightEdge(Point p);
     
     void setMonsterData(Monster *mon);
+    
+    //void storeMenuScenePointer(MenuScene *ms_);
     
 private:
     UniversalAttributes();

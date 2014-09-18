@@ -52,6 +52,8 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("GuardTower.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Mine.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Meteo.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("shiguan.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Sabaodui.ExportJson");
 
     
     //physics setup

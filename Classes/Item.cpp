@@ -35,7 +35,7 @@ bool Item::init(Layer* gameLayer, b2World *gameWorld, Point pos){
     armature->setPosition(pos);
     armature->setAnchorPoint(Point(0.5,0.5));
     armature->setVisible(true);
-    armature->setScale(0.4);
+    armature->setScale(0.2);
     gameLayer_->addChild(armature,30);
     armature->getAnimation()->playWithIndex(0);
     

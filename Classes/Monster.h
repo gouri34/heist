@@ -10,7 +10,7 @@
 #define __fusion__archer__
 
 #include "Character.h"
-
+//#include "UniversalAttributes.h"
 
 #define  PTM_RATIO 32.0
 
@@ -20,6 +20,7 @@ typedef  enum {
     dash, jump,run
 } ActionStatus;
 
+class UniversalAttributes;
 
 class Monster:public Character{
     
@@ -69,12 +70,16 @@ private:
     
     ActionStatus actionStatus;
     
+    //dash related
     bool inDash;
     float dashTimer;
+    float dashCountDown;        //Note: This is the parameter that controll the cool down of the monster dash
+    void dashProgressBarHandler();
     
     bool inAttack;
     float attackTimer;
     
+    //jump related
     float jumpTimer;
     
     int actionState;
@@ -92,7 +97,9 @@ private:
     ParticleMeteor *pe;
     float sprintTimer;
     void itemUpdate(float dt);
-
+    
+    Sequence *sq;
+    bool barFull = true;
 };
 
 #endif /* defined(__fusion__archer__) */

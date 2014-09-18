@@ -157,6 +157,19 @@ void BazookaEnemy::createRocketShell()
     rocketShellBody_->SetUserData(&rocketShellSprite);
     isFiring = true;
     
+    //add rocket flame effect
+    pf = ParticleMeteor::create();
+    pf->setStartRadius(25);
+    pf->setEndRadius(10);
+    pf->setStartSize(20);
+    pf->setEndSize(7);
+    pf->setPosition(Point(rocketShellSprite->getPositionX()+(rocketShellSprite->getScale()*rocketShellSprite->getContentSize().width/2),rocketShellSprite->getPositionY()));
+    pf->setGravity(Point(4,0));
+    pf->setDuration(0.2);
+    pf->setPositionType(kCCPositionTypeGrouped);
+    pf->setAutoRemoveOnFinish(true);
+    gameScene->addChild(pf,30);
+    
 }
 
 void BazookaEnemy::shellCollisionDetector()
@@ -213,7 +226,7 @@ void BazookaEnemy::shellCollisionDetector()
 void BazookaEnemy::explod()
 {
     //add explosion effect
-    
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explosfx.wav");
     explo = ParticleSun::createWithTotalParticles(100);
     explo->setAutoRemoveOnFinish(true);
     explo->setStartSize(100.0f);
@@ -257,6 +270,9 @@ void BazookaEnemy::update(float dt)
         if(isFiring==true&&isExploding==false)
         {
             rocketShellBody_->SetLinearVelocity(b2Vec2(shellVelo,0));
+            
+            pf->setPosition(Point(rocketShellSprite->getPositionX()+(rocketShellSprite->getScale()*rocketShellSprite->getContentSize().width/2),rocketShellSprite->getPositionY()));
+
             shellCollisionDetector();
             rocketShellSprite->setPosition(rocketShellBody_->GetPosition().x*PTM_RATIO,rocketShellBody_->GetPosition().y*PTM_RATIO);
             if (rocketShellSprite->getPositionX()>a->GetInstance()->monster->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width

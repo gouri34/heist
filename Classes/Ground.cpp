@@ -21,6 +21,9 @@
 #include "Ground.h"
 #include "MapGenerator.h"
 
+#include "StockPiles.h"
+#include "BazookaEnemy.h"
+
 Ground* Ground::create(Point pos, double _lastTexCoordX)
 {
     Ground *a = new Ground();
@@ -155,11 +158,15 @@ void Ground::terrainSceneArrangement()
     if (MapGenerator::GetInstance()->enemyTimer <= 0&&(offScreenPoint.x>=lastObjectX)) {
         MapGenerator::GetInstance()->enemyTimer = 1.0;
         int patternGap = 200;
-        int randNum = rand()%5;
+        int randNum = rand()%7;
         if (randNum==1) {
-            string arrName = "enemySetup1";
-            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
-            int lastX = offScreenPoint.x+length+patternGap;
+            // generate some stockpiles
+            int randN = rand()%3;
+            if (randN==1)
+                StockPiles *s = StockPiles::create("shiguan", Point(offScreenPoint.x, offScreenPoint.y), 0.5, 0.5);
+            else
+                StockPiles *s = StockPiles::create("Sabaodui", Point(offScreenPoint.x, offScreenPoint.y), 0.4, 0.4);
+            int lastX = offScreenPoint.x+patternGap;
             if (lastX > backgroundSetupPos.x) {
                 backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
             }
@@ -196,15 +203,27 @@ void Ground::terrainSceneArrangement()
             lastObjectX = lastX;
 
         }
+        else if(randNum==5){
+            string arrName = "two_bazookaenemy_and_one_shieldenemy";
+            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+50));
+            int lastX = offScreenPoint.x+length+patternGap;
+            if (lastX > backgroundSetupPos.x) {
+                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+            }
+            lastObjectX = lastX;
+        }
 
-//        else if (randNum==5){
-//            string arrName = "two_bazookaenemy_in_a_row";
-//            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
-//            int lastX = offScreenPoint.x+length;
-//            if (lastX > backgroundSetupPos.x) {
-//                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
-//            }
-//        }
+        else{
+            string arrName = "enemySetup1";
+            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
+            int lastX = offScreenPoint.x+length+patternGap;
+            if (lastX > backgroundSetupPos.x) {
+                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+            }
+            lastObjectX = lastX;
+
+        }
+
 
     }
 

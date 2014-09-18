@@ -46,6 +46,8 @@ public:
 private:
     GameScene* gScene;
     int bearMovement;
+    ProgressTimer *left;
+    void createPerkProgressBar();
 };
 
 #endif /* defined(__Bear__MenuScene__) */

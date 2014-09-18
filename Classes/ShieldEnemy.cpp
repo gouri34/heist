@@ -151,7 +151,9 @@ void ShieldEnemy::update(float dt)
         updateArmatureBody();
         armature->setPosition(Point(footBody->GetPosition().x*
                                     PTM_RATIO, footBody->GetPosition().y*PTM_RATIO+10));
-
+        if (shieldIsDestoryed==false) {
+            shield->SetTransform(b2Vec2((armature->getPositionX()-(armature->getScale()*armature->getContentSize().width*0.5))/PTM_RATIO,armature->getPositionY()/PTM_RATIO), 0);
+        }
         
         if(isPlayingAnimation==false&&(armature->getPositionX()<=a->GetInstance()->monster->theBody
                                        ->getPositionX()+Director::getInstance()->getVisibleSize().width*0.6))

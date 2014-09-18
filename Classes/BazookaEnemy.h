@@ -31,6 +31,8 @@ private:
     
     UniversalAttributes *a;
     
+    ParticleMeteor *pf;
+    
 public:
     static BazookaEnemy* create(const char *name, Point pos, float scalex, float scaley);
     virtual ~BazookaEnemy();

@@ -35,6 +35,8 @@ void UniversalAttributes::setMonsterData(Monster *mon)
     monster = mon;
 }
 
+
+
 UniversalAttributes::~UniversalAttributes()
 {
     //delete instance

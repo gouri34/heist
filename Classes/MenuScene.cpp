@@ -98,10 +98,12 @@ bool MenuScene::init()
     auto menu = Menu::create(reloatItem, BearDIEButton,NULL);
     menu->setPosition(Point::ZERO);
     this->addChild(menu, 1);
+    createPerkProgressBar();
     
     //add game layer
     gScene = GameScene::create();
     this->addChild(gScene);
+    //UniversalAttributes::GetInstance()->storeMenuScenePointer(this);
     
     //update
     this->scheduleUpdate();
@@ -113,6 +115,7 @@ void MenuScene::update(float dt)
 {
     //update gameloop
     gScene->update(dt);
+    
 }
 
 
@@ -207,6 +210,26 @@ void MenuScene::touchesEnded(Touch* touch, Event* event)
     else {
         attacReleasekCallback();
     }
+}
+
+void MenuScene::createPerkProgressBar()
+{
+    left = ProgressTimer::create(Sprite::create("progress.png"));
+    left->setType(kCCProgressTimerTypeBar);
+    left->setMidpoint(Point(0,0));
+    left->setScaleX(1.857);
+    left->setScaleY(1.1);
+    left->setBarChangeRate(Point(1,0));
+    left->setPosition(Point(0,1));
+    left->setAnchorPoint(Point(0,-0.4));
+    left->setPercentage(100);
+    
+    auto *leftBg = Sprite::create("progressBG.png");
+    leftBg->addChild(left);
+    this->addChild(leftBg,50);
+    leftBg->setScale(0.3);
+    leftBg->setPosition(Point(Director::getInstance()->getVisibleSize().width*0.15, Director::getInstance()->getVisibleSize().height*0.9));
+    UniversalAttributes::GetInstance()->pt = left;
 }
 
 

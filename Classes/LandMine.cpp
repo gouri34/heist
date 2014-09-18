@@ -116,7 +116,8 @@ void LandMine::explosionAction()
 {
     //set armatuer invisible
     armature->setVisible(false);
-    
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explosfx.wav");
+
     //add explosion effect
     explo = ParticleSun::createWithTotalParticles(100);
     explo->setAutoRemoveOnFinish(true);

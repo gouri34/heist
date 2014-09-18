@@ -27,9 +27,9 @@ GuardTower::~GuardTower()
 void GuardTower::collisionProcess(Monster *monster)
 {
     //CommonObject::collisionProcess(monster);
-    if (monster->isDashing()==true) {
+    //if (monster->isDashing()==true) {
         destroy();
         
-    }
+    //}
 }
 
