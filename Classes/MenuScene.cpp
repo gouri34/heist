@@ -7,9 +7,13 @@
 //
 
 #include "MenuScene.h"
-
+#include "cocos-ext.h"
+#include "CocosGUI.h"
+#include "cocostudio/CocoStudio.h"
 USING_NS_CC;
 
+using namespace ui;
+using namespace cocostudio;
 
 Scene* MenuScene::createScene()
 {
@@ -105,8 +109,10 @@ bool MenuScene::init()
     this->addChild(gScene);
     //UniversalAttributes::GetInstance()->storeMenuScenePointer(this);
     
+    
     //update
     this->scheduleUpdate();
+    
     
     return true;
 }
@@ -115,7 +121,7 @@ void MenuScene::update(float dt)
 {
     //update gameloop
     gScene->update(dt);
-    
+    healthMonitor();
 }
 
 
@@ -227,11 +233,51 @@ void MenuScene::createPerkProgressBar()
     auto *leftBg = Sprite::create("progressBG.png");
     leftBg->addChild(left);
     this->addChild(leftBg,50);
-    leftBg->setScale(0.3);
-    leftBg->setPosition(Point(Director::getInstance()->getVisibleSize().width*0.15, Director::getInstance()->getVisibleSize().height*0.9));
+    leftBg->setScale(0.2);
+    leftBg->setPosition(Point(Director::getInstance()->getVisibleSize().width*0.12, Director::getInstance()->getVisibleSize().height*0.8));
     UniversalAttributes::GetInstance()->pt = left;
+    
+    //create header UI
+    auto headSprite = Sprite::create("tou.png");
+    headSprite->setScale(0.44);
+    headSprite->setAnchorPoint(Point(0,1));
+    headSprite->setPosition(Point(Director::getInstance()->getVisibleSize().width*0.02, Director::getInstance()->getVisibleSize().height*0.95));
+    this->addChild(headSprite,50);
+    
+    //give 4 lives
+    Point initHP = Point(Director::getInstance()->getVisibleSize().width*0.1, Director::getInstance()->getVisibleSize().height*0.9);
+    healthCount = 4;
+    UniversalAttributes::GetInstance()->healthCount = 4;
+    for (int i=0; i<4; i++) {
+        Sprite *health = Sprite::create("heart.jpg");
+        health->setAnchorPoint(Point(0,1));
+        health->setScale(0.42);
+        health->setPosition(initHP);
+        this->addChild(health,50);
+        initHP = Point(initHP.x+health->getScale()*health->getContentSize().width,initHP.y);
+        healths.push_back(health);
+    }
+    
 }
 
+void MenuScene::healthMonitor()
+{
+    if (healthCount>UniversalAttributes::GetInstance()->healthCount) {
+        if(UniversalAttributes::GetInstance()->healthCount>=0)
+        {
+            healths[healthCount-1]->setVisible(false);
+            healthCount = UniversalAttributes::GetInstance()->healthCount;
+        }
+        else{
+            //die maybe?
+        }
+    }
+    else if (healthCount<UniversalAttributes::GetInstance()->healthCount){
+        healths[healthCount]->setVisible(true);
+        healthCount = UniversalAttributes::GetInstance()->healthCount;
+
+    }
+}
 
 
 void MenuScene::cleanup()

@@ -16,14 +16,14 @@
       "classname": "CCNode",
       "name": null,
       "canedit": true,
-      "objecttag": 10003,
+      "objecttag": 10006,
       "rotation": 0,
-      "scalex": 0.3,
-      "scaley": 0.3,
+      "scalex": 0.4,
+      "scaley": 0.4,
       "visible": 1,
-      "x": 125.43767547607422,
-      "y": -20.431636810302734,
-      "zorder": 30,
+      "x": 225.16136169433594,
+      "y": -54.083133697509766,
+      "zorder": 1,
       "gameobjects": [],
       "components": [
         {
@@ -32,7 +32,37 @@
           "name": "CCArmature",
           "file": null,
           "fileData": {
-            "path": "PAObin.ExportJson",
+            "path": "shiguan.ExportJson",
+            "plistFile": "",
+            "resourceType": 0
+          },
+          "isShowColliderRect": false,
+          "selectedactionname": "Animation3"
+        }
+      ]
+    },
+    {
+      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
+      "classname": "CCNode",
+      "name": null,
+      "canedit": true,
+      "objecttag": 10007,
+      "rotation": 0,
+      "scalex": 1,
+      "scaley": 0.8,
+      "visible": 1,
+      "x": 394.51620483398438,
+      "y": 70.083133697509766,
+      "zorder": 1,
+      "gameobjects": [],
+      "components": [
+        {
+          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCArmature",
+          "name": "CCArmature",
+          "file": null,
+          "fileData": {
+            "path": "GuardTower.ExportJson",
             "plistFile": "",
             "resourceType": 0
           },
@@ -46,13 +76,13 @@
       "classname": "CCNode",
       "name": null,
       "canedit": true,
-      "objecttag": 10004,
+      "objecttag": 10008,
       "rotation": 0,
       "scalex": 0.3,
       "scaley": 0.3,
       "visible": 1,
-      "x": 1432.498291015625,
-      "y": -20.431636810302734,
+      "x": 397.74197387695312,
+      "y": 80.35493469238281,
       "zorder": 30,
       "gameobjects": [],
       "components": [
@@ -63,36 +93,6 @@
           "file": null,
           "fileData": {
             "path": "PAObin.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": null,
-      "canedit": true,
-      "objecttag": 10005,
-      "rotation": 0,
-      "scalex": 0.3,
-      "scaley": 0.3,
-      "visible": 1,
-      "x": 2072.78662109375,
-      "y": -20.431636810302734,
-      "zorder": 30,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "DDUNBIN.ExportJson",
             "plistFile": "",
             "resourceType": 0
           },
@@ -103,8 +103,8 @@
     }
   ],
   "CanvasSize": {
-    "_height": 500,
-    "_width": 2500
+    "_height": 640,
+    "_width": 960
   },
   "Triggers": null,
   "Version": "1.6.0.0",
@@ -113,7 +113,7 @@
       "__type": "ComSceneSurrogate:#EditorCommon.JsonModel.Component",
       "classname": "CCScene",
       "name": "CCScene",
-      "scenename": "two_bazookaenemy_and_one_shieldenemy"
+      "scenename": "one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it"
     },
     {
       "__type": "ComSimpleAudioSurrogate:#EditorCommon.JsonModel.Component",

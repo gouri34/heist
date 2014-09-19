@@ -44,7 +44,7 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("glassWindow.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("agent.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("running_grunt.ExportJson");
-    ArmatureDataManager::getInstance()->addArmatureFileInfo("FlammerMon.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("FlammerMonster.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Panzer.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("PAObin.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("DDUNBIN.ExportJson");

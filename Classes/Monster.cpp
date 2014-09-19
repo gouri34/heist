@@ -19,12 +19,12 @@
 #define MINIMUMPOWER 0
 
 #define  HEIGHTDIFFX_ 0
-#define  HEIGHTDIFFY_ 17.0
+#define  HEIGHTDIFFY_ 30.0
 
 #define TWEEN_EASING_MAX 10000
 
 /////////
-#define bScale 0.4
+#define bScale 0.45
 //#define bScale 0.11
 
 
@@ -49,12 +49,14 @@ bool Monster::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     dead = false;
     actionStatus = jump;
     inJump = false;
+    inDoubleJump = false;
     dashCountDown = 1.0;
     targetSpeed = 18.0;
     prevSpeed = targetSpeed;
+    sq = NULL;
     
     //load the archer sprite below.
-    theBody = Armature::create("FlammerMon");
+    theBody = Armature::create("FlammerMonster");
     theBody->setPosition(Point(pos.x, pos.y));
     theBody->setAnchorPoint(Point(0.5,0.5));
     theBody->setScaleX(bScale);
@@ -245,9 +247,15 @@ void Monster::changeActionStatus(ActionStatus status)
 void Monster::action()
 {
     if (actionStatus == jump) {
+        if (inJump==true&&inDoubleJump==false) {
+            footBody->ApplyLinearImpulse(b2Vec2(0, 10*1.5), footBody->GetWorldCenter(), true);
+            theBody->getAnimation()->playWithIndex(1);
+            inDoubleJump = true;
+            jumpTimer = 0;
+        }
         if (jumpTimer > 0.8) {
             footBody->ApplyLinearImpulse(b2Vec2(0, 10*3), footBody->GetWorldCenter(), true);
-            theBody->getAnimation()->playWithIndex(1);
+            theBody->getAnimation()->playWithIndex(2);
             inJump = true;
             jumpTimer = 0;
 
@@ -259,9 +267,8 @@ void Monster::action()
             dashTimer = 0.24;
             prevSpeed = targetSpeed;
             targetSpeed = targetSpeed+40;
-            theBody->getAnimation()->playWithIndex(2);
+            theBody->getAnimation()->playWithIndex(3);
             
-            theBody->setColor(Color3B(255, 120,120));
             UniversalAttributes::GetInstance()->pt->setPercentage(0);
             barFull=false;
         }
@@ -462,8 +469,12 @@ void Monster::update(float dt)
             if (UniversalAttributes::GetInstance()->pt->getPercentage()==100) {
                 Sprite *tmp = (Sprite*)UniversalAttributes::GetInstance()->pt->getParent();
                 //set action
-                ScaleTo *sb1 = ScaleTo::create(0.1, 0.4);
-                ScaleTo *sb2 = ScaleTo::create(0.1, 0.3);
+                if (sq!=NULL) {
+                    tmp->stopAllActions();
+                    sq = NULL;
+                }
+                ScaleTo *sb1 = ScaleTo::create(0.1, 0.35);
+                ScaleTo *sb2 = ScaleTo::create(0.1, 0.2);
                 sq = Sequence::create(sb1,sb2,sb1,sb2 ,NULL);
                 tmp->runAction(sq);
                 barFull=true;
@@ -472,6 +483,13 @@ void Monster::update(float dt)
 
         //item update
         itemUpdate(dt);
+        //health update
+        if (Unhurtable==true) {
+            hurtTimer -= dt;
+            if (hurtTimer<=0) {
+                Unhurtable = false;
+            }
+        }
         
         //collision update
         collisionDetector();
@@ -544,7 +562,7 @@ void Monster::setB2bodyPartPosition()
         string key = o.first;
         
         if (skin != NULL) {
-            if (skin->isphysicsObject&&(bone->getName()!="fshockwave")) {
+            if (skin->isphysicsObject&&(bone->getName()!="Gshockwave")) {
                 b2Body *body = skin->body;
                 body->SetActive(true);
                 Point partpos = skin->getParentRelatePosition();
@@ -613,6 +631,7 @@ void Monster::onGroundDetector()
             if (t == f_ground) {
                 theBody->getAnimation()->playWithIndex(0);
                 inJump = false;
+                inDoubleJump = false;
             }
 
         }
@@ -655,6 +674,20 @@ void Monster::itemUpdate(float dt)
             gameScene->removeChild(pe);
         }
         pe->setPosition(theBody->getPosition());
+
+    }
+}
+
+//------------hurt related function (health)---------
+void Monster::getHurt(){
+    if (Unhurtable==false&&hurtTimer<=0) {
+        hurtTimer = 1.0;
+        Unhurtable = true;
+        //theBody->setColor(Color3B(255, 120,120));
+        Blink *blink = Blink::create(0.5, 6);
+        theBody->runAction(blink);
+        if(UniversalAttributes::GetInstance()->healthCount>=1)
+            UniversalAttributes::GetInstance()->healthCount--;
 
     }
 }

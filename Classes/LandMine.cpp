@@ -103,9 +103,9 @@ void LandMine::update(float dt)
                 FixtureType t = f->GetFixtureType();
                 
                 //if collision with ground, apply impulse and start animation
-                if (t == f_monster_body)
+                if (t == f_monster_body&&a->GetInstance()->monster->isDashing()==false)
                 {
-                    printf("MONSTER GET HIT!\n");
+                    a->GetInstance()->monster->getHurt();
                 }
             }
         }
@@ -116,7 +116,7 @@ void LandMine::explosionAction()
 {
     //set armatuer invisible
     armature->setVisible(false);
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explosfx.wav");
+    //CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explosfx.wav");
 
     //add explosion effect
     explo = ParticleSun::createWithTotalParticles(100);

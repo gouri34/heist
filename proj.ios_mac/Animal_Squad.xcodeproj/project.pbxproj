@@ -42,9 +42,7 @@
 		5087E76917EB910900C73F5D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		5087E76A17EB910900C73F5D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		5087E76B17EB910900C73F5D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
-		5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087E77217EB970100C73F5D /* Default-568h@2x.png */; };
 		5087E77E17EB970100C73F5D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087E77317EB970100C73F5D /* Default.png */; };
-		5087E77F17EB970100C73F5D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087E77417EB970100C73F5D /* Default@2x.png */; };
 		5087E78017EB970100C73F5D /* Icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087E77517EB970100C73F5D /* Icon-114.png */; };
 		5087E78117EB970100C73F5D /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087E77617EB970100C73F5D /* Icon-120.png */; };
 		5087E78217EB970100C73F5D /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087E77717EB970100C73F5D /* Icon-144.png */; };
@@ -253,6 +251,16 @@
 		AF14DE0819CAB3D6002DA9F0 /* progress.png in Resources */ = {isa = PBXBuildFile; fileRef = AF14DE0619CAB3D5002DA9F0 /* progress.png */; };
 		AF14DE0919CAB3D6002DA9F0 /* progressBG.png in Resources */ = {isa = PBXBuildFile; fileRef = AF14DE0719CAB3D6002DA9F0 /* progressBG.png */; };
 		AF14DE0D19CB3074002DA9F0 /* two_bazookaenemy_and_one_shieldenemy.json in Resources */ = {isa = PBXBuildFile; fileRef = AF14DE0C19CB3074002DA9F0 /* two_bazookaenemy_and_one_shieldenemy.json */; };
+		AF14DE1319CB4615002DA9F0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF14DE1119CB4615002DA9F0 /* Default-568h@2x.png */; };
+		AF14DE1419CB4615002DA9F0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF14DE1219CB4615002DA9F0 /* Default@2x.png */; };
+		AF74586419CC1B6F005DBDA2 /* one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it.json in Resources */ = {isa = PBXBuildFile; fileRef = AF74586219CC1B6F005DBDA2 /* one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it.json */; };
+		AF74586519CC1B6F005DBDA2 /* three_mine_in_a_row.json in Resources */ = {isa = PBXBuildFile; fileRef = AF74586319CC1B6F005DBDA2 /* three_mine_in_a_row.json */; };
+		AF74586B19CC2085005DBDA2 /* FlammerMonster.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF74586819CC2085005DBDA2 /* FlammerMonster.ExportJson */; };
+		AF74586C19CC2085005DBDA2 /* FlammerMonster0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF74586919CC2085005DBDA2 /* FlammerMonster0.plist */; };
+		AF74586D19CC2085005DBDA2 /* FlammerMonster0.png in Resources */ = {isa = PBXBuildFile; fileRef = AF74586A19CC2085005DBDA2 /* FlammerMonster0.png */; };
+		AF74587219CC6BB5005DBDA2 /* DemoHead_UI.json in Resources */ = {isa = PBXBuildFile; fileRef = AF74586F19CC6BB5005DBDA2 /* DemoHead_UI.json */; };
+		AF74587319CC6BB5005DBDA2 /* heart.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF74587019CC6BB5005DBDA2 /* heart.jpg */; };
+		AF74587419CC6BB5005DBDA2 /* tou.png in Resources */ = {isa = PBXBuildFile; fileRef = AF74587119CC6BB5005DBDA2 /* tou.png */; };
 		AF7E7A9D19C8198200208CBA /* GuardTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF7E7A9B19C8198200208CBA /* GuardTower.cpp */; };
 		AF7E7AA219C81D4D00208CBA /* GuardTower.ExportJson in Resources */ = {isa = PBXBuildFile; fileRef = AF7E7A9F19C81D4D00208CBA /* GuardTower.ExportJson */; };
 		AF7E7AA319C81D4D00208CBA /* GuardTower0.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF7E7AA019C81D4D00208CBA /* GuardTower0.plist */; };
@@ -462,9 +470,7 @@
 		503AE11117EB99EE00D1A890 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		503AE11A17EB9C5A00D1A890 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		5087E76F17EB910900C73F5D /* Animal_Squad Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Animal_Squad Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5087E77217EB970100C73F5D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5087E77317EB970100C73F5D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		5087E77417EB970100C73F5D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5087E77517EB970100C73F5D /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-114.png"; sourceTree = "<group>"; };
 		5087E77617EB970100C73F5D /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		5087E77717EB970100C73F5D /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
@@ -613,6 +619,16 @@
 		AF14DE0619CAB3D5002DA9F0 /* progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress.png; sourceTree = "<group>"; };
 		AF14DE0719CAB3D6002DA9F0 /* progressBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressBG.png; sourceTree = "<group>"; };
 		AF14DE0C19CB3074002DA9F0 /* two_bazookaenemy_and_one_shieldenemy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = two_bazookaenemy_and_one_shieldenemy.json; sourceTree = "<group>"; };
+		AF14DE1119CB4615002DA9F0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AF14DE1219CB4615002DA9F0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		AF74586219CC1B6F005DBDA2 /* one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it.json; sourceTree = "<group>"; };
+		AF74586319CC1B6F005DBDA2 /* three_mine_in_a_row.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = three_mine_in_a_row.json; sourceTree = "<group>"; };
+		AF74586819CC2085005DBDA2 /* FlammerMonster.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlammerMonster.ExportJson; sourceTree = "<group>"; };
+		AF74586919CC2085005DBDA2 /* FlammerMonster0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlammerMonster0.plist; sourceTree = "<group>"; };
+		AF74586A19CC2085005DBDA2 /* FlammerMonster0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FlammerMonster0.png; sourceTree = "<group>"; };
+		AF74586F19CC6BB5005DBDA2 /* DemoHead_UI.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DemoHead_UI.json; sourceTree = "<group>"; };
+		AF74587019CC6BB5005DBDA2 /* heart.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = heart.jpg; sourceTree = "<group>"; };
+		AF74587119CC6BB5005DBDA2 /* tou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tou.png; sourceTree = "<group>"; };
 		AF7E7A9B19C8198200208CBA /* GuardTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GuardTower.cpp; path = ../Classes/GuardTower.cpp; sourceTree = "<group>"; };
 		AF7E7A9C19C8198200208CBA /* GuardTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuardTower.h; path = ../Classes/GuardTower.h; sourceTree = "<group>"; };
 		AF7E7A9F19C81D4D00208CBA /* GuardTower.ExportJson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GuardTower.ExportJson; sourceTree = "<group>"; };
@@ -828,9 +844,9 @@
 		5087E77117EB970100C73F5D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				5087E77217EB970100C73F5D /* Default-568h@2x.png */,
 				5087E77317EB970100C73F5D /* Default.png */,
-				5087E77417EB970100C73F5D /* Default@2x.png */,
+				AF14DE1119CB4615002DA9F0 /* Default-568h@2x.png */,
+				AF14DE1219CB4615002DA9F0 /* Default@2x.png */,
 				50EF62A017ECD613001EB2F8 /* Icon-29.png */,
 				50EF62A117ECD613001EB2F8 /* Icon-50.png */,
 				50EF629217ECD46A001EB2F8 /* Icon-40.png */,
@@ -884,6 +900,7 @@
 		7C0B39901964705100330A95 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				AF74586E19CC6AE0005DBDA2 /* headerUI */,
 				AF14DDFF19CAA772002DA9F0 /* sfx */,
 				AF14DDEB19CA8281002DA9F0 /* objects */,
 				AF9A7E7D19C9B6F300599E8D /* items */,
@@ -1114,6 +1131,8 @@
 				AFFAFD9719C7338D009D2EBD /* three_panzer_in_a_row.json */,
 				AFF5426D19C8A1B70042F010 /* one_shieldenemy_on_one_guardtower.json */,
 				AFF5426E19C8A1B70042F010 /* three_shieldenemy_in_a_row.json */,
+				AF74586219CC1B6F005DBDA2 /* one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it.json */,
+				AF74586319CC1B6F005DBDA2 /* three_mine_in_a_row.json */,
 				AF14DE0C19CB3074002DA9F0 /* two_bazookaenemy_and_one_shieldenemy.json */,
 				7CAAA9F019C422C000E322A7 /* EnemySetup1.json */,
 				7CAAA9F119C422C000E322A7 /* EnemySetup2.json */,
@@ -1208,6 +1227,16 @@
 			name = sfx;
 			sourceTree = "<group>";
 		};
+		AF74586E19CC6AE0005DBDA2 /* headerUI */ = {
+			isa = PBXGroup;
+			children = (
+				AF74586F19CC6BB5005DBDA2 /* DemoHead_UI.json */,
+				AF74587019CC6BB5005DBDA2 /* heart.jpg */,
+				AF74587119CC6BB5005DBDA2 /* tou.png */,
+			);
+			name = headerUI;
+			sourceTree = "<group>";
+		};
 		AF7E7A9819C7B66F00208CBA /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,6 +1299,9 @@
 		AFEBC686199F3EDC00E45F64 /* monster */ = {
 			isa = PBXGroup;
 			children = (
+				AF74586819CC2085005DBDA2 /* FlammerMonster.ExportJson */,
+				AF74586919CC2085005DBDA2 /* FlammerMonster0.plist */,
+				AF74586A19CC2085005DBDA2 /* FlammerMonster0.png */,
 				AFFAFD8319C710A6009D2EBD /* FlammerMon.ExportJson */,
 				AFFAFD8419C710A6009D2EBD /* FlammerMon0.plist */,
 				AFFAFD8519C710A6009D2EBD /* FlammerMon0.png */,
@@ -1492,10 +1524,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF74587419CC6BB5005DBDA2 /* tou.png in Resources */,
 				7CB03825198945D500DF4C28 /* b_wall0.plist in Resources */,
 				7C79DD571999105C00C4EDCD /* elevator.png in Resources */,
 				7CAB22C31991284900094539 /* testbuilding_wall.png in Resources */,
 				7CAA4AE519C2A27500FFD624 /* testhouse_lamp.ExportJson in Resources */,
+				AF74587219CC6BB5005DBDA2 /* DemoHead_UI.json in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				7CAA4AEB19C2A27500FFD624 /* testhouse_table.ExportJson in Resources */,
 				7CAA4AED19C2A27500FFD624 /* testhouse_table0.plist in Resources */,
@@ -1503,11 +1537,13 @@
 				7CAA4ADF19C2A27500FFD624 /* testhouse_chair.ExportJson in Resources */,
 				7CAA4AEF19C2A27500FFD624 /* testhouse_table0.png in Resources */,
 				7CAA4AD119C2A27500FFD624 /* ground_frontback2.json in Resources */,
+				AF74587319CC6BB5005DBDA2 /* heart.jpg in Resources */,
 				7CAA4AAF19C2A27500FFD624 /* test_ground_busstation.png in Resources */,
 				7CAA4ACD19C2A27500FFD624 /* ground_frontback1.json in Resources */,
 				7CB03827198945D500DF4C28 /* b_wall0.png in Resources */,
 				7C17C75B1966A3E2001A4CC0 /* glassWindow.ExportJson in Resources */,
 				AFF5427019C8A1B70042F010 /* one_shieldenemy_on_one_guardtower.json in Resources */,
+				AF74586419CC1B6F005DBDA2 /* one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it.json in Resources */,
 				7CACEE4D19C386EC00DC6C1F /* ground_surface.png in Resources */,
 				7CAA4B0519C2AD2B00FFD624 /* test_ground_bbb2.png in Resources */,
 				AFFAFDA219C74E6C009D2EBD /* PAObin0.png in Resources */,
@@ -1516,8 +1552,8 @@
 				7CAA4AE919C2A27500FFD624 /* testhouse_lamp0.png in Resources */,
 				AFFAFD9619C71D1A009D2EBD /* Panzer0.png in Resources */,
 				AF14DE0519CAA8A3002DA9F0 /* Jumpsfx.wav in Resources */,
+				AF74586519CC1B6F005DBDA2 /* three_mine_in_a_row.json in Resources */,
 				7CA6053919936CB700E82103 /* testbuilding_view.png in Resources */,
-				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				AF9A7E8719C9D1CF00599E8D /* meteor.png in Resources */,
 				AF14DDFB19CA850C002DA9F0 /* shiguan0.png in Resources */,
 				AFFAFD8719C710A6009D2EBD /* FlammerMon0.plist in Resources */,
@@ -1542,17 +1578,19 @@
 				7C0B39A31964707B00330A95 /* agent0.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				7C279FC619C0A37200A6D957 /* running_grunt.ExportJson in Resources */,
+				AF14DE1419CB4615002DA9F0 /* Default@2x.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				7C17C7541966A3CB001A4CC0 /* wall0.plist in Resources */,
 				7C17C7521966A3CB001A4CC0 /* wall.ExportJson in Resources */,
+				AF74586B19CC2085005DBDA2 /* FlammerMonster.ExportJson in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
+				AF14DE1319CB4615002DA9F0 /* Default-568h@2x.png in Resources */,
 				AFF5427119C8A1B70042F010 /* three_shieldenemy_in_a_row.json in Resources */,
 				7CACEE4419C376B000DC6C1F /* ground_terrain.png in Resources */,
 				7C279FE519C0A48600A6D957 /* test_bld_0011_back_wall.png in Resources */,
 				AFFAFDA019C74E6C009D2EBD /* PAObin.ExportJson in Resources */,
 				AFF5427D19C986E60042F010 /* Mine.ExportJson in Resources */,
 				AFFAFD9419C71D1A009D2EBD /* Panzer.ExportJson in Resources */,
-				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				AF9A7E8419C9B70C00599E8D /* Meteo0.png in Resources */,
 				7C279FE319C0A48600A6D957 /* test_bld_0003_house_ceiling_out.png in Resources */,
 				7CAA4AFB19C2AD2B00FFD624 /* test_ground_backb1.png in Resources */,
@@ -1561,6 +1599,7 @@
 				7C17C7561966A3CB001A4CC0 /* wall0.png in Resources */,
 				7CAA4ABD19C2A27500FFD624 /* test_ground_frontb1.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
+				AF74586C19CC2085005DBDA2 /* FlammerMonster0.plist in Resources */,
 				AF9A7E8219C9B70C00599E8D /* Meteo.ExportJson in Resources */,
 				7CAA4AE319C2A27500FFD624 /* testhouse_chair0.png in Resources */,
 				7C0B399F1964707B00330A95 /* agent.ExportJson in Resources */,
@@ -1598,6 +1637,7 @@
 				AF14DDF419CA83D6002DA9F0 /* Sabaodui0.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 				7C279FC819C0A37200A6D957 /* running_grunt0.plist in Resources */,
+				AF74586D19CC2085005DBDA2 /* FlammerMonster0.png in Resources */,
 				7CAAA9F319C422C000E322A7 /* EnemySetup1.json in Resources */,
 				AFF5426919C896270042F010 /* DDUNBIN0.png in Resources */,
 				7CAA4ABF19C2A27500FFD624 /* test_ground_frontb2.png in Resources */,

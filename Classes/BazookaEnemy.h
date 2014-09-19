@@ -26,6 +26,7 @@ private:
     bool isPlayingAnimation = false;
     bool isExploding = false;
     bool isBouncingBack = false;
+    bool shellDeleted = false;
     ParticleSun *explo;
     float shellVelo = -10.0;
     

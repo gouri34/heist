@@ -10,7 +10,6 @@
 #define __fusion__archer__
 
 #include "Character.h"
-//#include "UniversalAttributes.h"
 
 #define  PTM_RATIO 32.0
 
@@ -64,9 +63,16 @@ public:
     void goSprint(float timer);
     bool inSprint;
     
+    //damage related
+    bool Unhurtable = false;
+    float hurtTimer = 0;
+    void getHurt();
+
+    
 private:
     Layer *gameScene;
     b2World *gameWorld;
+    int monsterHealth;
     
     ActionStatus actionStatus;
     
@@ -86,6 +92,7 @@ private:
     bool inMovement;
     
     bool inJump;
+    bool inDoubleJump;
     void onGroundDetector();
     
     float targetSpeed;
@@ -100,6 +107,7 @@ private:
     
     Sequence *sq;
     bool barFull = true;
+    
 };
 
 #endif /* defined(__fusion__archer__) */

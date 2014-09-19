@@ -15,6 +15,7 @@
 
 using namespace extension;
 
+
 class MenuScene : public cocos2d::Layer
 {
 public:
@@ -42,12 +43,17 @@ public:
 
     
     void update(float dt);
+    
 
 private:
     GameScene* gScene;
     int bearMovement;
     ProgressTimer *left;
     void createPerkProgressBar();
+    void healthMonitor();
+    int healthCount;
+    std::vector<Sprite*>healths;
+
 };
 
 #endif /* defined(__Bear__MenuScene__) */

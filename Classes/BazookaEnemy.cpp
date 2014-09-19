@@ -185,7 +185,7 @@ void BazookaEnemy::shellCollisionDetector()
     for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
         b2Body* body = queryCallback.foundBodies[j];
         b2Fixture* f = body->GetFixtureList();
-        if (f) {
+        if (f&&shellDeleted==false) {
             FixtureType t = f->GetFixtureType();
             
             //if collision with player without dashing, deal damage to the player, if collision with player with dashing, bouncing back
@@ -194,6 +194,10 @@ void BazookaEnemy::shellCollisionDetector()
                 if (a->GetInstance()->monster->isDashing()==false) {
                     //monster get hurt
                     explod();
+                    gameWorld->DestroyBody(rocketShellBody_);
+                    rocketShellBody_ = NULL;
+                    shellDeleted = true;
+                    a->GetInstance()->monster->getHurt();
                     
                 }
                 // is dashing
@@ -216,7 +220,9 @@ void BazookaEnemy::shellCollisionDetector()
                 e->die(b2Vec2(2*randForce, 5*yForce));
                 rocketShellSprite->setVisible(false);
                 rocketShellBody_->SetActive(false);
-                
+                gameWorld->DestroyBody(rocketShellBody_);
+                rocketShellBody_ = NULL;
+                shellDeleted = true;
             }
         }
     }
@@ -226,7 +232,6 @@ void BazookaEnemy::shellCollisionDetector()
 void BazookaEnemy::explod()
 {
     //add explosion effect
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explosfx.wav");
     explo = ParticleSun::createWithTotalParticles(100);
     explo->setAutoRemoveOnFinish(true);
     explo->setStartSize(100.0f);
@@ -267,19 +272,21 @@ void BazookaEnemy::update(float dt)
             isPlayingAnimation = true;
             createRocketShell();
         }
-        if(isFiring==true&&isExploding==false)
+        if(isFiring==true&&isExploding==false&&shellDeleted==false)
         {
             rocketShellBody_->SetLinearVelocity(b2Vec2(shellVelo,0));
             
             pf->setPosition(Point(rocketShellSprite->getPositionX()+(rocketShellSprite->getScale()*rocketShellSprite->getContentSize().width/2),rocketShellSprite->getPositionY()));
 
-            shellCollisionDetector();
             rocketShellSprite->setPosition(rocketShellBody_->GetPosition().x*PTM_RATIO,rocketShellBody_->GetPosition().y*PTM_RATIO);
-            if (rocketShellSprite->getPositionX()>a->GetInstance()->monster->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width
-                ||a->GetInstance()->monster->theBody->getPositionX()-rocketShellSprite->getPositionX()>300) {
+            shellCollisionDetector();
+            if ((rocketShellSprite->getPositionX()>a->GetInstance()->monster->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width
+                ||a->GetInstance()->monster->theBody->getPositionX()-rocketShellSprite->getPositionX()>300)&&shellDeleted==false) {
                 isExploding = true;
-                rocketShellBody_->SetActive(false);
                 rocketShellSprite->setVisible(false);
+                gameWorld->DestroyBody(rocketShellBody_);
+                rocketShellBody_ = NULL;
+                shellDeleted = true;
             }
         }
     }
@@ -311,7 +318,7 @@ void BazookaEnemy::collisionProcess(Monster *monster)
         float randSeed = rand()%100;
         float randForce = 1.0+randSeed/100.0;
         float yForce = 2.4+randSeed/100.0;
-        rocketShellBody_->SetActive(false);
+        //rocketShellBody_->SetActive(false);
         rocketShellSprite->setVisible(false);
         die(b2Vec2(randForce, yForce));
     }
@@ -321,7 +328,7 @@ void BazookaEnemy::collisionProcess(Monster *monster)
         float randSeed = rand()%100;
         float randForce = 1.0+randSeed/100.0;
         float yForce = 2.4+randSeed/100.0;
-        rocketShellBody_->SetActive(false);
+        //rocketShellBody_->SetActive(false);
         rocketShellSprite->setVisible(false);
         die(b2Vec2(3*randForce, 2*yForce));
     }

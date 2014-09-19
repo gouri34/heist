@@ -225,6 +225,7 @@ void ShieldEnemy::spikeProcess(Monster *monster)
     {
         //monster get hurt
         printf("Monster get hurt!\n");
+        monster->getHurt();
     }
     else
     {

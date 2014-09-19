@@ -158,7 +158,7 @@ void Ground::terrainSceneArrangement()
     if (MapGenerator::GetInstance()->enemyTimer <= 0&&(offScreenPoint.x>=lastObjectX)) {
         MapGenerator::GetInstance()->enemyTimer = 1.0;
         int patternGap = 200;
-        int randNum = rand()%7;
+        int randNum = rand()%9;
         if (randNum==1) {
             // generate some stockpiles
             int randN = rand()%3;
@@ -207,6 +207,24 @@ void Ground::terrainSceneArrangement()
             string arrName = "two_bazookaenemy_and_one_shieldenemy";
             int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+50));
             int lastX = offScreenPoint.x+length+patternGap;
+            if (lastX > backgroundSetupPos.x) {
+                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+            }
+            lastObjectX = lastX;
+        }
+        else if (randNum==6){
+            string arrName = "one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it";
+            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+50));
+            int lastX = offScreenPoint.x+length+patternGap;
+            if (lastX > backgroundSetupPos.x) {
+                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
+            }
+            lastObjectX = lastX;
+        }
+        else if (randNum==7){
+            string arrName = "three_mine_in_a_row";
+            int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+50));
+            int lastX = offScreenPoint.x+length+patternGap-100;
             if (lastX > backgroundSetupPos.x) {
                 backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
             }

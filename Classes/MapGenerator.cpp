@@ -68,6 +68,10 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
         sceneInfos["three_shieldenemy_in_a_row"] = SceneConstructor::ConstructScene("three_shieldenemy_in_a_row.json");
         sceneInfos["two_bazookaenemy_and_one_shieldenemy"] = SceneConstructor::ConstructScene("two_bazookaenemy_and_one_shieldenemy.json");
 
+        sceneInfos["one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it"] = SceneConstructor::ConstructScene("one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it.json");
+
+        sceneInfos["three_mine_in_a_row"] = SceneConstructor::ConstructScene("three_mine_in_a_row.json");
+
     }
 
     
@@ -147,10 +151,15 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
     }
     else if (data.type == 2) {
         Point pos_ = Point(data.x+pos.x, data.y+pos.y);
-        if (data.sourceName.find("guardtower")!=string::npos) {
+        if (data.sourceName.find("GuardTower")!=string::npos) {
             GuardTower *d = GuardTower::create("GuardTower", pos_, data.scalex, data.scaley);
             node = (Node*)d->theBody;
             commonObjs.push_back(d);
+        }
+        else if (data.sourceName.find("shiguan")!=string::npos){
+            StockPiles *sp = StockPiles::create("shiguan", pos_, data.scalex, data.scaley);
+            node = (Node*)sp->theBody;
+            commonObjs.push_back(sp);
         }
         else{
             CommonObject *d = CommonObject::create(data.sourceName, pos_, data.scalex, data.scaley);
@@ -175,6 +184,11 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
             BazookaEnemy *be = BazookaEnemy::create(data.sourceName.c_str(),pos_,data.scalex, data.scaley);
             node = (Node*)be->armature;
             enemies.push_back(be);
+        }
+        if (data.sourceName.find("Mine")!=string::npos) {
+            LandMine *lm = LandMine::create(data.sourceName.c_str(),pos_,data.scalex, data.scaley);
+            node = (Node*)lm->armature;
+            enemies.push_back(lm);
         }
 
         
@@ -308,38 +322,54 @@ void MapGenerator::updateObjects(Point pos, float dt)
     
     std::vector<CommonObject*> usedObj;
     for (int i = 0; i < commonObjs.size(); i++) {
-        CommonObject* g = commonObjs.at(i);
-        g->update(pos, dt);
-        if (g->destroyed) {
-            usedObj.push_back(g);
+        try {
+            CommonObject* g = commonObjs.at(i);
+            g->update(pos, dt);
+            if (g->destroyed) {
+                usedObj.push_back(g);
+            }
+        } catch (std::out_of_range &exc) {
+            std::cerr << exc.what() << " Line:" << __LINE__ << " File:" << __FILE__ << endl;
         }
     }
     for (int i = 0; i < usedObj.size(); i++) {
-        CommonObject* g = usedObj.at(i);
-        commonObjs.erase(std::remove(commonObjs.begin(), commonObjs.end(), g), commonObjs.end());
-        delete g;
+        try {
+            CommonObject* g = usedObj.at(i);
+            commonObjs.erase(std::remove(commonObjs.begin(), commonObjs.end(), g), commonObjs.end());
+            delete g;
+        } catch (std::out_of_range &exc) {
+            std::cerr << exc.what() << " Line:" << __LINE__ << " File:" << __FILE__ << endl;
+        }
     }
-    
+
     std::vector<Enemy*> usedDummy;
     for (int i = 0; i < enemies.size(); i++) {
-        Enemy* e = enemies.at(i);
-        e->update(dt);
-        if ((pos.x - e->position.x) > 500 || (pos.y - e->position.y) > 400) {
-            usedDummy.push_back(e);
+        try {
+            Enemy* e = enemies.at(i);
+            e->update(dt);
+            if ((pos.x - e->position.x) > 500 || (pos.y - e->position.y) > 1000) {
+                usedDummy.push_back(e);
+            }
+        } catch (std::out_of_range &exc) {
+            std::cerr << exc.what() << " Line:" << __LINE__ << " File:" << __FILE__ << endl;
         }
     }
     for (int i = 0; i < usedDummy.size(); i++) {
-        Enemy* e = usedDummy.at(i);
-        enemies.erase(std::remove(enemies.begin(), enemies.end(), e), enemies.end());
-        delete e;
+        try {
+            Enemy* e = usedDummy.at(i);
+            enemies.erase(std::remove(enemies.begin(), enemies.end(), e), enemies.end());
+            delete e;
+        } catch (std::out_of_range &exc) {
+        std::cerr << exc.what() << " Line:" << __LINE__ << " File:" << __FILE__ << endl;
+        }
     }
-    
+
     std::vector<Item*>useditems;
     for (int i=0; i<items.size(); i++) {
         try {
             Item *item = items.at(i);
             item->update(dt);
-            if (pos.x-item->armature->getPositionX()>550 || (pos.y-item->armature->getPositionY())>600) {
+            if (pos.x-item->armature->getPositionX()>550 || (pos.y-item->armature->getPositionY())>1000) {
                 useditems.push_back(item);
             }
 
@@ -386,7 +416,7 @@ void MapGenerator::cleanup()
     enemies.clear();
     
     for (int i=0; i<items.size(); i++) {
-        Item* item = items.at(i);
+        Item* item = items[i];
         delete item;
     }
     items.clear();

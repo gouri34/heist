@@ -24,7 +24,9 @@ public:
     NodeGrid *menuGrid;
     Monster *monster;
     ProgressTimer *pt;
-    
+    //std::vector<Sprite*>healths;
+    int healthCount;
+
     static UniversalAttributes* GetInstance(); //acquire instance
     
     virtual ~UniversalAttributes();
