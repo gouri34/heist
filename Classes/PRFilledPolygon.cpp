@@ -219,8 +219,6 @@ void PRFilledPolygon::onDraw(const Mat4 &transform, bool transformUpdated)
         
     } else {
         
-
-        
         Vec2* newAreaTrianglePoints = new Vec2[areaTrianglePointCount];
         Vec2* newTextureCoordinates = new Vec2[areaTrianglePointCount];
         
@@ -241,6 +239,7 @@ void PRFilledPolygon::onDraw(const Mat4 &transform, bool transformUpdated)
             CC_SAFE_DELETE_ARRAY(newTextureCoordinates);
         }
     }
+    
     
     CC_INCREMENT_GL_DRAWS(1);
 

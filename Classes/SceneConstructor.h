@@ -25,7 +25,7 @@ typedef struct {
     float scaley;
     int rotation;
     
-    int type; // 1:sprite, 2:armature
+    int type; // 1:sprite with texture, 2:sprite with texture frame, 3:armature
     bool isPhysics;
     
     int lastPos;

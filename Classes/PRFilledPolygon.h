@@ -41,6 +41,9 @@ using namespace cocos2d;
 
 class PRFilledPolygon : public Node {
 private:
+    
+    bool drawOutLine;
+    
 	int areaTrianglePointCount;
     
 	Texture2D *texture;
@@ -56,6 +59,7 @@ private:
 public:
     
     PRFilledPolygon() {
+        drawOutLine = false;
         areaTrianglePointCount = 0;
         texture = NULL;
         areaTrianglePoints = NULL;

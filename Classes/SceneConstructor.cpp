@@ -25,7 +25,6 @@ SceneInfo SceneConstructor::ConstructScene(std::string fileName)
 
 void SceneConstructor::arrayProcess(rapidjson::Value &array, SceneInfo &info)
 {
-    
     if (array.IsArray()) {
         if (array.Size() >=1) {
             for (int i = 0; i < array.Size(); i++) {
@@ -69,7 +68,6 @@ SceneData SceneConstructor::componentProcess(rapidjson::Value &object)
     data.scaley = scaley;
     data.rotation = rotation;
     
-    
     rapidjson::Value & components = object["components"];
     if (components.Size() > 1) {
         data.isPhysics = true;
@@ -85,21 +83,32 @@ SceneData SceneConstructor::componentProcess(rapidjson::Value &object)
     if (type.compare("CCArmature") == 0) {
         filename = Split(filename, ".")[0];
         if (filename.compare("running_grunt")==0 || filename.compare("Panzer")==0||filename.compare("DDUNBIN")==0||filename.compare("PAObin")==0||filename.compare("Mine")==0) {
-            data.type = 3;
+            data.type = 4;
+            data.sourceName = filename;
         }
         else {
-            data.type = 2;
+            data.type = 3;
+            data.sourceName = filename;
         }
         data.lastPos = data.x;
     }
     else {
-        data.type = 1;
         
-        Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(filename);
-        data.lastPos = data.x + texture->getContentSize().width/2;
+        SpriteFrame *sf = SpriteFrameCache::getInstance()->getSpriteFrameByName(filenamePath);
+        if (sf) {
+            data.type = 2;
+            data.lastPos = data.x + sf->getRect().size.width/2*data.scalex;
+            data.sourceName = filenamePath;
+        }
+        else {
+            data.type = 1;
+            Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(filename);
+            data.lastPos = data.x + texture->getContentSize().width/2*data.scalex;
+            data.sourceName = filename;
+        }
+        
     }
     
-    data.sourceName = filename;
     
     return data;
 }

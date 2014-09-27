@@ -33,7 +33,6 @@ bool Enemy::init(const char*name, Point pos, float scalex, float scaley)
     dead = false;
     life = 100;
     desireVel = -1.2;
-    
    
     
     armature = Armature::create(name);
@@ -192,7 +191,6 @@ void Enemy::update(float dt)
                 playedStartUpAnimation = true;
             }
         }
-        
         
         updateArmatureBody();
         
@@ -519,7 +517,9 @@ float Enemy::setBodySprites()
 //zombie movement
 void Enemy::creatfootBody()
 {
-    b2Vec2 pos = b2Vec2(armature->getPositionX()/PTM_RATIO, armature->getPositionY()/PTM_RATIO);
+    Rect rect = armature->boundingBox();
+    Point realPos = Point(rect.origin.x+rect.size.width/2, rect.origin.y+rect.size.height/2);
+    b2Vec2 pos = b2Vec2(realPos.x/PTM_RATIO, realPos.y/PTM_RATIO);
     
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
