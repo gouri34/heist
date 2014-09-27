@@ -16,12 +16,18 @@ private:
     
     
 public:
+    
+    PRFilledPolygon* surface;
+
+    
     static GroundBuilding* create(Point pos);
     virtual bool init(Point pos);
     virtual ~GroundBuilding();
     
     virtual void setDead();
     virtual void setVertices(Point pos);
+    
+    virtual void terrainSceneArrangement();
     virtual void update(float dt, Point pos);
     
 };

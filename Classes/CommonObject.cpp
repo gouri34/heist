@@ -72,6 +72,7 @@ bool CommonObject::init(std::string fileName,cocos2d::Point pos, float scalex, f
             
             b2FixtureDef fixtureDef;
             fixtureDef.shape = &dynamicBox;
+            fixtureDef.restitution = 0.66;
             fixtureDef.density = 2.4f;
             fixtureDef.friction = 0.3f;
             fixtureDef.filter.categoryBits = ZOMBIE;
@@ -95,6 +96,44 @@ bool CommonObject::init(std::string fileName,cocos2d::Point pos, float scalex, f
         /*Bone *bone = armature->getBone(key->getCString());
          printf("boneX = %f\n", bone->getPositionX());
          printf("boneY = %f\n", bone->getPositionY());*/
+    }
+    
+    //link joints
+    const Map<std::string, Bone*>& dic = theBody->getBoneDic();
+    for(auto& element : dic)
+    {
+        
+        Bone *bone = element.second;
+        Skin *skin = (Skin*)element.second->getDisplayRenderNode();
+        string name = element.first;
+        
+        int torqRandWay = rand()%2;
+        float torgRand = (rand()%100)/100.0*2.7+2.7;
+        if (torqRandWay == 0)
+        {
+            torgRand = -torgRand;
+        }
+        
+        if (skin) {
+            b2Body *body = skin->body;
+            
+            Bone *parentBone = bone->getParentBone();
+            if (parentBone && (rand()%4 >= 1)) {
+                Skin *parentSkin = (Skin*)parentBone->getDisplayRenderNode();
+                b2Body *parentBody = parentSkin->body;
+                b2WeldJointDef jdef;
+                //CCAffineTransform tran = bone->nodeToParentTransform();
+                Mat4 tran = bone->_getNodeToParentTransform();
+                Point p = Point(tran.m[12], tran.m[13]);
+                // Point p = skin->getWorldPosition();
+                //printf("p x = %f y = %f\n", p.x, p.y);
+                jdef.Initialize(parentBody, body, b2Vec2(p.x/PTM_RATIO, p.y/PTM_RATIO));
+                gameWorld->CreateJoint(&jdef);
+            }
+            
+            
+            
+        }
     }
     
     //create the static body
@@ -138,11 +177,14 @@ void CommonObject::destroy()
         b2Body *b = wallBlocks.at(i);
         b->SetType(b2_dynamicBody);
         
+        float mass = b->GetMass();
+        float xforce = mass*(6+(rand()%6)/2.0);
+        float yforce = mass*(4.5+(rand()%4)/2.0);
+        float torque = mass*(2+(rand()%2)/2.0);
         
-        float xforce = (0.002+(float)(rand()%100)/3000.0)*2100;
-        float yforce = ((50.0 - rand()%100)/2000.0)*1600;
-        float torque = ((float)(50.0-rand()%100)/320000.0)*140000;
-        
+        if (rand()%2 == 0) {
+            torque = -torque;
+        }
         
         b->ApplyLinearImpulse(b2Vec2(3*xforce, 4*yforce), b->GetWorldCenter(), true);
         b->ApplyAngularImpulse(torque, true);

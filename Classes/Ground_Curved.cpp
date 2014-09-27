@@ -233,6 +233,8 @@ void Ground_Curved::setVertices(Point pos)
 
 void Ground_Curved::update(float dt, Point pos)
 {
+    Terrain::update(dt, pos);
+
     if (!dead) {
         // printf("updating\n");
         //setVertices(pos);

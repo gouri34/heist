@@ -21,6 +21,8 @@ public:
     
     virtual void setDead();
     virtual void setVertices(Point pos);
+    
+    virtual void terrainSceneArrangement();
     virtual void update(float dt, Point pos);
     
     

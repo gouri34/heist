@@ -18,10 +18,12 @@ BazookaEnemy* BazookaEnemy::create(const char *name, Point pos, float scalex, fl
     return NULL;
 }
 
+
 BazookaEnemy::~BazookaEnemy()
 {
     //do nothing
 }
+
 
 void BazookaEnemy::setArmatureBody()
 {

@@ -140,8 +140,8 @@ void Ground_Slope::setVertices(Point pos)
 
 void Ground_Slope::update(float dt, cocos2d::Point pos)
 {
-    // printf("updating\n");
-    
+    Terrain::update(dt, pos);
+
     if (!dead) {
         // printf("updating\n");
         setVertices(pos);

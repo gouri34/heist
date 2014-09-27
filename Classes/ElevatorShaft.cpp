@@ -14,7 +14,7 @@
 #define LOWER_GROUND_WIDTH 21.0
 #define TRUE_GROUND_OFFSET 4
 
-#define ELEVATOR_LENGTH 190
+#define ELEVATOR_LENGTH 100
 #define ELEVATOR_SPEED 12.0
 
 
@@ -47,7 +47,7 @@ bool ElevatorShatf::init(Point pos, int s_heigth)
     wallTextureSize = Size(wallTexture->getPixelsWide(), wallTexture->getPixelsHigh());
     
     
-    Texture2D* terrainTexture = Director::getInstance()->getTextureCache()->addImage("terrain.png");
+    Texture2D* terrainTexture = Director::getInstance()->getTextureCache()->addImage("ground_terrain.png");
     terrainTexture->setTexParameters(params);
     
     
@@ -56,9 +56,10 @@ bool ElevatorShatf::init(Point pos, int s_heigth)
     wall = PRFilledPolygon::filledPolygonWithPointsAndTexture(empty, wallTexture);
     terrain = PRFilledPolygon::filledPolygonWithPointsAndTexture(empty, terrainTexture);
     elevator = Sprite::create("elevator.png");
+    elevator->setAnchorPoint(Point(0.5, 0));
     gLayer->addChild(wall, 2);
     gLayer->addChild(terrain,2);
-    gLayer->addChild(elevator, 60);
+    gLayer->addChild(elevator, 10);
     
     elevator_status = Waiting;
     
@@ -75,7 +76,7 @@ void ElevatorShatf::setupElevator()
     
     Rect a = elevator->getTextureRect();
     
-    Size partSize = Size((a.getMaxX()-a.getMinX())/PTM_RATIO, (a.getMaxY()-a.getMinY())/PTM_RATIO);
+    Size partSize = Size((a.getMaxX()-a.getMinX())/PTM_RATIO, 10.0/PTM_RATIO);
     Point partpos = elevator->getPosition();
     
     
@@ -121,8 +122,8 @@ void ElevatorShatf::setVertices(Point pos)
     Vector2dVector texCoords;
     
     if (shaft_height > 0) {
-        ground_lp = Point(startPos.x, startPos.y);
-        ground_rp = Point(startPos.x + ELEVATOR_LENGTH, startPos.y);
+        ground_lp = Point(startPos.x, startPos.y-10);
+        ground_rp = Point(startPos.x + ELEVATOR_LENGTH, startPos.y-10);
     }
     else {
         ground_lp = Point(startPos.x, startPos.y + shaft_height);
@@ -149,7 +150,7 @@ void ElevatorShatf::update(float dt, Point pos)
         
         
         //set elevator sprite position
-        elevator->setPosition(Point(elevator_body->GetPosition().x*PTM_RATIO, elevator_body->GetPosition().y*PTM_RATIO));
+        elevator->setPosition(Point(elevator_body->GetPosition().x*PTM_RATIO-10, elevator_body->GetPosition().y*PTM_RATIO));
         
         if (elevator_status == Waiting)
         {

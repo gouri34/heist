@@ -30,12 +30,18 @@ public:
     Layer* gLayer;
     b2Body *groundBody = NULL;
     
-    
+    bool timerStart = false;
     
     bool dead = false;
     bool afterDeath = false;
     int height;
     float surfaceTexWidth;
+    
+    
+    Point backgroundSetupPos;
+    Point offScreenPoint;
+    Point lastSetupPos;
+    Point validPos;
     
     int groundYpos;/////
     Point startPos;

@@ -14,7 +14,12 @@ void Terrain::setVertices(Point pos){
 
 void Terrain::update(float dt, Point pos)
 {
-    
+    if (pos.x >= startPos.x) {
+        timerStart = true;
+    }
+    else {
+        timerStart = false;
+    }
 }
 
 void Terrain::setDead()

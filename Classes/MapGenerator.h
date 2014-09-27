@@ -58,11 +58,20 @@ private:
     bool changeToPlain(TerrainStatus previous);
     bool changeToUp(TerrainStatus previous);
     bool changeToDown(TerrainStatus previous);
+    bool changeToGroundBuilding(TerrainStatus previous);
+    bool changeToSkyBuilding(TerrainStatus previous);
+    bool changeToSkyRoof(TerrainStatus previous);
+    
+    bool changeToElevator(TerrainStatus previous);
     
     //terrain generation
     void makeGroundPlain(bool fromSlope, bool wentUp);
     void makeGroundSlope(bool goUp);
+    void makeGroundBuilding();
+    void makeSkyBuilding();
+    void makeRoofBuilding();
     
+    void makeEvelator(bool up);
 public:
     
     Layer *gameLayer;

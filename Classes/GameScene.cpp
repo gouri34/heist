@@ -10,8 +10,8 @@ const float32 FIXED_TIMESTEP = 1.0f / 60.0f;
 // instead of performing one more single step with only the small delta time.
 const float32 MINIMUM_TIMESTEP = 1.0f / 100.0f;
 
-const int32 VELOCITY_ITERATIONS = 3;
-const int32 POSITION_ITERATIONS = 3;
+const int32 VELOCITY_ITERATIONS = 6;
+const int32 POSITION_ITERATIONS = 6;
 
 // maximum number of steps per tick to avoid spiral of death
 const int32 MAXIMUM_NUMBER_OF_STEPS = 15;
@@ -35,6 +35,8 @@ bool GameScene::init()
     Director::getInstance()->getTextureCache()->addImage("testbuilding_view.png");
     Director::getInstance()->getTextureCache()->addImage("testbuilding_wall.png");
     Director::getInstance()->getTextureCache()->addImage("ele_shaft_wall.png");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("apartment_spritesheet0.plist", "apartment_spritesheet0.png");
+
 
     
     //load armatures
@@ -54,6 +56,12 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Meteo.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("shiguan.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Sabaodui.ExportJson");
+    
+    //groundbuilding objects
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("apartment_chair.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("apartment_door.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("apartment_table.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("apartment_teatable.ExportJson");
 
     
     //physics setup

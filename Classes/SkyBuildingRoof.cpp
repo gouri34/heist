@@ -11,7 +11,7 @@
 
 #include "MapGenerator.h"
 
-#define CEILING_HIGHT 300.0
+#define CEILING_HIGHT 161
 
 SkyBuildingRoof* SkyBuildingRoof::create(Point pos, int groundY)
 {
@@ -35,11 +35,10 @@ bool SkyBuildingRoof::init(Point pos, int groundY)
     
     
     
-    Texture2D* viewTexture = Director::getInstance()->getTextureCache()->addImage("testbuilding_view.png");
-    viewTexture->setTexParameters(params);
-    viewTextureSize = Size(viewTexture->getPixelsWide(), viewTexture->getPixelsHigh());
+    Texture2D* viewTexture = Director::getInstance()->getTextureCache()->addImage("building1.png");
+    viewTextureSize = Size(413, viewTexture->getPixelsHigh());
     
-    Texture2D* terrainTexture = Director::getInstance()->getTextureCache()->addImage("terrain.png");
+    Texture2D* terrainTexture = Director::getInstance()->getTextureCache()->addImage("ground_terrain.png");
     terrainTexture->setTexParameters(params);
     
     
@@ -97,16 +96,10 @@ void SkyBuildingRoof::setVertices(Point pos)
     //calc offset
     int x_offset = 0; //offset to make the building complete
     
-    int x_intexture = (int)(ground_rp.x+5 - startPos.x)%1024;
+    int x_intexture = (int)(ground_rp.x - startPos.x)%413;
     
-    if (x_intexture < 354) {
-        x_offset = 354 - x_intexture;
-    }
-    else if (x_intexture < 697) {
-        x_offset = 697 - x_intexture;
-    }
-    else if (x_intexture < 1024) {
-        x_offset = 1024 - x_intexture;
+   if (x_intexture < 413) {
+        x_offset = 413 - x_intexture;
     }
     
     
@@ -144,6 +137,8 @@ void SkyBuildingRoof::setVertices(Point pos)
 
 void SkyBuildingRoof::update(float dt, Point pos)
 {
+    Terrain::update(dt, pos);
+
     if (!dead) {
         setVertices(pos);
         // setGroundBuildings(pos);

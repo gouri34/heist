@@ -28,6 +28,7 @@
 #include "LandMine.h"
 #include "StockPiles.h"
 
+
 static MapGenerator *m_MapGenerator = nullptr;
 
 
@@ -54,7 +55,7 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
  
     //load scene info
     if (sceneInfos.size() == 0) {
-        sceneInfos["houseRoom0"] =  SceneConstructor::ConstructScene("testhouse.json");
+       // sceneInfos["houseRoom0"] =  SceneConstructor::ConstructScene("testhouse.json");
         sceneInfos["groundBack0"] =  SceneConstructor::ConstructScene("ground_frontback.json");
         sceneInfos["groundBack1"] =  SceneConstructor::ConstructScene("ground_frontback1.json");
         sceneInfos["groundBack2"] =  SceneConstructor::ConstructScene("ground_frontback2.json");
@@ -67,10 +68,16 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
         sceneInfos["one_shieldenemy_on_one_guardtower"] = SceneConstructor::ConstructScene("one_shieldenemy_on_one_guardtower.json");
         sceneInfos["three_shieldenemy_in_a_row"] = SceneConstructor::ConstructScene("three_shieldenemy_in_a_row.json");
         sceneInfos["two_bazookaenemy_and_one_shieldenemy"] = SceneConstructor::ConstructScene("two_bazookaenemy_and_one_shieldenemy.json");
-
+        
         sceneInfos["one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it"] = SceneConstructor::ConstructScene("one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it.json");
 
         sceneInfos["three_mine_in_a_row"] = SceneConstructor::ConstructScene("three_mine_in_a_row.json");
+
+        
+        //Apartment scene info
+        sceneInfos["apartment_room1"] = SceneConstructor::ConstructScene("Apartment_Room1.json");
+        sceneInfos["apartment_room2"] = SceneConstructor::ConstructScene("Apartment_Room2.json");
+        sceneInfos["apartment_room3"] = SceneConstructor::ConstructScene("Apartment_Room3.json");
 
     }
 
@@ -122,6 +129,7 @@ int MapGenerator::setupSceneWithInfo(std::string name, Point pos)
     return info.length;
 }
 
+
 void MapGenerator::addObjectWithData(SceneData data, Point pos)
 {
     Node* node;
@@ -146,10 +154,34 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
             fixtureDef.friction = 0.3f;
             fixtureDef.fixturetype = f_ground;
             body_->CreateFixture(&fixtureDef);
-                    
         }
     }
     else if (data.type == 2) {
+
+        Sprite *s = Sprite::createWithSpriteFrameName(data.sourceName);
+        gameLayer->addChild(s);
+        sprites.push_back(s);
+        node = (Node*)s;
+        if (data.isPhysics) {
+            Point pos_ = Point(data.x+pos.x, data.y+pos.y);
+            
+            //create body
+            b2BodyDef bodyDef;
+            bodyDef.type = b2_dynamicBody;
+            bodyDef.position.Set(pos_.x/PTM_RATIO,pos_.y/PTM_RATIO);
+            b2Body* body_ = gameWorld->CreateBody(&bodyDef);
+            b2PolygonShape dynamicBox;
+            dynamicBox.SetAsBox((0.5*data.scalex*s->getContentSize().width/PTM_RATIO), 0.5*data.scaley*s->getContentSize().height/PTM_RATIO);
+            b2FixtureDef fixtureDef;
+            fixtureDef.shape = &dynamicBox;
+            fixtureDef.density = 1.0;
+            fixtureDef.friction = 0.3f;
+            fixtureDef.fixturetype = f_ground;
+            body_->CreateFixture(&fixtureDef);
+        }
+    }
+    else if (data.type == 3) {
+
         Point pos_ = Point(data.x+pos.x, data.y+pos.y);
         if (data.sourceName.find("GuardTower")!=string::npos) {
             GuardTower *d = GuardTower::create("GuardTower", pos_, data.scalex, data.scaley);
@@ -167,7 +199,8 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
             commonObjs.push_back(d);
         }
     }
-    else if (data.type == 3) {
+    else if (data.type == 4) {
+
         Point pos_ = Point(data.x+pos.x, data.y+pos.y);
         if (data.sourceName.find("Panzer")!=string::npos) {
             Panzer* p = Panzer::create("Panzer", pos_, 1, 1);
@@ -192,12 +225,13 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
         }
 
         
-        if(sceneName.find("enemySetup1")!=string::npos){
-            NormalEnemy *ne = NormalEnemy::create(data.sourceName.c_str(), pos_, data.scalex, data.scaley);
+        if(data.sourceName.find("running_grunt")!=string::npos){
+            NormalEnemy *ne = NormalEnemy::create(data.sourceName.c_str(), Point(pos_.x, pos_.y+60), data.scalex, data.scaley);
             node = (Node*)ne->armature;
             enemies.push_back(ne);
         }
     }
+   
     
     node->setPosition(Point(data.x + pos.x, data.y + pos.y));
     node->setScaleX(data.scalex);
@@ -217,8 +251,6 @@ void MapGenerator::terrainEliminator()
             t->setDead();
         }
     }
-    
-    
 }
 
 
@@ -229,60 +261,98 @@ void MapGenerator::setStageType(StageTypes st)
 
 
 
-
-
-
 void MapGenerator::update(Point pos, float dt)
 {
     updateObjects(pos, dt);
     
-    
-    stageTimer -= dt;
+    if (currentTerrain->timerStart) {
+        stageTimer -= dt;
+    }
     enemyTimer -= dt;
     elevatorTimer -= dt;
     
     
     // time base terrain generator
-    if (stageTimer < 0) {
+    
+    //if time for elevator, try go elevator first
+    
+    
+    if (stageTimer <= 0) {
         
         bool jobDone = false;
-        /*
-        while (!jobDone) {
-            int randSeed = rand()%4; //seed decide the next stage type
-            
-            TerrainStatus ts = (TerrainStatus)randSeed;
-            
-            switch (ts) {
-                case plain:
-                {
-                    jobDone = changeToPlain(terrainStatus);
+        
+        bool elevatorAdded = false;
+        if (elevatorTimer <=0) {
+            elevatorAdded = changeToElevator(terrainStatus);
+        }
+        
+        if (stageType == onGround && (!elevatorAdded)) {
+            while (!jobDone) {
+                int randSeed = rand()%4; //seed decide the next stage type
+                
+                TerrainStatus ts = (TerrainStatus)randSeed;
+                
+                switch (ts) {
+                    case plain:
+                    {
+                        jobDone = changeToPlain(terrainStatus);
+                    }
+                        break;
+                        
+                    case goingUp:
+                    {
+                        jobDone = changeToGroundBuilding(terrainStatus);
+                    }
+                        break;
+                    case goingDown:
+                    {
+                        jobDone = changeToGroundBuilding(terrainStatus);
+                    }
+                        
+                    case inGroundBld:
+                    {
+                        jobDone = changeToGroundBuilding(terrainStatus);
+                    }
+                        break;
+                        
+                    default:
+                        break;
                 }
-                    break;
-                    
-                case goingUp:
-                {
-                    jobDone = changeToUp(terrainStatus);
-                }
-                    break;
-                case goingDown:
-                {
-                    jobDone = changeToDown(terrainStatus);
-                }
-                    break;
-                    
-                default:
-                    break;
             }
         }
-        */
+        else if (stageType == onRoof && (!elevatorAdded))
+        {
+            while (!jobDone) {
+                int randSeed = rand()%2+4; //seed decide the next stage type
+                
+                TerrainStatus ts = (TerrainStatus)randSeed;
+                
+                switch (ts) {
+                    case inSkyBld:
+                    {
+                        jobDone = changeToSkyBuilding(terrainStatus);
+                    }
+                        break;
+                        
+                    case onSkyRoof:
+                    {
+                        jobDone = changeToSkyRoof(terrainStatus);
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+
+        }
+        
+        
+        
     }
     
     
 }
-
-
-
-
 
 
 
@@ -515,14 +585,63 @@ bool MapGenerator::changeToDown(TerrainStatus previous)
     return false;
 }
 
+bool MapGenerator::changeToGroundBuilding(TerrainStatus previous)
+{
+    if (previous == inGroundBld) {
+        return false;
+    }
+    
+    switch (previous) {
+        case plain:
+        {
+            makeGroundBuilding();
+            return true;
+        }
+            break;
+            
+        default:
+            return false;
+            break;
+    }
+}
+
+bool MapGenerator::changeToSkyBuilding(TerrainStatus previous)
+{
+    makeSkyBuilding();
+    
+    return true;
+}
+
+bool MapGenerator::changeToSkyRoof(TerrainStatus previous)
+{
+    makeRoofBuilding();
+    
+    return true;
+}
+
+bool MapGenerator::changeToElevator(TerrainStatus previous)
+{
+    if (previous == inGroundBld) {
+        makeEvelator(true);
+        return true;
+    }
+    else if (previous == inSkyBld) {
+        makeEvelator(false);
+        return true;
+    }
+    
+    return false;
+}
+
 //=================Terrain Generation===================
 
 void MapGenerator::makeGroundPlain(bool fromSlope, bool wentUp)
 {
+    terrainEliminator();
+
     Point lastTerrainPos = currentTerrain->lastPos;
     float lastTexCoordX = currentTerrain->lastTexCoordX;
     
-    terrainEliminator();
     
     if (fromSlope) {
         if (wentUp) {
@@ -547,15 +666,17 @@ void MapGenerator::makeGroundPlain(bool fromSlope, bool wentUp)
     }
     
     terrainStatus = plain;
-    stageTimer = 5.0;
+    stageType = onGround;
+    stageTimer = 8.0;
 }
 
 void MapGenerator::makeGroundSlope(bool goUp)
 {
+    terrainEliminator();
+
     Point lastTerrainPos = currentTerrain->lastPos;
     float lastTexCoordX = currentTerrain->lastTexCoordX;
 
-    terrainEliminator();
     
     if (goUp) {
         Ground_Curved *gc = Ground_Curved::create(lastTerrainPos, true, true,lastTexCoordX);
@@ -564,6 +685,7 @@ void MapGenerator::makeGroundSlope(bool goUp)
         terrains.push_back(gs);
         
         terrainStatus = goingUp;
+        stageType = onGround;
         currentTerrain = gs;
     }
     else {
@@ -573,9 +695,95 @@ void MapGenerator::makeGroundSlope(bool goUp)
         terrains.push_back(gs);
         
         terrainStatus = goingDown;
+        stageType = onGround;
         currentTerrain = gs;
     }
     
-    stageTimer = 2.0;
+    stageTimer = 1.0;
 
+}
+
+void MapGenerator::makeGroundBuilding()
+{
+    terrainEliminator();
+
+    Point lastTerrainPos = currentTerrain->lastPos;
+    
+    GroundBuilding *gb = GroundBuilding::create(lastTerrainPos);
+    terrains.push_back(gb);
+    
+    terrainStatus = inGroundBld;
+    stageType = onGround;
+    currentTerrain = gb;
+    
+     stageTimer = 8.0;
+}
+
+void MapGenerator::makeSkyBuilding()
+{
+    terrainEliminator();
+
+    Point lastTerrainPos = currentTerrain->lastPos;
+    Point pos = Point(lastTerrainPos.x +300, lastTerrainPos.y-240);
+    
+    SkyBuilding *skb = SkyBuilding::create(pos, pos.y - 512*3);
+    terrains.push_back(skb);
+    
+    terrainStatus = inSkyBld;
+    stageType = onRoof;
+    currentTerrain = skb;
+    
+    stageTimer = 5.0;
+}
+
+void MapGenerator::makeRoofBuilding()
+{
+    terrainEliminator();
+
+    Point lastTerrainPos = currentTerrain->lastPos;
+    Point pos = Point(lastTerrainPos.x +300, lastTerrainPos.y-200);
+    
+    SkyBuildingRoof *skbf = SkyBuildingRoof::create(pos, pos.y - 512*3);
+    terrains.push_back(skbf);
+    
+    terrainStatus = onSkyRoof;
+    stageType = onRoof;
+    currentTerrain = skbf;
+    
+    stageTimer = 2.0;
+}
+
+void MapGenerator::makeEvelator(bool up)
+{
+    elevatorTimer = 15;
+    
+    terrainEliminator();
+
+    Point lastTerrainPos = currentTerrain->lastPos;
+    
+    int height;
+    if (up) {
+        height = 512*3;
+        ElevatorShatf *es = ElevatorShatf::create(lastTerrainPos, height);
+        SkyBuilding *skb = SkyBuilding::create(es->lastPos, lastTerrainPos.y);
+        terrains.push_back(es);
+        terrains.push_back(skb);
+        
+        terrainStatus = inSkyBld;
+        currentTerrain = skb;
+
+    }
+    else {
+        height = -512*3;
+        ElevatorShatf *es = ElevatorShatf::create(lastTerrainPos, height);
+        GroundBuilding *gb = GroundBuilding::create(es->lastPos);
+        terrains.push_back(es);
+        terrains.push_back(gb);
+        
+        terrainStatus = inGroundBld;
+        currentTerrain = gb;
+    }
+    
+    
+    stageTimer = 8;
 }

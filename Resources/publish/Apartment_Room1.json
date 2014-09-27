@@ -14,16 +14,16 @@
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "ceiling",
+      "name": "wall",
       "canedit": true,
-      "objecttag": 10013,
+      "objecttag": 10003,
       "rotation": 0,
       "scalex": 1,
       "scaley": 1,
       "visible": 1,
-      "x": 674.999755859375,
-      "y": 356.99313354492188,
-      "zorder": 3,
+      "x": 207,
+      "y": 81.169593811035156,
+      "zorder": 1,
       "gameobjects": [],
       "components": [
         {
@@ -32,243 +32,222 @@
           "name": "CCSprite",
           "file": null,
           "fileData": {
-            "path": "",
-            "plistFile": "",
-            "resourceType": 0
+            "path": "Output/background/apartment_wall1.png",
+            "plistFile": "apartment_spritesheet/apartment_spritesheet0.plist",
+            "resourceType": 1
           }
-        },
-        {
-          "__type": "ComPropertySurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCComAttribute",
-          "name": "CCComAttribute",
-          "fileData": null,
-          "keyvalues": null
         }
       ]
     },
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "chair1",
+      "name": null,
       "canedit": true,
-      "objecttag": 10015,
+      "objecttag": 10005,
       "rotation": 0,
-      "scalex": -1,
-      "scaley": 1,
+      "scalex": 0.7948688,
+      "scaley": 0.7948688,
       "visible": 1,
-      "x": 528.69085693359375,
-      "y": 33.307868957519531,
+      "x": 199.64910888671875,
+      "y": 32.853790283203125,
       "zorder": 2,
       "gameobjects": [],
       "components": [
         {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
+          "__type": "ComSpriteSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCSprite",
+          "name": "CCSprite",
           "file": null,
           "fileData": {
-            "path": "testhouse_chair/testhouse_chair.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
+            "path": "Output/unbreakable/apartment_building_0005_bed.png",
+            "plistFile": "apartment_spritesheet/apartment_spritesheet0.plist",
+            "resourceType": 1
+          }
         }
       ]
     },
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "table1",
+      "name": null,
       "canedit": true,
-      "objecttag": 10017,
+      "objecttag": 10006,
       "rotation": 0,
-      "scalex": 1,
-      "scaley": 1,
+      "scalex": 0.63182807,
+      "scaley": 0.63182807,
       "visible": 1,
-      "x": 1126.6966552734375,
-      "y": 37.615592956542969,
-      "zorder": 2,
+      "x": 59.298198699951172,
+      "y": 44.040916442871094,
+      "zorder": 1,
       "gameobjects": [],
       "components": [
         {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
+          "__type": "ComSpriteSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCSprite",
+          "name": "CCSprite",
           "file": null,
           "fileData": {
-            "path": "testhouse_table/testhouse_table.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
+            "path": "Output/unbreakable/apartment_building_0004_wardrobe.png",
+            "plistFile": "apartment_spritesheet/apartment_spritesheet0.plist",
+            "resourceType": 1
+          }
         }
       ]
     },
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "chair2",
+      "name": "door",
       "canedit": true,
-      "objecttag": 10018,
+      "objecttag": 10007,
       "rotation": 0,
-      "scalex": 1,
-      "scaley": 1,
+      "scalex": 0.7803753,
+      "scaley": 0.7803753,
       "visible": 1,
-      "x": 1242.379638671875,
-      "y": 36.883277893066406,
-      "zorder": 2,
+      "x": 355.2222900390625,
+      "y": 45.964897155761719,
+      "zorder": 1,
       "gameobjects": [],
       "components": [
         {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
+          "__type": "ComSpriteSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCSprite",
+          "name": "CCSprite",
           "file": null,
           "fileData": {
-            "path": "testhouse_chair/testhouse_chair.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
+            "path": "Output/unbreakable/apartment_building_0002_door.png",
+            "plistFile": "apartment_spritesheet/apartment_spritesheet0.plist",
+            "resourceType": 1
+          }
         }
       ]
     },
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "wall3",
+      "name": null,
       "canedit": true,
-      "objecttag": 10019,
+      "objecttag": 10008,
       "rotation": 0,
-      "scalex": 0.8,
-      "scaley": 0.678,
+      "scalex": 0.7032004,
+      "scaley": 0.7032004,
       "visible": 1,
-      "x": 1300.2667236328125,
-      "y": 6.3160171508789062,
-      "zorder": 2,
+      "x": 258.40939331054688,
+      "y": 32.8537712097168,
+      "zorder": 1,
       "gameobjects": [],
       "components": [
         {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
+          "__type": "ComSpriteSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCSprite",
+          "name": "CCSprite",
           "file": null,
           "fileData": {
-            "path": "glassWindow/glassWindow.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
+            "path": "Output/unbreakable/apartment_building_0006_lamp.png",
+            "plistFile": "apartment_spritesheet/apartment_spritesheet0.plist",
+            "resourceType": 1
+          }
         }
       ]
     },
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "wall1",
+      "name": "_Copy",
       "canedit": true,
-      "objecttag": 10020,
+      "objecttag": 10009,
       "rotation": 0,
-      "scalex": 0.8,
-      "scaley": 0.678,
+      "scalex": 0.7032004,
+      "scaley": 0.7032004,
       "visible": 1,
-      "x": 38.232254028320312,
-      "y": -2.1280097961425781,
-      "zorder": 2,
+      "x": 139.47366333007813,
+      "y": 32.8537712097168,
+      "zorder": 1,
       "gameobjects": [],
       "components": [
         {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
+          "__type": "ComSpriteSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCSprite",
+          "name": "CCSprite",
           "file": null,
           "fileData": {
-            "path": "glassWindow/glassWindow.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
+            "path": "Output/unbreakable/apartment_building_0006_lamp.png",
+            "plistFile": "apartment_spritesheet/apartment_spritesheet0.plist",
+            "resourceType": 1
+          }
         }
       ]
     },
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "wall2",
+      "name": null,
       "canedit": true,
-      "objecttag": 10021,
+      "objecttag": 10010,
       "rotation": 0,
-      "scalex": 0.8,
-      "scaley": 0.678,
+      "scalex": 0.63531965,
+      "scaley": 0.63531965,
       "visible": 1,
-      "x": 461.93646240234375,
-      "y": -2.1280097961425781,
-      "zorder": 2,
+      "x": 115.36253356933594,
+      "y": 19.064292907714844,
+      "zorder": 1,
       "gameobjects": [],
       "components": [
         {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
+          "__type": "ComSpriteSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCSprite",
+          "name": "CCSprite",
           "file": null,
           "fileData": {
-            "path": "glassWindow/glassWindow.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
+            "path": "Output/unbreakable/apartment_building_0007_cabinate.png",
+            "plistFile": "apartment_spritesheet/apartment_spritesheet0.plist",
+            "resourceType": 1
+          }
         }
       ]
     },
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "chair1_Copy",
+      "name": "_Copy",
       "canedit": true,
-      "objecttag": 10022,
+      "objecttag": 10011,
       "rotation": 0,
-      "scalex": -1,
-      "scaley": 1,
+      "scalex": 0.63531965,
+      "scaley": 0.63531965,
       "visible": 1,
-      "x": 175.89877319335938,
-      "y": 35.871986389160156,
-      "zorder": 2,
+      "x": 283.85964965820312,
+      "y": 19.064292907714844,
+      "zorder": 1,
       "gameobjects": [],
       "components": [
         {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
+          "__type": "ComSpriteSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCSprite",
+          "name": "CCSprite",
           "file": null,
           "fileData": {
-            "path": "testhouse_chair/testhouse_chair.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
+            "path": "Output/unbreakable/apartment_building_0007_cabinate.png",
+            "plistFile": "apartment_spritesheet/apartment_spritesheet0.plist",
+            "resourceType": 1
+          }
         }
       ]
     },
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": "chair2_Copy",
+      "name": null,
       "canedit": true,
-      "objecttag": 10023,
+      "objecttag": 10012,
       "rotation": 0,
       "scalex": 1,
       "scaley": 1,
       "visible": 1,
-      "x": 400.89935302734375,
-      "y": 36.279396057128906,
-      "zorder": 2,
+      "x": 208.52581787109375,
+      "y": 14.573680877685547,
+      "zorder": 3,
       "gameobjects": [],
       "components": [
         {
@@ -277,217 +256,7 @@
           "name": "CCArmature",
           "file": null,
           "fileData": {
-            "path": "testhouse_chair/testhouse_chair.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "lamp1_Copy",
-      "canedit": true,
-      "objecttag": 10024,
-      "rotation": 0,
-      "scalex": 1,
-      "scaley": 1,
-      "visible": 1,
-      "x": 104.23213958740234,
-      "y": 48.205329895019531,
-      "zorder": 2,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "testhouse_lamp/testhouse_lamp.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "table1_Copy",
-      "canedit": true,
-      "objecttag": 10025,
-      "rotation": 0,
-      "scalex": 1,
-      "scaley": 1,
-      "visible": 1,
-      "x": 290.4215087890625,
-      "y": 37.538658142089844,
-      "zorder": 2,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "testhouse_table/testhouse_table.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "table1_Copy",
-      "canedit": true,
-      "objecttag": 10026,
-      "rotation": 0,
-      "scalex": 1,
-      "scaley": 1,
-      "visible": 1,
-      "x": 885.158203125,
-      "y": 39.102775573730469,
-      "zorder": 2,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "testhouse_table/testhouse_table.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "lamp1_Copy",
-      "canedit": true,
-      "objecttag": 10027,
-      "rotation": 0,
-      "scalex": 1,
-      "scaley": 1,
-      "visible": 1,
-      "x": 629.3614501953125,
-      "y": 47.270759582519531,
-      "zorder": 2,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "testhouse_lamp/testhouse_lamp.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "chair2_Copy",
-      "canedit": true,
-      "objecttag": 10028,
-      "rotation": 0,
-      "scalex": 1,
-      "scaley": 1,
-      "visible": 1,
-      "x": 696.2255859375,
-      "y": 35.344825744628906,
-      "zorder": 2,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "testhouse_chair/testhouse_chair.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "chair2_Copy",
-      "canedit": true,
-      "objecttag": 10029,
-      "rotation": 0,
-      "scalex": 1,
-      "scaley": 1,
-      "visible": 1,
-      "x": 1005.4566650390625,
-      "y": 36.883277893066406,
-      "zorder": 2,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "testhouse_chair/testhouse_chair.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": "wall3_Copy",
-      "canedit": true,
-      "objecttag": 10030,
-      "rotation": 0,
-      "scalex": 0.8,
-      "scaley": 0.678,
-      "visible": 1,
-      "x": 762.8701171875,
-      "y": -0.52052736282348633,
-      "zorder": 2,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "glassWindow/glassWindow.ExportJson",
+            "path": "apartment_teatable/Export/apartment_teatable/apartment_teatable.ExportJson",
             "plistFile": "",
             "resourceType": 0
           },
@@ -501,13 +270,163 @@
       "classname": "CCNode",
       "name": null,
       "canedit": true,
+      "objecttag": 10013,
+      "rotation": 0,
+      "scalex": -1,
+      "scaley": 1,
+      "visible": 1,
+      "x": 166.81593322753906,
+      "y": 17.218418121337891,
+      "zorder": 3,
+      "gameobjects": [],
+      "components": [
+        {
+          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCArmature",
+          "name": "CCArmature",
+          "file": null,
+          "fileData": {
+            "path": "apartment_chair/apartment_chair.ExportJson",
+            "plistFile": "",
+            "resourceType": 0
+          },
+          "isShowColliderRect": false,
+          "selectedactionname": "Animation1"
+        }
+      ]
+    },
+    {
+      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
+      "classname": "CCNode",
+      "name": "_Copy",
+      "canedit": true,
       "objecttag": 10014,
       "rotation": 0,
       "scalex": 1,
       "scaley": 1,
       "visible": 1,
-      "x": 669.12890625,
-      "y": 100.25702667236328,
+      "x": 249.97904968261719,
+      "y": 16.863807678222656,
+      "zorder": 3,
+      "gameobjects": [],
+      "components": [
+        {
+          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCArmature",
+          "name": "CCArmature",
+          "file": null,
+          "fileData": {
+            "path": "apartment_chair/apartment_chair.ExportJson",
+            "plistFile": "",
+            "resourceType": 0
+          },
+          "isShowColliderRect": false,
+          "selectedactionname": "Animation1"
+        }
+      ]
+    },
+    {
+      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
+      "classname": "CCNode",
+      "name": null,
+      "canedit": true,
+      "objecttag": 10015,
+      "rotation": 0,
+      "scalex": 0.23,
+      "scaley": 0.23,
+      "visible": 1,
+      "x": 99.868400573730469,
+      "y": -10.605297088623047,
+      "zorder": 1,
+      "gameobjects": [],
+      "components": [
+        {
+          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCArmature",
+          "name": "CCArmature",
+          "file": null,
+          "fileData": {
+            "path": "Enemies/running_grunt/running_grunt.ExportJson",
+            "plistFile": "",
+            "resourceType": 0
+          },
+          "isShowColliderRect": false,
+          "selectedactionname": "Animation1"
+        }
+      ]
+    },
+    {
+      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
+      "classname": "CCNode",
+      "name": "_Copy",
+      "canedit": true,
+      "objecttag": 10016,
+      "rotation": 0,
+      "scalex": 0.23,
+      "scaley": 0.23,
+      "visible": 1,
+      "x": 302.49984741210938,
+      "y": -13.605297088623047,
+      "zorder": 1,
+      "gameobjects": [],
+      "components": [
+        {
+          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCArmature",
+          "name": "CCArmature",
+          "file": null,
+          "fileData": {
+            "path": "Enemies/running_grunt/running_grunt.ExportJson",
+            "plistFile": "",
+            "resourceType": 0
+          },
+          "isShowColliderRect": false,
+          "selectedactionname": "Animation1"
+        }
+      ]
+    },
+    {
+      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
+      "classname": "CCNode",
+      "name": null,
+      "canedit": true,
+      "objecttag": 10044,
+      "rotation": 0,
+      "scalex": 1,
+      "scaley": 1,
+      "visible": 1,
+      "x": 409.9775390625,
+      "y": 60.6854248046875,
+      "zorder": 1,
+      "gameobjects": [],
+      "components": [
+        {
+          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
+          "classname": "CCArmature",
+          "name": "CCArmature",
+          "file": null,
+          "fileData": {
+            "path": "apartment_door/apartment_door.ExportJson",
+            "plistFile": "",
+            "resourceType": 0
+          },
+          "isShowColliderRect": false,
+          "selectedactionname": "Animation1"
+        }
+      ]
+    },
+    {
+      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
+      "classname": "CCNode",
+      "name": null,
+      "canedit": true,
+      "objecttag": 10045,
+      "rotation": 0,
+      "scalex": 1,
+      "scaley": 1.74,
+      "visible": 1,
+      "x": 410.056640625,
+      "y": 135.59596252441406,
       "zorder": 1,
       "gameobjects": [],
       "components": [
@@ -517,7 +436,7 @@
           "name": "CCSprite",
           "file": null,
           "fileData": {
-            "path": "",
+            "path": "apartment_building_0000_door_wall.png",
             "plistFile": "",
             "resourceType": 0
           }
@@ -526,8 +445,8 @@
     }
   ],
   "CanvasSize": {
-    "_height": 1024,
-    "_width": 2048
+    "_height": 320,
+    "_width": 480
   },
   "Triggers": null,
   "Version": "1.6.0.0",
@@ -536,7 +455,7 @@
       "__type": "ComSceneSurrogate:#EditorCommon.JsonModel.Component",
       "classname": "CCScene",
       "name": "CCScene",
-      "scenename": "testhouse"
+      "scenename": "Apartment_Room1"
     },
     {
       "__type": "ComSimpleAudioSurrogate:#EditorCommon.JsonModel.Component",

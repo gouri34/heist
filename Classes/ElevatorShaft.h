@@ -26,6 +26,7 @@ private:
     
 public:
     
+    
     static ElevatorShatf* create(Point pos, int s_heigth);
     virtual bool init(Point pos, int s_heigth);
     virtual ~ElevatorShatf();

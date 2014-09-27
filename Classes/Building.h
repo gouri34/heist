@@ -24,11 +24,12 @@ public:
     int buildingType = 0;
     int height;
     
-    
+    PRFilledPolygon* wall;
     PRFilledPolygon* higherFrontView;
     PRFilledPolygon* lowerFrontView;
-    PRFilledPolygon* wall;
     PRFilledPolygon* terrain;
+    PRFilledPolygon* surface;
+
     
     Size floorTextureSize;
     Size wallTextureSize;

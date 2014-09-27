@@ -62,7 +62,7 @@ bool Ground::init(Point pos, double _lastTexCoordX)
     
     setVertices(pos);
     
-    lastObjectX=400;
+    lastSetupPos=Point(startPos.x+200, startPos.y);
     
     return true;
 }
@@ -121,7 +121,7 @@ void Ground::setVertices(Point pos)
 void Ground::terrainSceneArrangement()
 {
     //background arrangement
-    while (backgroundSetupPos < lastPos) {
+    while (backgroundSetupPos.x < lastPos.x) {
         int seed = rand()%5;
         while (seed == lastSeed) {
             seed = rand()%5;
@@ -152,97 +152,71 @@ void Ground::terrainSceneArrangement()
         
         int length = MapGenerator::GetInstance()->setupSceneWithInfo(sceneName, backgroundSetupPos);
         backgroundSetupPos = Point(backgroundSetupPos.x+length, backgroundSetupPos.y);
+        validPos = backgroundSetupPos;
     }
     
     //objects arrangement
-    if (MapGenerator::GetInstance()->enemyTimer <= 0&&(offScreenPoint.x>=lastObjectX)) {
-        MapGenerator::GetInstance()->enemyTimer = 1.0;
+    if (MapGenerator::GetInstance()->enemyTimer <= 0&&(offScreenPoint.x>=lastSetupPos.x)) {
+        MapGenerator::GetInstance()->enemyTimer = 1.5;
         int patternGap = 200;
         int randNum = rand()%9;
-        if (randNum==1) {
-            // generate some stockpiles
-            int randN = rand()%3;
-            if (randN==1)
-                StockPiles *s = StockPiles::create("shiguan", Point(offScreenPoint.x, offScreenPoint.y), 0.5, 0.5);
-            else
-                StockPiles *s = StockPiles::create("Sabaodui", Point(offScreenPoint.x, offScreenPoint.y), 0.4, 0.4);
-            int lastX = offScreenPoint.x+patternGap;
-            if (lastX > backgroundSetupPos.x) {
-                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
-            }
-            lastObjectX = lastX;
-        }
-        else if(randNum==2){
+        if(randNum==1){
             string arrName = "three_panzer_in_a_row";
             int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
             int lastX = offScreenPoint.x+length+patternGap;
-            if (lastX > backgroundSetupPos.x) {
-                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
-            }
-            lastObjectX = lastX;
-
+           
+            lastSetupPos = Point(lastX, startPos.y);
         }
-        else if (randNum==3){
+        else if (randNum==2){
             string arrName = "one_shieldenemy_on_one_guardtower";
             int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
             int lastX = offScreenPoint.x+length+patternGap;
-            if (lastX > backgroundSetupPos.x) {
-                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
-            }
-            lastObjectX = lastX;
-
+           
+            lastSetupPos = Point(lastX, startPos.y);
 
         }
-        else if (randNum==4){
+        else if (randNum==3){
             string arrName = "three_shieldenemy_in_a_row";
             int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
             int lastX = offScreenPoint.x+length+patternGap;
-            if (lastX > backgroundSetupPos.x) {
-                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
-            }
-            lastObjectX = lastX;
-
+            
+            lastSetupPos = Point(lastX, startPos.y);
         }
-        else if(randNum==5){
+        else if(randNum==4){
             string arrName = "two_bazookaenemy_and_one_shieldenemy";
             int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+50));
             int lastX = offScreenPoint.x+length+patternGap;
-            if (lastX > backgroundSetupPos.x) {
-                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
-            }
-            lastObjectX = lastX;
+           
+            lastSetupPos = Point(lastX, startPos.y);
         }
-        else if (randNum==6){
+        else if (randNum==5){
             string arrName = "one_steelpiles_in_front_of_one_guardtower_with_a_bazookaenemy_on_it";
             int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+50));
             int lastX = offScreenPoint.x+length+patternGap;
-            if (lastX > backgroundSetupPos.x) {
-                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
-            }
-            lastObjectX = lastX;
+            
+            lastSetupPos = Point(lastX, startPos.y);
         }
-        else if (randNum==7){
+        else if (randNum==6){
             string arrName = "three_mine_in_a_row";
             int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+50));
             int lastX = offScreenPoint.x+length+patternGap-100;
-            if (lastX > backgroundSetupPos.x) {
-                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
-            }
-            lastObjectX = lastX;
+            lastSetupPos = Point(lastX, startPos.y);
         }
 
         else{
             string arrName = "enemySetup1";
             int length = MapGenerator::GetInstance()->setupSceneWithInfo(arrName, Point(offScreenPoint.x, offScreenPoint.y+100));
             int lastX = offScreenPoint.x+length+patternGap;
-            if (lastX > backgroundSetupPos.x) {
-                backgroundSetupPos = Point(lastX, backgroundSetupPos.y);
-            }
-            lastObjectX = lastX;
+            
+            lastSetupPos = Point(lastX, startPos.y);
 
         }
 
 
+    }
+    
+    if (lastSetupPos.x > backgroundSetupPos.x) {
+        validPos = lastSetupPos;
     }
 
 }
@@ -250,6 +224,7 @@ void Ground::terrainSceneArrangement()
 
 void Ground::update(float dt, cocos2d::Point pos)
 {
+    Terrain::update(dt, pos);
     if (!dead) {
         terrainSceneArrangement();
         setVertices(pos);

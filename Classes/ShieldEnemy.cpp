@@ -224,7 +224,6 @@ void ShieldEnemy::spikeProcess(Monster *monster)
     if(monster->isDashing()==false)
     {
         //monster get hurt
-        printf("Monster get hurt!\n");
         monster->getHurt();
     }
     else

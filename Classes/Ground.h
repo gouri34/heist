@@ -20,9 +20,6 @@ class Ground : public Terrain
 {
 private:
     int lastSeed;
-    Point backgroundSetupPos;
-    Point offScreenPoint;
-    int lastObjectX;
 public:
     
     
