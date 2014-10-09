@@ -20,6 +20,9 @@ class Ground : public Terrain
 {
 private:
     int lastSeed;
+    int nextCoinX = 0;
+    int prevItemX = 0;
+
 public:
     
     
@@ -40,7 +43,7 @@ public:
 
     
     virtual void update(float dt, Point pos);
-    
+    void coinGenerator();
 
 protected:
 

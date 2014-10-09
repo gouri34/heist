@@ -19,7 +19,7 @@
       "objecttag": 10003,
       "rotation": 0,
       "scalex": 1,
-      "scaley": 1,
+      "scaley": 2.4,
       "visible": 1,
       "x": 207,
       "y": 81.169593811035156,
@@ -328,46 +328,16 @@
     {
       "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
       "classname": "CCNode",
-      "name": null,
-      "canedit": true,
-      "objecttag": 10015,
-      "rotation": 0,
-      "scalex": 0.23,
-      "scaley": 0.23,
-      "visible": 1,
-      "x": 99.868400573730469,
-      "y": -10.605297088623047,
-      "zorder": 1,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "Enemies/running_grunt/running_grunt.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
       "name": "_Copy",
       "canedit": true,
       "objecttag": 10016,
       "rotation": 0,
-      "scalex": 0.23,
-      "scaley": 0.23,
+      "scalex": 0.4,
+      "scaley": 0.4,
       "visible": 1,
-      "x": 302.49984741210938,
-      "y": -13.605297088623047,
-      "zorder": 1,
+      "x": 155.49984741210938,
+      "y": -5.605297088623047,
+      "zorder": 30,
       "gameobjects": [],
       "components": [
         {
@@ -376,7 +346,7 @@
           "name": "CCArmature",
           "file": null,
           "fileData": {
-            "path": "Enemies/running_grunt/running_grunt.ExportJson",
+            "path": "Sabaodui/Sabaodui.ExportJson",
             "plistFile": "",
             "resourceType": 0
           },

@@ -36,7 +36,6 @@ void NormalEnemy::setArmatureBody()
     //gameScene->addChild(batch, armature->getZOrder());
     
     armature->getAnimation()->playByIndex(0);
-
     
     // int z = bonearr->count();
     for(int i = 0; i< bonearr.size();i++)
@@ -357,10 +356,13 @@ void NormalEnemy::collisionProcess(Monster *monster)
     if(monster->isDashing()==false)
     {
         die(b2Vec2(randForce, yForce));
+        UniversalAttributes::GetInstance()->destructionScore += score;
     }
-    else
+    else{
         die(b2Vec2(2*randForce, 2*yForce));
-
+        score = score*2;
+        UniversalAttributes::GetInstance()->destructionScore += score;
+    }
 }
 
 

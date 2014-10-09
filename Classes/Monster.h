@@ -30,8 +30,9 @@ public:
     
     void creatfootBody();
     void setArmatureBody();
-        
+    
     Armature *theBody;
+    float targetSpeed;
     
     //change state
     ActionStatus getActionStatus();
@@ -41,6 +42,8 @@ public:
     void verticalAdjust();
     void stop();
     void action();
+    bool inJump;
+    bool inDoubleJump;
     
     //attack related
     void HeavyAttack();
@@ -48,7 +51,7 @@ public:
     
     //animation callback
     void animationEvent(cocostudio::Armature *armature, cocostudio::MovementEventType movementType, const std::string& movementID);
-
+    
     void die();
     
     void update(float dt);
@@ -67,7 +70,7 @@ public:
     bool Unhurtable = false;
     float hurtTimer = 0;
     void getHurt();
-
+    
     
 private:
     Layer *gameScene;
@@ -91,11 +94,9 @@ private:
     int actionState;
     bool inMovement;
     
-    bool inJump;
-    bool inDoubleJump;
+    
     void onGroundDetector();
     
-    float targetSpeed;
     float prevSpeed;
     
     void collisionDetector();
@@ -107,6 +108,7 @@ private:
     
     Sequence *sq;
     bool barFull = true;
+
     
 };
 

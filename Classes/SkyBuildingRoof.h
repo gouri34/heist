@@ -14,6 +14,7 @@
 class SkyBuildingRoof : public Building {
     
 private:
+    Point lastObjectPos;
 public:
     static SkyBuildingRoof* create(Point pos, int groundY);
     virtual bool init(Point pos, int groundY);

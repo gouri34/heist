@@ -85,29 +85,23 @@ void MapGenerator::init(Layer* _gameLayer, b2World* _gameWorld)
     Ground* firstGround = Ground::create(Point(0, 100), 0);
     terrains.push_back(firstGround);
     currentTerrain = firstGround;
-    
-    
-    NormalEnemy* ne = NormalEnemy::create("running_grunt", Point(900, 120), 0.25, 0.25);
-    enemies.push_back(ne);
+
     terrainStatus = inGroundBld;
     
-    Panzer* p = Panzer::create("Panzer", Point(900,250), 1, 1);
-    enemies.push_back(p);
+    NormalEnemy *ne = NormalEnemy::create("running_grunt", Point(500,120), 0.3, 0.3);
+    enemies.push_back(ne);
     
     
-    GuardTower *gt = GuardTower::create("GuardTower", Point(1100,270), 1.0, 0.8);
+    GuardTower *gt = GuardTower::create("GuardTower", Point(1400,270), 1.0, 0.8);
     commonObjs.push_back(gt);
     
-    BazookaEnemy *be = BazookaEnemy::create("PAObin", Point(1100,350), 0.3, 0.3);
+    BazookaEnemy *be = BazookaEnemy::create("PAObin", Point(1400,350), 0.3, 0.3);
     enemies.push_back(be);
     
-    ShieldEnemy *se = ShieldEnemy::create("DDUNBIN", Point(900,120), 0.3, 0.3);
+    ShieldEnemy *se = ShieldEnemy::create("dunbin", Point(1150,120), 0.3, 0.3);
     enemies.push_back(se);
     
-    LandMine *lm = LandMine::create("Mine", Point(1300,250), 0.3, 0.3);
-    enemies.push_back(lm);
-    
-    Item *it = Item::create(gameLayer, gameWorld, Point(1400,200));
+    Item *it = Item::create(gameLayer, gameWorld, Point(1550,200));
     items.push_back(it);
     
     StockPiles *sp = StockPiles::create("Sabaodui", Point(950,120), 0.4, 0.4);
@@ -193,6 +187,11 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
             node = (Node*)sp->theBody;
             commonObjs.push_back(sp);
         }
+        else if(data.sourceName.find("Sabaodui")!=string::npos){
+            StockPiles *sp = StockPiles::create("Sabaodui", pos_, data.scalex, data.scaley);
+            node = (Node*)sp->theBody;
+            commonObjs.push_back(sp);
+        }
         else{
             CommonObject *d = CommonObject::create(data.sourceName, pos_, data.scalex, data.scaley);
             node = (Node*)d->theBody;
@@ -208,7 +207,7 @@ void MapGenerator::addObjectWithData(SceneData data, Point pos)
             enemies.push_back(p);
 
         }
-        if(data.sourceName.find("DDUNBIN")!=string::npos){
+        if(data.sourceName.find("dunbin")!=string::npos){
             ShieldEnemy *se = ShieldEnemy::create(data.sourceName.c_str(),pos_,data.scalex, data.scaley);
             node = (Node*)se->armature;
             enemies.push_back(se);
@@ -265,6 +264,14 @@ void MapGenerator::update(Point pos, float dt)
 {
     updateObjects(pos, dt);
     
+    //drop from the building n u r done!
+    if(terrainStatus==inSkyBld||terrainStatus==onSkyRoof)
+    {
+        if (UniversalAttributes::GetInstance()->monster->theBody->getPositionY()<currentTerrain->offScreenPoint.y-3500) {
+            UniversalAttributes::GetInstance()->healthCount = 0;
+        }
+    }
+    
     if (currentTerrain->timerStart) {
         stageTimer -= dt;
     }
@@ -277,7 +284,7 @@ void MapGenerator::update(Point pos, float dt)
     //if time for elevator, try go elevator first
     
     
-    if (stageTimer <= 0) {
+    if (stageTimer <= 0&&UniversalAttributes::GetInstance()->inMenuMode==false) {
         
         bool jobDone = false;
         
@@ -288,7 +295,7 @@ void MapGenerator::update(Point pos, float dt)
         
         if (stageType == onGround && (!elevatorAdded)) {
             while (!jobDone) {
-                int randSeed = rand()%4; //seed decide the next stage type
+                int randSeed = rand()%50; //seed decide the next stage type
                 
                 TerrainStatus ts = (TerrainStatus)randSeed;
                 
@@ -299,49 +306,57 @@ void MapGenerator::update(Point pos, float dt)
                     }
                         break;
                         
-                    case goingUp:
-                    {
-                        jobDone = changeToGroundBuilding(terrainStatus);
-                    }
-                        break;
-                    case goingDown:
-                    {
-                        jobDone = changeToGroundBuilding(terrainStatus);
-                    }
+//                    case goingUp:
+//                    {
+//                        jobDone = changeToGroundBuilding(terrainStatus);
+//                    }
+//                        break;
+//                    case goingDown:
+//                    {
+//                        jobDone = changeToGroundBuilding(terrainStatus);
+//                    }
                         
                     case inGroundBld:
                     {
-                        jobDone = changeToGroundBuilding(terrainStatus);
+                            jobDone = changeToGroundBuilding(terrainStatus);
                     }
                         break;
                         
                     default:
+                        jobDone = changeToPlain(terrainStatus);
                         break;
                 }
             }
         }
         else if (stageType == onRoof && (!elevatorAdded))
         {
-            while (!jobDone) {
-                int randSeed = rand()%2+4; //seed decide the next stage type
-                
-                TerrainStatus ts = (TerrainStatus)randSeed;
-                
-                switch (ts) {
-                    case inSkyBld:
-                    {
-                        jobDone = changeToSkyBuilding(terrainStatus);
+            //let roof time a little bit longer
+            int getMeOutOfTheRoofRand = rand()%20;
+            if (getMeOutOfTheRoofRand>=15) {
+                makeRoofBuilding();
+            }
+            else{
+                while (!jobDone) {
+                    int randSeed = rand()%2+4; //seed decide the next stage type
+                    
+                    TerrainStatus ts = (TerrainStatus)randSeed;
+                    
+                    switch (ts) {
+                        case inSkyBld:
+                        {
+                            jobDone = changeToSkyBuilding(terrainStatus);
+                        }
+                            break;
+                            
+                        case onSkyRoof:
+                        {
+                            jobDone = changeToSkyRoof(terrainStatus);
+                        }
+                            break;
+                            
+                        default:
+                            break;
                     }
-                        break;
-                        
-                    case onSkyRoof:
-                    {
-                        jobDone = changeToSkyRoof(terrainStatus);
-                    }
-                        break;
-                        
-                    default:
-                        break;
                 }
             }
 
@@ -667,7 +682,7 @@ void MapGenerator::makeGroundPlain(bool fromSlope, bool wentUp)
     
     terrainStatus = plain;
     stageType = onGround;
-    stageTimer = 8.0;
+    stageTimer = 50.0;
 }
 
 void MapGenerator::makeGroundSlope(bool goUp)
@@ -782,6 +797,7 @@ void MapGenerator::makeEvelator(bool up)
         
         terrainStatus = inGroundBld;
         currentTerrain = gb;
+
     }
     
     

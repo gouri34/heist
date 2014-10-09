@@ -33,3 +33,10 @@ void GuardTower::collisionProcess(Monster *monster)
     //}
 }
 
+void GuardTower::destroy()
+{
+    CommonObject::destroy();
+    ScreenShaker *ss = ScreenShaker::create(0.5, 6);
+    gameScene->getParent()->runAction(ss);
+}
+

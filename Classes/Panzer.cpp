@@ -29,6 +29,19 @@ void Panzer::setArmatureBody()
 
 void Panzer::creatfootBody()
 {
+    
+    //rand a chopper
+    randChopper = rand()%20;
+    if(randChopper<=5){
+        chopper = Armature::create("Chopper");
+        chopper->setScale(0.17);
+        chopper->setPosition(Point(UniversalAttributes::GetInstance()->monster->theBody->getPositionX()-300,UniversalAttributes::GetInstance()->monster->theBody->getPositionY()+240));
+        chopper->getAnimation()->playWithIndex(0);
+        gameScene->addChild(chopper,-5);
+    }
+    
+    //----
+    score = 10;
     b2Vec2 pos = b2Vec2(armature->getPositionX()/PTM_RATIO, armature->getPositionY()/PTM_RATIO);
     
     b2BodyDef bodyDef;
@@ -74,13 +87,13 @@ void Panzer::creatfootBody()
         }
     }
     armature->getAnimation()->playWithIndex(0);
-
+    
 }
 
 void Panzer::update(float dt)
 {
     Enemy::update(dt);
-
+    
     armature->setPosition(Point(footBody->GetPosition().x*PTM_RATIO, footBody->GetPosition().y*PTM_RATIO));
     b2Vec2 vel =footBody->GetLinearVelocity();
     float velChange = -(vel.x+4);
@@ -94,6 +107,17 @@ void Panzer::update(float dt)
         angle -= 360;
     }
     armature->setRotation(angle);
+    
+    if (randChopper<=5&&chopper!=NULL) {
+        if (UniversalAttributes::GetInstance()->monster->inSprint==true)
+            chopper->setPosition(Point(chopper->getPositionX()+80,chopper->getPositionY()));
+        else
+            chopper->setPosition(Point(chopper->getPositionX()+UniversalAttributes::GetInstance()->monster->targetSpeed+15,chopper->getPositionY()));
+        if (chopper->getPositionX()>UniversalAttributes::GetInstance()->monster->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width*0.8) {
+            gameScene->removeChild(chopper);
+            chopper = NULL;
+        }
+    }
 }
 
 void Panzer::collisionProcess(Monster *monster)
@@ -119,5 +143,6 @@ void Panzer::collisionProcess(Monster *monster)
     }
     if(monster->inSprint==true){
         footBody->ApplyLinearImpulse(b2Vec2(30,100), footBody->GetWorldCenter(), true);
+        UniversalAttributes::GetInstance()->destructionScore += score;
     }
 }

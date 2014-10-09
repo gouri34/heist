@@ -49,14 +49,22 @@ bool GameScene::init()
     ArmatureDataManager::getInstance()->addArmatureFileInfo("FlammerMonster.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Panzer.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("PAObin.ExportJson");
-    ArmatureDataManager::getInstance()->addArmatureFileInfo("DDUNBIN.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("dunbin.ExportJson");
 
     ArmatureDataManager::getInstance()->addArmatureFileInfo("GuardTower.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Mine.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Meteo.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("shiguan.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("Sabaodui.ExportJson");
-    
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("yuzhouwuzhi.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("Chopper.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("healthItem.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("shieldItem.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("ci.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("bam.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("bazookeshell.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("huoyanpenshe.ExportJson");
+
     //groundbuilding objects
     ArmatureDataManager::getInstance()->addArmatureFileInfo("apartment_chair.ExportJson");
     ArmatureDataManager::getInstance()->addArmatureFileInfo("apartment_door.ExportJson");
@@ -77,7 +85,7 @@ bool GameScene::init()
     
     
     //load character
-    monster = Monster::create(this, world, Point(50, visibleSize.height/2));
+    monster = Monster::create(this, world, Point(300, visibleSize.height/2));
     monster->creatfootBody();
     
     a->GetInstance()->setMonsterData(monster);
@@ -159,8 +167,15 @@ void GameScene::afterStep()
     
 }
 
+//void GameScene::moreEnemies()
+//{
+//    MapGenerator::GetInstance()
+//}
+
 GameScene::~GameScene()
 {
     delete monster;
 }
+
+
 

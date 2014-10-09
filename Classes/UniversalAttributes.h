@@ -10,9 +10,9 @@
 #define __Animal_Squad__UniversalAttributes__
 
 #include <iostream>
-#include <string.h>
 #include "Monster.h"
 #import "cocos2d.h"
+#include <string.h>
 
 using namespace std;
 using namespace cocos2d;
@@ -21,12 +21,18 @@ class UniversalAttributes
 {
 public:
     
+    bool inMenuMode = true;
+    bool soundOn = true;
     NodeGrid *menuGrid;
     Monster *monster;
     ProgressTimer *pt;
     //std::vector<Sprite*>healths;
     int healthCount;
-
+    int destructionScore = 0;
+    int galaxyMatterScore = 0;
+    int comboStreak = 0;
+    float enemyTimer = 1.3;
+    
     static UniversalAttributes* GetInstance(); //acquire instance
     
     virtual ~UniversalAttributes();
@@ -35,7 +41,10 @@ public:
     
     void setMonsterData(Monster *mon);
     
-    //void storeMenuScenePointer(MenuScene *ms_);
+    void addDestructionScore();
+    void addMattersScore();
+    
+    void resetGame();
     
 private:
     UniversalAttributes();
@@ -46,4 +55,5 @@ private:
     
     
 };
+
 #endif /* defined(__Animal_Squad__UniversalAttributes__) */

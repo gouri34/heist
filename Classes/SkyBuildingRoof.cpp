@@ -8,7 +8,9 @@
 
 #include "SkyBuildingRoof.h"
 
-
+#include "MonsterTrap.h"
+#include "BazookaEnemy.h"
+#include "LandMine.h"
 #include "MapGenerator.h"
 
 #define CEILING_HIGHT 161
@@ -34,7 +36,6 @@ bool SkyBuildingRoof::init(Point pos, int groundY)
     cocos2d::Texture2D::TexParams params = {GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT};
     
     
-    
     Texture2D* viewTexture = Director::getInstance()->getTextureCache()->addImage("building1.png");
     viewTextureSize = Size(413, viewTexture->getPixelsHigh());
     
@@ -51,7 +52,7 @@ bool SkyBuildingRoof::init(Point pos, int groundY)
     
        
     setVertices(pos);
-    
+    lastObjectPos = Point(lastPos.x,lastPos.y+50);
     
     
     return true;
@@ -141,7 +142,21 @@ void SkyBuildingRoof::update(float dt, Point pos)
 
     if (!dead) {
         setVertices(pos);
+        //lastObjectPos = Point(lastPos.x+300,lastPos.y+100);
+
         // setGroundBuildings(pos);
+        int randNum = rand()%15;
+        if (randNum<=5&&lastPos.x>lastObjectPos.x) {
+            LandMine *lm = LandMine::create("Mine", Point(lastPos.x-500,lastPos.y+20), 0.3, 0.3);
+            MapGenerator::GetInstance()->enemies.push_back(lm);
+            lastObjectPos = Point(lastPos.x+600,lastObjectPos.y);
+        }
+        else if (randNum>=11&&lastPos.x>lastObjectPos.x){
+            MonsterTrap *mt = MonsterTrap::create("ci", Point(lastPos.x-500,lastPos.y+20), 0.5, 0.4);
+            MapGenerator::GetInstance()->enemies.push_back(mt);
+            lastObjectPos = Point(lastPos.x+600,lastPos.y);
+        }
+        
     }
     else {
         if ((pos.x - lastPos.x) > MonsterOffset) {

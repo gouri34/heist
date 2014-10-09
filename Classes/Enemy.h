@@ -11,6 +11,7 @@
 
 #include "Character.h"
 #include "Monster.h"
+#include "UniversalAttributes.h"
 
 #define  PTM_RATIO 32.0
 #define  HEIGHTDIFFX -10
@@ -62,9 +63,12 @@ public:
 
     //properties
     Armature *armature;
+    Armature *bam;
     float zombie_scale;
     float desireVel;
         //vector<PhysicsSprite*>deadSpriteArray;
+    
+    int score = 20;
     
     
     //function delaretions

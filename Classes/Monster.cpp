@@ -50,8 +50,8 @@ bool Monster::init(Layer *gameScene_, b2World *gameWorld_, Point pos)
     actionStatus = jump;
     inJump = false;
     inDoubleJump = false;
-    dashCountDown = 1.0;
-    targetSpeed = 18.0;
+    dashCountDown = 0.5;
+    targetSpeed = 18;
     prevSpeed = targetSpeed;
     sq = NULL;
     
@@ -85,7 +85,7 @@ void Monster::creatfootBody()
     
     b2CircleShape circleShape;
     circleShape.m_radius = 0.75f;
-
+    
     b2FixtureDef fixtureDef;
     fixtureDef.density = 0.6;
     fixtureDef.friction = 0.0f;
@@ -184,7 +184,7 @@ void Monster::setArmatureBody()
          printf("boneX = %f\n", bone->getPositionX());
          printf("boneY = %f\n", bone->getPositionY());*/
     }
-
+    
 }
 
 Monster::~Monster()
@@ -212,15 +212,15 @@ void Monster::verticalAdjust()
 void Monster::stop() {
     
     /*if (!dead) {
-        float targetSpeed = 0;
-        
-        b2Vec2 vel = footBody->GetLinearVelocity();
-        float XvelChange = targetSpeed - vel.x;
-        float Ximpulse = XvelChange*footBody->GetMass()/3.0;
-        footBody->ApplyLinearImpulse(b2Vec2(Ximpulse, 0), footBody->GetWorldCenter(), true);
-
-    }
-    */
+     float targetSpeed = 0;
+     
+     b2Vec2 vel = footBody->GetLinearVelocity();
+     float XvelChange = targetSpeed - vel.x;
+     float Ximpulse = XvelChange*footBody->GetMass()/3.0;
+     footBody->ApplyLinearImpulse(b2Vec2(Ximpulse, 0), footBody->GetWorldCenter(), true);
+     
+     }
+     */
     
 }
 
@@ -258,13 +258,13 @@ void Monster::action()
             theBody->getAnimation()->playWithIndex(2);
             inJump = true;
             jumpTimer = 0;
-
+            
         }
     }
     else if (actionStatus == dash&&UniversalAttributes::GetInstance()->pt->getPercentage()==100){
         if (!inDash) {
             inDash = true;
-            dashTimer = 0.24;
+            dashTimer = 0.28;
             prevSpeed = targetSpeed;
             targetSpeed = targetSpeed+40;
             theBody->getAnimation()->playWithIndex(3);
@@ -273,13 +273,13 @@ void Monster::action()
             barFull=false;
         }
     }
-   
+    
 }
 
 void Monster::dashProgressBarHandler()
 {
-        ProgressFromTo *to2 = ProgressFromTo::create(dashCountDown, UniversalAttributes::GetInstance()->pt->getPercentage(), 100);
-        UniversalAttributes::GetInstance()->pt->runAction(to2);
+    ProgressFromTo *to2 = ProgressFromTo::create(dashCountDown, UniversalAttributes::GetInstance()->pt->getPercentage(), 100);
+    UniversalAttributes::GetInstance()->pt->runAction(to2);
 }
 
 
@@ -331,7 +331,7 @@ void Monster::HeavyAttackEffect()
     }
     
     //map shake effect
-
+    
 }
 
 
@@ -367,7 +367,7 @@ void Monster::die()
             Skin *skin = (Skin*)element.second->getDisplayRenderNode();
             string name = element.first;
             
-            if (skin) {
+            if (skin&&(bone->getName()!="Gshockwave")) {
                 b2Body *body = skin->body;
                 
                 body->GetFixtureList()->SetFixtureType(f_bodydead);
@@ -445,12 +445,12 @@ void Monster::update(float dt)
                 }
             }
         }
-
+        
         //
         jumpTimer += dt;
         
         //detect jump status
-        if (inJump==true&&jumpTimer>0.5) {
+        if (inJump==true&&jumpTimer>0.2) {
             onGroundDetector();
         }
         
@@ -480,7 +480,7 @@ void Monster::update(float dt)
                 barFull=true;
             }
         }
-
+        
         //item update
         itemUpdate(dt);
         //health update
@@ -615,10 +615,10 @@ void Monster::onGroundDetector()
     MyQueryCallback queryCallback; //see "World querying topic"
     b2AABB aabb;
     //b2Vec2 explosionCenterVec = b2Vec2(explo->posX/PTM_RATIO, explo->posY/PTM_RATIO);
-
+    
     b2Vec2 detectionVec = footBody->GetPosition();
-    aabb.lowerBound = detectionVec - b2Vec2(0.75, 0.75);
-    aabb.upperBound = detectionVec + b2Vec2( 0.75, 0.75);
+    aabb.lowerBound = detectionVec - b2Vec2(0.75, 0.84);
+    aabb.upperBound = detectionVec + b2Vec2( 0.75, 0.84);
     gameWorld->QueryAABB( &queryCallback, aabb );
     
     for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
@@ -628,12 +628,12 @@ void Monster::onGroundDetector()
             FixtureType t = f->GetFixtureType();
             
             //if collision with ground, switch back to running animation
-            if (t == f_ground) {
+            if (t == f_ground||t==f_commonObj||t==f_wall||t==f_enemy_foot) {
                 theBody->getAnimation()->playWithIndex(0);
                 inJump = false;
                 inDoubleJump = false;
             }
-
+            
         }
     }
 }
@@ -652,6 +652,7 @@ void Monster::goSprint(float timer)
         inDash=true;
         targetSpeed = targetSpeed+45;
         sprintTimer = timer;
+        theBody->getAnimation()->playWithIndex(0);
         theBody->getAnimation()->setSpeedScale(4.0);
         pe = ParticleMeteor::create();
         pe->setGravity(Point(-200,0));
@@ -665,29 +666,35 @@ void Monster::goSprint(float timer)
 void Monster::itemUpdate(float dt)
 {
     if (inSprint) {
-        sprintTimer -= dt;
+        sprintTimer = sprintTimer-dt;
         if (sprintTimer<=0) {
             inSprint=false;
             inDash=false;
             targetSpeed=prevSpeed;
             theBody->getAnimation()->setSpeedScale(1.0);
             gameScene->removeChild(pe);
+            dashProgressBarHandler();
         }
-        pe->setPosition(theBody->getPosition());
-
+        else
+            pe->setPosition(theBody->getPosition());
+        
     }
 }
 
 //------------hurt related function (health)---------
 void Monster::getHurt(){
-    if (Unhurtable==false&&hurtTimer<=0) {
-        hurtTimer = 1.0;
-        Unhurtable = true;
-        //theBody->setColor(Color3B(255, 120,120));
-        Blink *blink = Blink::create(0.5, 6);
-        theBody->runAction(blink);
-        if(UniversalAttributes::GetInstance()->healthCount>=1)
+    if (Unhurtable==false&&hurtTimer<=0&&inSprint==false&&!dead) {
+        if(UniversalAttributes::GetInstance()->healthCount>=1){
+            if(UniversalAttributes::GetInstance()->healthCount!=1){
+                UniversalAttributes::GetInstance()->comboStreak = 0;
+                hurtTimer = 1.0;
+                Unhurtable = true;
+                //theBody->setColor(Color3B(255, 120,120));
+                Blink *blink = Blink::create(0.5, 6);
+                theBody->runAction(blink);
+            }
             UniversalAttributes::GetInstance()->healthCount--;
-
+        }
     }
 }
+

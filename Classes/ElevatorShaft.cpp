@@ -15,7 +15,7 @@
 #define TRUE_GROUND_OFFSET 4
 
 #define ELEVATOR_LENGTH 100
-#define ELEVATOR_SPEED 12.0
+#define ELEVATOR_SPEED 20.0
 
 
 
@@ -72,7 +72,7 @@ bool ElevatorShatf::init(Point pos, int s_heigth)
 
 void ElevatorShatf::setupElevator()
 {
-    elevator->setPosition(Point(startPos.x+ELEVATOR_LENGTH/2, startPos.y));
+    elevator->setPosition(Point(startPos.x+10+ELEVATOR_LENGTH/2, startPos.y-10));
     
     Rect a = elevator->getTextureRect();
     
@@ -192,6 +192,11 @@ void ElevatorShatf::update(float dt, Point pos)
             {
                 elevator_status = Done;
                 MapGenerator::GetInstance()->setStageType(onRoof);
+                
+                //add a health item
+                Item *item = Item::create(MapGenerator::GetInstance()->gameLayer, MapGenerator::GetInstance()->gameWorld, Point(elevator->getPositionX()+500,destinationY+50));
+                item->setAsHealth();
+                MapGenerator::GetInstance()->items.push_back(item);
             }
         }
         else if (elevator_status == GoingDown) {
@@ -203,6 +208,11 @@ void ElevatorShatf::update(float dt, Point pos)
             {
                 elevator_status = Done;
                 MapGenerator::GetInstance()->setStageType(onGround);
+                
+                //add a sprint item
+                Item *item = Item::create(MapGenerator::GetInstance()->gameLayer, MapGenerator::GetInstance()->gameWorld, Point(elevator->getPositionX()+500,destinationY+65));
+                item->setAsSprint();
+                MapGenerator::GetInstance()->items.push_back(item);
             }
         }
         else if (elevator_status == Done)

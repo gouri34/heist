@@ -19,6 +19,7 @@
 #include "CommonObject.h"
 #include "Enemy.h"
 #include "Item.h"
+#include "Coin.h"
 
 using namespace cocos2d;
 
@@ -44,11 +45,6 @@ private:
     float stageTimer;
     float elevatorTimer;
     
-    std::vector<Sprite*> sprites;
-    std::vector<Terrain*> terrains;
-    std::vector<CommonObject*>commonObjs;
-    std::vector<Enemy*> enemies;
-    std::vector<Item*> items;
     
     std::map<string, SceneInfo> sceneInfos;
     
@@ -76,6 +72,12 @@ public:
     
     Layer *gameLayer;
     b2World *gameWorld;
+    
+    std::vector<Sprite*> sprites;
+    std::vector<Terrain*> terrains;
+    std::vector<CommonObject*>commonObjs;
+    std::vector<Enemy*> enemies;
+    std::vector<Item*> items;
     
     float enemyTimer; //just for testing
 

@@ -35,7 +35,7 @@ void ShieldEnemy::setArmatureBody()
     dynamicBox.SetAsBox((armature->getScale()*armature->getContentSize().width*0.1/PTM_RATIO), armature->getScale()*armature->getContentSize().height*0.3/PTM_RATIO);
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &dynamicBox;
-    fixtureDef.density = 10.0;
+    fixtureDef.density = 0.7f;
     fixtureDef.friction = 0.3f;
     //BULLET INDICATES IT IS NOT DASHABLE
     fixtureDef.filter.categoryBits = BULLET;
@@ -65,7 +65,7 @@ void ShieldEnemy::setArmatureBody()
             Size partSize = Size((a.getMaxX()-a.getMinX())/PTM_RATIO*armature->getScale(), (a.getMaxY()-a.getMinY())/PTM_RATIO*armature->getScale());
             
             b2BodyDef bodyDef;
-            if (boneName.compare("dun")==0) {
+            if (boneName.compare("se_dun")==0) {
                 bodyDef.type = b2_staticBody;
             }
             else
@@ -150,7 +150,9 @@ void ShieldEnemy::update(float dt)
     {
         updateArmatureBody();
         armature->setPosition(Point(footBody->GetPosition().x*
-                                    PTM_RATIO, footBody->GetPosition().y*PTM_RATIO+10));
+                                    PTM_RATIO, footBody->GetPosition().y*PTM_RATIO+20));
+        
+
         if (shieldIsDestoryed==false) {
             shield->SetTransform(b2Vec2((armature->getPositionX()-(armature->getScale()*armature->getContentSize().width*0.5))/PTM_RATIO,armature->getPositionY()/PTM_RATIO), 0);
         }
@@ -180,13 +182,16 @@ void ShieldEnemy::update(float dt)
         }
         
     }
-
+    
     if ((armature->getPositionX()<a->GetInstance()->monster->theBody->getPositionX())&&shield!=NULL&&shieldIsDestoryed==false) {
         shield->SetActive(false);
         gameWorld->DestroyBody(shield);
         shield=NULL;
         shieldIsDestoryed=true;
     }
+    bam->setPosition(Point(armature->getPositionX()+(armature->getScaleY()*armature->getContentSize().width/2),armature->getPositionY()));
+
+
 }
 
 void ShieldEnemy::collisionProcess(Monster *monster)
@@ -201,6 +206,8 @@ void ShieldEnemy::collisionProcess(Monster *monster)
                 shield->SetActive(false);
             }
             die(b2Vec2(randForce, yForce));
+            UniversalAttributes::GetInstance()->destructionScore += score;
+
         }
         else
         {
@@ -212,6 +219,9 @@ void ShieldEnemy::collisionProcess(Monster *monster)
                 shield->SetActive(false);
             }
             die(b2Vec2(3*randForce, 2*yForce));
+            score = score*2;
+            UniversalAttributes::GetInstance()->destructionScore += score;
+
         }
     }
     else{

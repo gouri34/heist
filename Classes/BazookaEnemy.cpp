@@ -134,10 +134,11 @@ void BazookaEnemy::setArmatureBody()
 
 void BazookaEnemy::createRocketShell()
 {
-    rocketShellSprite = Sprite::create("bazooka_shell.png");
-    rocketShellSprite->setScale(0.3);
+    rocketShellSprite = Armature::create("huoyanpenshe");
+    rocketShellSprite->getAnimation()->playWithIndex(0);
+    rocketShellSprite->setScale(0.14);
     rocketShellSprite->setAnchorPoint(Point(0.5,0.5));
-    rocketShellSprite->setPosition(Point(armature->getPositionX()-armature->getScale()*armature->getContentSize().width/2-rocketShellSprite->getBoundingBox().size.width/2-5,
+    rocketShellSprite->setPosition(Point(armature->getPositionX()-armature->getScale()*armature->getContentSize().width/2-rocketShellSprite->getBoundingBox().size.width/2+5,
                                          armature->getPositionY()));
     gameScene->addChild(rocketShellSprite,30);
     //create rocket shell body
@@ -171,6 +172,7 @@ void BazookaEnemy::createRocketShell()
     pf->setPositionType(kCCPositionTypeGrouped);
     pf->setAutoRemoveOnFinish(true);
     gameScene->addChild(pf,30);
+
     
 }
 
@@ -193,7 +195,7 @@ void BazookaEnemy::shellCollisionDetector()
             //if collision with player without dashing, deal damage to the player, if collision with player with dashing, bouncing back
             if (t == f_monster_body&&isBouncingBack==false) {
                 // if not in dash mode
-                if (a->GetInstance()->monster->isDashing()==false) {
+                if (a->GetInstance()->monster->isDashing()==false&&shellDeleted==false) {
                     //monster get hurt
                     explod();
                     gameWorld->DestroyBody(rocketShellBody_);
@@ -228,6 +230,7 @@ void BazookaEnemy::shellCollisionDetector()
             }
         }
     }
+
     
 }
 
@@ -247,11 +250,15 @@ void BazookaEnemy::explod()
     rocketShellSprite->setVisible(false);
     rocketShellBody_->SetActive(false);
     isExploding = true;
+    shellDeleted = true;
+    
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explosion_medium.mp3");
     
 }
 
 void BazookaEnemy::update(float dt)
 {
+    
     if (dead) {
         Sprite* s = deadSpriteArray.at(0);
         position = s->getPosition();
@@ -260,14 +267,13 @@ void BazookaEnemy::update(float dt)
         position = armature->getPosition();
     }
     
-
+    
     //if close enough, fire rocket shell
     if(!dead&&footBody)
     {
         updateArmatureBody();
         armature->setPosition(Point(footBody->GetPosition().x*
                                     PTM_RATIO, footBody->GetPosition().y*PTM_RATIO+10));
-
         if(isFiring==false&&isPlayingAnimation==false&&(armature->getPositionX()<=a->GetInstance()->monster->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width*0.6))
         {
             armature->getAnimation()->playWithIndex(0);
@@ -278,12 +284,12 @@ void BazookaEnemy::update(float dt)
         {
             rocketShellBody_->SetLinearVelocity(b2Vec2(shellVelo,0));
             
-            pf->setPosition(Point(rocketShellSprite->getPositionX()+(rocketShellSprite->getScale()*rocketShellSprite->getContentSize().width/2),rocketShellSprite->getPositionY()));
-
+//            pf->setPosition(Point(rocketShellSprite->getPositionX()+(rocketShellSprite->getScale()*rocketShellSprite->getContentSize().width/2),rocketShellSprite->getPositionY()));
+            
             rocketShellSprite->setPosition(rocketShellBody_->GetPosition().x*PTM_RATIO,rocketShellBody_->GetPosition().y*PTM_RATIO);
             shellCollisionDetector();
             if ((rocketShellSprite->getPositionX()>a->GetInstance()->monster->theBody->getPositionX()+Director::getInstance()->getVisibleSize().width
-                ||a->GetInstance()->monster->theBody->getPositionX()-rocketShellSprite->getPositionX()>300)&&shellDeleted==false) {
+                 ||a->GetInstance()->monster->theBody->getPositionX()-rocketShellSprite->getPositionX()>300)&&shellDeleted==false) {
                 isExploding = true;
                 rocketShellSprite->setVisible(false);
                 gameWorld->DestroyBody(rocketShellBody_);
@@ -310,6 +316,8 @@ void BazookaEnemy::update(float dt)
         }
         
     }
+    bam->setPosition(Point(armature->getPositionX()+(armature->getScaleY()*armature->getContentSize().width/2),armature->getPositionY()));
+
 }
 
 void BazookaEnemy::collisionProcess(Monster *monster)
@@ -321,8 +329,11 @@ void BazookaEnemy::collisionProcess(Monster *monster)
         float randForce = 1.0+randSeed/100.0;
         float yForce = 2.4+randSeed/100.0;
         //rocketShellBody_->SetActive(false);
-        rocketShellSprite->setVisible(false);
+        if (isFiring==true) {
+            rocketShellSprite->setVisible(false);
+        }
         die(b2Vec2(randForce, yForce));
+        UniversalAttributes::GetInstance()->destructionScore += score;
     }
     else
     {
@@ -331,8 +342,13 @@ void BazookaEnemy::collisionProcess(Monster *monster)
         float randForce = 1.0+randSeed/100.0;
         float yForce = 2.4+randSeed/100.0;
         //rocketShellBody_->SetActive(false);
-        rocketShellSprite->setVisible(false);
+        if (isFiring==true) {
+            rocketShellSprite->setVisible(false);
+        }
         die(b2Vec2(3*randForce, 2*yForce));
+        score = score*2;
+        UniversalAttributes::GetInstance()->destructionScore += score;
+
     }
 }
 

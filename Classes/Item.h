@@ -22,17 +22,22 @@ using namespace cocos2d;
 using namespace cocostudio;
 class Item : public Ref{
 private:
-    Layer *gameLayer_;
-    b2World *gameWorld_;
     UniversalAttributes *a;
     int itemType;
     bool triggered = false;
 public:
+    int score = 20;
     Armature *armature;
+    Layer *gameLayer_;
+    b2World *gameWorld_;
     b2Body *body_;
     static Item* create(Layer* gameLayer, b2World *gameWorld, Point pos);
     virtual bool init(Layer* gameLayer, b2World *gameWorld, Point pos);
     ~Item();
-    void update(float dt);
+    virtual void update(float dt);
+    
+    //selected item
+    void setAsSprint();
+    void setAsHealth();
 };
 #endif /* defined(__Animal_Squad__Item__) */

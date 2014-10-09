@@ -24,7 +24,8 @@ public:
     virtual void collisionProcess(Monster *monster);
     
 private:
-    
+    Armature *chopper;
+    int randChopper;
 };
 
 #endif /* defined(__Animal_Squad__Panzer__) */

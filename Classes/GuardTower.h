@@ -26,7 +26,7 @@ public:
     static GuardTower* create(std::string fileName,cocos2d::Point pos, float scalex, float scaley);
     virtual ~GuardTower();
     
-    //virtual void destroy();
+    virtual void destroy();
     
     
     virtual void collisionProcess(Monster* monster);

@@ -19,7 +19,7 @@
       "objecttag": 10017,
       "rotation": 0,
       "scalex": 1,
-      "scaley": 1,
+      "scaley": 2.4,
       "visible": 1,
       "x": 206.83784484863281,
       "y": 80.729736328125,
@@ -354,37 +354,8 @@
           "selectedactionname": "Animation1"
         }
       ]
-    },
-    {
-      "__type": "ComGameObjectSurrogate:#EditorCommon.JsonModel",
-      "classname": "CCNode",
-      "name": null,
-      "canedit": true,
-      "objecttag": 10030,
-      "rotation": 0,
-      "scalex": 0.23,
-      "scaley": 0.23,
-      "visible": 1,
-      "x": 319.87030029296875,
-      "y": -13.384500503540039,
-      "zorder": 3,
-      "gameobjects": [],
-      "components": [
-        {
-          "__type": "ComArmatureAdapterSurrogate:#EditorCommon.JsonModel.Component",
-          "classname": "CCArmature",
-          "name": "CCArmature",
-          "file": null,
-          "fileData": {
-            "path": "Enemies/running_grunt/running_grunt.ExportJson",
-            "plistFile": "",
-            "resourceType": 0
-          },
-          "isShowColliderRect": false,
-          "selectedactionname": "Animation1"
-        }
-      ]
     }
+
   ],
   "CanvasSize": {
     "_height": 320,

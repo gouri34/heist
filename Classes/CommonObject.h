@@ -16,6 +16,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "MyQueryCallback.h"
 #include "Monster.h"
+#include "ScreenShaker.h"
 
 using namespace cocos2d;
 using namespace cocostudio;
@@ -26,20 +27,21 @@ private:
     std::vector<b2Body*>wallBlocks;
     Rect wallRect;
     bool iscontacting;
-    Layer* gameScene;
-    b2World *gameWorld;
 
 public:
-    
+    Layer* gameScene;
+    b2World *gameWorld;
     bool destroyed =false;
     Armature* theBody;
+    Armature* bam;
+    int score = 40;
     b2Body *staticWall;
     static CommonObject* create(std::string fileName,cocos2d::Point pos, float scalex, float scaley);
     virtual bool init(std::string fileName,cocos2d::Point pos, float scalex, float scaley);
     ~CommonObject();
     
     virtual void collisionProcess(Monster* monster);
-    void destroy();
+    virtual void destroy();
     
     
     virtual void update(Point pos, float dt);

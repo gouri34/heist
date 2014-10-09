@@ -20,7 +20,7 @@ private:
     void createRocketShell();
     void shellCollisionDetector();
     void explod();
-    Sprite *rocketShellSprite;
+    Armature *rocketShellSprite;
     b2Body *rocketShellBody_;
     bool isFiring = false;
     bool isPlayingAnimation = false;

@@ -82,7 +82,7 @@ SceneData SceneConstructor::componentProcess(rapidjson::Value &object)
     
     if (type.compare("CCArmature") == 0) {
         filename = Split(filename, ".")[0];
-        if (filename.compare("running_grunt")==0 || filename.compare("Panzer")==0||filename.compare("DDUNBIN")==0||filename.compare("PAObin")==0||filename.compare("Mine")==0) {
+        if (filename.compare("running_grunt")==0 || filename.compare("Panzer")==0||filename.compare("dunbin")==0||filename.compare("PAObin")==0||filename.compare("Mine")==0) {
             data.type = 4;
             data.sourceName = filename;
         }

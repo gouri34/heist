@@ -1,0 +1,1283 @@
+{
+  "content_scale": 1.0,
+  "armature_data": [
+    {
+      "strVersion": "1.6.0.0",
+      "version": 1.6,
+      "name": "dunbin",
+      "bone_data": [
+        {
+          "name": "se_shiningstar",
+          "parent": "",
+          "dI": 0,
+          "x": -177.85716247558594,
+          "y": 181.31431579589844,
+          "z": 10,
+          "cX": 0.27,
+          "cY": 0.2694818,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": false,
+          "bl": 0,
+          "display_data": [
+            {
+              "name": "shiningstar.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "se_dun",
+          "parent": "",
+          "dI": 1,
+          "x": -94.116264343261719,
+          "y": 127.31048583984375,
+          "z": 9,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": -1.0251998901367188E-05,
+          "arrow_y": 2.2379555957741104E-05,
+          "effectbyskeleton": true,
+          "bl": 0,
+          "display_data": [
+            {
+              "name": "dun.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 29.3437653,
+                  "y": 16.04512,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            },
+            {
+              "name": "shieldman_dun.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 5.74376965,
+                  "y": 15.6450882,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "se_shenti",
+          "parent": "",
+          "dI": 1,
+          "x": 26.383684158325195,
+          "y": 78.977180480957031,
+          "z": 5,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -1.43570185,
+          "kY": 1.43570185,
+          "arrow_x": 69.298103332519531,
+          "arrow_y": -9.75503098743502E-06,
+          "effectbyskeleton": true,
+          "bl": 69,
+          "display_data": [
+            {
+              "name": "shenti.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 66.93761,
+                  "y": 2.42990685,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.4357022,
+                  "kY": -1.43570411
+                }
+              ]
+            },
+            {
+              "name": "shieldman_shenti.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 79.23229,
+                  "y": 1.07344437,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.4357022,
+                  "kY": -1.4357022
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "se_zuoshou",
+          "parent": "se_shenti",
+          "dI": 1,
+          "x": 71.49139404296875,
+          "y": -30.986898422241211,
+          "z": 8,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 2.81493688,
+          "kY": -2.81493688,
+          "arrow_x": 112.049560546875,
+          "arrow_y": 4.5306132960831746E-05,
+          "effectbyskeleton": true,
+          "bl": 112,
+          "display_data": [
+            {
+              "name": "zuoshou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 24.7478027,
+                  "y": -12.5176086,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.37923539,
+                  "kY": 1.37923539
+                }
+              ]
+            },
+            {
+              "name": "shieldman_zuoshou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 15.0913639,
+                  "y": -4.53305054,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -1.37923539,
+                  "kY": 1.37923539
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "se_tou",
+          "parent": "se_shenti",
+          "dI": 1,
+          "x": 63.50665283203125,
+          "y": 7.9591846466064453,
+          "z": 4,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -1.70589089,
+          "kY": 1.70589089,
+          "arrow_x": 54.666671752929688,
+          "arrow_y": -3.8272977690212429E-05,
+          "effectbyskeleton": true,
+          "bl": 54,
+          "display_data": [
+            {
+              "name": "tou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 39.7275,
+                  "y": -22.97548,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.14159274,
+                  "kY": 3.14159274
+                }
+              ]
+            },
+            {
+              "name": "shieldman_tou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 20.7274952,
+                  "y": -45.97548,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.14159274,
+                  "kY": -3.14159274
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "se_datui",
+          "parent": "se_shenti",
+          "dI": 1,
+          "x": -13.380950927734375,
+          "y": 21.111238479614258,
+          "z": 3,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -1.596098,
+          "kY": 1.596098,
+          "arrow_x": 51.107746124267578,
+          "arrow_y": -4.77608682558639E-06,
+          "effectbyskeleton": true,
+          "bl": 51,
+          "display_data": [
+            {
+              "name": "datui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 19.8578835,
+                  "y": -24.8620834,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 3.03179884,
+                  "kY": -3.03179884
+                }
+              ]
+            },
+            {
+              "name": "shieldman_datui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -35.21794,
+                  "y": 9.30888,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 3.03179884,
+                  "kY": -3.03179884
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "se_youtui",
+          "parent": "se_datui",
+          "dI": 1,
+          "x": 43.272312164306641,
+          "y": -3.578155517578125,
+          "z": 6,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 4.77397537,
+          "kY": -4.77397537,
+          "arrow_x": 63.327728271484375,
+          "arrow_y": -8.3693494161707349E-06,
+          "effectbyskeleton": true,
+          "bl": 0,
+          "display_data": [
+            {
+              "name": "youtui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -24.7760468,
+                  "y": -10.3113213,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.54100943,
+                  "kY": 1.74217582
+                }
+              ]
+            },
+            {
+              "name": "shieldman_youtui.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 26.4432316,
+                  "y": 27.9847088,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.54100943,
+                  "kY": -4.54100943
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "se_youjiao",
+          "parent": "se_youtui",
+          "dI": 1,
+          "x": 64.494949340820312,
+          "y": 2.6377105712890625,
+          "z": 7,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 1.23649073,
+          "kY": -1.23649073,
+          "arrow_x": 29.591896057128906,
+          "arrow_y": 3.8269322431006E-06,
+          "effectbyskeleton": true,
+          "bl": 0,
+          "display_data": [
+            {
+              "name": "youjiao.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -88.17533,
+                  "y": -59.44619,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.30452132,
+                  "kY": 2.97866774
+                }
+              ]
+            },
+            {
+              "name": "shieldman_youjiao.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -14.3415861,
+                  "y": 6.247499,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 3.30452132,
+                  "kY": -3.30452132
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "se_zuojiao",
+          "parent": "se_shenti",
+          "dI": 1,
+          "x": -52.428863525390625,
+          "y": -42.931388854980469,
+          "z": 2,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 1.443292,
+          "kY": -1.443292,
+          "arrow_x": 2.9802322387695312E-06,
+          "arrow_y": 3.1442641557077877E-06,
+          "effectbyskeleton": true,
+          "bl": 0,
+          "display_data": [
+            {
+              "name": "zuojiao.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -10.0724449,
+                  "y": 51.5966263,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            },
+            {
+              "name": "shieldman_zuojiao.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": -3.51144338,
+                  "y": 5.07541466,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "se_youshou",
+          "parent": "se_shenti",
+          "dI": 1,
+          "x": -0.02014923095703125,
+          "y": -4.9959354400634766,
+          "z": 1,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -1.62911892,
+          "kY": 1.62911892,
+          "arrow_x": 95.614944458007812,
+          "arrow_y": -3.4061926271533594E-05,
+          "effectbyskeleton": true,
+          "bl": 95,
+          "display_data": [
+            {
+              "name": "youshou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 59.2602921,
+                  "y": -48.5778656,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 3.064819,
+                  "kY": -3.064819
+                }
+              ]
+            },
+            {
+              "name": "shieldman_youshou.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 59.2602921,
+                  "y": -48.5778656,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": 3.064819,
+                  "kY": -3.064819
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation_data": [
+    {
+      "name": "dunbin",
+      "mov_data": [
+        {
+          "name": "Animation1",
+          "dr": 13,
+          "lp": false,
+          "to": 0,
+          "drTW": 0,
+          "twE": 0,
+          "sc": 0.5833333,
+          "mov_bone_data": [
+            {
+              "name": "se_shiningstar",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 0.714286268,
+                  "cY": 0.6909353,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -34.285720825195312,
+                  "y": 24.71429443359375,
+                  "z": 0,
+                  "cX": 1.5,
+                  "cY": 1.5,
+                  "kX": 4.363323,
+                  "kY": -4.363327,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": -55.71429443359375,
+                  "y": -2.857147216796875,
+                  "z": 0,
+                  "cX": 0.7833068,
+                  "cY": 0.7564937,
+                  "kX": 8.726646,
+                  "kY": -8.726649,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "se_dun",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 16.5,
+                  "y": 68.999992370605469,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.6981317,
+                  "kY": -0.6981317,
+                  "fi": 4,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -32.285713195800781,
+                  "y": 21.90478515625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -52.516471862792969,
+                  "y": -0.4029083251953125,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "se_zuoshou",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -9.4255256652832031,
+                  "y": 12.1616792678833,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.47070536,
+                  "kY": -0.47070536,
+                  "fi": 4,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -2.2673625946044922,
+                  "y": -9.4303398132324219,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.242946908,
+                  "kY": 0.242946908,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -1.7146148681640625,
+                  "y": -15.029848098754883,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.242946908,
+                  "kY": 0.242946908,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "se_youjiao",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 4,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.354512632,
+                  "kY": -0.354512632,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -4.4458847045898438,
+                  "y": -5.4985518455505371,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.5236404,
+                  "kY": -0.5236404,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "se_youtui",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 4,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.22790958,
+                  "kY": 0.22790958,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -5.4809532165527344,
+                  "y": -4.5361232757568359,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.22790958,
+                  "kY": 0.22790958,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "se_shenti",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.2431447,
+                  "kY": -0.2431447,
+                  "fi": 4,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -22.285711288452148,
+                  "y": 14.761924743652344,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.09369807,
+                  "kY": 0.09369807,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -40.277145385742188,
+                  "y": 3.300384521484375,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.167014837,
+                  "kY": 0.167014837,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "se_tou",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 18.124996185302734,
+                  "y": -1.25,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.1661208,
+                  "kY": -0.1661208,
+                  "fi": 4,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -1.2623195648193359,
+                  "y": 14.631862640380859,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -2.0438976287841797,
+                  "y": 5.991363525390625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "se_datui",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -0.62499988079071045,
+                  "y": 0.625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0964313,
+                  "kY": -0.0964313,
+                  "fi": 4,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 11.622637748718262,
+                  "y": 0.62505531311035156,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.138547808,
+                  "kY": 0.138547808,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 2.5531711578369141,
+                  "y": 8.8064489364624023,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.314493835,
+                  "kY": 0.314493835,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "se_zuojiao",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 4,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.154359758,
+                  "kY": -0.154359758,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 6.0288581848144531,
+                  "y": 0.8079986572265625,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.00173389167,
+                  "kY": 0.00173389167,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "se_youshou",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 1,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 19.374996185302734,
+                  "y": -1.25,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 4,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": -0.22179818153381348,
+                  "y": 13.674100875854492,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 7,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 1,
+                  "x": 18.009735107421875,
+                  "y": 7.352046012878418,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.14624691,
+                  "kY": 0.14624691,
+                  "fi": 12,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "texture_data": [
+    {
+      "name": "zuoshou",
+      "width": 252.0,
+      "height": 304.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "datui",
+      "width": 252.0,
+      "height": 304.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "dun",
+      "width": 252.0,
+      "height": 304.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shenti",
+      "width": 252.0,
+      "height": 304.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "tou",
+      "width": 252.0,
+      "height": 304.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "youjiao",
+      "width": 252.0,
+      "height": 304.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "youshou",
+      "width": 252.0,
+      "height": 304.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "youtui",
+      "width": 252.0,
+      "height": 304.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "zuojiao",
+      "width": 252.0,
+      "height": 304.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shieldman_dun",
+      "width": 208.0,
+      "height": 290.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shieldman_zuoshou",
+      "width": 71.0,
+      "height": 152.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shieldman_youjiao",
+      "width": 59.0,
+      "height": 20.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shieldman_youtui",
+      "width": 42.0,
+      "height": 84.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shieldman_shenti",
+      "width": 79.0,
+      "height": 113.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shieldman_tou",
+      "width": 98.0,
+      "height": 84.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shieldman_datui",
+      "width": 111.0,
+      "height": 96.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shieldman_zuojiao",
+      "width": 52.0,
+      "height": 52.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shieldman_youshou",
+      "width": 137.0,
+      "height": 69.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "shiningstar",
+      "width": 356.0,
+      "height": 352.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    }
+  ],
+  "config_file_path": [
+    "dunbin0.plist",
+    "dunbin1.plist"
+  ],
+  "config_png_path": [
+    "dunbin0.png",
+    "dunbin1.png"
+  ]
+}

@@ -32,6 +32,13 @@ bool CommonObject::init(std::string fileName,cocos2d::Point pos, float scalex, f
     theBody->setScaleY(scaley);
     gameScene->addChild(theBody, 12);
     
+    //add bam
+    bam = Armature::create("bam");
+    bam->setPosition(theBody->getPosition());
+    bam->setVisible(false);
+    bam->setScale(1.5);
+    gameScene->addChild(bam,30);
+    
     //use the armature put blocks at right positions
     Vector<Node*> bonearr = theBody->getChildren();
     for(int i = 0; i< bonearr.size();i++)
@@ -80,6 +87,7 @@ bool CommonObject::init(std::string fileName,cocos2d::Point pos, float scalex, f
             // printf("bonename = %s\n", boneName.c_str());
             
             fixtureDef.fixturetype = f_glassblock;
+            fixtureDef.filter.groupIndex = -1;
             fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
             
             
@@ -189,11 +197,21 @@ void CommonObject::destroy()
         b->ApplyLinearImpulse(b2Vec2(3*xforce, 4*yforce), b->GetWorldCenter(), true);
         b->ApplyAngularImpulse(torque, true);
     }
+    
+    if(UniversalAttributes::GetInstance()->inMenuMode==false)
+        UniversalAttributes::GetInstance()->destructionScore += score;
+    
+    bam->setVisible(true);
+    bam->getAnimation()->playWithIndex(0);
+    UniversalAttributes::GetInstance()->comboStreak++;
+
 }
 
 void CommonObject::update(cocos2d::Point pos, float dt)
 {
     //-------------------
+    bam->setPosition(Point(staticWall->GetPosition().x*PTM_RATIO,staticWall->GetPosition().y*PTM_RATIO));
+
     
     std::vector<b2Body*>usedbody;
     
@@ -218,6 +236,7 @@ void CommonObject::update(cocos2d::Point pos, float dt)
     if ( wallBlocks.size() <= 0) {
         destroyed = true;
     }
+
 }
 
 CommonObject::~CommonObject()

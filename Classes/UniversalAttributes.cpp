@@ -35,6 +35,14 @@ void UniversalAttributes::setMonsterData(Monster *mon)
     monster = mon;
 }
 
+void UniversalAttributes::resetGame()
+{
+    destructionScore = 0;
+    galaxyMatterScore = 0;
+    comboStreak = 0;
+    enemyTimer = 1.3;
+}
+
 
 
 UniversalAttributes::~UniversalAttributes()

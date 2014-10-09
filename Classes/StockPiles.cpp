@@ -29,3 +29,12 @@ StockPiles::~StockPiles()
 {
     //do nothing
 }
+
+void StockPiles::destroy()
+{
+    CommonObject::destroy();
+    ScreenShaker *ss = ScreenShaker::create(0.5, 6);
+    gameScene->getParent()->runAction(ss);
+    //add bam!
+
+}

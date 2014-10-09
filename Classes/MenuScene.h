@@ -12,6 +12,10 @@
 #include "cocos2d.h"
 #include "GameScene.h"
 #include "cocos-ext.h"
+#include "UniversalAttributes.h"
+#include "MainMenu.h"
+#include "InGameMenu.h"
+#include "GameOverMenu.h"
 
 using namespace extension;
 
@@ -44,16 +48,47 @@ public:
     
     void update(float dt);
     
-
+    void reloadMenu();
+    
+    bool isPausing = false;
+    
 private:
     GameScene* gScene;
     int bearMovement;
+    float gameTimer;
+    float speedUpCheckPoint;
     ProgressTimer *left;
     void createPerkProgressBar();
     void healthMonitor();
     int healthCount;
     std::vector<Sprite*>healths;
-
+    //destruction point related
+    Label *dpCounter; //damage point counter
+    Label *gmCounter; //galaxy matters counter
+    Label *comboCounter; // combo counter
+    Label *cheerSubTitle;
+    int dpScoreCount;
+    int gmScoreCount;
+    int comboScoreCount;
+    int comboMultiplier;
+    string int2str(int &i);
+    Sequence *sq;
+    ScaleTo *sb1;
+    ScaleTo *sb2;
+    ScaleTo *st1;
+    ScaleTo *st2;
+    ScaleTo *st3;
+    ScaleTo *st4;
+    void dpMonitor();
+    bool inDummyMode;
+    Armature *speeduparmature;
+    
+    Sequence *speedupSq;
+    Sprite *speedupSprite;
+    
+    void dummyController();
+    
+    void optionCalled(Ref *sender);
 };
 
 #endif /* defined(__Bear__MenuScene__) */

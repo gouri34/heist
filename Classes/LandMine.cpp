@@ -93,8 +93,8 @@ void LandMine::update(float dt)
         MyQueryCallback queryCallback;
         b2AABB aabb;
         b2Vec2 detectionVec = b2Vec2(armature->getPositionX()/PTM_RATIO,armature->getPositionY()/PTM_RATIO);
-        aabb.lowerBound = detectionVec - b2Vec2(10 ,10);
-        aabb.upperBound = detectionVec + b2Vec2(10,10);
+        aabb.lowerBound = detectionVec - b2Vec2(2 ,1.6);
+        aabb.upperBound = detectionVec + b2Vec2(2,1.6);
         gameWorld->QueryAABB(&queryCallback, aabb);
         for (int j = 0; j < queryCallback.foundBodies.size(); j++) {
             b2Body* body = queryCallback.foundBodies[j];
@@ -116,7 +116,7 @@ void LandMine::explosionAction()
 {
     //set armatuer invisible
     armature->setVisible(false);
-    //CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explosfx.wav");
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explosion_medium.mp3");
 
     //add explosion effect
     explo = ParticleSun::createWithTotalParticles(100);

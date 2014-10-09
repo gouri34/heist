@@ -47,6 +47,14 @@ bool Enemy::init(const char*name, Point pos, float scalex, float scaley)
     
     creatfootBody();
     
+    //add bam effect
+    bam = Armature::create("bam");
+    bam->setPosition(Point(pos.x-armature->getScaleY()*armature->getContentSize().width/3,pos.y));
+    //bam->setScale(0.5);
+    bam->setAnchorPoint(Point(0.5,0.5));
+    bam->setVisible(false);
+    gameScene->addChild(bam,30);
+    
     return true;
 }
 
@@ -74,7 +82,7 @@ Enemy::~Enemy()
 {
     deleteProperties();
     gameScene->removeChild(armature, true);
-    
+    gameScene->removeChild(bam,true);
     if (footBody != NULL) {
         gameWorld->DestroyBody(footBody);
         footBody = NULL;
@@ -92,7 +100,14 @@ void Enemy::die(b2Vec2 vec)
     
     setB2bodyPosition();
     
-    if (!dead) {
+    if (!dead)
+    {
+        int soundRand = rand()%2;
+        if(soundRand==0)
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("body_impact_1.mp3");
+        else
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("body_impact_2.mp3");
+
         
         for (auto o : deadSpriteArray) {
             if (armature->getScaleX() < 0) {
@@ -131,7 +146,7 @@ void Enemy::die(b2Vec2 vec)
                 body->SetType(b2_dynamicBody);
                 if (name.compare("head") == 0) {
                     float rNum = (rand()%100)/100*1.1+1.0;
-                    vec = b2Vec2(vec.x*rNum, vec.y);
+                    vec = b2Vec2(2*vec.x*rNum, vec.y);
                 }
                 body->ApplyLinearImpulse(vec, body->GetWorldCenter(), true);
                 body->ApplyAngularImpulse(torgRand, true);
@@ -167,11 +182,20 @@ void Enemy::die(b2Vec2 vec)
         for (auto o : deadSpriteArray) {
             o->setVisible(true);
         }
+        
+        //add bam!
+        if(UniversalAttributes::GetInstance()->inMenuMode==false)
+            UniversalAttributes::GetInstance()->destructionScore += score;
+        bam->setVisible(true);
+        bam->getAnimation()->playWithIndex(0);
+        UniversalAttributes::GetInstance()->comboStreak++;
     }
 }
 
 void Enemy::update(float dt)
 {
+    bam->setPosition(Point(armature->getPositionX()+(armature->getScaleY()*armature->getContentSize().width/2),armature->getPositionY()));
+
     if (dead) {
         Sprite* s = deadSpriteArray.at(0);
         position = s->getPosition();
@@ -438,7 +462,7 @@ void Enemy::setB2bodyPosition()
         Skin* skin = (Skin*)bone->getDisplayRenderNode();
         
         if (skin != NULL) {
-            if (skin->isphysicsObject) {
+            if (skin->isphysicsObject&&(bone->getName()!="se_shiningstar")) {
                 b2Body *body = skin->body;
                 body->SetActive(true);
                 Point partpos = skin->getParentRelatePosition();
@@ -536,8 +560,10 @@ void Enemy::creatfootBody()
     fixtureDef.density = 0.2;
     fixtureDef.friction = 0.5f;
     fixtureDef.fixturetype = f_enemy_foot;
-    fixtureDef.filter.categoryBits = PLAYER;
+    fixtureDef.filter.categoryBits = ZOMBIE;
     fixtureDef.filter.maskBits = BASE_GROUND | UPPER_GROUND;
+    fixtureDef.filter.groupIndex = -1;
+    
     fixtureDef.shape = &circleShape;
     footBody->CreateFixture(&fixtureDef);
     

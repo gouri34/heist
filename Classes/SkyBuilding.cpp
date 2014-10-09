@@ -9,8 +9,10 @@
 #include "SkyBuilding.h"
 
 #include "MapGenerator.h"
+#include "ShieldEnemy.h"
+#include "BazookaEnemy.h"
 
-#define CEILING_HIGHT 161
+#define CEILING_HIGHT 270
 #define BUILDING_TEX_WIDTH 413
 
 SkyBuilding* SkyBuilding::create(Point pos, int groundY)
@@ -175,19 +177,24 @@ void SkyBuilding::terrainSceneArrangement()
     while (lastSetupPos.x < lastPos.x) {
         int randNum = rand()%3;
         string setupName;
-        switch (randNum) {
-            case 0:
-                setupName = "apartment_room1";
-                break;
-            case 1:
-                setupName = "apartment_room2";
-                break;
-            case 2:
-                setupName = "apartment_room3";
-                break;
-            default:
-                setupName = "apartment_room1";
-                break;
+        if (randNum==0) {
+            setupName = "apartment_room1";
+            int randEnemy = rand()%20;
+            if (randEnemy<3) {
+                ShieldEnemy *se = ShieldEnemy::create("dunbin", Point(lastPos.x+100,lastPos.y+30), 0.3, 0.3);
+                MapGenerator::GetInstance()->enemies.push_back(se);
+            }
+        }
+        else if(randNum==1){
+            setupName = "apartment_room2";
+        }
+        else if (randNum==2){
+            setupName = "apartment_room3";
+            int randEnemy = rand()%20;
+            if (randEnemy<3) {
+                BazookaEnemy *be = BazookaEnemy::create("PAObin", Point(lastPos.x+50,lastPos.y+30), 0.3, 0.3);
+                MapGenerator::GetInstance()->enemies.push_back(be);
+            }
         }
         MapGenerator::GetInstance()->setupSceneWithInfo(setupName, lastSetupPos);
         lastSetupPos = Point(lastSetupPos.x+BUILDING_TEX_WIDTH, lastSetupPos.y);
